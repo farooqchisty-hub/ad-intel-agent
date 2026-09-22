@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Static Ad Framework</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#11161d; --muted:#5b6672; --line:#e3e7ec;
+  --card:#f7f9fb; --accent:#0b5fff; --accent-soft:#e8f0ff;
+  --good:#0f7b4f; --good-soft:#e6f4ee; --warn:#8a5a00; --warn-soft:#fdf3e0;
+  --bad:#b0202f; --bad-soft:#fdeaec; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){ @media (prefers-color-scheme: dark){
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:860px;margin:0 auto;padding:56px 16px 120px}
+header.top{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:40px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:40px;line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:18px;margin:0}
+.meta{color:var(--muted);font:500 13px/1.5 var(--mono);margin-top:18px}
+h2{font-size:26px;letter-spacing:-.01em;margin:56px 0 4px;padding-top:8px}
+h2 .num{color:var(--muted);font:600 14px/1 var(--mono);display:block;margin-bottom:8px}
+h3{font-size:18px;margin:32px 0 8px}
+h4{font-size:15px;margin:22px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+p{margin:12px 0}
+ul,ol{margin:12px 0;padding-left:22px}
+li{margin:7px 0}
+code{font:500 13.5px/1.4 var(--mono);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font:13px/1.6 var(--mono)}
+pre code{background:none;border:none;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:20px 0}
+.card h3{margin-top:0}
+.tag{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 8px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0}
+blockquote p{margin:0}
+hr{border:none;border-top:1px solid var(--line);margin:48px 0}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.toc ol{margin:8px 0 0;padding-left:20px;columns:2;column-gap:32px}
+.toc li{margin:4px 0;break-inside:avoid}
+.toc a{color:var(--fg);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+a{color:var(--accent)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;font-size:14.5px;margin:14px 0}
+.kv dt{font:600 12px/1.7 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.kv dd{margin:0}
+.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media(max-width:620px){h1{font-size:30px}.toc ol{columns:1}.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:10px}}
+</style>
+</head>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow"><a href="./">Ad Intelligence Agent</a> · Design framework</div>
+  <h1>The Static Ad Framework</h1>
+  <p class="sub">Derived from 153 competitor ads torn down structurally, checked against B2B creative research. What actually separates an ad that runs for a year from one killed in a fortnight.</p>
+  <p class="meta">22 September 2026 · for review</p>
+</header>
+
+<h2><span class="num">01</span>The finding that overturns the previous approach</h2>
+
+<p>I compared the 49 ads in the corpus that ran 90 days or more against the 81 killed inside 30 days, on the structural measures the teardown captures. The result is consistent and it points the opposite way to how I was building.</p>
+
+<table>
+<thead><tr><th>Measure</th><th class="num">Survivors, 90d+</th><th class="num">Killed, under 30d</th><th>Direction</th></tr></thead>
+<tbody>
+<tr><td>Negative space</td><td class="num">47%</td><td class="num">36%</td><td>Survivors are <strong>emptier</strong></td></tr>
+<tr><td>Hook share of frame</td><td class="num">10.8%</td><td class="num">12.8%</td><td>Survivors have a <strong>smaller</strong> hook</td></tr>
+<tr><td>Distinct type sizes</td><td class="num">3.7</td><td class="num">4.5</td><td>Survivors are <strong>simpler</strong></td></tr>
+<tr><td>Colour count</td><td class="num">5.8</td><td class="num">6.5</td><td>Survivors use <strong>fewer</strong> colours</td></tr>
+<tr><td>Focal points</td><td class="num">2.3</td><td class="num">2.3</td><td>No difference: two is normal</td></tr>
+</tbody>
+</table>
+
+<blockquote><p>Restraint outlives volume. Every instinct that says "make the hook enormous, make it shout" is measurably associated with ads that get killed. I had been enforcing a 30 percent hero carrier. The ads that actually survive sit at eleven percent.</p></blockquote>
+
+<p>The second finding is about proof. Among the fast-killed ads, 31 of 81 show their claim "as large type". Among survivors it is 16 of 49, and the rest show proof as an <strong>object</strong>: award badges, a document, a comparison panel, review cards, a rated strip. The category's durable ads do not shout the claim. They <strong>exhibit</strong> it.</p>
+
+<h2><span class="num">02</span>What the longest-running ads are actually built like</h2>
+
+<p>The nine ads at 729 days and five at 475 days, all Omnisend, share one construction almost exactly:</p>
+
+<ul>
+  <li>A <strong>saturated brand colour fills the entire frame</strong>. Not white, not cream. The colour is the canvas.</li>
+  <li>An <strong>oversized statement sits left</strong>, set directly in open space on that colour. Two or three lines. No box, no plate, no container.</li>
+  <li>A <strong>proof object sits right</strong>, inside a rounded container: three stacked award badges, three review cards, a comparison panel.</li>
+  <li>A <strong>single high-chroma accent</strong> carries either one line of the hook or the CTA. One colour doing one job.</li>
+  <li>The <strong>brand mark is small</strong> and in a corner. It is never the point.</li>
+  <li>Negative space runs 43 to 66 percent.</li>
+</ul>
+
+<p>That is a two-column composition: <em>say it left, prove it right</em>. It is the single most replicated construction in the corpus and it has run for two years.</p>
+
+<h2><span class="num">03</span>What the research adds</h2>
+
+<p>The 2026 B2B creative sources converge with the corpus rather than contradicting it:</p>
+<ul>
+  <li>The claim sits in the <strong>top third</strong>; the proof or product occupies the <strong>lower half</strong>. Logo in a corner at modest scale. One CTA with nothing competing.</li>
+  <li>Legibility must land <strong>inside about 1.7 seconds</strong>, so the hierarchy is front-loaded: one thing clearly first, one clearly second, nothing else competing.</li>
+  <li>For a still, <strong>contrast is the motion</strong>. Luminance separation between subject and background is what triggers the eye in a feed.</li>
+  <li><strong>Lean on one effect hard.</strong> Stacking curiosity, tension and humour in one frame reads as confusion.</li>
+  <li><strong>Illustrated and designed visuals beat photographic stock</strong> in B2B. Stock lifestyle collapsed once the platforms began recognising library images.</li>
+  <li>Recurring B2B formats that work: the <strong>comparison grid</strong>, the <strong>three-stat scoreboard</strong>, the <strong>before and after split</strong>, the <strong>oversized single metric</strong>, the <strong>product screenshot with one specific real detail</strong>.</li>
+</ul>
+
+<h2><span class="num">04</span>The framework</h2>
+
+<p>Five layers. The first three are fixed by evidence and do not vary. The last two are where a style, an angle or a concept expresses itself. That split is what makes it durable: the thing that changes is not the thing that is load bearing.</p>
+
+<h3>Layer 1 · The canvas, fixed</h3>
+<ul>
+  <li>One colour fills the frame. It comes from the brand base: forest, cream, charcoal or white.</li>
+  <li>Negative space at or above <strong>45 percent</strong>. This is a target, not a leftover.</li>
+  <li>At most <strong>5 colours</strong> in the whole image, and at most one secondary accent.</li>
+  <li>At most <strong>4 distinct type sizes</strong>.</li>
+</ul>
+
+<h3>Layer 2 · The two-block grid, fixed</h3>
+<p>Every ad is a <strong>statement block</strong> and a <strong>proof block</strong>. Two focal points, which is what the corpus shows as normal, rather than the single focal point I was forcing.</p>
+<ul>
+  <li><strong>Statement block</strong>: the hook, set directly in open space. No container, no highlight bar, no plate. Occupies roughly <strong>10 to 12 percent</strong> of the frame. Upper-third or left, per the pattern chosen.</li>
+  <li><strong>Proof block</strong>: an object that carries the evidence. Larger in area than the statement. This is the visual mass of the ad.</li>
+</ul>
+
+<h3>Layer 3 · Proof as an object, fixed</h3>
+<p>The claim is exhibited, not announced. The proof block is one of these, chosen by what the angle actually has to show:</p>
+<table>
+<thead><tr><th>Proof object</th><th>Use when the angle has</th></tr></thead>
+<tbody>
+<tr><td>Comparison panel, two rows or columns</td><td>a structural difference, e.g. billed on sends against billed on contacts</td></tr>
+<tr><td>Stacked cards, three of them</td><td>several instances of one thing: reviews, integrations, channels</td></tr>
+<tr><td>Document or artifact</td><td>something that exists on paper: an invoice, a policy, a plan</td></tr>
+<tr><td>Interface fragment, cropped confidently</td><td>the product itself is the evidence</td></tr>
+<tr><td>Single oversized figure</td><td>one approved number that carries the whole argument</td></tr>
+<tr><td>Before and after split</td><td>a change of state</td></tr>
+<tr><td>Object metaphor</td><td>nothing concrete to show, so the idea has to be embodied</td></tr>
+</tbody>
+</table>
+
+<h3>Layer 4 · Style, variable</h3>
+<p>The treatment of the two blocks. This is where an ad looks different from its neighbour without breaking the construction: flat graphic, illustrated, photographic, dimensional, editorial, or diagrammatic. Style changes the surface. It never moves the blocks.</p>
+
+<h3>Layer 5 · Concept, variable</h3>
+<p>What the proof object actually <em>is</em> for this hook. The same comparison panel can be a pricing table, a receipt, a docket or a scoreboard. The same stacked cards can be reviews, channels or plans. Concept is the invention layer, and it is bounded by the block it has to fill.</p>
+
+<h2><span class="num">05</span>How it applies across angles</h2>
+
+<table>
+<thead><tr><th>Angle</th><th>Natural proof object</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>pricing-fairness</td><td>comparison panel, or a document</td><td>the argument is structural, two billing models side by side</td></tr>
+<tr><td>deliverability</td><td>before and after split</td><td>a change of state: not arriving, then arriving</td></tr>
+<tr><td>human-support</td><td>stacked cards, or an interface fragment</td><td>evidence of responses, repeated</td></tr>
+<tr><td>platform-breadth</td><td>stacked cards</td><td>several instances of one thing, which is the whole point</td></tr>
+<tr><td>switching-safety</td><td>document, or before and after</td><td>a migration is a process with a paper trail</td></tr>
+<tr><td>peak-reliability</td><td>single oversized figure, or comparison</td><td>one moment, one number, or two behaviours contrasted</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">06</span>What changes from what I was doing</h2>
+
+<table>
+<thead><tr><th>Was</th><th>Becomes</th><th>Because</th></tr></thead>
+<tbody>
+<tr><td>Hook at 30% of frame</td><td>Hook at 10 to 12%</td><td>survivors sit at 10.8%, killed ads at 12.8%</td></tr>
+<tr><td>One focal point enforced</td><td>Two: statement and proof</td><td>both bands average 2.3, so one was never the norm</td></tr>
+<tr><td>Claim shouted as large type</td><td>Claim exhibited as an object</td><td>large-type claims over-index heavily among killed ads</td></tr>
+<tr><td>Two text elements maximum</td><td>Whatever the pattern carries</td><td>survivors run 4 to 18 elements</td></tr>
+<tr><td>Cream or white background default</td><td>Saturated brand colour as the field</td><td>every 729-day ad is a full colour field</td></tr>
+<tr><td>Aesthetic direction picked per ad</td><td>Style is layer 4, the grid never moves</td><td>varying the load-bearing part is what made output incoherent</td></tr>
+<tr><td>Maximise contrast and drama</td><td>Restraint: emptier, simpler, fewer colours</td><td>survivors are quieter on every measure</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">07</span>Why this one should hold</h2>
+<ul>
+  <li><strong>The fixed layers are measured, not asserted.</strong> Every number in layers 1 to 3 comes from the survivor-versus-killed comparison, and it re-derives on every sweep.</li>
+  <li><strong>The variable layers are genuinely free.</strong> Style and concept can go anywhere without touching the construction, which is what lets one framework serve many looks.</li>
+  <li><strong>It fails loudly.</strong> Each fixed layer is a number a QA pass can check: negative space, colour count, type sizes, hook share, proof object present. Not taste.</li>
+  <li><strong>It says no to the thing that keeps going wrong.</strong> The recurring failure has been over-production: too big, too loud, too many elements. Every fixed layer pushes the other way.</li>
+</ul>
+
+<div class="footer"><p>Derived from 153 deep teardowns across 8 advertisers, 22 September 2026. Survivor band n=49, killed band n=81.</p></div>
+</div></body></html>
