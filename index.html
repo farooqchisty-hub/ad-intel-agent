@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ad Intelligence Agent</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#11161d; --muted:#5b6672; --line:#e3e7ec;
+  --card:#f7f9fb; --accent:#0b5fff; --accent-soft:#e8f0ff;
+  --good:#0f7b4f; --good-soft:#e6f4ee; --warn:#8a5a00; --warn-soft:#fdf3e0;
+  --bad:#b0202f; --bad-soft:#fdeaec; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){ @media (prefers-color-scheme: dark){
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:860px;margin:0 auto;padding:56px 16px 120px}
+header.top{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:40px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:40px;line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:18px;margin:0}
+.meta{color:var(--muted);font:500 13px/1.5 var(--mono);margin-top:18px}
+h2{font-size:26px;letter-spacing:-.01em;margin:56px 0 4px;padding-top:8px}
+h2 .num{color:var(--muted);font:600 14px/1 var(--mono);display:block;margin-bottom:8px}
+h3{font-size:18px;margin:32px 0 8px}
+h4{font-size:15px;margin:22px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+p{margin:12px 0}
+ul,ol{margin:12px 0;padding-left:22px}
+li{margin:7px 0}
+code{font:500 13.5px/1.4 var(--mono);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font:13px/1.6 var(--mono)}
+pre code{background:none;border:none;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:20px 0}
+.card h3{margin-top:0}
+.tag{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 8px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0}
+blockquote p{margin:0}
+hr{border:none;border-top:1px solid var(--line);margin:48px 0}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.toc ol{margin:8px 0 0;padding-left:20px;columns:2;column-gap:32px}
+.toc li{margin:4px 0;break-inside:avoid}
+.toc a{color:var(--fg);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+a{color:var(--accent)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;font-size:14.5px;margin:14px 0}
+.kv dt{font:600 12px/1.7 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.kv dd{margin:0}
+.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media(max-width:620px){h1{font-size:30px}.toc ol{columns:1}.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Brevo Ecommerce · Performance Creative</div>
+  <h1>Ad Intelligence Agent</h1>
+  <p class="sub">A weekly competitor sweep that turns Meta and Google ad libraries into an angle inventory, then drafts our own ads against it. Architecture, agent logic, dashboard spec and build plan.</p>
+  <p class="meta">22 September 2026 · v1 design note · written against verified API access, not assumptions</p>
+</header>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#thesis">The thesis</a></li>
+    <li><a href="#verified">What already works</a></li>
+    <li><a href="#truths">Four hard truths</a></li>
+    <li><a href="#scoring">Persistence Score</a></li>
+    <li><a href="#angles">The angle inventory</a></li>
+    <li><a href="#constitution">Positioning Constitution</a></li>
+    <li><a href="#loops">The six agent loops</a></li>
+    <li><a href="#data">Data model</a></li>
+    <li><a href="#generation">Static and video generation</a></li>
+    <li><a href="#drafts">Draft delivery</a></li>
+    <li><a href="#dashboard">Dashboard spec</a></li>
+    <li><a href="#metrics">Metrics catalogue</a></li>
+    <li><a href="#alerts">Alerts</a></li>
+    <li><a href="#console">The chat console</a></li>
+    <li><a href="#stack">Stack and build plan</a></li>
+    <li><a href="#risks">Risks and open questions</a></li>
+  </ol>
+</div>
+
+<h2 id="thesis"><span class="num">01</span>The thesis</h2>
+
+<p>The instinct is to build an ad generator with a competitor feed bolted on. That is the wrong centre of gravity, because generation is the part we already solved. There is a working static pipeline that has shipped 247 ads through a ranked template library with brand safety, chroma compositing and a vision QA gate. Adding another image model call is not the hard part.</p>
+
+<p>The hard part is <strong>judgment</strong>. Ad libraries are a firehose of creative with <em>no performance data attached</em>. Meta publishes no spend, no impressions and no CTR for commercial ads. Google publishes only where and how long. So an agent that "looks at competitor ads and makes similar ones" is copying noise: most of what Klaviyo is running is losing, and we cannot see which half.</p>
+
+<blockquote><p>The agent's real job is to infer which competitor ads are winning from public signals, decompose those winners into arguments rather than pictures, and then run our own arguments against our own performance data so the loop compounds.</p></blockquote>
+
+<p>Three consequences follow, and they should drive every build decision:</p>
+
+<ol>
+  <li><strong>The unit of intelligence is the angle, not the image.</strong> "Klaviyo added seven ads on the deliverability angle this week and retired the AI agents angle" is an insight. "Here are forty new JPEGs" is a folder.</li>
+  <li><strong>The unit of value is the join.</strong> Every ad we generate carries a pointer to the competitor angle it descended from. Once that ad runs, its real CTR and CPA flow back to the angle. After a quarter we can say which competitor arguments actually work <em>for our audience</em>. Nobody can buy that. It is the only reason to build instead of paying Atria.</li>
+  <li><strong>Copying is a validated hypothesis, not a shortcut.</strong> Klaviyo sells to merchants who already have a list and a budget. Brevo ecom has a top-of-funnel problem. An angle that converts for them can flop for us, so every adapted angle goes in as a test with a kill rule, not as a truth.</li>
+</ol>
+
+<h2 id="verified"><span class="num">02</span>What already works (checked today, not assumed)</h2>
+
+<p>Before designing anything I probed the access layer. This changes the build materially: most of the plumbing is already paid for and live.</p>
+
+<table>
+<thead><tr><th>Capability</th><th>Route</th><th>State</th></tr></thead>
+<tbody>
+<tr><td>Read our Meta ad account: campaigns, ad sets, ads, creatives, insights</td><td><code>treg</code> connected account, <code>meta-ads.*</code></td><td><span class="tag good">Live, $0 per call</span> Returns real campaign history going back months.</td></tr>
+<tr><td>Write to Meta: campaign, ad set, creative, ad, image and video upload</td><td><code>meta-ads.x.campaign-create</code>, <code>.adset-create</code>, <code>.adcreative-create</code>, <code>.ad-create</code>, <code>.account-adimages</code>, <code>.account-advideos</code></td><td><span class="tag good">Available, $0 per call</span> No Meta app, no App Review, because the account is connected by OAuth on our side.</td></tr>
+<tr><td>Competitor Meta ads by page</td><td><code>scrapecreators.x.v1-facebook-adlibrary-company-ads</code> resold through treg</td><td><span class="tag good">Live at $0.00188 per call</span> on treg's key, which routes around our own expired ScrapeCreators credit.</td></tr>
+<tr><td>Competitor Google ads by domain or advertiser</td><td><code>scrapecreators.x.v1-google-company-ads</code>, plus <code>serpapi.google.ads.transparency</code> at $0.015</td><td><span class="tag good">Live</span> ScrapeCreators is still the only source that returns the YouTube URL behind a Google video ad.</td></tr>
+<tr><td>Fallback scrapers if a route breaks</td><td>Apify <code>facebook-ads-scraper</code>, <code>scrapesage/google-ads-transparency-scraper</code>, and agent-browser for Cloudflare walls</td><td><span class="tag good">All previously verified</span></td></tr>
+<tr><td>Image generation</td><td>MagicFit API on GPT Image 2, plus Replicate and Higgsfield</td><td><span class="tag good">Live</span> Measured cost as low as 2 credits at 1K low, which is production quality for feed statics.</td></tr>
+<tr><td>Video generation</td><td>Seedance, Veo, Wan through treg or Higgsfield</td><td><span class="tag warn">Usable for b-roll and concept films only</span></td></tr>
+<tr><td>Our own Google Ads account</td><td><code>google-ads.query</code>, <code>google-ads.accounts</code> exist in the catalogue but with zero samples on our team</td><td><span class="tag bad">Not connected</span> This is the one real blocker. See risks.</td></tr>
+<tr><td>Our own ScrapeCreators key</td><td>direct MCP</td><td><span class="tag bad">Out of credits</span> Irrelevant if we route via treg, which is cheaper anyway.</td></tr>
+</tbody>
+</table>
+
+<p>One more thing the probe surfaced: the Meta account already contains a campaign literally named <code>DRAFT TEST | ... | 2026-09-03</code> sitting paused. The draft convention we need is already half in place by accident.</p>
+
+<h2 id="truths"><span class="num">03</span>Four hard truths that shape the design</h2>
+
+<h3>1. Ad libraries carry no performance data, so longevity is the only honest proxy</h3>
+<p>Meta gives an ad's start date and whether it is still active. Google gives <code>firstShown</code>, <code>lastShown</code> and <code>shownForDays</code>. That is the whole signal set. An advertiser with a competent media buyer kills losers inside 7 to 14 days, so an ad that has been live for 60 days is almost certainly paying for itself. Everything else we can infer, we infer from <em>behaviour</em>: how many variants they cut of one concept, whether they re-launched something they killed, how many regions they expanded it to. Build the scoring on those, and label it honestly in the UI as an inference, not a metric.</p>
+
+<h3>2. The library undercounts and mislabels, systematically</h3>
+<p>Google's own <code>number_of_ads_estimate</code> is rounded and overstates. Regions listed are where impressions were recorded, not where they targeted, and anything under roughly a thousand impressions is suppressed entirely. Meta keyword search returns other advertisers' ads, so results must always be filtered by page id. One brand routinely has several legal entities with separate advertiser ids, so a domain sweep that finds one entity is an incomplete sweep. Each of these is a silent data-quality bug that will quietly corrupt week-over-week deltas, so each needs an explicit guard in the ingest layer, not a comment in a README.</p>
+
+<h3>3. Meta has no real draft object, Google does</h3>
+<p>There is no "draft ad" in the Marketing API. The pattern that works is a real campaign created with <code>status: PAUSED</code> all the way down the tree, in a reserved campaign whose name marks it as agent output, so a human can open Ads Manager, preview the rendered ad, and flip it live. Google Ads is different: it has genuine <code>CampaignDraft</code> objects that stage changes against a base campaign, and it now does real-time policy review on responsive search ads, which means we can get a policy verdict before a human ever looks. Design the delivery layer per platform rather than pretending they are symmetric.</p>
+
+<h3>4. Naming a competitor in an ad is a legal decision, not a creative one</h3>
+<p>Our sharpest wedge is that Klaviyo charges for profiles you are not emailing. That is also the claim most likely to attract a letter. The agent must be able to generate the angle without naming the competitor by default, tag any variant that does name one, and route those to a human gate that is separate from the normal approve button. This is a switch in the Positioning Constitution, not a prompt suggestion.</p>
+
+<h2 id="scoring"><span class="num">04</span>Persistence Score: the winner detector</h2>
+
+<p>One number per competitor ad, recomputed every sweep, from signals we can actually observe. Weights are a starting point to be tuned once we have our own outcome data to calibrate against.</p>
+
+<table>
+<thead><tr><th>Signal</th><th>What it means</th><th>Weight</th></tr></thead>
+<tbody>
+<tr><td><strong>Days live</strong>, log scaled</td><td>Survived the kill decision. The strongest single signal.</td><td>0.35</td></tr>
+<tr><td><strong>Still active now</strong></td><td>Currently surviving, not historically survived.</td><td>0.15</td></tr>
+<tr><td><strong>Sibling count</strong></td><td>Number of near-duplicate creatives in the same concept cluster. Buyers only iterate on winners, so a concept with 9 variants is a concept that works.</td><td>0.20</td></tr>
+<tr><td><strong>Placement and surface breadth</strong></td><td>Feed plus Reels plus Stories, or Search plus Display plus YouTube. Scaling out costs money, so it signals confidence.</td><td>0.10</td></tr>
+<tr><td><strong>Geo breadth</strong>, with the suppression caveat</td><td>Regions where impressions were recorded. Treated as directional only.</td><td>0.08</td></tr>
+<tr><td><strong>Resurrection</strong></td><td>Went dark, then came back. A strong, rare and underused signal.</td><td>0.07</td></tr>
+<tr><td><strong>Spend proxy</strong></td><td>Ad count on this concept as a share of that advertiser's total live ads.</td><td>0.05</td></tr>
+</tbody>
+</table>
+
+<p>Two derived views matter more than the raw score:</p>
+<ul>
+  <li><strong>Half life by angle.</strong> Median days live for every ad in an angle cluster. Tells us which arguments have durability rather than which single ad got lucky.</li>
+  <li><strong>Velocity.</strong> Net new ads per angle per week. Catches a competitor leaning into something before the longevity signal has time to appear, which is exactly what matters in a BFCM ramp.</li>
+</ul>
+
+<h2 id="angles"><span class="num">05</span>The angle inventory</h2>
+
+<p>Every ingested ad, static or video, goes through one vision and text pass that returns a structured object. This is the schema that everything downstream depends on, so it is worth over-thinking once and then freezing.</p>
+
+<pre><code>{
+  "angle":        "pricing-fairness",        // the argument, clustered
+  "promise":      "stop paying for contacts you never email",
+  "mechanism":    "billing on sends, not stored profiles",
+  "audience_cue": "scaling DTC brand with a bloated list",
+  "pain":         "bill grew faster than revenue",
+  "objection":    "migration is painful",
+  "proof_type":   "price-comparison | screenshot | stat | testimonial | logo-wall | demo | none",
+  "offer":        "free tier to 100k contacts",
+  "cta":          "compare your bill",
+  "format":       "static | video | carousel | text | display",
+  "visual_world": "invoice / spreadsheet / receipt",
+  "hook_text":    "Your list is not your bill.",
+  "hook_seconds": 2.4,                        // video only
+  "emotion":      "indignation",
+  "names_competitor": true,
+  "seasonal_tag": "bfcm"
+}</code></pre>
+
+<p>Clustering into angles should be embedding based over the <code>promise</code> plus <code>mechanism</code> fields, with a human-curatable label per cluster. Do not let the model invent a fresh angle name per ad or the inventory becomes unusable within two sweeps.</p>
+
+<p><strong>The outputs that make this worth doing:</strong></p>
+<ul>
+  <li><strong>Share of voice by angle</strong>, per competitor, per week. The headline chart of the whole product.</li>
+  <li><strong>Whitespace.</strong> Angles present in the ecommerce merchant conversation, from reviews and communities, that <em>nobody</em> is running ads on. The most valuable single screen for a brand marketer.</li>
+  <li><strong>Angle diff.</strong> Entered, exited, accelerating, decaying, per competitor, week over week.</li>
+  <li><strong>Attack map.</strong> Who names whom. Which of our own weaknesses competitors are hammering.</li>
+</ul>
+
+<h2 id="constitution"><span class="num">06</span>The Positioning Constitution</h2>
+
+<p>The single most important file in the repo, and the one that stops this becoming a machine for producing off-brand slop at scale. Every generated ad is validated against it before it can reach a draft. It is a checked-in document with a machine-readable validator, not a paragraph in a system prompt.</p>
+
+<div class="card">
+<h3>Hard constraints</h3>
+<ul>
+  <li><strong>Category leads.</strong> Brevo ecom is a CRM and marketing platform. The AI ad and video wedge is proof and surprise, never the headline. Leading with ads re-shelves us into ad tech.</li>
+  <li><strong>Never scrappy.</strong> No "small team", no underdog, no two-person framing, in any variant, ever.</li>
+  <li><strong>No invented numbers.</strong> No ROAS, CTR, lift percentage, rating, award or customer count that is not on an approved claims ledger. This is the rule that broke twice in the prior pipeline and got a fabrication gate built for it. Reuse that gate.</li>
+  <li><strong>Competitor naming is off by default</strong> and every naming variant is quarantined behind a separate legal gate.</li>
+  <li><strong>No fake social proof.</strong> Testimonials come from a real approved list or are omitted.</li>
+</ul>
+<h3>Positive direction</h3>
+<ul>
+  <li>Outcome carries: lifetime customers, not sends.</li>
+  <li>Pricing fairness is the sharpest wedge and gets the most variants.</li>
+  <li>Deliverability and peak-week reliability is the credibility angle.</li>
+  <li>Hook legible at thumbnail size, generous type, safe area respected.</li>
+</ul>
+</div>
+
+<p>The validator runs twice: on the copy before rendering, and as a vision pass on the rendered image, checking for unauthorised text, invented claims and misspellings. That second pass already exists and already caught a hallucinated money-back guarantee, so it should be lifted straight across.</p>
+
+<h2 id="loops"><span class="num">07</span>The six agent loops</h2>
+
+<p>Do not build one agent. Build six narrow ones behind a queue, each with a single responsibility and a checkable output. The chat console is a seventh that orchestrates them on demand.</p>
+
+<h4>Loop 1 · Sweep (weekly cron, plus on demand)</h4>
+<p>For each tracked brand, pull Meta page ads and Google advertiser ads. Diff against what we already hold. Write only new and changed rows. Update <code>last_seen</code> and mark disappearances. Enumerate all legal entities per domain, not just the first. On-demand mode accepts any brand name, domain or page id we have never tracked, resolves it, and runs the same path.</p>
+
+<h4>Loop 2 · Decompose</h4>
+<p>Vision and transcript pass over new creatives only. Statics go to a vision model, Meta videos through the ad transcript endpoint, Google video ads through the YouTube URL then transcript. Emits the angle object above. Costs money, so it runs once per creative, ever.</p>
+
+<h4>Loop 3 · Score and cluster</h4>
+<p>Recompute Persistence Score across the whole corpus, recluster angles, compute weekly deltas, detect entered and exited angles, write the digest.</p>
+
+<h4>Loop 4 · Adapt</h4>
+<p>Take the top scoring angles, filter for ICP fit against our funnel problem, run them through the Constitution, and emit <em>briefs</em>: the argument restated in our voice, with the hook variants, the proof we are allowed to use, and the format recommendation. This is a text-only loop and it is the one whose output a human should review most closely, because everything downstream inherits its mistakes.</p>
+
+<h4>Loop 5 · Produce</h4>
+<p>Statics rendered end to end from the existing template library and bake pipeline, with the fabrication gate and edge QA. Videos produce a shootable brief, not a file. Output lands in the gallery as a candidate, never as a draft.</p>
+
+<h4>Loop 6 · Measure</h4>
+<p>Pull our own Meta insights daily, join live ads back to the angle they descended from, compute per-angle and per-hook performance, detect fatigue, and feed the results back into the Adapt loop's ranking. This is the loop that makes the system compound, and it is the one most likely to get deferred. Do not defer it.</p>
+
+<h2 id="data"><span class="num">08</span>Data model</h2>
+
+<p>Five tables. Keep metadata in D1 and every binary in R2, because a creative-heavy corpus will hit D1 limits fast and we have already had one read-cap outage on a different project.</p>
+
+<table>
+<thead><tr><th>Table</th><th>Holds</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>brands</code></td><td>Tracked competitors and ad-hoc lookups. Page ids, advertiser ids per legal entity, domains, tier.</td><td>Ad-hoc brands flagged so they do not enter the weekly cron unless promoted.</td></tr>
+<tr><td><code>ads</code></td><td>Every creative ever seen. Immutable body, mutable <code>first_seen</code>, <code>last_seen</code>, <code>is_active</code>, <code>days_live</code>, <code>score</code>.</td><td>Never delete. Disappearance is data.</td></tr>
+<tr><td><code>angles</code></td><td>Cluster label, canonical promise, member count, half life, weekly velocity, whitespace flag.</td><td>Human-editable labels.</td></tr>
+<tr><td><code>creatives</code></td><td>Our output. Links to source angle and source ad. Status: candidate, approved, rejected, drafted, live, killed. Revision history from the feedback field.</td><td>The join table that carries all the value.</td></tr>
+<tr><td><code>performance</code></td><td>Daily snapshots of our own ad metrics keyed on platform ad id.</td><td>Snapshot daily rather than query on read, so trend and decay are cheap.</td></tr>
+</tbody>
+</table>
+
+<h2 id="generation"><span class="num">09</span>Static and video generation</h2>
+
+<h3>Static, end to end</h3>
+<p>Meta feed 1:1 and 4:5, Stories and Reels 9:16, Google Display in the standard set, each rendered from the ranked template library with the rich baking method rather than one-line descriptions, because the thin version produced ads that read as plainly generated. Every render passes edge QA for safe area and the vision QA gate for unauthorised text. Target is roughly 6 to 10 finished candidates per approved brief so there is real selection at the review step rather than a single take-it-or-leave-it.</p>
+
+<h3>Google text and search</h3>
+<p>Fully generatable and cheap: 15 headlines and 4 descriptions per responsive search ad, built from the angle's promise and objection fields, plus sitelinks and callouts. Worth mining competitor <em>text</em> ads hard, because that copy is the most honest statement of a competitor's positioning they ever publish, and almost nobody analyses it.</p>
+
+<h3>Video, brief only</h3>
+<p>The output object is a shootable brief, and it should be graded on producibility so the pipeline is honest about what it is handing over:</p>
+<ul>
+  <li><span class="tag good">AI complete</span> Rendered end to end by a video model. Realistically: abstract or product-world concept films, kinetic typography, data and comparison pieces. Suitable for hook tests, not for anything needing a specific human face saying a specific line.</li>
+  <li><span class="tag warn">AI plus assets</span> Needs a screen recording of the actual Brevo UI, a product shot, or a logo. The brief states precisely what to capture and at what length.</li>
+  <li><span class="tag bad">Human required</span> Needs a person, a customer, or a real scenario. The brief becomes a creator brief, which plugs into the creator programme rather than the ad pipeline.</li>
+</ul>
+
+<p>The brief carries: the hook as on-screen text and as spoken line, a beat sheet with timecodes, shot list, b-roll list, the asset request addressed to a human, the source competitor video it was derived from with its timestamped hook, and the aspect ratios to cut. The highest-leverage input here is the competitor hook library built from transcripts: the first three seconds of every high-persistence competitor video, transcribed and clustered. That library is a standalone asset, useful even if nothing else ships.</p>
+
+<h2 id="drafts"><span class="num">10</span>Draft delivery</h2>
+
+<div class="card">
+<p><strong>Nothing reaches a platform without an explicit human click.</strong> Approve in the gallery is a review action. Push to platform is a separate, deliberate second action. The agent never pushes on a cron, and never unpauses anything. This is a hard gate in code, not a convention.</p>
+</div>
+
+<h4>Meta</h4>
+<p>Upload image to the ad account image library, create the ad creative, create the ad against a reserved paused campaign and ad set named <code>AGENT DRAFT | angle | date</code>, with <code>status: PAUSED</code> at every level. The human opens Ads Manager, sees the real rendered preview across placements, and either flips it live or deletes it. Record the returned platform ad id on our creative row immediately, because that id is the key the Measure loop joins on later.</p>
+
+<h4>Google</h4>
+<p>Use real <code>CampaignDraft</code> objects for structural changes, and paused ad groups with paused responsive search ads for creative. Upload display images as assets. Take the real-time policy verdict on responsive search ads and surface it in the gallery before a human spends attention on a creative that will be disapproved anyway.</p>
+
+<h2 id="dashboard"><span class="num">11</span>Dashboard spec</h2>
+
+<h3>Home · Console</h3>
+<p>The chat console at the top, occupying the primary position. Below it a compact week strip: new competitor ads, new angles, angles that died, our creatives awaiting review, our live ad count and the one metric that moved most. Below that, this week's digest in prose, written by the agent, three paragraphs, no more.</p>
+
+<h3>Radar · competitor ads</h3>
+<p>The gallery of everything ingested. Filters on brand, platform, format, angle, persistence band, active or dead, first seen, geo, names-a-competitor, seasonal tag. Sorts on score, days live, newest, sibling count. Each card shows the creative, days live, score, angle label, and a one-line "why this scored" explanation, because an unexplained score gets ignored. Card actions: adapt this, add to a brief, pin to a board, mute this advertiser.</p>
+
+<h3>Angles</h3>
+<p>The inventory. Share of voice stacked by competitor over time, half life table, velocity leaderboard, entered and exited this week, and the whitespace panel. Clicking an angle opens every competitor ad in it plus every creative of ours descended from it plus that lineage's performance. This screen is the product.</p>
+
+<h3>Studio · our creatives</h3>
+<p>Tabbed by status: candidates, approved, drafted, live, killed. Tabs also by platform and format. Every card carries a free-text revision field, and a revision request re-runs only the relevant stage rather than the whole pipeline: copy edits re-render, concept edits regenerate, video-brief edits rewrite the brief. Batch select, batch approve, batch push.</p>
+
+<h3>Compare</h3>
+<p>Our live ads beside competitor ads in the same angle. Left column our creative with its real metrics, right column the competitor creative with its persistence signals, labelled clearly as inference not measurement so nobody reads a Persistence Score as a CTR. Below, the angle-level verdict: our CPA on this angle against our own portfolio median.</p>
+
+<h3>Performance</h3>
+<p>Meta and Google side by side but never summed, since the metrics are not comparable. Spend, impressions, CTR, CPC, CPA, ROAS where available. Then the cuts that actually inform creative: by angle, by format, by hook, by visual world, by aspect ratio. Plus the fatigue view: frequency against CTR decay slope per ad, with a projected kill date.</p>
+
+<h3>Brands</h3>
+<p>Tracked list with tier, plus a field to drop in any brand name, domain or page id for an immediate one-off sweep, and a promote-to-tracked button.</p>
+
+<h2 id="metrics"><span class="num">12</span>Metrics catalogue</h2>
+
+<p>You asked what else is worth tracking. The list below is deliberately longer than v1 needs. Mark the starred ones for phase one and let the rest wait.</p>
+
+<h4>Per competitor, weekly</h4>
+<ul>
+  <li>★ Active ad count and net new, with kill rate</li>
+  <li>★ Mean and median age of live ads, the creative-refresh cadence</li>
+  <li>★ Format mix, static against video against carousel against text</li>
+  <li>★ Angle concentration, what share of live ads sit on their top angle</li>
+  <li>Landing page destinations and every change to them, including which pages they stop sending traffic to</li>
+  <li>Offer and promotion changes, discount depth, free-tier threshold moves</li>
+  <li>Seasonal ramp curve, this year's BFCM buildup against last year's at the same week</li>
+  <li>Geo and language expansion, new localisations</li>
+  <li>New legal entity or new ad account appearing, which usually precedes a market entry</li>
+  <li>Creator and UGC usage rate, and which creators recur</li>
+  <li>Google text ad keyword themes, and specifically whether they bid on our brand terms</li>
+  <li>YouTube view counts on promoted assets against their organic siblings, which separates paid from organic</li>
+  <li>Their own review and community sentiment, as the source of angles they have not yet run</li>
+</ul>
+
+<h4>Cross competitor</h4>
+<ul>
+  <li>★ Angle share of voice and the whitespace set</li>
+  <li>Price-mention frequency across the category, the proxy for a price war starting</li>
+  <li>Attack map, who names whom, and what they say about us</li>
+  <li>Category hook taxonomy with frequency, from video transcripts</li>
+</ul>
+
+<h4>Our side</h4>
+<ul>
+  <li>★ Spend, CTR, CPC, CPA, ROAS, by angle and by format</li>
+  <li>★ Creative half life, days from launch to CTR falling below its cohort median</li>
+  <li>★ Frequency against CTR decay slope, the fatigue signal</li>
+  <li>Thumbstop proxy for video, three second views over impressions</li>
+  <li>Hook-level performance, which requires tagging every creative with its hook at generation time, so build the tag now even before there is data</li>
+  <li>Cost per unique outbound click, less gameable than CTR</li>
+  <li>Adapted against original, do descended-from-competitor ads beat our own net-new concepts</li>
+  <li>Draft to live conversion rate and time to review, which is the honest measure of whether the agent is actually useful or just generating work</li>
+</ul>
+
+<h2 id="alerts"><span class="num">13</span>Alerts</h2>
+<p>Push, not pull. Weekly digest by default, immediate for the sharp ones.</p>
+<ul>
+  <li>New angle detected that no competitor ran before</li>
+  <li>A competitor's ad count jumps more than 40 percent week over week, which is a budget move</li>
+  <li>A competitor starts bidding on our brand terms</li>
+  <li>A competitor kills an angle we copied within the last 30 days</li>
+  <li>A competitor ad crosses 90 days live, the strong-winner threshold</li>
+  <li>One of our live creatives drops below its cohort median CTR, with a suggested replacement already generated</li>
+  <li>A draft has been sitting unreviewed for seven days</li>
+</ul>
+
+<h2 id="console"><span class="num">14</span>The chat console</h2>
+
+<p>One text box on the home page, an agent loop with tools over the same D1 and R2. It should cover three request classes, and it is worth being explicit about them because they need different handling:</p>
+
+<ol>
+  <li><strong>Questions.</strong> "What is our CPA on the pricing angle this month." Answered from the database, with the query shown so the number is auditable.</li>
+  <li><strong>Actions.</strong> "Sweep Klaviyo and Omnisend for BFCM and make me five statics on their strongest offer angle." Enqueues real work, returns a job the user can watch, and lands the output in the gallery.</li>
+  <li><strong>Judgment.</strong> "Should we go after the deliverability angle." Answered with evidence from the corpus and an explicit recommendation, not a list of considerations.</li>
+</ol>
+
+<p>Two design rules. First, every answer that contains a number links to the rows behind it, or the console becomes untrustworthy the first time it is subtly wrong. Second, any action that would write to Meta or Google returns a confirmation card rather than doing it, no exceptions, even when the request sounds unambiguous.</p>
+
+<h2 id="stack"><span class="num">15</span>Stack and build plan</h2>
+
+<div class="kv">
+<dt>Orchestration</dt><dd>Cloudflare Workers with Cron Triggers and Queues, matching the stack already in production elsewhere</dd>
+<dt>State</dt><dd>D1 for metadata, R2 for creatives and thumbnails, Durable Object for console session state</dd>
+<dt>Data access</dt><dd>treg for everything external, one token, tagged calls for cost attribution</dd>
+<dt>Generation</dt><dd>MagicFit API for statics, treg or Higgsfield for video</dd>
+<dt>Dashboard</dt><dd>Cloudflare Pages SPA against the Worker API</dd>
+<dt>Long jobs</dt><dd>Queue consumers, never inline in a request, because a full sweep plus decompose will exceed any request budget</dd>
+</div>
+
+<h3>Phases</h3>
+
+<p><strong>Phase 0, the part that must not be skipped.</strong> Sweep three competitors by hand, read every ad, and write the angle taxonomy manually. Do not write a line of pipeline first. The taxonomy is the thing everything else is built on, and a model-invented taxonomy will be plausible and useless. This is a day of work and it determines whether the rest is worth anything.</p>
+
+<p><strong>Phase 1, the intelligence layer.</strong> Sweep, decompose, score, cluster. Radar and Angles screens. No generation at all. If the angle inventory alone is not already changing what we brief, the rest will not save it.</p>
+
+<p><strong>Phase 2, the production layer.</strong> Adapt and Produce loops, Studio gallery with the revision field, statics end to end, video briefs. Still no platform writes: approved output exports as a file and a brief.</p>
+
+<p><strong>Phase 3, the loop closes.</strong> Meta draft push, our own performance ingest, the angle join, Compare and Performance screens. This is where it stops being a research tool and starts being a system.</p>
+
+<p><strong>Phase 4.</strong> Google, once the account is connected. Console. Alerts. Whitespace mining from communities and reviews.</p>
+
+<h2 id="risks"><span class="num">16</span>Risks and open questions</h2>
+
+<table>
+<thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+<tbody>
+<tr><td><span class="tag bad">Blocker</span> Our Google Ads account is not connected to treg, so neither our own Google metrics nor Google drafting can work</td><td>One browser OAuth on the treg team. Until then Google is read-only competitor intelligence and the Compare screen is Meta only. Worth doing first because it is cheap and unblocks a whole phase.</td></tr>
+<tr><td>Meta ad library scrapers break, which they periodically do</td><td>Three routes already verified. Health-check each on every sweep and fail over rather than failing.</td></tr>
+<tr><td>Persistence Score gets read as a performance metric</td><td>Label it as inference everywhere in the UI. Never put it in the same visual column as a real CTR.</td></tr>
+<tr><td>Copying angles that do not fit our funnel</td><td>ICP fit filter in the Adapt loop, and an explicit kill rule on every adapted test rather than treating a copied angle as proven.</td></tr>
+<tr><td>Legal exposure on comparative claims</td><td>Competitor naming off by default, separate legal gate, claims ledger enforced by the validator.</td></tr>
+<tr><td>Generated volume outruns human review, and the gallery becomes a graveyard</td><td>Cap candidates per week. Track draft-to-live conversion as a first-class metric. If it falls, generate less, not more.</td></tr>
+<tr><td>Cost drift on decompose, since vision passes over thousands of creatives are not free</td><td>Decompose once per creative ever, cheapest model that holds schema, tag every treg call for per-loop cost attribution.</td></tr>
+</tbody>
+</table>
+
+<h4>Open questions worth deciding before phase 1</h4>
+<ol>
+  <li>Which competitors, in tiers. Klaviyo and Omnisend are given. Beyond them: Attentive, Yotpo, Mailchimp, Sendlane, Drip, or adjacent categories like Triple Whale where the <em>creative craft</em> is better than the direct competitors even though the product is not comparable.</li>
+  <li>Whether this serves only Brevo ecom, or also PushOwl and MagicFit, because multi-tenant changes the data model on day one and is painful to retrofit.</li>
+  <li>Whether the ad account used for drafts is the existing shared one or a dedicated agent account, which matters for learning-phase contamination and for blast radius.</li>
+  <li>How much of the existing static pipeline is lifted as is against rewritten. The template library and the QA gates are clearly worth keeping. The batch-script runner probably is not.</li>
+</ol>
+
+<div class="footer">
+  <p>Design note, 22 September 2026. Access states in section 02 were verified by live API call on that date and will drift.</p>
+</div>
+
+</div>
+</body>
+</html>
