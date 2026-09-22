@@ -77,7 +77,7 @@ a{color:var(--accent)}
   <div class="eyebrow">Brevo Ecommerce · Performance Creative</div>
   <h1>Ad Intelligence Agent</h1>
   <p class="sub">A weekly competitor sweep that turns Meta and Google ad libraries into an angle inventory, then drafts our own ads against it. Architecture, agent logic, dashboard spec and build plan.</p>
-  <p class="meta">22 September 2026 · v1 design note · written against verified API access, not assumptions</p>
+  <p class="meta">22 September 2026 · v2, decisions settled · written against verified API access, not assumptions</p>
 </header>
 
 <div class="toc">
@@ -138,6 +138,35 @@ a{color:var(--accent)}
 </table>
 
 <p>One more thing the probe surfaced: the Meta account already contains a campaign literally named <code>DRAFT TEST | ... | 2026-09-03</code> sitting paused. The draft convention we need is already half in place by accident.</p>
+
+<div class="card">
+<h3>Correction on the Meta accounts</h3>
+<p>The connected account is <strong>PushOwl's</strong>, not Brevo's, despite being named "Brevo PushOwl". Brevo runs a second Meta account that is not connected yet. The two are used interchangeably to run ecommerce ads, so this is not a structural problem. <strong>Drafts land in the PushOwl account</strong> because it is already connected and writeable. <strong>Both accounts get tracked</strong> for the Compare and Performance screens once the Brevo one is connected.</p>
+</div>
+
+<h3>Decisions settled</h3>
+<table>
+<thead><tr><th>Question</th><th>Call</th></tr></thead>
+<tbody>
+<tr><td>Tenancy</td><td><strong>Single tenant.</strong> Brevo and PushOwl are one business; PushOwl is the Shopify-app surface of Brevo, non-Shopify merchants reach the same product via plugins or directly. No multi-tenant data model, which removes a whole class of day-one complexity.</td></tr>
+<tr><td>Where drafts land</td><td>PushOwl Meta ad account, via the treg connection, paused top to bottom.</td></tr>
+<tr><td>Data sourcing policy</td><td><strong>Free routes first.</strong> Open scrapers, public endpoints and GitHub skills are the default. Paid endpoints are only justified where a free route cannot return the exact fields at the same quality. Persistence Score depends entirely on delivery start date and active status, so any free route that drops those fields does not qualify and the paid route wins on that field alone.</td></tr>
+<tr><td>Models</td><td><strong>Luna</strong> for decompose, the vision-to-schema pass that runs over thousands of creatives and is the highest-volume cost line. <strong>Claude Sonnet</strong> for all copywriting and brief generation. <strong>Sol</strong> only for the chat console, the one genuinely multi-step surface. Sweep, score and cluster use no model at all: they are SQL, diffs and embeddings. Models pinned by exact id, never by alias.</td></tr>
+<tr><td>Existing static pipeline</td><td><strong>Reference only.</strong> The template library, the fabrication gate and the edge QA logic are read for context and their lessons carried across, but the ad creation pipeline is rebuilt around the teardown method in section 09. The batch-script runner is not lifted.</td></tr>
+<tr><td>Google Ads</td><td>OAuth to be supplied. Until then Google is competitor intelligence only.</td></tr>
+</tbody>
+</table>
+
+<h3>Competitor set</h3>
+<p>Ten brands, three tiers. Tier 1 and 2 are swept weekly, tier 3 monthly and read for craft rather than positioning.</p>
+<table>
+<thead><tr><th>Tier</th><th>Brands</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>1 · Direct, ecommerce native</strong></td><td>Klaviyo, Omnisend, Attentive, Yotpo</td><td>Same buyer, same category. Their angle inventory is the one we are fighting over.</td></tr>
+<tr><td><strong>2 · Horizontal and adjacent</strong></td><td>Mailchimp, ActiveCampaign, AWeber, Sendlane, Drip</td><td>Overlapping buyer, different centre of gravity. Mailchimp and ActiveCampaign in particular run large, well-tested creative budgets whose formats travel.</td></tr>
+<tr><td><strong>3 · Craft reference</strong></td><td>Triple Whale</td><td>Not a product competitor. Included because the creative craft in this segment is consistently better than the direct competitors, and formats are portable even when arguments are not.</td></tr>
+</tbody>
+</table>
 
 <h2 id="truths"><span class="num">03</span>Four hard truths that shape the design</h2>
 
@@ -272,8 +301,50 @@ a{color:var(--accent)}
 
 <h2 id="generation"><span class="num">09</span>Static and video generation</h2>
 
-<h3>Static, end to end</h3>
-<p>Meta feed 1:1 and 4:5, Stories and Reels 9:16, Google Display in the standard set, each rendered from the ranked template library with the rich baking method rather than one-line descriptions, because the thin version produced ads that read as plainly generated. Every render passes edge QA for safe area and the vision QA gate for unauthorised text. Target is roughly 6 to 10 finished candidates per approved brief so there is real selection at the review step rather than a single take-it-or-leave-it.</p>
+<h3>Static: the reverse-engineering method</h3>
+
+<p>This is the core of the production layer, and it is deliberately not "show the model a competitor ad and ask for something similar". That produces either plagiarism or mush. Six stages, each with a checkable output.</p>
+
+<h4>1 · Teardown into two layers, never prose</h4>
+<p>One vision pass per competitor static returns two objects. The <strong>argument layer</strong> is the angle schema from section 05. The <strong>craft layer</strong> is what actually stops the scroll, and it must be captured as structure:</p>
+<pre><code>{
+  "device":        "annotated-invoice",     // the visual trick carrying the ad
+  "zones": [
+    {"role":"hook",    "x":0.06,"y":0.05,"w":0.88,"h":0.18,"z":1},
+    {"role":"artifact","x":0.10,"y":0.26,"w":0.80,"h":0.48,"z":2},
+    {"role":"callout", "x":0.55,"y":0.44,"w":0.34,"h":0.10,"z":3},
+    {"role":"cta",     "x":0.06,"y":0.86,"w":0.50,"h":0.08,"z":4}
+  ],
+  "hierarchy":     ["hook","callout","artifact","cta","logo"],
+  "type_system":   {"sizes":3,"weight_contrast":"900/400","case":"sentence",
+                    "hook_height_pct":0.14},
+  "palette":       ["#0B1F3A","#F4F1EA","#E23D2C"],  // sampled from the pixels
+  "hook_contrast": 11.2,                              // ratio against its backdrop
+  "negative_space":0.31,
+  "proof_artifact":"invoice line item with a circled overage charge",
+  "focal_points":  1
+}</code></pre>
+<p>The lesson from the previous pipeline is load-bearing here: one-line descriptions rendered ads that read as obviously generated, and only a rich zoned spec carrying positions, type system and copy architecture produced work worth shipping. So the teardown is structural from the start.</p>
+
+<h4>2 · Abstract to a format</h4>
+<p>Strip the brand, the product and the claim. What survives is portable: <em>annotated invoice, one circled line item, single red callout, hook above, sentence case, one focal point</em>. That is a format. Formats are deduped across all ten competitors into a shared bank, each carrying the Persistence Score distribution of every ad built on it. A format used by four competitors with a median 70 days live is a validated container, independent of what anyone put inside it.</p>
+
+<h4>3 · Re-ground in Brevo, in a fixed order</h4>
+<p>Order matters because each step constrains the next.</p>
+<ol>
+  <li><strong>Argument</strong> is replaced with one of our angles from the Constitution. Never the competitor's claim rewritten.</li>
+  <li><strong>Proof artifact</strong> is replaced with a <em>real</em> Brevo artifact: an actual pricing table, a real UI capture, a number from the claims ledger. This is the single step where fabrication would enter the system, so it is gated: if no real artifact exists for that slot, the slot is dropped or the format is substituted for one that does not need it. The prior pipeline invented a money-back guarantee twice for a store with no returns policy, which is exactly the failure this gate exists to stop.</li>
+  <li><strong>Brand system</strong> comes from the brand kit: palette, type, logo lockup, safe area. The logo is composited from the real asset through a chroma slot rather than drawn by the model, because models reliably corrupt wordmarks.</li>
+</ol>
+
+<h4>4 · Uplift, deliberately</h4>
+<p>A re-skin is not the goal. Every adapted ad runs a craft uplift pass with explicit targets rather than vague instruction: hook type raised to the thumbnail-legible floor, exactly one focal point, hook contrast above threshold, fewer distinct type sizes than the source, more negative space than the source, and a rendered world in place of anything that reads as stock. The result is then scored against the source on the same craft rubric, and <strong>only variants that beat the source are kept</strong>. This is what turns "copy wisely" into something measurable instead of aspirational.</p>
+
+<h4>5 · Gates</h4>
+<p>Copy validator before render, against the Constitution and the claims ledger. Vision QA after render for unauthorised text, invented claims, logo fidelity, misspellings and thumbnail legibility. Safe-area and edge check. One hardened retry, then the candidate is dropped rather than shipped degraded.</p>
+
+<h4>6 · Ladder, not tweaks</h4>
+<p>Each approved brief produces the same argument across several <em>different formats</em>, not several nudges of one. Six to ten finished candidates per brief, so the review step is a real selection rather than take-it-or-leave-it. Sizes: Meta feed 1:1 and 4:5, Stories and Reels 9:16, Google Display in the standard set.</p>
 
 <h3>Google text and search</h3>
 <p>Fully generatable and cheap: 15 headlines and 4 descriptions per responsive search ad, built from the angle's promise and objection fields, plus sitelinks and callouts. Worth mining competitor <em>text</em> ads hard, because that copy is the most honest statement of a competitor's positioning they ever publish, and almost nobody analyses it.</p>
@@ -401,22 +472,26 @@ a{color:var(--accent)}
 
 <h3>Phases</h3>
 
-<p><strong>Phase 0, the part that must not be skipped.</strong> Sweep three competitors by hand, read every ad, and write the angle taxonomy manually. Do not write a line of pipeline first. The taxonomy is the thing everything else is built on, and a model-invented taxonomy will be plausible and useless. This is a day of work and it determines whether the rest is worth anything.</p>
+<p>The gates matter more than the phases. Each is a real kill criterion, not a checkpoint to wave through. Phases 1 onward deploy to Cloudflare as they land, so the system is on cloud from the first build phase. Phase 0 is analysis only and writes no code.</p>
 
-<p><strong>Phase 1, the intelligence layer.</strong> Sweep, decompose, score, cluster. Radar and Angles screens. No generation at all. If the angle inventory alone is not already changing what we brief, the rest will not save it.</p>
-
-<p><strong>Phase 2, the production layer.</strong> Adapt and Produce loops, Studio gallery with the revision field, statics end to end, video briefs. Still no platform writes: approved output exports as a file and a brief.</p>
-
-<p><strong>Phase 3, the loop closes.</strong> Meta draft push, our own performance ingest, the angle join, Compare and Performance screens. This is where it stops being a research tool and starts being a system.</p>
-
-<p><strong>Phase 4.</strong> Google, once the account is connected. Console. Alerts. Whitespace mining from communities and reviews.</p>
+<table>
+<thead><tr><th>Phase</th><th>Ships</th><th>Gate to pass</th></tr></thead>
+<tbody>
+<tr><td><strong>0 · Taxonomy</strong></td><td>Hand sweep of all ten competitors. Angle taxonomy and seed format bank written by hand and reviewed. No code, no infrastructure.</td><td>The taxonomy holds when applied to a brand that was not used to build it.</td></tr>
+<tr><td><strong>1 · Intelligence</strong></td><td>Cloudflare stack stood up. Ingest, decompose, Persistence Score, clustering, weekly cron. Radar and Angles screens. Google read-only via Transparency.</td><td>The angle inventory changes a brief that would otherwise have been written differently. If it does not, stop here.</td></tr>
+<tr><td><strong>2 · Production</strong></td><td>The six-stage teardown method. Studio gallery with the revision field. Statics end to end, video briefs, Google text ads. Export only, nothing touches a platform.</td><td>Six of ten candidates in a batch are ones worth running.</td></tr>
+<tr><td><strong>3 · Loop closes</strong></td><td>Paused drafts pushed to the PushOwl account. Daily Meta insight ingest across both accounts. The angle join. Compare and Performance screens.</td><td>Draft to live conversion above fifty percent. Below that the system is generating work, not saving it.</td></tr>
+<tr><td><strong>4 · Google</strong></td><td>Our own Google metrics, CampaignDraft and paused responsive search ad push, real-time policy verdict surfaced before human review.</td><td>Parity with the Meta path.</td></tr>
+<tr><td><strong>5 · Console and alerts</strong></td><td>Chat console over the same data, the seven alerts, whitespace mining from reviews and communities.</td><td>Every console answer traceable to the rows behind it.</td></tr>
+</tbody>
+</table>
 
 <h2 id="risks"><span class="num">16</span>Risks and open questions</h2>
 
 <table>
 <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
 <tbody>
-<tr><td><span class="tag bad">Blocker</span> Our Google Ads account is not connected to treg, so neither our own Google metrics nor Google drafting can work</td><td>One browser OAuth on the treg team. Until then Google is read-only competitor intelligence and the Compare screen is Meta only. Worth doing first because it is cheap and unblocks a whole phase.</td></tr>
+<tr><td>Our Google Ads account is not connected yet, so neither our own Google metrics nor Google drafting can work</td><td>One browser OAuth on the treg team. Until then Google is read-only competitor intelligence and the Compare screen is Meta only. Worth doing first because it is cheap and unblocks a whole phase.</td></tr>
 <tr><td>Meta ad library scrapers break, which they periodically do</td><td>Three routes already verified. Health-check each on every sweep and fail over rather than failing.</td></tr>
 <tr><td>Persistence Score gets read as a performance metric</td><td>Label it as inference everywhere in the UI. Never put it in the same visual column as a real CTR.</td></tr>
 <tr><td>Copying angles that do not fit our funnel</td><td>ICP fit filter in the Adapt loop, and an explicit kill rule on every adapted test rather than treating a copied angle as proven.</td></tr>
@@ -426,12 +501,11 @@ a{color:var(--accent)}
 </tbody>
 </table>
 
-<h4>Open questions worth deciding before phase 1</h4>
+<h4>Open questions</h4>
+<p>The four questions this note originally raised are all settled, in the decisions table in section 02. What remains open:</p>
 <ol>
-  <li>Which competitors, in tiers. Klaviyo and Omnisend are given. Beyond them: Attentive, Yotpo, Mailchimp, Sendlane, Drip, or adjacent categories like Triple Whale where the <em>creative craft</em> is better than the direct competitors even though the product is not comparable.</li>
-  <li>Whether this serves only Brevo ecom, or also PushOwl and MagicFit, because multi-tenant changes the data model on day one and is painful to retrofit.</li>
-  <li>Whether the ad account used for drafts is the existing shared one or a dedicated agent account, which matters for learning-phase contamination and for blast radius.</li>
-  <li>How much of the existing static pipeline is lifted as is against rewritten. The template library and the QA gates are clearly worth keeping. The batch-script runner probably is not.</li>
+  <li>Whether the free ad-library routes return delivery start date and active status at the quality the Persistence Score needs. Tested in Phase 0, and the answer decides the sourcing budget for the whole system.</li>
+  <li>Whether to give the agent's drafts a dedicated campaign structure inside the PushOwl account or a dedicated ad account, which matters for learning-phase contamination once volume rises. Not urgent while volume is low.</li>
 </ol>
 
 <div class="footer">
