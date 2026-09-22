@@ -1,0 +1,349 @@
+{
+  "success": true,
+  "credits_remaining": 11105,
+  "credits_charged": 1,
+  "results": [
+    {
+      "ad_archive_id": "1801015030505850",
+      "end_date": 1780383600,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "185574538863714",
+      "page_name": "Attentive",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "185574538863714",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/attentiveHQ/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "Attentive",
+        "page_profile_picture_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546168265_1096208356011028_8716799867853966551_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=xpwhE5M50VUQ7kNvwEXJKjp&_nc_oc=AdpAYHgaAtzhjnLi9wMOij7qHAhEcIyl_yeoriLV6SM0tUnNTv1fh1z7nrVBegmANVs&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJGue2O1igx1RINNNUiDdXFdBZKIbiB0zEEixWj_L8djQ&oe=6AB84F04",
+        "event": null,
+        "caption": "attentive.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Want your welcome emails to actually welcome sales? Brands that moved to Attentive saw triggered campaigns drive 95% more revenue and better, fast results."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Learn more about Attentive\u2014the SMS and email platform that brings your customer interactions to life with advanced AI.",
+        "link_url": "https://www.attentive.com/",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/544626325_24618555311166404_2813690112206762285_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=c5GH-OAUOBgQ7kNvwHWGBsP&_nc_oc=AdqPZ5fBiv5EdFFWtv1FzZ1FaZkLtRcElUm6whY3dKtwGKvnlu23IpiXvSOCAi3vW3I&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQL9i5Js7D0UK6DsS2rwQlvOzp0tVcUkCbCrXeTO_j44CQ&oe=6AB83333",
+            "resized_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545776267_3661408947496657_7875017524175707666_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=LZGiv2U4S3IQ7kNvwFoW4iR&_nc_oc=AdqiZWwr5WNRBaqc83RocjoSMMM5QHVTolPW-3xr9RiG-nYN_3j86eaLQck-dakklD0&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJRKvPfmXSbquSnLX8ePS941gpOwnFYNSFLADbuqJcwGQ&oe=6AB82CEC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Software"
+        ],
+        "page_like_count": 1369,
+        "title": "Boost Email Revenue by 95% with Attentive",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "664822093199045",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1757401200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM",
+        "AUDIENCE_NETWORK",
+        "THREADS"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1801015030505850",
+      "start_date_string": "2025-09-09T07:00:00.000Z",
+      "end_date_string": "2026-06-02T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "655807857124265",
+      "end_date": 1780297200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "185574538863714",
+      "page_name": "Attentive",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "185574538863714",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/attentiveHQ/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "Attentive",
+        "page_profile_picture_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546077714_1744713362828456_7879199628921731488_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=C-5RgaTHNtMQ7kNvwEBGjsE&_nc_oc=AdoBaFIit7p1h1pwSBAqfg0Af5TfOak91kPbj9PuH6KRbZ8rRE9sT1c6GaTd3ZsvW8I&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQIcXLQxCuar0Tmy_ClPTC5gRIUG0-GntCa7WsZkafwZsA&oe=6AB84C18",
+        "event": null,
+        "caption": "attentive.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Switching ESPs doesn\u2019t have to be risky. With Attentive's enterprise-grade platform, you'll be up and running in days, not weeks\u2014and seamlessly maintain your revenue and performance throughout the switch."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Learn more about Attentive\u2014the SMS and email platform that brings your customer interactions to life with advanced AI.",
+        "link_url": "https://www.attentive.com/",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546271282_1971744570325578_3950447306734086239_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=6FtpcPKtBzAQ7kNvwGUthus&_nc_oc=AdpWNpjQJBtVECDCqm0pdcgrJo4nwhVE1xoSJePU1L1-0301UC2gkominsGHz_MeLU0&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQIfrj2edJVdr8gHVsa-OF0S2lsUE3HmJNVgDlwolENR0w&oe=6AB8550B",
+            "resized_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546564736_1678948826073764_8966347471622197101_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=lz6rS7lgJVkQ7kNvwF2zBYD&_nc_oc=Adol5s_MsywF7hDu8gbwQkq6aswg8fKjQp6agLccxBgM56DQ6iiPpMHNu-ilChAlnNg&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJhxiPlBTK5G6aasvutiD67DGX8PAuOlm1_YIoPPcZ4rA&oe=6AB850B2",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Software"
+        ],
+        "page_like_count": 1369,
+        "title": "Switch Email Platforms Without Disruptions",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "2677576302434185",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1757401200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM",
+        "AUDIENCE_NETWORK",
+        "THREADS"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=655807857124265",
+      "start_date_string": "2025-09-09T07:00:00.000Z",
+      "end_date_string": "2026-06-01T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1324414899037463",
+      "end_date": 1780297200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "185574538863714",
+      "page_name": "Attentive",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "185574538863714",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/attentiveHQ/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "Attentive",
+        "page_profile_picture_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546807252_801178379081565_709596930588076232_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=T0Qvbd03AucQ7kNvwGcz1K9&_nc_oc=AdoxkCDRZxBdx1JeKU3pin5eHWw-iyaksHOTlQxa8qBnj4doCq9eysl_zESHnOmuRP8&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQLKs3QF6ajfwK0-z2ejS0LTaNWWFifNUbrSxshihXDL-A&oe=6AB82880",
+        "event": null,
+        "caption": "attentive.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Want better email performance? JAXXON achieved 688x ROI by switching to Attentive's automated, segmented, and personalized email strategy."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Learn more about Attentive\u2014the SMS and email platform that brings your customer interactions to life with advanced AI.",
+        "link_url": "https://www.attentive.com/",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/546181895_1344226377129078_6172809337736278136_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=qNKhMkpNn2cQ7kNvwG0jJqV&_nc_oc=AdqUJUOxrDcwWPEspsBuTZnQq7k_Wq2_Ia9jbLX5MIK_m6kAobcxtdnwUt-fMlIlHgI&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJeWOBxB6khjoqmDrSoqygiPzy_TjZFsy-slj9DFPrvPg&oe=6AB83910",
+            "resized_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545213065_3038896422956217_4723468641803401693_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=s2g6zFLF9ToQ7kNvwFTi5Nr&_nc_oc=Adry38u5XYobyOGn8GhxP9OuWfSv35SmY1RowZjZLuYot0WctmTsiobXB13qaOze_G4&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJ4sox7OPhzQ223t-CcLwckHoJ_nrlm9WT1XkPfs9GNQw&oe=6AB83B2D",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Software"
+        ],
+        "page_like_count": 1369,
+        "title": "How JAXXON delivers 688x email ROI",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "2165346100614092",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1757401200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM",
+        "AUDIENCE_NETWORK",
+        "THREADS"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1324414899037463",
+      "start_date_string": "2025-09-09T07:00:00.000Z",
+      "end_date_string": "2026-06-01T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1514634632906969",
+      "end_date": 1780297200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "185574538863714",
+      "page_name": "Attentive",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "185574538863714",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/attentiveHQ/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "Attentive",
+        "page_profile_picture_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545508908_1287023819325104_984978486593688507_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=BeczNPqZzWQQ7kNvwHyRei7&_nc_oc=AdpbUu3OWj31Gr1_WIMxbiB9FV5JwXSwck6QT5M86l1Da0EPjeExkyjfW-Z-ZRsNMno&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQIGN114yvk4Rfch-VTF-qGOpeuRqYb3LyslrdxkUnNfKQ&oe=6AB84DE2",
+        "event": null,
+        "caption": "attentive.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Nervous about switching email platforms? Our seamless, four-step migration process keeps your revenue flowing and your campaigns running\u2014just ask Cozy Earth, Jack Rogers, and Jaxxon, who were up and running in days. Ready for a smooth switch to Attentive?"
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Learn more about Attentive\u2014the SMS and email platform that brings your customer interactions to life with advanced AI.",
+        "link_url": "https://www.attentive.com/",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545777364_1738486326864314_7644943255726323043_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=eNVGT5KECscQ7kNvwE0L02M&_nc_oc=AdrQ09OkRUO-ta0U8T7KLDzFHa-j-av3NtDPzZsJePfZzpvBYSNcGraEHm3-xi0nggc&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQL45HsFScYlD620zUjWRvwiEqBfhF8hSMmjo1a6ye3HHQ&oe=6AB84E2D",
+            "resized_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545813408_2517124838666454_185888464934132648_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=YXNQhzw8b7gQ7kNvwG4euH8&_nc_oc=AdrIBVxO9_GyxUx6fq4_sg8ga5BgvC64nYS05s4ImyPXcFoFviBvecBW0m4L6ZKGMvg&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQISAkw_i8afYE9bptSCaIyItHg-RaQ1fRrcA6nLwv0-Ag&oe=6AB83C33",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Software"
+        ],
+        "page_like_count": 1369,
+        "title": "Migrate Email in Days - Zero Downtime, Zero Risk",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "10003126496374865",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1757401200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM",
+        "AUDIENCE_NETWORK",
+        "THREADS"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1514634632906969",
+      "start_date_string": "2025-09-09T07:00:00.000Z",
+      "end_date_string": "2026-06-01T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "724750110595075",
+      "end_date": 1780297200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "185574538863714",
+      "page_name": "Attentive",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "185574538863714",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/attentiveHQ/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "Attentive",
+        "page_profile_picture_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/544851642_804119498628470_4725012491824169012_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=NMFL6AhuUMcQ7kNvwEUhGnP&_nc_oc=AdpwS3xULJRrI3g15BWkXgGdiIDjdKp3E35xb6WundQy4qTIINeDsJa3xMGXMx_Jcic&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQJss7Ao6g8ANvs-iAfTaqKctHWuoIqNGErKmSU7uqqyNA&oe=6AB84D93",
+        "event": null,
+        "caption": "attentive.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Claire\u2019s transformed their SMS program into a top three global revenue channel, achieving a 17x ROI and 149% growth. Learn how they used personalized messaging and segmentation to drive results internationally, with a 20% CTR in the US and 32% CTR in Europe."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Learn more about Attentive\u2014the SMS and email platform that brings your customer interactions to life with advanced AI.",
+        "link_url": "https://www.attentive.com/",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/545052225_1157244569608781_8497548270822703673_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=16IYYXoBHUAQ7kNvwHmWyff&_nc_oc=AdrE0O06d6mYFmOeGbddgO-o80LII7Mi2c2h4xjMxQDya4beaeqhIKNHZt0CCe4u6Sw&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQLFAlk5XPTKHMsz-yb-G2ZxlSOT2x49WLOOpzz7rpKqyQ&oe=6AB82A84",
+            "resized_image_url": "https://scontent-phl2-1.xx.fbcdn.net/v/t39.35426-6/544804094_1108794561378544_3473727405110719586_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=111&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=pNc8QJeIrs4Q7kNvwGSua5c&_nc_oc=AdrVt94lWCwMEoDZbFRcep0FWZwK_9y1_osUHmZvXfPsLz0dBYG8CYJolOICOR_Bnqc&_nc_zt=14&_nc_ht=scontent-phl2-1.xx&_nc_gid=1eVUmdu9wCLYu-Y3BSqr1A&_nc_ss=7f289&oh=00_AQLkcFpuKqJYGrtNP-HJjiE2maoF0QmruC-SgUm9_MeffQ&oe=6AB83E94",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Software"
+        ],
+        "page_like_count": 1369,
+        "title": "How Claire's achieved a 17x ROI and 149% Subscriber Growth with SMS",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1397223501632384",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1757401200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM",
+        "AUDIENCE_NETWORK",
+        "THREADS"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=724750110595075",
+      "start_date_string": "2025-09-09T07:00:00.000Z",
+      "end_date_string": "2026-06-01T07:00:00.000Z"
+    }
+  ],
+  "searchResultsCount": 5,
+  "cursor": ""
+}

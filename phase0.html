@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 0 Taxonomy</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#11161d; --muted:#5b6672; --line:#e3e7ec;
+  --card:#f7f9fb; --accent:#0b5fff; --accent-soft:#e8f0ff;
+  --good:#0f7b4f; --good-soft:#e6f4ee; --warn:#8a5a00; --warn-soft:#fdf3e0;
+  --bad:#b0202f; --bad-soft:#fdeaec; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){ @media (prefers-color-scheme: dark){
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --fg:#e6edf3; --muted:#93a1b0; --line:#232b35;
+  --card:#141b23; --accent:#6ea8ff; --accent-soft:#16233a;
+  --good:#5fd39b; --good-soft:#123024; --warn:#e5b567; --warn-soft:#2e2413;
+  --bad:#ff8189; --bad-soft:#361a1e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:860px;margin:0 auto;padding:56px 16px 120px}
+header.top{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:40px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:40px;line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:18px;margin:0}
+.meta{color:var(--muted);font:500 13px/1.5 var(--mono);margin-top:18px}
+h2{font-size:26px;letter-spacing:-.01em;margin:56px 0 4px;padding-top:8px}
+h2 .num{color:var(--muted);font:600 14px/1 var(--mono);display:block;margin-bottom:8px}
+h3{font-size:18px;margin:32px 0 8px}
+h4{font-size:15px;margin:22px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+p{margin:12px 0}
+ul,ol{margin:12px 0;padding-left:22px}
+li{margin:7px 0}
+code{font:500 13.5px/1.4 var(--mono);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font:13px/1.6 var(--mono)}
+pre code{background:none;border:none;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:20px 0}
+.card h3{margin-top:0}
+.tag{display:inline-block;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 8px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0}
+blockquote p{margin:0}
+hr{border:none;border-top:1px solid var(--line);margin:48px 0}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.toc ol{margin:8px 0 0;padding-left:20px;columns:2;column-gap:32px}
+.toc li{margin:4px 0;break-inside:avoid}
+.toc a{color:var(--fg);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+a{color:var(--accent)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;font-size:14.5px;margin:14px 0}
+.kv dt{font:600 12px/1.7 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.kv dd{margin:0}
+.footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media(max-width:620px){h1{font-size:30px}.toc ol{columns:1}.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:10px}}
+</style>
+</head>
+<style>
+.big{font-size:44px;line-height:1;font-weight:700;letter-spacing:-.02em;display:block;margin-bottom:2px}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin:22px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat .lbl{font:600 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.bar{display:inline-block;height:9px;border-radius:5px;background:var(--accent);vertical-align:middle}
+.bar.warn{background:var(--warn)} .bar.bad{background:var(--bad)} .bar.good{background:var(--good)}
+td.num{font:600 13px/1.4 var(--mono);white-space:nowrap}
+.quote{font-size:15px;border-left:2px solid var(--line);padding-left:14px;margin:10px 0;color:var(--fg)}
+.quote b{color:var(--muted);font:600 11px/1.4 var(--mono);display:block;text-transform:uppercase;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow"><a href="./">Ad Intelligence Agent</a> · Phase 0</div>
+  <h1>The Angle Taxonomy</h1>
+  <p class="sub">What ten competitors are actually arguing in their Meta ads, which arguments survive, and where the ground is empty. Built by hand from 268 live and dead ads.</p>
+  <p class="meta">22 September 2026 · Phase 0 output · gate passed</p>
+</header>
+
+<h2><span class="num">01</span>Headline</h2>
+
+<blockquote><p>The category's creative <strong>volume</strong> and its creative <strong>durability</strong> point in opposite directions. Half of all ads swept mention AI. AI ads are killed at a median of 15 days. The angles nobody ever switches off are support, price fairness, switching safety and channel breadth.</p></blockquote>
+
+<p>That is the single most useful thing Phase 0 found, and it is not what anyone would have guessed. Every competitor is pouring creative into agents and autonomy right now. Almost none of it is surviving contact with a media buyer. Meanwhile there are ads in this corpus that have been running continuously for <strong>two years</strong>, and they are about having humans answer the phone.</p>
+
+<div class="statrow">
+  <div class="stat"><span class="big">268</span><span class="lbl">ads read</span></div>
+  <div class="stat"><span class="big">215</span><span class="lbl">in taxonomy set</span></div>
+  <div class="stat"><span class="big">53</span><span class="lbl">held out for the gate</span></div>
+  <div class="stat"><span class="big">19</span><span class="lbl">angles</span></div>
+  <div class="stat"><span class="big">728d</span><span class="lbl">longest run found</span></div>
+  <div class="stat"><span class="big">$0.04</span><span class="lbl">total data cost</span></div>
+</div>
+
+<h2><span class="num">02</span>Method, and its limits</h2>
+
+<p>Meta Ad Library, US delivery, active and inactive, pulled through treg. One page of results per advertiser, so for most brands this is the most recent and most relevant 30 ads rather than the complete library. Klaviyo at 30 of 32 is near complete; Omnisend, Mailchimp, ActiveCampaign, Triple Whale, Drip and Yotpo are partial. Every ad was read by hand, then tagged with transparent keyword rules I wrote after reading, so the taxonomy is human-derived and the tagging is reproducible. Nothing here was invented by a model.</p>
+
+<p><strong>The recency trap, and how it was handled.</strong> Raw "median days live" ranks angles dishonestly, because a brand new ad cannot have a long run yet. Ranking on it would have told us AI was a weak angle when the real story might just be that AI ads are young. So every angle is measured two ways: <strong>completed lifespan</strong>, the median run of ads that have already stopped, which carries no recency bias, and <strong>live age</strong>, how long the still-running ads have been up. Where those two disagree, the note says so.</p>
+
+<div class="card">
+<p><strong>Two brands run no Meta ads at all.</strong> AWeber has no advertiser page in the ad library. Sendlane has a page and zero ads. Attentive, supposedly a tier-one competitor, has run five ads ever and none are live. The creative fight in this category is between Klaviyo, Omnisend, Mailchimp, Drip, Yotpo and Triple Whale. That is worth knowing before allocating a single hour of monitoring.</p>
+</div>
+
+<h2><span class="num">03</span>The taxonomy</h2>
+
+<p>Nineteen angles. The first sixteen came from the ten-brand set. The last three were added after the gate test, which is explained in section 07.</p>
+
+<table>
+<thead><tr><th>Angle</th><th>The argument</th><th class="num">Lifespan</th><th class="num">Live age</th><th>Read</th></tr></thead>
+<tbody>
+<tr><td><strong>human-support</strong></td><td>Real people answer, around the clock, especially when revenue is on the line</td><td class="num">never killed</td><td class="num">474d</td><td><span class="tag good">Untouchable</span> 15 ads, not one ever switched off. The two-year ads are here.</td></tr>
+<tr><td><strong>pricing-fairness</strong></td><td>You are paying for contacts you never email, and the bill keeps climbing</td><td class="num">300d</td><td class="num">63d</td><td><span class="tag good">Strongest attack angle</span> Longest completed lifespan in the corpus.</td></tr>
+<tr><td><strong>channel-expansion</strong></td><td>Email plus SMS plus push plus RCS, from one place</td><td class="num">265d</td><td class="num">35d</td><td><span class="tag good">Durable</span> Broad, safe, works for everyone.</td></tr>
+<tr><td><strong>switching-safety</strong></td><td>Migration is fast, reversible and will not cost you revenue</td><td class="num">265d</td><td class="num">20d</td><td><span class="tag good">Durable</span> The objection-handler that unlocks pricing-fairness.</td></tr>
+<tr><td><strong>education-webinar</strong></td><td>Come learn the workflow, free</td><td class="num">87d</td><td class="num">5d</td><td>Drip is running this hard right now.</td></tr>
+<tr><td><strong>proof-by-numbers</strong></td><td>This customer got 688x, 95%, 41%, $59 per subscriber</td><td class="num">50d</td><td class="num">35d</td><td>The most widely used device. Seven of eight brands.</td></tr>
+<tr><td><strong>ecom-focus</strong></td><td>Built for stores, not for enterprise committees</td><td class="num">never killed</td><td class="num">27d</td><td><span class="tag good">Rising</span> 18 ads, zero killed. Drip owns it alone.</td></tr>
+<tr><td><strong>loyalty-retention</strong></td><td>Repeat purchase, rewards, reviews, LTV</td><td class="num">27d</td><td class="num">52d</td><td>Yotpo's home ground.</td></tr>
+<tr><td><strong>ease-of-use</strong></td><td>You should not need expertise to send good campaigns</td><td class="num">21d</td><td class="num">119d</td><td><span class="tag warn">Split</span> Most die fast, a few run for over a year. Execution decides.</td></tr>
+<tr><td><strong>lead-magnet</strong></td><td>Free report, hub, benchmark, quiz</td><td class="num">21d</td><td class="num">8d</td><td>High churn by design: tied to a moment.</td></tr>
+<tr><td><strong>risk-reversal</strong></td><td>Money back, results in 30 days or free</td><td class="num">20d</td><td class="num">474d</td><td><span class="tag warn">Bimodal</span> Either it runs forever or it dies immediately.</td></tr>
+<tr><td><strong>ai-autonomy</strong></td><td>Agents that do the work for you</td><td class="num">15d</td><td class="num">6d</td><td><span class="tag bad">Crowded and burning</span> 103 of 215 ads. Half the category's output, the shortest lifespan.</td></tr>
+<tr><td><strong>brand-personality</strong></td><td>Celebrity, mascot, in-joke, humour</td><td class="num">14d</td><td class="num">1d</td><td>Klaviyo and Omnisend. Cheap to make, fast to kill.</td></tr>
+<tr><td><strong>consolidation</strong></td><td>One platform instead of seven tabs</td><td class="num">3d</td><td class="num">16d</td><td><span class="tag bad">Weak</span> Everyone says it, nobody sustains it.</td></tr>
+<tr><td><strong>measurement-trust</strong></td><td>Your numbers are wrong, ours are not</td><td class="num">3d</td><td class="num">8d</td><td>Triple Whale alone. Too new to judge.</td></tr>
+<tr><td><strong>ai-visibility</strong></td><td>Is your brand showing up in AI answers</td><td class="num">2d</td><td class="num">35d</td><td><span class="tag warn">Emerging</span> Four brands entered in the last few weeks. Watch it.</td></tr>
+<tr><td colspan="5" style="padding-top:18px"><em>Added after the gate test, to cover platform-scale brand marketing:</em></td></tr>
+<tr><td><strong>product-release</strong></td><td>Here is what is new this season</td><td class="num">n/a</td><td class="num">n/a</td><td>Shopify Editions class. Not present in tool advertisers.</td></tr>
+<tr><td><strong>founder-story</strong></td><td>A real merchant, told as a story</td><td class="num">n/a</td><td class="num">n/a</td><td>Platform-scale brand marketing.</td></tr>
+<tr><td><strong>category-evangelism</strong></td><td>Entrepreneurship itself, not the product</td><td class="num">n/a</td><td class="num">n/a</td><td>Only affordable at Shopify's budget.</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">04</span>Who owns what</h2>
+
+<p>Share of each brand's swept ads carrying the angle. This is the map of where each competitor has planted its flag, and it shows a category where almost everyone has crowded onto the same square.</p>
+
+<table>
+<thead><tr><th>Brand</th><th class="num">Live</th><th>Dominant angles</th><th>Read</th></tr></thead>
+<tbody>
+<tr><td><strong>Klaviyo</strong></td><td class="num">28 / 30</td><td>ai-autonomy 73%, brand-personality 47%</td><td>Fully repositioned onto "the autonomous B2C CRM". Celebrity-led, conference-led, agent-led. Almost no price defence.</td></tr>
+<tr><td><strong>Drip</strong></td><td class="num">30 / 30</td><td>ecom-focus 60%, education-webinar 43%, pricing-fairness 30%</td><td>The most disciplined advertiser in the set. See section 05.</td></tr>
+<tr><td><strong>Omnisend</strong></td><td class="num">21 / 30</td><td>ease-of-use 40%, channel-expansion 30%, human-support 27%</td><td>Owns the long game. Has ads running since 2024 on support and likeability.</td></tr>
+<tr><td><strong>Triple Whale</strong></td><td class="num">26 / 30</td><td>ai-autonomy 90%, measurement-trust 60%</td><td>All-in on the AI operator story. Also selling competitor ad spy as a product feature.</td></tr>
+<tr><td><strong>ActiveCampaign</strong></td><td class="num">3 / 30</td><td>ai-autonomy 90%, ease-of-use 77%</td><td>Almost everything paused. A brand between campaigns, and their one deliverability ad outlived the rest by 5x.</td></tr>
+<tr><td><strong>Yotpo</strong></td><td class="num">4 / 30</td><td>loyalty-retention 67%, ai-autonomy 33%</td><td>Different category. Useful for format craft, not positioning.</td></tr>
+<tr><td><strong>Mailchimp</strong></td><td class="num">30 / 30</td><td>mostly short benefit lines, no dominant angle</td><td>Highest live rate, weakest argument. Generic ecommerce benefit copy at volume.</td></tr>
+<tr><td><strong>Attentive</strong></td><td class="num">0 / 5</td><td>switching-safety 60%</td><td>Effectively absent from Meta.</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">05</span>The Drip case, and why it matters most to us</h2>
+
+<p>Drip is a smaller competitor running the exact campaign this project exists to run: a sustained, named, mechanic-level attack on Klaviyo's pricing. It is the single most instructive thing in the corpus, because it is a live, funded, months-long proof that the angle works in this category.</p>
+
+<p class="quote"><b>88 days live</b>Keep more of your money: R102,000 could've stayed with you instead of going to Klaviyo.</p>
+<p class="quote"><b>84 days live</b>Your store isn't a "use case." Klaviyo is built for mid-market, agencies, enterprise, shareholders, everyone. Drip is built for ecommerce stores. Full stop.</p>
+<p class="quote"><b>83 days live</b>Three years with Klaviyo, and the reward is, another price increase. Loyalty shouldn't cost you more every single year.</p>
+<p class="quote"><b>81 days live</b>Pop quiz: half your list never opens. Who should you pay for? A) All 30,000. B) Just the ones who engage.</p>
+<p class="quote"><b>64 days live</b>It's 11pm on Black Friday and your flow just broke. Who picks up? Klaviyo hands you a chatbot and a help-center link. Drip hands you a human.</p>
+<p class="quote"><b>63 days live</b>Imagine getting billed extra just for sending email. That's the overage trap.</p>
+
+<p>Six things to take from this, in order of usefulness:</p>
+<ol>
+  <li><strong>Naming the competitor is commercially survivable here.</strong> These ads have run for two to three months. Whatever the legal risk, a direct competitor has been carrying it publicly and continuously without visible consequence.</li>
+  <li><strong>The attack is on the billing mechanic, not on the price.</strong> "Who should you pay for" and "the overage trap" beat "we are cheaper". This is exactly the shape of our own strongest wedge.</li>
+  <li><strong>Every single one is paired with a proof or a calculator.</strong> "Cheaper at every size, and we did the homework. 2,500 contacts? 10,000? 30,000?" The claim is never left floating.</li>
+  <li><strong>They localise the currency.</strong> R102,000 is South African rand. A pricing attack in the reader's own currency, which is a free and obvious win for India that nobody else in this set is taking.</li>
+  <li><strong>The support angle is used as the peak-week knife</strong>, not as a feature. 11pm on Black Friday is a scenario, not a benefit.</li>
+  <li><strong>They pair the attack with a webinar engine.</strong> Thirteen of thirty Drip ads are webinar registrations teaching an AI workflow. Attack for the cold audience, education for the warm one.</li>
+</ol>
+
+<h2><span class="num">06</span>Whitespace</h2>
+
+<p>Three pieces of empty ground, each with evidence rather than a hunch, and all three sit on top of positions Brevo already holds.</p>
+
+<div class="card">
+<h3>1 · Deliverability is unclaimed, and the one ad that ran it outlived everything</h3>
+<p>Exactly <strong>one ad in 215</strong> argues deliverability: ActiveCampaign's "Nearly 1 in 5 emails never reach the inbox". It ran <strong>205 days</strong>. Their next longest ad ran 37 days. So the single time anyone in this category made the deliverability argument, it lasted five and a half times longer than anything else that advertiser produced, and nobody has copied it.</p>
+<p>This is the strongest whitespace signal available from public data, and it lands directly on Brevo's reliability and deliverability heritage.</p>
+</div>
+
+<div class="card">
+<h3>2 · The two longest-running ads in the corpus are about not being Shopify-only</h3>
+<p>Four ads in the entire set mention WooCommerce or WordPress. Two of them are Omnisend's "Shopify, WooCommerce, and WordPress merchants can't get enough of us", at <strong>725 and 728 days live</strong>, the longest-running ads found anywhere in this sweep. The category talks almost exclusively to Shopify. Brevo reaches non-Shopify merchants through plugins and directly, and nobody is contesting that ground.</p>
+</div>
+
+<div class="card">
+<h3>3 · Everyone is shouting AI into the same room</h3>
+<p>103 of 215 ads mention AI or agents. They are killed at a 15-day median. This is not an argument for ignoring AI, it is an argument for not <em>leading</em> with it, which is what the positioning rules already said for independent reasons. The differentiated move is to let AI be the surprise inside a durable argument rather than the headline.</p>
+</div>
+
+<h2><span class="num">07</span>The gate</h2>
+
+<p>The Phase 0 gate was: does the taxonomy hold on a brand it was not built from. Two holdouts, 53 ads, neither used to derive a single angle.</p>
+
+<table>
+<thead><tr><th>Holdout</th><th class="num">Coverage</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td><strong>Postscript</strong>, SMS platform, true category peer</td><td class="num">23 / 23 · 100%</td><td><span class="tag good">Pass</span> Every ad mapped to an existing angle with no additions.</td></tr>
+<tr><td><strong>Shopify</strong>, adjacent platform, deliberately unfair test</td><td class="num">17 / 30 · 57%</td><td><span class="tag warn">Bounded</span> All 13 misses were one of three things.</td></tr>
+</tbody>
+</table>
+
+<p>The Shopify misses are informative rather than disappointing. Every one was a product-release announcement, a merchant or founder story, or category evangelism. In other words, this is a taxonomy of <strong>performance-marketing arguments made by ecommerce software tools</strong>, and it covers that job completely. It does not cover platform-scale brand marketing, which is a different job with different economics. Three angles were added to name that boundary rather than pretend it is not there.</p>
+
+<p><strong>Gate passed.</strong> 100% on the true peer, with a named and understood boundary on the unfair one.</p>
+
+<h2><span class="num">08</span>What this changes for Phase 1</h2>
+
+<p>Phase 0 was also a live test of the ingest layer, and it surfaced four things that would have been expensive to discover later.</p>
+
+<table>
+<thead><tr><th>Finding</th><th>Consequence</th></tr></thead>
+<tbody>
+<tr><td><strong>Brand-name lookup is unreliable and silently wrong.</strong> "Attentive" resolved to "Attentive Thought", a 1,499-like page that is not the company. "AWeber" returned six unrelated people named Weber. "Drip" returned clothing stores.</td><td>Page ids get resolved once, verified by a human against category and follower count, and pinned in the brands table. The sweep never resolves by name at runtime. This is a correctness issue, not a convenience one: a name-resolved sweep would have silently reported a notary service as a competitor.</td></tr>
+<tr><td><strong>The official Meta Ad Library API is free and richer than the paid scraper</strong>, including EU reach as a real number and the advertiser's declared targeting, which is the only place any Meta targeting is public. It needs its own credential and a one-time Meta identity verification.</td><td>Worth doing. Free, and it upgrades Persistence Score from inference to partial measurement for EU-delivered ads. Until then the paid route costs about four cents per full sweep, so this is an upgrade, not a blocker.</td></tr>
+<tr><td><strong>Raw days-live ranks angles dishonestly</strong> because young ads cannot have long runs.</td><td>Persistence Score must compute completed lifespan and live age separately, exactly as section 02 does. Folding them into one number would have made AI look like a weak angle for the wrong reason.</td></tr>
+<tr><td><strong>DCO is the dominant format</strong>: 145 of 215 ads. One ad row is a bundle of assets, not one creative.</td><td>The data model needs an asset-level row beneath the ad, or variant counts and format mix will both be wrong.</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">09</span>Recommended opening angles</h2>
+
+<p>Ranked by evidence strength, for the first briefs Phase 2 produces. Each carries the durable angle first and the AI proof second, never the reverse.</p>
+
+<ol>
+  <li><strong>Pricing fairness, attacked at the mechanic.</strong> 300-day completed lifespan, and a direct competitor is currently proving it works. Not "we are cheaper" but "you are being billed for people you never email". Paired with a real calculator, and localised to rupees for India, which nobody in the set is doing.</li>
+  <li><strong>Deliverability.</strong> The clearest whitespace found. One ad, 205 days, no imitators, and it sits on ground Brevo actually owns.</li>
+  <li><strong>Peak-week reliability.</strong> Drip proved the scenario framing works at 64 days. BFCM is the moment, and the argument is infrastructure rather than features.</li>
+  <li><strong>Platform breadth.</strong> The two longest-running ads in the corpus, and a position the category has left almost entirely alone.</li>
+  <li><strong>Switching safety</strong>, as the paired objection handler. 265-day lifespan. It is what makes angle 1 actionable rather than merely annoying.</li>
+</ol>
+
+<div class="footer">
+  <p>Phase 0, 22 September 2026. 268 ads read from the Meta Ad Library, US delivery, one result page per advertiser. Tagging rules are keyword-based and reproducible. Completed lifespan and live age are reported separately throughout. Competitor quotes are reproduced as published for analysis.</p>
+  <p><a href="./">Back to the design note</a></p>
+</div>
+
+</div>
+</body>
+</html>

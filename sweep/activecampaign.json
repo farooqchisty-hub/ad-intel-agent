@@ -1,0 +1,2051 @@
+{
+  "success": true,
+  "credits_remaining": 11140,
+  "credits_charged": 1,
+  "results": [
+    {
+      "ad_archive_id": "1587141996319071",
+      "end_date": 1787727600,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/725792821_1816367549529866_3245252692652588197_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=w7kpLLZsT9cQ7kNvwGQvlgd&_nc_oc=AdqeLTlWcDjls3G33hmrF2luqTDqcjXgNn2Kto2WbkiiTV7-XcU3Q96R4pwdscwB_4k&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI2GkurTlnNhIXGVwiq4thSWxc7HLYvWYBw2H38GR0Mvg&oe=6AB840ED",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728439359_2082279182709304_4118032676830405891_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=Kzh9_2fMVoQQ7kNvwH_3wNB&_nc_oc=AdoSBrBYdhHEqw9HVRVVhpTl14gjWkkAFfRVpEqEWvuNobimVFXwiufMm93NyZvD5vw&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLRc-PnCpBdI0qEGZScffX66TABonodAuMwg8UFKrFX8Q&oe=6AB83A17",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/728969618_1007807045291722_668923749863802292_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=F5qCSEqoYD0Q7kNvwFkjSas&_nc_oc=AdqrB_6yVkVYA-AVrFS4hEHG35Y8vzWlyWs4e7AjdcCNn7cQZBOSuLB5WdnvMR6iIdw&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLBaFKZNLEnIs-9TRIQuTM13pSNF0_OsiF_YFpA8V43CQ&oe=6AB822BC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1916550829731088",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784530800,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1587141996319071",
+      "start_date_string": "2026-07-20T07:00:00.000Z",
+      "end_date_string": "2026-08-26T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1568615174856749",
+      "end_date": 1784617200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/725792821_1816367549529866_3245252692652588197_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=w7kpLLZsT9cQ7kNvwGQvlgd&_nc_oc=AdqeLTlWcDjls3G33hmrF2luqTDqcjXgNn2Kto2WbkiiTV7-XcU3Q96R4pwdscwB_4k&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI2GkurTlnNhIXGVwiq4thSWxc7HLYvWYBw2H38GR0Mvg&oe=6AB840ED",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728439359_2082279182709304_4118032676830405891_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=Kzh9_2fMVoQQ7kNvwH_3wNB&_nc_oc=AdoSBrBYdhHEqw9HVRVVhpTl14gjWkkAFfRVpEqEWvuNobimVFXwiufMm93NyZvD5vw&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLRc-PnCpBdI0qEGZScffX66TABonodAuMwg8UFKrFX8Q&oe=6AB83A17",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/728969618_1007807045291722_668923749863802292_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=F5qCSEqoYD0Q7kNvwFkjSas&_nc_oc=AdqrB_6yVkVYA-AVrFS4hEHG35Y8vzWlyWs4e7AjdcCNn7cQZBOSuLB5WdnvMR6iIdw&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLBaFKZNLEnIs-9TRIQuTM13pSNF0_OsiF_YFpA8V43CQ&oe=6AB822BC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1916550829731088",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1783580400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1568615174856749",
+      "start_date_string": "2026-07-09T07:00:00.000Z",
+      "end_date_string": "2026-07-21T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2319058898903956",
+      "end_date": 1789628400,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/786313820_3461688154022834_8746795234379526551_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=vnIJNSRXAe4Q7kNvwHJVIFU&_nc_oc=AdoYFIFFU7SMvPTybAM_GE0ySL6LXWcR8Zwxtj-1cgeIa1P6UXOp42p2ygrHb0PRqb8&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJMbOzhLu276YdEOaZvPwA_YD3uSgGt0veXfk6V00xDxQ&oe=6AB8360B",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/785362999_2692733784513963_2903370392705738989_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=1Io0ldXZgcsQ7kNvwHllxVY&_nc_oc=Ado07erYwUecsdGyRggE1s4RwJIgWD-gj23SHY3dhUl92k0XAKTrBpHjEZ5phXyEll0&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJqZrp2HVb5wzsTmN-nxvpatN_76xi3X8pJL_FvrSA6qA&oe=6AB8410F",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/780087903_1555668198918106_5182402367425560326_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=111&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=OhydGJiUfRYQ7kNvwEtgRaH&_nc_oc=Ado7N4RujWJgpcQdyx35zjV-IpvXG5UsdhhUP_6gUsfVEh7L4f7JwJof_6Yi502Huls&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQL7UvhNeeoc5mAunicsiAxnIN-uqX-PDHs48LsVOi2TbQ&oe=6AB83BC3",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1035148799010193",
+      "collation_count": 3,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787727600,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2319058898903956",
+      "start_date_string": "2026-08-26T07:00:00.000Z",
+      "end_date_string": "2026-09-17T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "974009432129031",
+      "end_date": 1783666800,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728882835_27234893386139794_8820466667051267984_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=SKDEmznJ3hMQ7kNvwGVudpe&_nc_oc=Adq04bq8Pexy7COcJ-RLzkDquQX9kIgGwRj10T3XYPquo5fAjZLElN1YpiNgxMNtVIA&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQtFJ_F5CLIoP8-KPPZr7Z5U88V8AnXPtpHhX9kohFLw&oe=6AB8333D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728093993_1444749280703780_5514575965663125311_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=_ZvKgAKJLEoQ7kNvwHA1oUY&_nc_oc=AdrXNu7fVTwUxGoV2qmg-fwEzbl154X2GwIDG2sCHMOcE5v43fy4cDmCVFaVLQ5j1g8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIJfnwTlqhj3KXX39eU8O5cHzbw3rtXQrhzR6XZ2WcDbQ&oe=6AB85275",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728828018_1316866520152101_8659801522275506103_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=HG1-QaJkmEEQ7kNvwE-aMcU&_nc_oc=AdpCrufcJlQF0KPmOIWws4cwOFnae2ClvHuSNzvNWGFEyS93Sf-3Q9Jhc47YVHfz7RA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQ2IkCkDyCpWn4UXRcrUxnoRgm7U5EyFwlxQhqZSglJQ&oe=6AB84DC5",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1782198000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=974009432129031",
+      "start_date_string": "2026-06-23T07:00:00.000Z",
+      "end_date_string": "2026-07-10T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1468030352008773",
+      "end_date": 1787814000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/727466606_777333382069441_8238142616124109014_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=3pMTgTCZRWcQ7kNvwHTPigo&_nc_oc=Ado_FUo9EHw2_u_kBMMozNVNwnoUoNzt4ck72RaUeJ2QjIbwENTzl5apw3S_7WT-SHI&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJOaG7aTRIeGqt95698zBkmxZy9H8N8vuppXlz5IGV7mQ&oe=6AB84406",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/728315308_2091322638459173_2161681622941815998_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=u8GrkGjRlBEQ7kNvwHptPOb&_nc_oc=AdoJZfxKxawX5T7aDSbYAsyWuhuDoBMaYqdUNgTwzs3el5ZVF5rL610M7RSR_bO18qI&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLbQizYvomJ51KkCLFFaCZLG7txOsnQt2biN8CZvmpwNg&oe=6AB8566A",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728439537_1484293676298504_1543626253109478095_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=tYyQPEWHz3EQ7kNvwFvhS2e&_nc_oc=AdqH17DAbSNqeliBaBfjtBCulyWyAu-eS8v8DZaoP40WbRSbHpk93M3yRViVNXs4SUI&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQL8PqNoNQpJ9XFKWC5a86lzdBa6wlTyRwrFEXfSUz1JwQ&oe=6AB82344",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1765184871581328",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784617200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1468030352008773",
+      "start_date_string": "2026-07-21T07:00:00.000Z",
+      "end_date_string": "2026-08-27T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1584115959759142",
+      "end_date": 1789542000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/787287929_1094007069791739_8121421249030346729_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=fAOKzJp7Bd4Q7kNvwEjal7S&_nc_oc=AdrtyuM37g_BNwrMeff0g2GcHhOzleRm0_dmLj7aGNqzchKR8p5fhE4_RoxvKL-o8JM&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKMVZnZLEIUKP-m_RebscD2do625p6yCclweFW99yotKg&oe=6AB841AC",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/788017612_1634003684704482_1260189651914239829_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=FDQqJN8N5Z0Q7kNvwFD99-H&_nc_oc=AdqL1ulvmG-LeLW2zAgy-TQkz6DUWXodoAEYokBqD1EWYs-7U1jQyr9yjloGHlm7tyA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIajB6P2UCcCWpZ0XNYgPodraBrbsIHQM2x9SguNsrb5A&oe=6AB83172",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/787667512_1793777435295778_3050047430292811467_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=5qxWZxcS3jcQ7kNvwG0_jVt&_nc_oc=Adp9W7GAHjit79xFprPeGMS0bhfChnh6BAgDl6nOaeQwq8Nb0pmMMXxmuIiOcbmrq18&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKN-_F58Z9sRHg6oc-dPcdNZ20zx2V9yWsbafbO05rl9Q&oe=6AB83FEC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1802841427351301",
+      "collation_count": 3,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787727600,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1584115959759142",
+      "start_date_string": "2026-08-26T07:00:00.000Z",
+      "end_date_string": "2026-09-16T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1398034985118802",
+      "end_date": 1790060400,
+      "is_aaa_eligible": false,
+      "is_active": true,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/787287929_1094007069791739_8121421249030346729_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=fAOKzJp7Bd4Q7kNvwEjal7S&_nc_oc=AdrtyuM37g_BNwrMeff0g2GcHhOzleRm0_dmLj7aGNqzchKR8p5fhE4_RoxvKL-o8JM&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKMVZnZLEIUKP-m_RebscD2do625p6yCclweFW99yotKg&oe=6AB841AC",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/788017612_1634003684704482_1260189651914239829_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=FDQqJN8N5Z0Q7kNvwFD99-H&_nc_oc=AdqL1ulvmG-LeLW2zAgy-TQkz6DUWXodoAEYokBqD1EWYs-7U1jQyr9yjloGHlm7tyA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIajB6P2UCcCWpZ0XNYgPodraBrbsIHQM2x9SguNsrb5A&oe=6AB83172",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/787667512_1793777435295778_3050047430292811467_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=5qxWZxcS3jcQ7kNvwG0_jVt&_nc_oc=Adp9W7GAHjit79xFprPeGMS0bhfChnh6BAgDl6nOaeQwq8Nb0pmMMXxmuIiOcbmrq18&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKN-_F58Z9sRHg6oc-dPcdNZ20zx2V9yWsbafbO05rl9Q&oe=6AB83FEC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1802841427351301",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1789542000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1398034985118802",
+      "start_date_string": "2026-09-16T07:00:00.000Z",
+      "end_date_string": "2026-09-22T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2006874616606031",
+      "end_date": 1785654000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/727497724_1545841633874466_2688756276371294489_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=HXLCRcTHYkoQ7kNvwEqLONB&_nc_oc=AdodXcxk3Wkqe4zaAg_kJQeMGaVQ1QhDinEFSwaIzQy4vsoPaUM7b06qiMJ6oDmwZqw&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJUREe5iceZ1k40FdqUGz3rqRtj73rK2sb93mezwt00Ig&oe=6AB82B18",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728021125_898180113296657_6772544858802019701_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=cGj_AzCpshIQ7kNvwGRgBCL&_nc_oc=AdrgeYJoLhVJ171eMf53SbPnJp2KGUX-0_2q59yVCSV3HKCXaExaNcMneM658M29nQk&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIslsGfh74QPDUIKwHYDFvnhIyqvdqkYW_FDLdWvILtKQ&oe=6AB828BF",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728255039_1653187592463318_1827606361871841890_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=ovaFX4mDnt8Q7kNvwFusxJm&_nc_oc=AdqgkD22uHftscmII66Wuqd7qLbL5Xadt1iUl1eS9ApMr5icoJU6jg3a5WL5RXTwuHk&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJ-z59kA0haiSeB1aI7DH3vca5H7mgN_svklenX4Q3psg&oe=6AB83FCA",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1802841427351301",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784617200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2006874616606031",
+      "start_date_string": "2026-07-21T07:00:00.000Z",
+      "end_date_string": "2026-08-02T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1295039739462618",
+      "end_date": 1782284400,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/718102839_2079985622875930_3797971792368664818_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=75Qy0c6beewQ7kNvwELfvE2&_nc_oc=AdpwKfHmqtMZT5rp6yMuqCWs7RnIh_eLxbg9SX_ZHqGKO7fhSnf7eZ78j9LHJqh808s&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIklLgCxY53_Gvx8BSLa1YdiNO-PFpDrsTJLm2hGbnfAQ&oe=6AB8305F",
+        "event": null,
+        "caption": "www.activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [],
+        "body": {
+          "text": "Chris Clark of Toss & Spin once said to his team, \"Whatever you do on the back end, don't touch Active Intelligence. Don't touch ActiveCampaign because it's getting better and better.\" And he was only half joking.\n\nSee what Active Intelligence can do for your business.  Try it free today!"
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "VIDEO",
+        "link_description": null,
+        "link_url": "https://www.activecampaign.com/platform/active-intelligence",
+        "images": [],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "10x Your Growth With ActiveCampaign",
+        "videos": [
+          {
+            "video_hd_url": null,
+            "video_preview_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/718014521_992949977038609_7511028473392093251_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=LxmhsaxztcEQ7kNvwEFmIc3&_nc_oc=AdoB-3C6zvCaMR5sSyW5ixkUw72TMH3dUT_XXcQeLnRPpY7301oWXj5Dj6RCEdwcjfw&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIzmmvRTY8tcjM27rsR-nvk6ip9NaO0y21xshK6Loc3yg&oe=6AB82646",
+            "video_sd_url": "https://video-lga3-1.xx.fbcdn.net/o1/v/t2/f2/m412/AQPMJtocUih5OnN3l4cdjOQSpMhrHTdsZvXfq-lZJ0-F-t0AJLIqJe69fASpFOSbAoGX9JGvocYkc5O5IX4dh1NPz01pwSeGm8we9_EvpQ.mp4?_nc_cat=109&_nc_sid=ef5aa3&_nc_ht=video-lga3-1.xx.fbcdn.net&_nc_ohc=audIcGydQXUQ7kNvwGNWqzO&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuMzYwLnN2ZV9zZCIsInhwdl9hc3NldF9pZCI6OTcyNDQ3NDA1NjgxMzY4LCJhc3NldF9hZ2VfZGF5cyI6MTA1LCJ2aV91c2VjYXNlX2lkIjoxMDc5OSwiZHVyYXRpb25fcyI6MTcsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&_nc_zt=28&oh=00_AQJckG2QVuB4aR0sBceF7A09CsdS_AD31iRtflSbuNBOyw&oe=6AB84415",
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null
+          }
+        ],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1281527180636605",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1781074800,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1295039739462618",
+      "start_date_string": "2026-06-10T07:00:00.000Z",
+      "end_date_string": "2026-06-24T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2137455993480198",
+      "end_date": 1782284400,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/718102839_2079985622875930_3797971792368664818_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=75Qy0c6beewQ7kNvwELfvE2&_nc_oc=AdpwKfHmqtMZT5rp6yMuqCWs7RnIh_eLxbg9SX_ZHqGKO7fhSnf7eZ78j9LHJqh808s&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIklLgCxY53_Gvx8BSLa1YdiNO-PFpDrsTJLm2hGbnfAQ&oe=6AB8305F",
+        "event": null,
+        "caption": "www.activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [],
+        "body": {
+          "text": "Chris Clark of Toss & Spin once said to his team, \"Whatever you do on the back end, don't touch Active Intelligence. Don't touch ActiveCampaign because it's getting better and better.\" And he was only half joking.\n\nSee what Active Intelligence can do for your business.  Try it free today!"
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "VIDEO",
+        "link_description": null,
+        "link_url": "https://www.activecampaign.com/platform/active-intelligence",
+        "images": [],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "10x Your Growth With ActiveCampaign",
+        "videos": [
+          {
+            "video_hd_url": null,
+            "video_preview_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/718014521_992949977038609_7511028473392093251_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=LxmhsaxztcEQ7kNvwEFmIc3&_nc_oc=AdoB-3C6zvCaMR5sSyW5ixkUw72TMH3dUT_XXcQeLnRPpY7301oWXj5Dj6RCEdwcjfw&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIzmmvRTY8tcjM27rsR-nvk6ip9NaO0y21xshK6Loc3yg&oe=6AB82646",
+            "video_sd_url": "https://video-lga3-1.xx.fbcdn.net/o1/v/t2/f2/m412/AQPMJtocUih5OnN3l4cdjOQSpMhrHTdsZvXfq-lZJ0-F-t0AJLIqJe69fASpFOSbAoGX9JGvocYkc5O5IX4dh1NPz01pwSeGm8we9_EvpQ.mp4?_nc_cat=109&_nc_sid=ef5aa3&_nc_ht=video-lga3-1.xx.fbcdn.net&_nc_ohc=audIcGydQXUQ7kNvwGNWqzO&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuMzYwLnN2ZV9zZCIsInhwdl9hc3NldF9pZCI6OTcyNDQ3NDA1NjgxMzY4LCJhc3NldF9hZ2VfZGF5cyI6MTA1LCJ2aV91c2VjYXNlX2lkIjoxMDc5OSwiZHVyYXRpb25fcyI6MTcsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&_nc_zt=28&oh=00_AQJckG2QVuB4aR0sBceF7A09CsdS_AD31iRtflSbuNBOyw&oe=6AB84415",
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null
+          }
+        ],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1281527180636605",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1781074800,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2137455993480198",
+      "start_date_string": "2026-06-10T07:00:00.000Z",
+      "end_date_string": "2026-06-24T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1426947739283346",
+      "end_date": 1789628400,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/787038607_928114826401426_3498592917986608073_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=TAEcdfVm97QQ7kNvwHnknG-&_nc_oc=Adr6FalkskSwWfH50C_I-fLwGXYX5mgiLtrYAFUU-g25C3AUAJL5KoB8FUtInqF4_m8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKEfA7MDB4-9G8sjVYFCk5cCKj2E-CP9bZTyjaAPDraFw&oe=6AB83E47",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence: Wavelength checks every automation and catches broken flows before your contacts notice them, driving 75% higher engagement."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/786354526_1368100445389358_8109964334146632351_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=7R3Kixq5PTYQ7kNvwHEnIOb&_nc_oc=Adqr67PtwwBvd002AFfHrLTAkWfGL7Cf3RSuxunhlHWlQIXkjC71ILFg87jFgdboa08&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKZRyemXDzJ9NQ1g9x6AF1qkS_ZFKvtOdJ6UXE_p7Us_w&oe=6AB83C98",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/786320445_27774435958895793_8192057271258579866_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=99dIyU4FtN0Q7kNvwHOo4Gi&_nc_oc=AdouqZUjplnSiGZXd5KqjdbQonHr8oE7Ne-IcXce7PE_ipa26c8oK8Nx19gIBYJ8vb4&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJJv5uaratvUSKttQ_GpGw4m0NTQ9b-k5Jxdvfj2mUOQw&oe=6AB82867",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "AI that catches what you would've missed.",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1608849600959074",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787900400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1426947739283346",
+      "start_date_string": "2026-08-28T07:00:00.000Z",
+      "end_date_string": "2026-09-17T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "660635426643493",
+      "end_date": 1758870000,
+      "is_aaa_eligible": true,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/482084809_1546525389358298_4178271857274968726_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=9LDYl3a6iT4Q7kNvwGJc8Kw&_nc_oc=Adqz8aavvr3rrPvcJIhkzfm-yCwzPb51m_8wF8Pji4os9kZTCdGx31Rd-H-NIxJJ5g8&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJXT8N-QO3A_xXjSAf5rs6Yxh0KVLMJHW2xNyG8Ja2icA&oe=6AB83462",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [],
+        "body": {
+          "text": "\ud83d\udea8 Nearly 1 in 5 emails never reach the inbox \ud83d\udea8\n\nIf you rely on email to drive sales, that\u2019s a big problem.\n\nLost emails mean lost:\n\n\u21aa Open rates\n\u21aa Engagement\n\u21aa Revenue\n\nDon\u2019t let deliverability issues kill your conversions. ActiveCampaign is the #1 marketing platform for email deliverability.\n\nTry it free for 14 days"
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "IMAGE",
+        "link_description": "Make sure your emails are hitting customers' inboxes with ActiveCampaign's No. 1 rated deliverability email marketing software",
+        "link_url": "https://www.activecampaign.com/platform/deliverability?utm_source=facebook&utm_medium=cpc&utm_campaign=meta_social_dc_ret_northam_conv_trial_ret-90D_image-ads_c-us&utm_content=Free-Trial_Image_V3_Deliverability_03_03_2025",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/481357746_1061624949105767_714990816540074251_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=JO0o2Uz19OMQ7kNvwFPsndi&_nc_oc=AdqyHcoDTswWiYHbC7F8yfiDtyFVtBtsYTMov0YtAMdpV6uT7yoPGpD18ey87AFcVMQ&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJfddOt4SyvGMOMTxVQxCriM4hpjndsV_JmSEOfAR3LtQ&oe=6AB82C65",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/481964497_1700967264187128_7088538444417950850_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=cSYdv1TfyjIQ7kNvwH2XvPV&_nc_oc=AdrO_2o74xGRhBO8vQf4II5QEHtVmNPme2gmEVRHIm-VkNut0id_jqEyPO17v_TKpAE&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIGo2fbLEnBdynzErePu3wU3yds0Tx2KxoUyaUvMwpKIQ&oe=6AB84BBC",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Better open rates (even during the 14-day trial)",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1199718808497782",
+      "collation_count": 1,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1741161600,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=660635426643493",
+      "start_date_string": "2025-03-05T08:00:00.000Z",
+      "end_date_string": "2025-09-26T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "918811347488880",
+      "end_date": 1789542000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/788563297_1576951026979839_8166778437911665854_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=LC8EXOejJd8Q7kNvwHqGz4g&_nc_oc=AdrKz1Xj8ZTRH_PjKJJ350zpkeGlpDuUdKDGkzABjoaO0HJ7iuzx8ZdnQgSAruJ3Kc4&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKEm7ok4ZrdmnQ4OBdnkX1pnT--cO0RjND0MqGttjcICA&oe=6AB84B0D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Accounts using Active Intelligence already see 75% higher engagement than those without it. Wavelength pushes that further."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/785722729_2063540017620030_7451403680297800603_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=zPWXyxi1DxAQ7kNvwFwnGyJ&_nc_oc=AdqLTQtu-xiQPnYfMoElXiPR1N-EE6h8a7AD7h3Fm_b3p7IjuCLvBEMCzmj8LVMMdzA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQL_nTMb348egi43h92BpeXWKFGRw_FGLUJPN13eZOj3vw&oe=6AB850BD",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/788563341_1839171884172157_7972890059158452910_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=En3lwb2NOH0Q7kNvwGhynVM&_nc_oc=AdrtdlULynEsVukGvk0jYIEe3_o3AjiMwXVbwwTMnwe_UyoSAFlJcKi6tb2llZjXNC8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI8lDfVaD49VJVP6r2d_LvprRbulp6jpTV9lMCpRToBZQ&oe=6AB83811",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Marketing intelligence that\u2019s on your wavelength",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "920134937387165",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787900400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=918811347488880",
+      "start_date_string": "2026-08-28T07:00:00.000Z",
+      "end_date_string": "2026-09-16T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "947001881785889",
+      "end_date": 1790060400,
+      "is_aaa_eligible": false,
+      "is_active": true,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/788563297_1576951026979839_8166778437911665854_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=LC8EXOejJd8Q7kNvwHqGz4g&_nc_oc=AdrKz1Xj8ZTRH_PjKJJ350zpkeGlpDuUdKDGkzABjoaO0HJ7iuzx8ZdnQgSAruJ3Kc4&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKEm7ok4ZrdmnQ4OBdnkX1pnT--cO0RjND0MqGttjcICA&oe=6AB84B0D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Accounts using Active Intelligence already see 75% higher engagement than those without it. Wavelength pushes that further."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/785722729_2063540017620030_7451403680297800603_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=zPWXyxi1DxAQ7kNvwFwnGyJ&_nc_oc=AdqLTQtu-xiQPnYfMoElXiPR1N-EE6h8a7AD7h3Fm_b3p7IjuCLvBEMCzmj8LVMMdzA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQL_nTMb348egi43h92BpeXWKFGRw_FGLUJPN13eZOj3vw&oe=6AB850BD",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/788563341_1839171884172157_7972890059158452910_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=En3lwb2NOH0Q7kNvwGhynVM&_nc_oc=AdrtdlULynEsVukGvk0jYIEe3_o3AjiMwXVbwwTMnwe_UyoSAFlJcKi6tb2llZjXNC8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI8lDfVaD49VJVP6r2d_LvprRbulp6jpTV9lMCpRToBZQ&oe=6AB83811",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Marketing intelligence that\u2019s on your wavelength",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "920134937387165",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1789542000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=947001881785889",
+      "start_date_string": "2026-09-16T07:00:00.000Z",
+      "end_date_string": "2026-09-22T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1727346845114407",
+      "end_date": 1782111600,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/721297567_2239291170167501_7267395019507878588_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=DUGHBfW7LGwQ7kNvwFp5s_i&_nc_oc=AdolVsKvBiVzEEWrSQfEt2KzknMIOzS7pPLbTfpaY0rrOLG5agwjRm9BfQUHINI2PLU&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLHx4j8NBvEcIT2VpHWx0Qr2HR_ps8lpwwyHIB7wIO15A&oe=6AB8446A",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [
+          {
+            "body": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today.",
+            "cta_type": "SIGN_UP",
+            "caption": "",
+            "link_description": null,
+            "link_url": "https://www.activecampaign.com/money-back-guarantee",
+            "title": "Our 30-day money back guarantee",
+            "cta_text": "Sign Up",
+            "video_hd_url": null,
+            "video_preview_image_url": null,
+            "video_sd_url": null,
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null,
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/717437780_2632559127202267_2587563445635066204_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=4lMuTDqXXKUQ7kNvwEz1yBb&_nc_oc=AdpdJK9V4375eBTSBdTpVEbKnSVMYi1IiWwb1la6lfpDIpoRKtKOJBIddInoU63k7Pk&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJBoZ3t2k7Scr3eSkBtgWO-84y_NmwlKfhqgEoAaEbY8w&oe=6AB82ECF",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/718194181_995955046492188_1383200774824095933_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=UxzAaR2EfIoQ7kNvwFDE5MT&_nc_oc=AdoXrZW7A7mf_ARlxska4TbJ4dcgkWiBom4JvXIDodfCSOPgAdGC9YvzuY0pGIc9XK8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJMeWar30JhSWt6s6g90S9ot3QOcw5Va1p6IYzLhDrzZw&oe=6AB85012",
+            "watermarked_resized_image_url": ""
+          },
+          {
+            "body": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today.",
+            "cta_type": "SIGN_UP",
+            "caption": "",
+            "link_description": null,
+            "link_url": "https://www.activecampaign.com/money-back-guarantee",
+            "title": "Our 30-day money back guarantee",
+            "cta_text": "Sign Up",
+            "video_hd_url": null,
+            "video_preview_image_url": null,
+            "video_sd_url": null,
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null,
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/718206363_2760135944363391_481268837986291173_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=9P10rd-99EgQ7kNvwEteWuf&_nc_oc=Adq2uhSlorNoxjG5eqedNU_7ShPa1dbNgCJUwPjg69SFK5pnELJDGLZDen9UYTOn06Q&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLx4LTXv12NmtpA1-cn4VF1VEH0g1QKlPToTtCcyCfX4A&oe=6AB83EDB",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/717228289_1039372442092391_7689349984679623573_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=AscL1hjdyYkQ7kNvwGTWZfw&_nc_oc=AdqPaKFgispBjL8hvA6ExBDR4WAJPh__TafEYDjYQqvFJnDNip5bZ_jg9UY57iQynA4&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI8_NbcumiS4sGx1eOnRK6VKRh15eqeCyM5sVkZl5jgMw&oe=6AB82686",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "body": {
+          "text": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today."
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "DCO",
+        "link_description": null,
+        "link_url": "https://www.activecampaign.com/money-back-guarantee",
+        "images": [],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Our 30-day money back guarantee",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1437733254670246",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1780902000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1727346845114407",
+      "start_date_string": "2026-06-08T07:00:00.000Z",
+      "end_date_string": "2026-06-22T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1669869290829747",
+      "end_date": 1782198000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/712444965_1704634464207151_1519666087372280268_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=RDc-edzzEpQQ7kNvwETsZZS&_nc_oc=AdrvV1E0inSTJU2ZiZix6a6k7AiMFOQ4B63DvHAkwoh0njjDNUTSG0JRiRLNVSIn_hM&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJui6IlaMHmUmeQCxpTjkuQqTF7rqV-HyqcmE2wtMmD3Q&oe=6AB8341A",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [
+          {
+            "body": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today.",
+            "cta_type": "SIGN_UP",
+            "caption": "",
+            "link_description": null,
+            "link_url": "https://www.activecampaign.com/money-back-guarantee",
+            "title": "Our 30-day money back guarantee",
+            "cta_text": "Sign Up",
+            "video_hd_url": null,
+            "video_preview_image_url": null,
+            "video_sd_url": null,
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null,
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/714831235_2284037828668832_958370768082078505_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=fjF2-xgIN1kQ7kNvwFV9c0I&_nc_oc=AdpyNvOdhqJQD9PHewzpTpTkELf-5JW242XjuzxR5XqNb2sFC9AJ6k6DgZGameBqCxY&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQK4Proz7bQb9T0ZzWQCRlYOQMJM4UKrXQgIXA1IzUrQxg&oe=6AB83A7F",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/715477754_1353310013650400_8359835629043224462_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=gLCTvaAfUE8Q7kNvwEmX--v&_nc_oc=Adpm0j-LISoYC_1wedaG9_9A4UEvUyGHLlWZ9eiiUF_ge1DwXW0L7NJzY9nriLZIsi4&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLlUV5fDxXdRckhClTA2V_fwFbtkq8CIvlzFH6v-chY2g&oe=6AB821F6",
+            "watermarked_resized_image_url": ""
+          },
+          {
+            "body": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today.",
+            "cta_type": "SIGN_UP",
+            "caption": "",
+            "link_description": null,
+            "link_url": "https://www.activecampaign.com/money-back-guarantee",
+            "title": "Our 30-day money back guarantee",
+            "cta_text": "Sign Up",
+            "video_hd_url": null,
+            "video_preview_image_url": null,
+            "video_sd_url": null,
+            "watermarked_video_hd_url": null,
+            "watermarked_video_sd_url": null,
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/715019974_1636475837649231_8813857712070345166_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=QCSn-oTA8xgQ7kNvwG9LCF3&_nc_oc=AdrV-DiP42EtYJpDomFqEEsqjnMLNgJVZ5lFR_FgfmtIuB3qp0dcsXmo802ekNbR5iA&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJHXOEAyY33mHPm2hSpgKYyHM5BpBIWbz7Yf76QxudvlA&oe=6AB8349B",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/714852632_1522138236260008_439535577637586140_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=Al9B8ZVaAdIQ7kNvwGrKbb5&_nc_oc=AdrnV5mpFHuA4plLLoPMnrbhuP9kBdy5y1bEve8qq04zdw8NcO866SYLY9fbRd2QRUY&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJBBMrtK_7TfwMeSirqZCLtV-hOfLLpVqn535jzb9kYnw&oe=6AB82F85",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "body": {
+          "text": "See results in 30 days or get your money back. We're that confident you'll grow with ActiveCampaign. Try it risk-free today."
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "DCO",
+        "link_description": null,
+        "link_url": "https://www.activecampaign.com/money-back-guarantee",
+        "images": [],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Our 30-day money back guarantee",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1437733254670246",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1780556400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1669869290829747",
+      "start_date_string": "2026-06-04T07:00:00.000Z",
+      "end_date_string": "2026-06-23T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1304981958292616",
+      "end_date": 1782889200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/725291812_27270205795980691_970008618759312969_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=YblIrmP1kx0Q7kNvwFeGXnW&_nc_oc=Adp3jW3Xgqt-FiZyAm3rTk2SKzNfR2EhFaSEWpDs30qRisYDL08SMzEp7l7nehaAalg&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKL_GMK7Wu61xCRYS_be857KOdYZlEzB8IWfAZbGQnqmQ&oe=6AB841D8",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728485100_1207837381416115_8700717030555508981_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=ihMA20cpznMQ7kNvwFJFXlY&_nc_oc=AdpT0NW5qiIusx99KpNtrw-y51kiMt6c81yMEF8_ZtkQwHeUiBJmdTW1I0dV9ySKCB8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLa-C2LEqSxnVc4ZJLzEYqz1wJJtzHVUPhr6VDyPGpLXw&oe=6AB83020",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/727814670_1683324892871942_4156701314997831307_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=cLkefSQ_ucEQ7kNvwEqyjqn&_nc_oc=AdrzFWIrsjGQ8OPKY2Wf9hJZFk45BpJshH3huHxRHcs2Zc8g_E7Pzi3u4yJZpPnGjyk&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKfTw__NiCh4rZIcWGVnc6OV209l4F4VX1HLCHXOF7mgQ&oe=6AB82418",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1782198000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1304981958292616",
+      "start_date_string": "2026-06-23T07:00:00.000Z",
+      "end_date_string": "2026-07-01T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1541176294169461",
+      "end_date": 1787814000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728951575_1339821014148680_7750818418135725895_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=dENnPA-qQ1kQ7kNvwH4EVkk&_nc_oc=AdpZA1SKZtIk17EYFN17yxL39h5q_-B9HLNS3K2SfhN1PvQfwzxb4cDQ86pyTBG_90Q&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQInOlUzr4C46J5nlGNvhv6kelgyInms9m79pFzm6MI2wQ&oe=6AB84F39",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/727864584_1490586498910034_1371794875494807843_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=fzRwBLq2nfkQ7kNvwGs8QYX&_nc_oc=AdrnXHL_42vQSlQhScMbP1c44rQWf7YM_IxPRlEOjN6JqDMAu7FXTK2IlHqKjuOFlMQ&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQII-mcMkbwdyIIsdDSwo3MexyQw8LNolodvbctUadaPkA&oe=6AB822B1",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/728598195_1588679062889373_5941071145839131960_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=7eVWYGeENcYQ7kNvwH9H4zf&_nc_oc=Adqmf9_NHFbLtd_udKuZFI8rCLLhIwbBX2y5B2RdZ3hCqpbmtemvF53t0IOxtk0GnAc&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJeU62dNJHG_EA0nBA1vBgEDGWpmRtAaVVAlBNG_yHcyg&oe=6AB825C9",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1258655619576041",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784617200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1541176294169461",
+      "start_date_string": "2026-07-21T07:00:00.000Z",
+      "end_date_string": "2026-08-27T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "872781008884209",
+      "end_date": 1785654000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/725291812_27270205795980691_970008618759312969_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=YblIrmP1kx0Q7kNvwFeGXnW&_nc_oc=Adp3jW3Xgqt-FiZyAm3rTk2SKzNfR2EhFaSEWpDs30qRisYDL08SMzEp7l7nehaAalg&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKL_GMK7Wu61xCRYS_be857KOdYZlEzB8IWfAZbGQnqmQ&oe=6AB841D8",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728485100_1207837381416115_8700717030555508981_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=ihMA20cpznMQ7kNvwFJFXlY&_nc_oc=AdpT0NW5qiIusx99KpNtrw-y51kiMt6c81yMEF8_ZtkQwHeUiBJmdTW1I0dV9ySKCB8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLa-C2LEqSxnVc4ZJLzEYqz1wJJtzHVUPhr6VDyPGpLXw&oe=6AB83020",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/727814670_1683324892871942_4156701314997831307_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=cLkefSQ_ucEQ7kNvwEqyjqn&_nc_oc=AdrzFWIrsjGQ8OPKY2Wf9hJZFk45BpJshH3huHxRHcs2Zc8g_E7Pzi3u4yJZpPnGjyk&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKfTw__NiCh4rZIcWGVnc6OV209l4F4VX1HLCHXOF7mgQ&oe=6AB82418",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1556656169290476",
+      "collation_count": 3,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784530800,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=872781008884209",
+      "start_date_string": "2026-07-20T07:00:00.000Z",
+      "end_date_string": "2026-08-02T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1369196335192274",
+      "end_date": 1789542000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/788385097_2850178328690478_4253890372130087785_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=102&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=3DPduRnlAWsQ7kNvwGUE3RU&_nc_oc=Adpa5UgaDyEoyICASpO8fAam_bUyAA5g0MByT-9qWR90avuHdZWSmbCzelnyumbT6gU&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKEA8SADcFxePHtSpPROd8fLvFjDUy74xXjwukGcQ8HIg&oe=6AB834E5",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/788453775_2479058795936391_3791652886308199732_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=EeCCRY4R868Q7kNvwFuJnYG&_nc_oc=AdpXYo299Lh6tnw4Lwi9fv2KPAysSRADAGG4y46iB5FsQBgswcrCeGysgGfOPFdoG70&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKf3Qo6mA881Ure4gVT1WWq1PKGwnZabv9Ihgs08rM6ug&oe=6AB84F73",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/784981916_1743042326886551_4609086715256025387_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=L_5mm0Eu8osQ7kNvwFUwdId&_nc_oc=Adrom67souvPQZ8Yiaop-7yAJubVVHIUG5Fdt-h5K0qNNYJdornsxZvjhuu8cLRgoe8&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIkXf2CwD-uq_qblUmRlQe_UbIwDzjJTszIWzU_UTFjtA&oe=6AB84510",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1556656169290476",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787727600,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1369196335192274",
+      "start_date_string": "2026-08-26T07:00:00.000Z",
+      "end_date_string": "2026-09-16T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1731056878035580",
+      "end_date": 1787727600,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728882835_27234893386139794_8820466667051267984_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=SKDEmznJ3hMQ7kNvwGVudpe&_nc_oc=Adq04bq8Pexy7COcJ-RLzkDquQX9kIgGwRj10T3XYPquo5fAjZLElN1YpiNgxMNtVIA&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQtFJ_F5CLIoP8-KPPZr7Z5U88V8AnXPtpHhX9kohFLw&oe=6AB8333D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728093993_1444749280703780_5514575965663125311_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=_ZvKgAKJLEoQ7kNvwHA1oUY&_nc_oc=AdrXNu7fVTwUxGoV2qmg-fwEzbl154X2GwIDG2sCHMOcE5v43fy4cDmCVFaVLQ5j1g8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIJfnwTlqhj3KXX39eU8O5cHzbw3rtXQrhzR6XZ2WcDbQ&oe=6AB85275",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728828018_1316866520152101_8659801522275506103_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=HG1-QaJkmEEQ7kNvwE-aMcU&_nc_oc=AdpCrufcJlQF0KPmOIWws4cwOFnae2ClvHuSNzvNWGFEyS93Sf-3Q9Jhc47YVHfz7RA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQ2IkCkDyCpWn4UXRcrUxnoRgm7U5EyFwlxQhqZSglJQ&oe=6AB84DC5",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "2380688449006584",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784530800,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1731056878035580",
+      "start_date_string": "2026-07-20T07:00:00.000Z",
+      "end_date_string": "2026-08-26T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2505038390004792",
+      "end_date": 1784617200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/728882835_27234893386139794_8820466667051267984_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=108&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=SKDEmznJ3hMQ7kNvwGVudpe&_nc_oc=Adq04bq8Pexy7COcJ-RLzkDquQX9kIgGwRj10T3XYPquo5fAjZLElN1YpiNgxMNtVIA&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQtFJ_F5CLIoP8-KPPZr7Z5U88V8AnXPtpHhX9kohFLw&oe=6AB8333D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728093993_1444749280703780_5514575965663125311_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=_ZvKgAKJLEoQ7kNvwHA1oUY&_nc_oc=AdrXNu7fVTwUxGoV2qmg-fwEzbl154X2GwIDG2sCHMOcE5v43fy4cDmCVFaVLQ5j1g8&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIJfnwTlqhj3KXX39eU8O5cHzbw3rtXQrhzR6XZ2WcDbQ&oe=6AB85275",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/728828018_1316866520152101_8659801522275506103_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=HG1-QaJkmEEQ7kNvwE-aMcU&_nc_oc=AdpCrufcJlQF0KPmOIWws4cwOFnae2ClvHuSNzvNWGFEyS93Sf-3Q9Jhc47YVHfz7RA&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJQ2IkCkDyCpWn4UXRcrUxnoRgm7U5EyFwlxQhqZSglJQ&oe=6AB84DC5",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "2380688449006584",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1783580400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2505038390004792",
+      "start_date_string": "2026-07-09T07:00:00.000Z",
+      "end_date_string": "2026-07-21T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2009935326324271",
+      "end_date": 1787814000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/729205146_1309911911346073_935575294742606722_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=xn0CbyLpOrAQ7kNvwF6MFdT&_nc_oc=AdqyjJ0N2nj_GCdMgNQlCQ_iEFyVzaYzPdaVQrFNIbdlUbXT-8yKV_oy5oBr7ZHlC_s&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIHMmDMd-Rdn_s1-_WHMnVeKvhneKh3GGPBfL9t5UzHAQ&oe=6AB84C7D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/726432636_1570634538405779_5376096969824178820_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=wljgP81DSNwQ7kNvwFbVWQV&_nc_oc=AdpsGjnqZ_2dUVghhtcKff0ytPW00YlGMu0_aR-jnELMgcz9-6knQ6BvetrwoOqzLvI&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI3Cu_nyDWW68aTXnagL6wRmR8oyOoeGGNrhePDYemzag&oe=6AB852B8",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/729716948_1536139411353422_6870038555647285567_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=d9B_-YLe5sgQ7kNvwGeJpy_&_nc_oc=AdrFGXXOSSq4Hg3vgsRwcd3_J_Z620XJZ_Ifau8NjszlSRiQ-FnWKEktwRAIVyQ6_8s&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIVZ2WChLglHklZeyI_R4jyh11P8ISwJ2v3GXIcsAlrJg&oe=6AB83076",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1364117905784885",
+      "collation_count": 2,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1784617200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2009935326324271",
+      "start_date_string": "2026-07-21T07:00:00.000Z",
+      "end_date_string": "2026-08-27T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2004302174294530",
+      "end_date": 1784617200,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/729205146_1309911911346073_935575294742606722_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=xn0CbyLpOrAQ7kNvwF6MFdT&_nc_oc=AdqyjJ0N2nj_GCdMgNQlCQ_iEFyVzaYzPdaVQrFNIbdlUbXT-8yKV_oy5oBr7ZHlC_s&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIHMmDMd-Rdn_s1-_WHMnVeKvhneKh3GGPBfL9t5UzHAQ&oe=6AB84C7D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/726432636_1570634538405779_5376096969824178820_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=wljgP81DSNwQ7kNvwFbVWQV&_nc_oc=AdpsGjnqZ_2dUVghhtcKff0ytPW00YlGMu0_aR-jnELMgcz9-6knQ6BvetrwoOqzLvI&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI3Cu_nyDWW68aTXnagL6wRmR8oyOoeGGNrhePDYemzag&oe=6AB852B8",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/729716948_1536139411353422_6870038555647285567_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=d9B_-YLe5sgQ7kNvwGeJpy_&_nc_oc=AdrFGXXOSSq4Hg3vgsRwcd3_J_Z620XJZ_Ifau8NjszlSRiQ-FnWKEktwRAIVyQ6_8s&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIVZ2WChLglHklZeyI_R4jyh11P8ISwJ2v3GXIcsAlrJg&oe=6AB83076",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "1364117905784885",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1783580400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2004302174294530",
+      "start_date_string": "2026-07-09T07:00:00.000Z",
+      "end_date_string": "2026-07-21T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1097966636018093",
+      "end_date": 1790060400,
+      "is_aaa_eligible": false,
+      "is_active": true,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/785288027_1994928817810031_1104678949145893581_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=-8WNIp8ZQxEQ7kNvwHs7OhL&_nc_oc=Adq6nLpeMNsJJIfaj4Mun0MR4THHnaHXeTp-6txN527wrUE-StTYlmYu6GMKNzz2Foo&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKRI9o2zjxLhmaGV4gpsr9qGRzz-juMQorfStVqEYrkxA&oe=6AB836F2",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/784928632_2610438189399973_1494462096260934512_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=EVckEE_4P8kQ7kNvwG5SUs3&_nc_oc=Adofd1Uqr2HLXM-zT3uMNsbiLldi0sPWSI5QGi0DBlVqWtL1CjAybH_Cg4zcGrpbp6w&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIXxkSOUvOUL_7UUg_72nB2YwYMycalNIptVenToc7PWg&oe=6AB83460",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/787557726_1608148304656355_3645829587761654077_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=5oGoBAElcuYQ7kNvwGLrVoj&_nc_oc=AdpR5AO8kNiPLIWJF2jZ4RAZxn-Y4Kj-H309BIro_B6R2uqa8b_uhw9wBG53nnhDrSs&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIOeFaVVl8rjHY2IMZnd6jBbB088b5HINa2-YG1Kszrsg&oe=6AB82B10",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "832523249826563",
+      "collation_count": 3,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1789542000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1097966636018093",
+      "start_date_string": "2026-09-16T07:00:00.000Z",
+      "end_date_string": "2026-09-22T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2314835125999587",
+      "end_date": 1789542000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/785288027_1994928817810031_1104678949145893581_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=-8WNIp8ZQxEQ7kNvwHs7OhL&_nc_oc=Adq6nLpeMNsJJIfaj4Mun0MR4THHnaHXeTp-6txN527wrUE-StTYlmYu6GMKNzz2Foo&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKRI9o2zjxLhmaGV4gpsr9qGRzz-juMQorfStVqEYrkxA&oe=6AB836F2",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "See how fast Active Intelligence 2.8 can build your first on-brand AI campaign. Save 10 hours every week and get better engagement when AI learns from your top-performing campaigns."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/784928632_2610438189399973_1494462096260934512_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=EVckEE_4P8kQ7kNvwG5SUs3&_nc_oc=Adofd1Uqr2HLXM-zT3uMNsbiLldi0sPWSI5QGi0DBlVqWtL1CjAybH_Cg4zcGrpbp6w&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIXxkSOUvOUL_7UUg_72nB2YwYMycalNIptVenToc7PWg&oe=6AB83460",
+            "resized_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/787557726_1608148304656355_3645829587761654077_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=5oGoBAElcuYQ7kNvwGLrVoj&_nc_oc=AdpR5AO8kNiPLIWJF2jZ4RAZxn-Y4Kj-H309BIro_B6R2uqa8b_uhw9wBG53nnhDrSs&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIOeFaVVl8rjHY2IMZnd6jBbB088b5HINa2-YG1Kszrsg&oe=6AB82B10",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build your first AI campaign with Active Intelligence",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": "832523249826563",
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1787727600,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2314835125999587",
+      "start_date_string": "2026-08-26T07:00:00.000Z",
+      "end_date_string": "2026-09-16T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2079445919561030",
+      "end_date": 1772352000,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/633600448_2399298043852345_3241230299575651289_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=wJs5jme74H0Q7kNvwG3zZgf&_nc_oc=Adoqr6HOsQ92jtx0d-l2osHyIZVZqQZZEvDpqAWHsjI8PQ8jYrH4EiYjeAm3CKy34YQ&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJSWkrQAZZfteenSV5z1vjDPxW2VjrfyfJJg_uGUiq9bQ&oe=6AB84280",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "AI isn\u2019t just for small tasks anymore. Real marketers are saving hours each week with AI tools, right now. Discover how you can transform your workflow with Active Intelligence."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Autonomous Marketing by ActiveCampaign: AI tools plan, launch, & optimize email, SMS, & WhatsApp campaigns end-to-end for smarter, faster growth.",
+        "link_url": "https://www.activecampaign.com/platform/autonomous-marketing",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/632735203_1412637193064933_6738911072252344901_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=ml841J4OeqcQ7kNvwFvz0aM&_nc_oc=Adoec8AlJ8ZJghc-jeQutvkApOFIczTlCpFhAbyh91sab3_VUNinXLgFcr0rlxhE5CQ&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLiOl6GsNJdZJ2b7EcotKSeIzKLbR1ku-eJ-C9vuUISGg&oe=6AB82834",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/633591671_1428225935406949_4564023601168339063_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=onwMicHQltMQ7kNvwFePZpO&_nc_oc=AdqHEYvdD_LBp-uS8PtZ32lz8JrOpNJt22yaEdKtCf07Rv9WlI82WZIkT1X7ANfW4Yk&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQL9ufLaPkl-Z5WB8VhmSj_UHxwr0KQ-SlQnmh00fTGiwA&oe=6AB836A6",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Marketing AI that delivers",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1771315200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2079445919561030",
+      "start_date_string": "2026-02-17T08:00:00.000Z",
+      "end_date_string": "2026-03-01T08:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1487476276458584",
+      "end_date": 1782284400,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/716702585_1340651404649203_955519320549267797_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=HFQ7YnMwhewQ7kNvwGVNqVl&_nc_oc=Adqho3_Hkz3RaSb2MVsmNJvD6GeFsmYeIxAu3Dj3H7sGWRiK9HZZwtjdPquoNnVyzfk&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQK38zN8NaXo7G0wnmKl938o07Ki1Y3bkX8VCIxJ0puXRg&oe=6AB81FB1",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Sign up",
+        "cards": [],
+        "body": {
+          "text": "Most platforms need 30 days of onboarding and setup. We deliver results in month one\u2013or you get a full refund. Start growing today, risk-free."
+        },
+        "cta_type": "SIGN_UP",
+        "display_format": "IMAGE",
+        "link_description": "Stay ahead in the AI era. Get actionable insights, trends, and exclusive content from The Autonomous Marketer newsletter from ActiveCampapign. Subscribe now!",
+        "link_url": "https://www.activecampaign.com/money-back-guarantee",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/714871499_1264989339047754_5182513524769007474_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=p3EEWYr3xrIQ7kNvwHYnrWV&_nc_oc=Adp44V4NTAqfxNVs79UEUetjdEAF8fK9YaaM_Dc4FPZPrVQ4dyyHl3UwJ0dI5E3-Jx0&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQLDUzo-TSXEZSfTiarF3ehKp84CjLH32gcVdy5ROJP-Pg&oe=6AB829C2",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/715494293_1404758888128516_3143287161703827130_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=ZrPw8pSKPMUQ7kNvwGQ2jYi&_nc_oc=Adpqx30OzprNefEMQ9i___X57njWy6SvsX52j8kJIB9w4Oehb4wSjCGhQMTeFoSukIM&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJWeO6CErnTJaH2PutUUy75WgPTqHYbnlp-QZF-e8a1uQ&oe=6AB82645",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Marketing results in 30 days (or a full refund)",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1780556400,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1487476276458584",
+      "start_date_string": "2026-06-04T07:00:00.000Z",
+      "end_date_string": "2026-06-24T07:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "2409870769451326",
+      "end_date": 1772265600,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.35426-6/630559935_1445040733936686_6361248236229837165_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=109&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=RUkwVSw9K74Q7kNvwFmuNKA&_nc_oc=AdpdqVU3se301qm_83fn9qQGyWpKAUIScQO0KtqXdeSN_r5WETMgnRzTE1DiKDPjzCs&_nc_zt=14&_nc_ht=scontent-lga3-1.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIkKDcPSHaIE9BFwBh0ZN281OrwNBCS5jRGXjUwJ6TCUA&oe=6AB8226D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Flip the switch and leave manual workflows in the past. Our autonomous marketing platform handles the heavy lifting for you, so you can get out of the weeds and become more strategic."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "Autonomous Marketing by ActiveCampaign: AI tools plan, launch, & optimize email, SMS, & WhatsApp campaigns end-to-end for smarter, faster growth.",
+        "link_url": "https://www.activecampaign.com/platform/autonomous-marketing",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/633405704_1548705966409773_7879341118690224854_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=anPNX2eG_RsQ7kNvwHqBZc1&_nc_oc=Adqp3JdAW5J-4MYhu52GQVqtFFvvVk8zIxILJX8aHbXI8x1wdX0ClivsG_eAromtikM&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQKhdzHyRGSVCtb7s2OXMN0zP8LJdBBBB9BG92IpLMXJnQ&oe=6AB83925",
+            "resized_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/629237982_1253580563367347_8060402422153185140_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=0TDv9DqNwh0Q7kNvwGFe4-d&_nc_oc=AdqyvVUP5grMcC1Qed5GA6yI9ShSDz9tljQKBUZkpSLT0IEtObHzlU5casVnAmaJSOM&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQJce_zxS6VfI_5PoVYVy_H9dasc8LzKDqfgVYoSyqOtgA&oe=6AB84873",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Cut the marketing busywork",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1771315200,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=2409870769451326",
+      "start_date_string": "2026-02-17T08:00:00.000Z",
+      "end_date_string": "2026-02-28T08:00:00.000Z"
+    },
+    {
+      "ad_archive_id": "1024503033358867",
+      "end_date": 1783666800,
+      "is_aaa_eligible": false,
+      "is_active": false,
+      "page_id": "61486037227",
+      "page_name": "ActiveCampaign",
+      "reach_estimate": null,
+      "snapshot": {
+        "branded_content": null,
+        "page_id": "61486037227",
+        "page_is_deleted": false,
+        "page_profile_uri": "https://www.facebook.com/activecampaign/",
+        "root_reshared_post": null,
+        "byline": null,
+        "disclaimer_label": null,
+        "page_name": "ActiveCampaign",
+        "page_profile_picture_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/729205146_1309911911346073_935575294742606722_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=xn0CbyLpOrAQ7kNvwF6MFdT&_nc_oc=AdqyjJ0N2nj_GCdMgNQlCQ_iEFyVzaYzPdaVQrFNIbdlUbXT-8yKV_oy5oBr7ZHlC_s&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIHMmDMd-Rdn_s1-_WHMnVeKvhneKh3GGPBfL9t5UzHAQ&oe=6AB84C7D",
+        "event": null,
+        "caption": "activecampaign.com",
+        "cta_text": "Learn more",
+        "cards": [],
+        "body": {
+          "text": "Active Intelligence 2.8 learns your brand voice and remembers your top-performing campaigns. Go to market faster with on-brand first drafts that are ready to send."
+        },
+        "cta_type": "LEARN_MORE",
+        "display_format": "IMAGE",
+        "link_description": "An AI co-pilot designs, builds, and optimizes multi-step automations & uncovers insights from your data, cutting busywork and delivering impact.",
+        "link_url": "https://www.activecampaign.com/ai",
+        "images": [
+          {
+            "image_crops": [],
+            "original_image_url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.35426-6/726432636_1570634538405779_5376096969824178820_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=wljgP81DSNwQ7kNvwFbVWQV&_nc_oc=AdpsGjnqZ_2dUVghhtcKff0ytPW00YlGMu0_aR-jnELMgcz9-6knQ6BvetrwoOqzLvI&_nc_zt=14&_nc_ht=scontent-lga3-2.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQI3Cu_nyDWW68aTXnagL6wRmR8oyOoeGGNrhePDYemzag&oe=6AB852B8",
+            "resized_image_url": "https://scontent-lga3-3.xx.fbcdn.net/v/t39.35426-6/729716948_1536139411353422_6870038555647285567_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=d9B_-YLe5sgQ7kNvwGeJpy_&_nc_oc=AdrFGXXOSSq4Hg3vgsRwcd3_J_Z620XJZ_Ifau8NjszlSRiQ-FnWKEktwRAIVyQ6_8s&_nc_zt=14&_nc_ht=scontent-lga3-3.xx&_nc_gid=cpJuDRVROZwM_bR51n2yDQ&_nc_ss=7f289&oh=00_AQIVZ2WChLglHklZeyI_R4jyh11P8ISwJ2v3GXIcsAlrJg&oe=6AB83076",
+            "watermarked_resized_image_url": ""
+          }
+        ],
+        "page_categories": [
+          "Business"
+        ],
+        "page_like_count": 29375,
+        "title": "Build on-brand marketing campaigns in minutes",
+        "videos": [],
+        "is_reshared": false,
+        "extra_links": [],
+        "extra_texts": [],
+        "extra_images": [],
+        "extra_videos": [],
+        "country_iso_code": null,
+        "brazil_tax_id": null,
+        "additional_info": null,
+        "ec_certificates": []
+      },
+      "collation_id": null,
+      "collation_count": null,
+      "total_active_time": null,
+      "spend": null,
+      "start_date": 1782198000,
+      "publisher_platform": [
+        "FACEBOOK",
+        "INSTAGRAM"
+      ],
+      "url": "https://www.facebook.com/ads/library?id=1024503033358867",
+      "start_date_string": "2026-06-23T07:00:00.000Z",
+      "end_date_string": "2026-07-10T07:00:00.000Z"
+    }
+  ],
+  "searchResultsCount": 65,
+  "cursor": "AQHT0N1dFHNuz_Jo4V2Lin1BbfL9EDZ6ooCh73CS4e4QDjMNXpxqz46pzFRujqQjR60N"
+}
