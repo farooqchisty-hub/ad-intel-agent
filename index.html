@@ -77,7 +77,8 @@ a{color:var(--accent)}
   <div class="eyebrow">Brevo Ecommerce · Performance Creative</div>
   <h1>Ad Intelligence Agent</h1>
   <p class="sub">A weekly competitor sweep that turns Meta and Google ad libraries into an angle inventory, then drafts our own ads against it. Architecture, agent logic, dashboard spec and build plan.</p>
-  <p style="margin-top:14px"><a href="phase0.html"><strong>Phase 0 output: the angle taxonomy &rarr;</strong></a> Built from 268 competitor ads. Gate passed.</p>
+  <p style="margin-top:14px"><a href="phase0.html"><strong>Phase 0 output: the angle taxonomy &rarr;</strong></a> Built from 268 competitor ads. Gate passed.<br>
+  <a href="https://ad-intel.winningstatics.workers.dev"><strong>Phase 1: the live intelligence layer &rarr;</strong></a> Deployed on Cloudflare. Sweeps weekly, 215 ads held.</p>
   <p class="meta">22 September 2026 · v2, decisions settled · written against verified API access, not assumptions</p>
 </header>
 
@@ -478,8 +479,8 @@ a{color:var(--accent)}
 <table>
 <thead><tr><th>Phase</th><th>Ships</th><th>Gate to pass</th></tr></thead>
 <tbody>
-<tr><td><strong>0 · Taxonomy</strong></td><td>Hand sweep of all ten competitors. Angle taxonomy and seed format bank written by hand and reviewed. No code, no infrastructure.</td><td>The taxonomy holds when applied to a brand that was not used to build it.</td></tr>
-<tr><td><strong>1 · Intelligence</strong></td><td>Cloudflare stack stood up. Ingest, decompose, Persistence Score, clustering, weekly cron. Radar and Angles screens. Google read-only via Transparency.</td><td>The angle inventory changes a brief that would otherwise have been written differently. If it does not, stop here.</td></tr>
+<tr><td><strong>0 · Taxonomy</strong> <span class="tag good">shipped</span></td><td>Hand sweep of all ten competitors. Angle taxonomy and seed format bank written by hand and reviewed. No code, no infrastructure.</td><td>The taxonomy holds when applied to a brand that was not used to build it.</td></tr>
+<tr><td><strong>1 · Intelligence</strong> <span class="tag good">shipped</span></td><td>Cloudflare stack stood up. Ingest, decompose, Persistence Score, clustering, weekly cron. Radar and Angles screens. Google read-only via Transparency.</td><td>The angle inventory changes a brief that would otherwise have been written differently. If it does not, stop here.</td></tr>
 <tr><td><strong>2 · Production</strong></td><td>The six-stage teardown method. Studio gallery with the revision field. Statics end to end, video briefs, Google text ads. Export only, nothing touches a platform.</td><td>Six of ten candidates in a batch are ones worth running.</td></tr>
 <tr><td><strong>3 · Loop closes</strong></td><td>Paused drafts pushed to the PushOwl account. Daily Meta insight ingest across both accounts. The angle join. Compare and Performance screens.</td><td>Draft to live conversion above fifty percent. Below that the system is generating work, not saving it.</td></tr>
 <tr><td><strong>4 · Google</strong></td><td>Our own Google metrics, CampaignDraft and paused responsive search ad push, real-time policy verdict surfaced before human review.</td><td>Parity with the Meta path.</td></tr>
