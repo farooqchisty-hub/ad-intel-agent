@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Build Plan 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--iris:#6358DE;--aqua:#159F9F;--peony:#EB427F;--sun:#DEB002;--sky:#2676C0;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:32px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:760px;opacity:.9}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px}.toc a{color:inherit;margin-right:14px;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+.k{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:8px;overflow-x:auto;padding-bottom:6px}
+.k div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:13px;min-width:150px}
+.k b{display:block;margin-bottom:4px}
+.b{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:3px 9px;margin:2px 4px 2px 0}
+.btn{background:var(--forest);color:#fff}.btn2{background:var(--card);border:1px solid var(--line);color:var(--fg)}
+.tagx{background:var(--tag);color:var(--muted);border-radius:6px}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For approval</span><span class="chip">Plan 2 · 24 Sep 2026</span>
+  <h1>Creative Performance Marketing Agent: build plan 2</h1>
+  <p>Your feedback, turned into 8 phases. Answers to your three questions come first, then the build, then the calls I need from you.</p>
+  <div class="toc"><a href="#answers">Answers</a><a href="#a">A Clean-up</a><a href="#b">B Design</a><a href="#c">C Kanban</a><a href="#d">D Sharing</a><a href="#e">E Library</a><a href="#f">F Platform tabs</a><a href="#g">G Economics</a><a href="#order">Order</a><a href="#decide">Your calls</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="answers">Answers first</h2>
+<div class="grid">
+  <div class="card"><h4>Where the videos live</h4><p>They're on <b>our own storage</b> (Cloudflare R2), not an iframe. The page loads <b>only a poster image</b> per tile (about 20KB). The video streams only when someone presses play, in chunks, so a Radar page never loads 300 videos.</p>
+  <p style="margin-top:8px">An iframe isn't really available: Meta's Ad Library has no embeddable player and its video links expire in days, which is how the "creative expired" tiles happened. The polished option is <b>Cloudflare Stream</b>: an iframe player with adaptive quality, costing well under $5 a month at our volume. <b>My recommendation:</b> keep R2, and add a proper player (play overlay, lightbox, no preloading). Switch to Stream only if we see buffering.</p></div>
+  <div class="card"><h4>What "Make creatives" does today</h4><p>It clones <b>the single strongest live competitor ad on that angle</b> that we haven't adapted yet. That's one ad, which lands in the Library in about 5 minutes and isn't linked back to the card. Too blunt. Phase C replaces it with a creative pack that stays attached to the card.</p></div>
+  <div class="card"><h4>Triple Whale and Ramp</h4><p>Together they hold <b>104 ads</b> and <b>153 assets</b> in the corpus, <b>16 of our creatives</b> were cloned from their ads, and <b>16 teardowns</b> feed the pattern framework. Phase A removes all of it and re-mines the framework without them.</p></div>
+</div>
+
+<h2 id="a">Phase A · Clean-up <small>Remove what shouldn't be there before building on top of it.</small></h2>
+<table>
+<tr><th>Item</th><th>What happens</th></tr>
+<tr><td>Triple Whale, Ramp</td><td>Delete both brands, their 104 ads, 153 assets, cached images and videos, and their teardowns and pattern members. Re-mine the patterns and angle stats. They drop out of Radar, Compare, the heatmap, the brand pages and recommendations. The 16 creatives cloned from them are parked in reserve, so nothing you've seen vanishes without a trace (decision 2).</td></tr>
+<tr><td>Sweep list</td><td>They can't come back through the Monday sweep. They also stay off the competitor list, so a future sweep can't flag them as competitors again.</td></tr>
+<tr><td>Access</td><td>The dashboard is currently open to anyone with the URL, and its buttons can pause ads. Before we add sharing, put it behind Cloudflare Access so only @brevo.com emails get in (decision 1).</td></tr>
+</table>
+
+<h2 id="b">Phase B · Design v2: the command deck <small>Make it feel like a live instrument, still on the Brevo brand kit.</small></h2>
+<h3>One visual language for what's clickable</h3>
+<table>
+<tr><th>Thing</th><th>Looks like</th><th>Behaves like</th></tr>
+<tr><td>Button (does something)</td><td><span class="b btn">Pause it</span> <span class="b btn2">Snooze</span> Solid or outlined, with an icon</td><td>Pointer cursor, press state, lifts on hover</td></tr>
+<tr><td>Tag (describes something)</td><td><span class="b tagx">cold</span> <span class="b tagx">static</span> Flat, square-ish corners, no border</td><td>No pointer, no hover. Never looks pressable.</td></tr>
+<tr><td>Status (live state)</td><td>A dot plus a label: ● Healthy, ● 2 errors</td><td>The dot pulses while something is running</td></tr>
+<tr><td>Openable tile (cards, rows)</td><td>Card with a chevron or "Open" affordance</td><td>Lifts, gets a forest border and a slight glow on hover</td></tr>
+<tr><td>Important but static (KPI tiles)</td><td>Card</td><td>Softer hover: a gentle glow, no lift, no pointer</td></tr>
+</table>
+<h3>Masthead, bucketed into four groups</h3>
+<div class="grid">
+  <div class="card"><h4>1 · Status (grey, dots)</h4><p>Agent health, last sync and next run, Meta connected, Google connected</p></div>
+  <div class="card"><h4>2 · Alerts (peony, sun)</h4><p>P0 and P1 counts as bold badges that jump to the matching Kanban column</p></div>
+  <div class="card"><h4>3 · Targets (iris, editable)</h4><p>Target CPA, monthly budget and pacing as data fields with an edit pencil, marked "provisional" until you set them</p></div>
+  <div class="card"><h4>4 · Actions (buttons)</h4><p>Ask the agent, Run now, Weekly report, Share</p></div>
+</div>
+<h3>Motion</h3>
+<p>Numbers count up on load. Charts draw in. A live dot pulses on anything syncing or rendering. A slow scan-line glows across the masthead while the agent is working. Recommendation cards slide into their column, and new items flash once. All motion switches off for anyone whose system asks for reduced motion.</p>
+
+<h2 id="c">Phase C · Command Center: a Kanban of work <small>Recommendations become work items that move, carry the right buttons, and take your instructions.</small></h2>
+<p><b>Tabs above the board:</b> Meta · Google · Creative · All. <b>Filters:</b> priority, type, campaign, confidence, "the agent can do it" vs "needs a human", and date.</p>
+<div class="k">
+  <div><b>Inbox</b>New from today's runs, sorted P0 first</div>
+  <div><b>To do</b>You approved it; the agent has it queued</div>
+  <div><b>Agent working</b>Executing, or making creatives. Shows a live progress dot</div>
+  <div><b>Needs you</b>Prepared for your marketer (budget increases, anything outside the guardrails), or creatives waiting for your review</div>
+  <div><b>Done</b>Executed, with a 3-day and 7-day outcome badge once measured</div>
+  <div><b>Parked</b>Dismissed, snoozed or expired. Collapsed by default</div>
+</div>
+<h3>Action buttons by card type</h3>
+<table>
+<tr><th>Card</th><th>Buttons</th><th>Agent executes?</th></tr>
+<tr><td>Ad spending with no conversions</td><td>Pause ad · Pause its ad set · Replace the creative instead · Open in Ads Manager</td><td>Yes, within the guardrails</td></tr>
+<tr><td>CPA too high (ad set)</td><td>Lower budget: 10%, 15% or 20% · Pause the worst ad in it · Set a campaign target CPA</td><td>Yes</td></tr>
+<tr><td>Winner</td><td>Prepare +10% or +20% for your marketer · Duplicate as a paused test ad set</td><td>Prepared only</td></tr>
+<tr><td>Creative fatigue</td><td>Make 3 replacements · Pause once replacements are approved</td><td>Yes</td></tr>
+<tr><td>Not delivering</td><td><b>Run diagnosis</b>: reads the ad set, budget, billing and ad review status from Meta and posts what it finds on the card</td><td>Yes (read only)</td></tr>
+<tr><td>Creative gap</td><td>Make creatives: a pack of 3 statics, 1 video concept, or a search set</td><td>Yes</td></tr>
+<tr><td>Competitor move</td><td>Counter: adapt their best ad on it · Watch for 14 days</td><td>Yes</td></tr>
+<tr><td>Pacing</td><td>Update monthly budget · Prepare a rebalance</td><td>Prepared</td></tr>
+<tr><td>Tracking alarm</td><td>Run tracking check · Pause the affected ads</td><td>Yes</td></tr>
+</table>
+<h3>"Make creatives", redone</h3>
+<div class="flow"><span>Card's angle, narrative, funnel stage</span><i>→</i><span>A pack: 2 hook-led statics (current framework) + 1 adaptation of the best competitor ad on that angle</span><i>→</i><span>Thumbnails appear on the card</span><i>→</i><span>Card moves to Needs you</span><i>→</i><span>Approve → Draft to Meta (paused)</span></div>
+<p>You can pick the pack size and format on the button. Everything it makes links back to the card, so the outcome of that card includes how those ads perform.</p>
+<h3>Custom instructions on any card</h3>
+<div class="flow"><span>You type an instruction</span><i>→</i><span>The agent turns it into a plan made only of known actions</span><i>→</i><span>It shows the plan: "I'll do 1, 2, 3"</span><i>→</i><span>You approve</span><i>→</i><span>It executes, and any follow-ups become child cards in the right columns</span></div>
+<p>Instructions can only use the same actions and the same guardrails; they never become free-form access. Anything it can't map to a known action goes to "Needs you" with the reason. Each card keeps a thread of what was asked, what was done, and the result.</p>
+
+<h2 id="d">Phase D · Sharing <small>A Share button on everything worth sending to your team.</small></h2>
+<table>
+<tr><th>Surface</th><th>Link opens</th></tr>
+<tr><td>Library ad (static, search set, video concept)</td><td>That ad, full size, with copy, tags and actions</td></tr>
+<tr><td>Storyboard</td><td>The storyboard panel on its run sheet</td></tr>
+<tr><td>Radar ad</td><td>The competitor ad with its player, score and angles</td></tr>
+<tr><td>Kanban card</td><td>The card with its evidence and thread</td></tr>
+<tr><td>Brand page · Angle · Narrative</td><td>That page</td></tr>
+<tr><td>Performance object (campaign, ad set, ad)</td><td>Its detail panel with the daily chart</td></tr>
+<tr><td>Test · Weekly report · Economics</td><td>That view</td></tr>
+<tr><td>Any filtered view (e.g. Radar: Klaviyo, video, live)</td><td>The same view with the same filters</td></tr>
+</table>
+<p>Share copies the link, or opens the phone's share sheet on mobile. Links carry a preview image and title, so they unfurl properly when pasted into Slack.</p>
+
+<h2 id="e">Phase E · Library and video <small>Export that works, attribution that's visible, video that's obvious.</small></h2>
+<div class="grid">
+  <div class="card"><h4>Multi-select and export</h4><p>Checkboxes on every tile, plus select-all-in-view. Export builds a ZIP with <b>full-resolution PNGs</b> (the resolution we rendered at) and a <b>PDF copy book</b>: one section per ad, with its thumbnail, headline, primary text, CTA, narrative, angle, source and claim status. There's also a CSV of the same fields. It replaces the current CSV button.</p></div>
+  <div class="card"><h4>Video concept attribution</h4><p>New tags on each video concept: <b>Inspired by</b> the competitor brand, or the pattern it came from and how many brands run it. Or <b>Narrative-led</b> with the narrative, angle and claim. Same treatment on the statics.</p></div>
+  <div class="card"><h4>Play icons everywhere</h4><p>A large play button on every video poster in Radar, brand pages, Compare strips and storyboard previews. Pressing it opens a lightbox player.</p></div>
+</div>
+
+<h2 id="f">Phase F · Meta and Google tabs <small>Separate analytics per platform, plus combined.</small></h2>
+<p>Command Center and Performance both get Meta · Google · Combined tabs. Everything on the page follows the tab: headline numbers, charts, tables and the Kanban's platform filter. Google fills in the moment you finish the treg sign-in. Until then its tab says so and shows nothing, rather than zeros.</p>
+
+<h2 id="g">Phase G · Economics <small>What it costs to run the agent end to end, updated daily.</small></h2>
+<h3>What it shows</h3>
+<table>
+<tr><th>Section</th><th>Metrics</th></tr>
+<tr><td>Headline</td><td>Spend today, this month and projected. Cost per approved ad. Cost per storyboard. Cost per sweep. Comparison with an agency retainer ($7.5k to $14k a month for 40 to 90 assets, from the research).</td></tr>
+<tr><td>By provider</td><td>OpenRouter by model (Sonnet 5, Luna) · Replicate image renders · treg by route (ScrapeCreators, keywords, Meta reads at $0) · Cloudflare (Workers, D1, R2, Queues, image resizing)</td></tr>
+<tr><td>By job</td><td>Sweep, teardowns, classification, statics, clones and remasters, storyboards, search sets, chat, sync. Recommendations make no model calls.</td></tr>
+<tr><td>Volume</td><td>Model calls, tokens in and out, images rendered, video generated (none today), storage used</td></tr>
+<tr><td>Waste</td><td>Renders thrown away by QA, re-renders, killed jobs. The waste rate is the lever for cutting cost.</td></tr>
+</table>
+<h3>How it's measured</h3>
+<p>A cost ledger records a row at every external call, with its exact price. OpenRouter reports the cost per call. Replicate is renders times price. treg returns the route price. Cloudflare usage comes from its analytics API once a day. A daily cloud job at 06:00 IST rolls the ledger up and reconciles it against the provider balances (OpenRouter credits, treg balance), then flags any gap. Anything before the ledger existed is estimated from job counts and marked "estimated".</p>
+
+<h2 id="order">Build order</h2>
+<table>
+<tr><th>#</th><th>Phase</th><th>Why this order</th></tr>
+<tr><td>1</td><td>A · Clean-up + access</td><td>Clean data, and a locked door before sharing</td></tr>
+<tr><td>2</td><td>B · Design v2</td><td>Every later phase uses the new buttons, tags and motion</td></tr>
+<tr><td>3</td><td>C · Kanban, actions, instructions</td><td>The core of the agency workflow</td></tr>
+<tr><td>4</td><td>F · Platform tabs</td><td>Small, and the Kanban needs them</td></tr>
+<tr><td>5</td><td>E · Library export, attribution, video</td><td>Independent, fast wins</td></tr>
+<tr><td>6</td><td>D · Sharing</td><td>Needs the deep links from every other phase</td></tr>
+<tr><td>7</td><td>G · Economics</td><td>The ledger starts on day 1 (built in Phase A), so the page has real data by the time it ships</td></tr>
+</table>
+
+<h2 id="decide">Your calls</h2>
+<table>
+<tr><th>#</th><th>Decision</th><th>My recommendation</th></tr>
+<tr><td>1</td><td>Put the dashboard behind Cloudflare Access, so only @brevo.com emails get in and every shared link works for your team only</td><td>Yes, before sharing ships. It's free up to 50 users.</td></tr>
+<tr><td>2</td><td>The 16 creatives cloned from Triple Whale and Ramp ads</td><td>Park them in reserve (hidden, recoverable) rather than delete</td></tr>
+<tr><td>3</td><td>Keep blocking the names "Triple Whale" and "Ramp" in our ad copy even though they're not competitors</td><td>Yes. Naming third-party brands in ads is a risk either way.</td></tr>
+<tr><td>4</td><td>Video: keep R2 plus a better player, or move to Cloudflare Stream now</td><td>R2 plus player now. Stream later, only if we see buffering.</td></tr>
+<tr><td>5</td><td>Custom instructions: always show the plan before executing, or run small safe steps immediately</td><td>Always show the plan first</td></tr>
+</table>
+</div>
+</body>
+</html>
