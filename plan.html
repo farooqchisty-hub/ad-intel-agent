@@ -58,10 +58,23 @@ code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5p
   <span class="chip">For approval</span><span class="chip">24 Sep 2026</span>
   <h1>Creative Performance Marketing Agent: rebuild plan</h1>
   <p>Goal: one agent that does what a performance agency does. It reads competitors and our accounts, makes creatives, recommends and prepares every change, and ships drafts to Meta and Google. It never activates an ad. Your in-house marketer runs it end to end.</p>
-  <div class="toc"><a href="#diag">1. What's broken</a><a href="#pages">2. Narratives and Angles</a><a href="#agency">3. Agency scope</a><a href="#recs">4. Recommendations + brain</a><a href="#ui">5. Page by page</a><a href="#video">6. Storyboard pipeline</a><a href="#phases">7. Build order</a><a href="#decide">8. Your calls</a></div>
+  <div class="toc"><a href="#status">Status</a><a href="#diag">1. What's broken</a><a href="#pages">2. Narratives and Angles</a><a href="#agency">3. Agency scope</a><a href="#recs">4. Recommendations + brain</a><a href="#ui">5. Page by page</a><a href="#video">6. Storyboard pipeline</a><a href="#phases">7. Build order</a><a href="#decide">8. Your calls</a></div>
 </div></header>
 
 <div class="wrap">
+
+<h2 id="status">Build status, 24 Sep 2026 <small>Your decisions are in. What shipped, and what's still open.</small></h2>
+<table>
+<tr><th>Phase</th><th>Status</th><th>Notes</th></tr>
+<tr><td>1. Foundations</td><td><span class="s have">Shipped</span></td><td>Renamed: <a href="https://creative-performance-marketing-agent.winningstatics.workers.dev">creative-performance-marketing-agent.winningstatics.workers.dev</a>; the old URL 301s. Brevo theme, wordmark, favicon, (i) tooltips, sort and filter on every table. All 302 competitor videos cached and playable in Radar.</td></tr>
+<tr><td>2. Data</td><td><span class="s have">Shipped</span></td><td>Meta sync at 09:00 and 17:00 IST: 90 days, every level. Spend matches Meta to the cent ($16,508.39). Google is built for the PushOwl account and switches on when you finish the treg sign-in.</td></tr>
+<tr><td>3. Recommendations + brain</td><td><span class="s have">Shipped</span></td><td>P0 to P3 rules, all guardrails in code, a ledger, and outcomes measured at 3 and 7 days. Target CPA is provisional at $5.07 (from 3 ad sets).</td></tr>
+<tr><td>4. Command Center + chat</td><td><span class="s have">Shipped</span></td><td>New Overview with charts, a chat panel you can open from any page, and a weekly report.</td></tr>
+<tr><td>5. Storyboards</td><td><span class="s part">Sampling</span></td><td>The first 2 samples came out as abstract motion graphics, one with an invented price. I reworked the planner (live action, real Brevo screens, charts moved to the edit) and I'm re-running them.</td></tr>
+<tr><td>6. Intel pages</td><td><span class="s have">Shipped</span></td><td>Brand pages with logos, a visual Compare, the angle market map with verdicts, and the narrative scorecard.</td></tr>
+<tr><td>7. Budget, Tests</td><td><span class="s have">Shipped</span></td><td>Pacing turns on once you set a monthly budget.</td></tr>
+</table>
+<div class="note"><b>First real finding:</b> the one active campaign, "pushowl caas july", has spent nothing since 7 Sep. It's the P1 card at the top of the Command Center.</div>
 
 <h2 id="diag">1. What's broken, and why <small>Checked live today, not assumed.</small></h2>
 <div class="grid">
