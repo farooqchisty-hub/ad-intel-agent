@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Rebuild Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#006A43; --cream:#FAF5E3; --char:#1B1B1B; --mint:#C0FFA5; --iris:#6358DE;
+  --aqua:#159F9F; --peony:#EB427F; --sun:#DEB002; --sky:#2676C0;
+  --bg:#FAF5E3; --fg:#1B1B1B; --muted:#5d5a50; --line:#e6dfc8; --card:#ffffff;
+  --tag:#eef8e8; --p0:#EB427F; --p1:#DEB002; --p2:#2676C0; --p3:#8a8676;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121411; --fg:#f1eee4; --muted:#a9a594; --line:#2a2d27; --card:#1a1d18; --tag:#1f2a1c;
+}}
+:root[data-theme="dark"]{ --bg:#121411; --fg:#f1eee4; --muted:#a9a594; --line:#2a2d27; --card:#1a1d18; --tag:#1f2a1c; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:40px 16px 32px}
+header .wrap{padding-bottom:0}
+header h1{font-size:34px;line-height:1.15;margin:0 0 8px;letter-spacing:-.5px}
+header p{margin:0;max-width:720px;opacity:.9}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 6px 0}
+h2{font-size:24px;margin:48px 0 6px;letter-spacing:-.3px}
+h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:24px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h4{margin:0 0 6px;font-size:15px}
+.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}
+.card ul{padding-left:18px}
+.kpi{font-size:28px;font-weight:700;color:var(--forest)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .kpi{color:var(--mint)} }
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.s{font-weight:600;font-size:12px;border-radius:6px;padding:2px 7px;white-space:nowrap}
+.have{background:#d9f5cc;color:#0b4d2f}.part{background:#fbefc4;color:#6b5100}.build{background:#e3e0fb;color:#3b33a0}.you{background:#fcd9e6;color:#8c1c46}
+.pri{display:inline-block;width:28px;text-align:center;border-radius:6px;color:#fff;font-weight:700;font-size:12px;padding:2px 0}
+.P0{background:var(--p0)}.P1{background:var(--p1);color:#1b1b1b}.P2{background:var(--p2)}.P3{background:var(--p3)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}
+.flow i{color:var(--muted);font-style:normal}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.fix{border-left-color:var(--forest)}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+.toc a{color:inherit;margin-right:14px;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+.toc{margin:20px 0 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For approval</span><span class="chip">24 Sep 2026</span>
+  <h1>Creative Performance Marketing Agent: rebuild plan</h1>
+  <p>Goal: one agent that does what a performance agency does. It reads competitors and our accounts, makes creatives, recommends and prepares every change, and ships drafts to Meta and Google. It never activates an ad. Your in-house marketer runs it end to end.</p>
+  <div class="toc"><a href="#diag">1. What's broken</a><a href="#pages">2. Narratives and Angles</a><a href="#agency">3. Agency scope</a><a href="#recs">4. Recommendations + brain</a><a href="#ui">5. Page by page</a><a href="#video">6. Storyboard pipeline</a><a href="#phases">7. Build order</a><a href="#decide">8. Your calls</a></div>
+</div></header>
+
+<div class="wrap">
+
+<h2 id="diag">1. What's broken, and why <small>Checked live today, not assumed.</small></h2>
+<div class="grid">
+  <div class="card"><h4>Performance page is empty</h4><p>The Meta link works. PushOwl account, live pull today: <b>$2,374.93 spend, 113,082 impressions over the last 30 days</b>, and <b>zero delivery in the last 7</b>. 49 of 50 campaigns are paused. The page has three faults of its own:</p><ul><li>It shows only ads the agent launched (1 so far), never the account.</li><li>It syncs weekly, not daily.</li><li>The Brevo Meta account and Google Ads are not connected. treg holds only the PushOwl Meta account.</li></ul></div>
+  <div class="card"><h4>"Creative expired" in Radar</h4><p><b>205 competitor video assets, 0 cached.</b> Meta serves signed URLs that expire in days. Images were copied to our storage (530 of 530) but videos never were. Fix: save the poster frame and the MP4 at sweep time, and re-fetch fresh URLs for the ones already dead.</p></div>
+  <div class="card"><h4>Remasters that vanished</h4><p>Some remasters ran past the queue's 15 minute limit and were killed with no error. Fixed and deployed: text on products no longer forces a re-render, and each job now saves its best attempt at 12 minutes. <b>111 of 115 have landed; the last 4 are running now.</b></p></div>
+</div>
+
+<h2 id="pages">2. What Narratives and Angles are for <small>You asked what each page is meant to show. Here's the answer, then the change.</small></h2>
+<table>
+<tr><th>Page</th><th>What it is today</th><th>Source</th><th>Proposed job</th></tr>
+<tr><td><b>Narratives</b></td><td>Your 4 brand narratives (List Tax, MagicFit, Fair-Priced BFCM, Done For You), each bound to angles and claims. It steers what the weekly run makes.</td><td>Your Notion brief</td><td>Keep, as a <b>narrative scorecard</b>: per narrative, ads made, approved, live, spend, CTR, CPA, and evidence strength. Summary numbers and 3 takeaways at the top, and far less text.</td></tr>
+<tr><td><b>Angles</b></td><td>The argument types competitors run (pricing fairness, switching safety, human support...), each with durability scores. <b>They are not recommendations, and they don't come from Brevo's campaigns.</b></td><td>268 swept competitor ads</td><td>Becomes an <b>angle market map</b> that crosses competitor use with our coverage and our results, so every row ends in a verdict: <b>Make, Scale, Fix or Avoid</b>.</td></tr>
+</table>
+<h3>Angles: the columns and why each earns its place</h3>
+<table>
+<tr><th>Column</th><th>Why</th></tr>
+<tr><td>Share of voice (competitor live ads using it)</td><td>Shows how crowded the angle is</td></tr>
+<tr><td>Durability: completed lifespan + live age</td><td>Shows whether it survives spend. Kept as two numbers because young ads can't have long runs.</td></tr>
+<tr><td>Trend: new ads using it in the last 2 sweeps</td><td>Catches a competitor move early</td></tr>
+<tr><td>Our coverage: made, approved, live</td><td>Shows the gap between what works for them and what we run</td></tr>
+<tr><td>Our results: CTR, CPA vs account median</td><td>The join nobody can buy: does their argument work for us?</td></tr>
+<tr><td>Verdict + one line of reason</td><td><b>Make</b> (durable, no coverage), <b>Scale</b> (ours beats median), <b>Fix</b> (ours lags), <b>Avoid</b> (crowded and dying)</td></tr>
+</table>
+<p>Filters: narrative, funnel stage, verdict, brand. Sortable on every column. The Make and Scale verdicts feed straight into the recommendation queue.</p>
+
+<h2 id="agency">3. What a performance agency does, mapped to the agent <small>Researched scope of full service paid social and search agencies that also produce creative.</small></h2>
+<table>
+<tr><th>Agency function</th><th>Cadence</th><th>Agent module</th><th>Status</th></tr>
+<tr><td>Competitor and category intel</td><td>Weekly</td><td>Radar, Brands, Compare, Angles</td><td><span class="s have">Have</span></td></tr>
+<tr><td>Creative strategy (angles, hooks, narratives)</td><td>Weekly</td><td>Narratives, framework v2</td><td><span class="s have">Have</span></td></tr>
+<tr><td>Creative production: statics, search, video</td><td>Weekly</td><td>Library, clone, remaster</td><td><span class="s part">Video is brief only</span></td></tr>
+<tr><td>Video pre-production: script, storyboard, sheets</td><td>On demand</td><td>Storyboard (section 6)</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Account read: spend, CPA, CTR, frequency by campaign, ad set and ad</td><td>2x daily</td><td>Performance</td><td><span class="s part">Pull works, view broken</span></td></tr>
+<tr><td>Budget planning and pacing</td><td>Daily + monthly</td><td>Budget and Pacing</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Optimisation: pause losers, scale winners, refresh fatigued ads</td><td>2x daily</td><td>Recommendation engine</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Creative testing: plans, readouts, winner calls</td><td>Weekly</td><td>Tests</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Tracking health: pixel, conversions, disapprovals</td><td>Daily</td><td>Health checks</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Launch: campaign structure, drafts on Meta and Google</td><td>On approval</td><td>Draft delivery</td><td><span class="s part">Meta yes, Google needs OAuth</span></td></tr>
+<tr><td>Reporting, analytics on demand</td><td>Weekly + ad hoc</td><td>Chat, weekly report</td><td><span class="s part">Chat is basic</span></td></tr>
+<tr><td>Learning: what worked, carried into the next round</td><td>Continuous</td><td>Brain</td><td><span class="s build">Build</span></td></tr>
+<tr><td>Activation (turn ads on)</td><td>Never</td><td>Stays with your marketer</td><td><span class="s you">Human only</span></td></tr>
+</table>
+
+<h2 id="recs">4. Recommendation engine and the brain <small>What an agency manager does at 9am and 5pm, run as a job.</small></h2>
+<div class="flow"><span>Sync Meta + Google</span><i>then</i><span>Health checks</span><i>then</i><span>Rules fire</span><i>then</i><span>Rank P0 to P3</span><i>then</i><span>Queue on Overview</span><i>then</i><span>You approve or dismiss</span><i>then</i><span>Agent prepares or executes</span><i>then</i><span>Outcome measured</span><i>then</i><span>Brain updates</span></div>
+<p>Runs twice a day at <b>09:00 and 17:00 IST</b>, right after each sync. Chat can also trigger a run.</p>
+<h3>Recommendation types</h3>
+<table>
+<tr><th>Pri</th><th>Trigger (defaults you can edit)</th><th>Recommendation</th><th>What the agent does on approve</th></tr>
+<tr><td><span class="pri P0">P0</span></td><td>Conversions fall to 0 while spend continues; or an ad is disapproved</td><td>Tracking or policy alarm</td><td>Flags the ad and the likely cause. Pauses only if you approve</td></tr>
+<tr><td><span class="pri P0">P0</span></td><td>Spend over 2x target CPA with 0 conversions</td><td>Pause the ad</td><td>Pauses it (pausing never activates anything)</td></tr>
+<tr><td><span class="pri P1">P1</span></td><td>Month pacing more than 15% off plan</td><td>Rebalance the budget</td><td>Prepares the change; see decision 2</td></tr>
+<tr><td><span class="pri P1">P1</span></td><td>Frequency over 3.5 and CTR down 30% vs its own 7 day line</td><td>Creative fatigue: refresh</td><td>Generates 3 replacement creatives on the same angle, as drafts</td></tr>
+<tr><td><span class="pri P1">P1</span></td><td>CPA below 0.7x target, stable for 3 days, enough volume</td><td>Scale the winner</td><td>Prepares a budget step of 20%; see decision 2</td></tr>
+<tr><td><span class="pri P2">P2</span></td><td>An ad set under 50 conversions a week (stuck in learning)</td><td>Consolidate ad sets</td><td>Drafts the merged structure</td></tr>
+<tr><td><span class="pri P2">P2</span></td><td>An angle marked Make or Scale with no live ad</td><td>Fill the creative gap</td><td>Queues creatives for your review</td></tr>
+<tr><td><span class="pri P2">P2</span></td><td>A competitor launches 5+ ads on one angle within 2 sweeps</td><td>Competitor move</td><td>Adds a brief and a counter creative</td></tr>
+<tr><td><span class="pri P3">P3</span></td><td>A test reaches significance</td><td>Call the winner</td><td>Writes the learning to the brain</td></tr>
+</table>
+<p>Every card shows: the action, the reason in one line, the expected impact ($ or CPA), a confidence score, the evidence (a chart and the numbers), and buttons for Approve, Dismiss with a reason, or Snooze. Nothing needs your targets except the thresholds: <b>target CPA and monthly budget per platform</b> (decision 1).</p>
+<h3>The brain: how it learns without drifting</h3>
+<div class="grid">
+  <div class="card"><h4>Ledger, not a model</h4><p>Every recommendation, your decision and the outcome measured 3 and 7 days later is written as a row. Same evidence in, same recommendation out. This is the lesson from the clustering bug.</p></div>
+  <div class="card"><h4>Priors that move</h4><p>Win rates per angle, genre, hook type, format and narrative, updated from real results and weighted by spend. These priors steer both the weekly creative mix and recommendation confidence.</p></div>
+  <div class="card"><h4>Learns from your no</h4><p>A dismissal with a reason ("seasonal", "brand risk") suppresses similar recommendations. A rule dismissed 3 times gets its threshold flagged for you to review.</p></div>
+  <div class="card"><h4>Readable</h4><p>A "What I've learned" panel lists each learning with its evidence count, its confidence, and the date it last changed. You can pin a learning or overrule it.</p></div>
+</div>
+
+<h2 id="ui">5. Page by page <small>Applies everywhere: Brevo palette, real logo and favicon, the (i) icon for context on hover, sort and filter on every table, low-res previews.</small></h2>
+<table>
+<tr><th>Page</th><th>Changes</th></tr>
+<tr><td><b>Global</b></td><td>Rename to <b>Creative Performance Marketing Agent</b>; new URL <code>creative-performance-marketing-agent.winningstatics.workers.dev</code>, with the old URL redirecting. Brevo tokens (forest, cream, mint, charcoal; Tomato Grotesk headings, Inter body), the real wordmark, a favicon. A brevity pass on every non-ad string: headings of 4 words max, descriptions of 1 line, detail behind (i). Ad copy is untouched. One shared table component, so every column sorts and every table gets filter chips plus Clear all.</td></tr>
+<tr><td><b>Overview → Command Center</b></td><td><b>Header</b>: spend today and month to date vs plan, CPA vs target, CTR, active ads, creatives awaiting review, agent health (last sync, errors), each with a 7 day sparkline. <b>Top block</b>: the recommendation queue, P0 first, filterable by priority, platform and type. <b>Charts</b>: spend and CPA trend, pacing gauge, fatigue heatmap (ads by day), creative pipeline funnel (made, passed, approved, drafted, live), competitor movement. <b>Agent log</b>: errors and stalled jobs in plain words.</td></tr>
+<tr><td><b>Chat</b></td><td>Styled like Claude or Codex: a thread with streamed replies, markdown, steps shown as it works ("Reading Meta, last 7 days..."), inline tables and charts, a history sidebar, suggested prompts, and a way to attach an ad from the Library. Answers carry buttons (Create brief, Add to queue). Actions route through the recommendation queue, never direct.</td></tr>
+<tr><td><b>Performance</b></td><td>Platform tabs (Meta, Google, All). Date range. Tables for account, campaign, ad set and ad, with thumbnails. Spend, CPM, CTR, CPC, CPA, frequency, and conversions trended. Fatigue flag. The angle and narrative join shown for agent-made ads. Sort and filter everywhere.</td></tr>
+<tr><td><b>Budget and Pacing (new)</b></td><td>Monthly plan per platform and campaign, spend to date, projected month end, pacing status, and suggested reallocation.</td></tr>
+<tr><td><b>Tests (new)</b></td><td>A test plan per concept: hypothesis, variants and a stop rule. A readout with a significance call. Winners write to the brain.</td></tr>
+<tr><td><b>Library</b></td><td>A Storyboard button on every video concept, expanding inside the tile (section 6). The rest stays as it is.</td></tr>
+<tr><td><b>Radar</b></td><td>Fix expired media. Filters: brand, format, active, days live, persistence score, angle, narrative, has video, first seen. Sorts: persistence, days live, newest, variant count. Filter logic re-tested end to end.</td></tr>
+<tr><td><b>Compare</b></td><td>Visual first. A brands × angles heatmap, share of voice bars, format mix stacked bars, durability ranges per brand, and side by side creative strips of each brand's longest runners. Sortable columns, plus filters for brand, angle and format.</td></tr>
+<tr><td><b>Brands</b></td><td>The real logo on each row (the Meta page profile picture, cached). Sort and filter on tier, live ads, new this week, median days live, top angle. <b>Each row opens a brand page</b>: a KPI header (live, launched and killed this week, median lifespan, top angle, format mix); a launch timeline; the longest runners; angle mix vs ours; offers and landing pages seen; and a "changed since last sweep" feed.</td></tr>
+<tr><td><b>Narratives</b></td><td>Scorecard as described in section 2: numbers and takeaways on top, cards per narrative, filters, less text.</td></tr>
+<tr><td><b>Angles</b></td><td>The market map with verdicts described in section 2.</td></tr>
+</table>
+
+<h2 id="video">6. Storyboard pipeline for video concepts <small>You click Storyboard on a tile. The agent writes everything and renders every sheet. You only paste into Seedance and generate.</small></h2>
+<div class="flow"><span>Concept</span><i>→</i><span>Script</span><i>→</i><span>Screenplay</span><i>→</i><span>Clip breakdown</span><i>→</i><span>Asset plan</span><i>→</i><span>Sheets rendered</span><i>→</i><span>Keyframes rendered</span><i>→</i><span>Seedance run sheet</span><i>→</i><span>Edit guide</span></div>
+<table>
+<tr><th>Stage</th><th>What it produces</th><th>Rules</th></tr>
+<tr><td>1. Script</td><td>Hook (0 to 3s), problem, turn, proof, CTA. Spoken VO and on-screen text are written separately.</td><td>Carries the concept's narrative, angle and claim status. A placeholder figure stays marked. Klaviyo is named only in the tagged bucket, and no other competitor is ever named.</td></tr>
+<tr><td>2. Screenplay</td><td>Scenes with location, time, characters, action, dialogue or VO, and mood.</td><td>Only fictional characters, never a real person's likeness.</td></tr>
+<tr><td>3. Clip breakdown</td><td>Each scene split into clips of 5 to 10 seconds. Per clip: shot size, lens feel, camera move (dolly in, orbit, handheld push, whip pan), subject action, transition in and out, audio.</td><td>Each clip does one motion job. Seedance holds identity best over short clips.</td></tr>
+<tr><td>4. Asset plan</td><td>The list of reference assets the clips need, with which clip uses each.</td><td>Seedance takes at most 9 images per generation. A plan that needs more is split.</td></tr>
+<tr><td>5. Sheets rendered</td><td><b>Character sheet</b> (turnaround + expressions, for our own continuity), <b>character identity card</b> (one front view, for Seedance), <b>product/UI sheet</b> (real Brevo UI from our 30 official screens), <b>location sheet</b>, <b>prop sheet</b>, <b>contact sheet</b> (every clip's frame on one page, for sign-off).</td><td>Guides warn that Seedance reads a multi-view sheet as several different people. So Seedance gets the single view identity card; the turnaround is only used to render our keyframes.</td></tr>
+<tr><td>6. Keyframes rendered</td><td>A start frame for every clip, and an end frame where the clip must land somewhere exact.</td><td>Rendered from the sheets, so the face, wardrobe and set match across clips. This is the main consistency lever: first frame mode anchors each clip.</td></tr>
+<tr><td>7. Seedance run sheet</td><td>Numbered steps per clip: the files to upload <b>in order</b> (the most important first, because order carries weight), the mode (first frame, or first + last frame), duration, aspect, and the prompt with copy buttons.</td><td>Prompt shape: subject from which image, the action, the camera move, the style, what must stay unchanged, the audio. References are named the way your host expects ("Image 1" or "@Image1", set once in settings).</td></tr>
+<tr><td>8. Edit guide</td><td>Clip order, trims, on-screen text and captions (added in the edit, not generated), end card with the real wordmark, music cues, and the 16:9 in-stream and 9:16 Shorts cuts.</td><td>Text and logos are never left to the video model. Same rule as the statics.</td></tr>
+</table>
+<p><b>In the tile</b>, the Storyboard panel expands below the card with 6 tabs: Script, Screenplay, Clips, Sheets (image grid with download), Run sheet (numbered and copyable), and Edit. There's also a <b>Copy all</b> button and a ZIP download. It renders in the background with a progress bar, taking about 8 to 14 image renders per concept. You can re-render any single sheet or keyframe. After you generate a clip, you can upload it back to the tile, and the agent checks it against its keyframe and suggests a prompt fix if it drifted.</p>
+
+<h2 id="phases">7. Build order <small>Actionable things first. Each phase ships and is verified in the browser before the next starts.</small></h2>
+<table>
+<tr><th>#</th><th>Phase</th><th>Includes</th><th>Needs you</th></tr>
+<tr><td>1</td><td>Foundations</td><td>Rename and new URL, Brevo theme, logo, favicon, brevity pass, (i) tooltips, shared sort and filter table, Radar video fix</td><td>No</td></tr>
+<tr><td>2</td><td>Data</td><td>Sync twice daily; account, campaign, ad set and ad levels; Performance page rebuilt; Google and Brevo Meta wired, ready to switch on</td><td>Two OAuth clicks on treg</td></tr>
+<tr><td>3</td><td>Recommendations + brain</td><td>Rules engine, P0 to P3 queue, approve flow, ledger, outcome checks, "What I've learned"</td><td>Targets (decision 1)</td></tr>
+<tr><td>4</td><td>Command Center + Chat</td><td>New Overview with charts, Claude style chat</td><td>No</td></tr>
+<tr><td>5</td><td>Storyboard</td><td>The full section 6 pipeline, run on 2 concepts for your review first</td><td>Review 2 samples</td></tr>
+<tr><td>6</td><td>Intel pages</td><td>Brands with logos and detail pages, visual Compare, angle market map, narrative scorecard</td><td>No</td></tr>
+<tr><td>7</td><td>Budget, Pacing, Tests</td><td>The two new pages, plus the weekly report</td><td>Budget plan</td></tr>
+</table>
+
+<h2 id="decide">8. Your calls <small>Everything else I'll decide and note.</small></h2>
+<table>
+<tr><th>#</th><th>Decision</th><th>My recommendation</th></tr>
+<tr><td>1</td><td>Target CPA and monthly budget per platform (these drive every threshold)</td><td>Give me the numbers, or I'll start from the last 90 days' median CPA and mark it as provisional</td></tr>
+<tr><td>2</td><td>On approve, may the agent <b>pause</b> ads and <b>change budgets</b> on live campaigns, or only prepare the change for your marketer?</td><td>It pauses and lowers budgets on your click. Budget <b>increases</b> are prepared, never executed. Activating or resuming stays human only, as you set.</td></tr>
+<tr><td>3</td><td>Connect Google Ads and the Brevo Meta account on treg (one browser OAuth each; I can't do OAuth for you)</td><td>Yes. Without it, Performance shows PushOwl only</td></tr>
+<tr><td>4</td><td>Which Seedance host you use (reference naming differs between hosts)</td><td>Tell me the host, and I'll set the run sheet format once</td></tr>
+</table>
+
+<p style="margin-top:40px;color:var(--muted);font-size:13px">Sources for agency scope and Seedance limits: inbeat.agency (performance creative agencies, 2026), darkroomagency.com (ecommerce performance agencies, 2026), magichour.ai Seedance 2.0 reference guide, rundiffusion.com Seedance 2.0 prompt guide.</p>
+</div>
+</body>
+</html>
