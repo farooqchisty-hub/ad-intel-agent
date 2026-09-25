@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Target CPI Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;--iris:#6358DE;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:780px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.big{font-size:26px;font-weight:700;color:var(--fg);display:block;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+.t{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px}
+.t0{background:#e8f6ee;color:#006a43}.t1{background:#eef0ff;color:#4f46b2}.t2{background:#fff6d6;color:#8a6d00}.t3{background:#ffe6ef;color:#b0245a}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}
+ol li,ul li{margin:3px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For review</span><span class="chip">Plan 3 · 25 Sep 2026</span>
+  <h1>Chasing target cost per install</h1>
+  <p>How the agent should run PushOwl Shopify app installs on Meta and Google: what it measures, how it tests creatives, how it learns, how it picks audiences, what it does alone and what stays with you, and how it keeps the ad account safe. Brevo sign-up campaigns follow the same design once the Brevo ad accounts are connected.</p>
+  <div class="toc"><a href="#found">What I found</a><a href="#model">Operating model</a><a href="#test">Creative testing</a><a href="#budget">Budgets</a><a href="#learn">Learning</a><a href="#aud">Audiences</a><a href="#auto">Autonomy</a><a href="#safe">Safety</a><a href="#google">Google</a><a href="#build">Build phases</a><a href="#need">What I need</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="found">What I found <small>Read directly from the PushOwl ad account and pixels on 25 Sep 2026. Nothing was changed.</small></h2>
+<div class="grid">
+  <div class="card good"><h4>Install tracking already works</h4><p>The Shopify App Store listing sends server-side events to <b>PushOwl New Pixel</b>. In the last 30 days: <b>5,549</b> listing views, <b>2,629</b> install clicks and <b>2,224</b> installs, sent as <code>Purchase</code>. The old PushOwl Pixel also gets a custom <code>PushOwlAppInstall</code> event (2,212), almost certainly from PushOwl's own backend.</p></div>
+  <div class="card bad"><h4>Ads barely drive installs today</h4><p>Of those installs, Meta attributed only <b>55 in 90 days</b> to ads, against <b>$16,277</b> of spend. The spend went to a managed-service (CaaS) lead campaign. There's no install CPI baseline yet: the first two weeks will set it.</p></div>
+  <div class="card bad"><h4>The only live campaign is off-goal and blocked</h4><p>"pushowl caas july" optimises to <code>Lead</code> on the old pixel, not installs. All 15 of its ads are <b>disapproved</b>, which is why it stopped spending on 7 Sep. Disapprovals count against account standing, so fixing them comes first.</p></div>
+  <div class="card warn"><h4>The agent measures the wrong thing</h4><p>Its CPA counts leads and registrations. The drafts it builds are <code>OUTCOME_TRAFFIC</code> campaigns. Both have to move to each campaign's goal event: Purchase (install) on PushOwl New Pixel.</p></div>
+  <div class="card warn"><h4>200+ audiences, mostly not PushOwl</h4><p>70 custom, 96 lookalike, 31 website and 3 engagement audiences, in a single page with more beyond it. Most are named for Sendinblue, Mailchimp, MagicFit, CaaS or StoreLeads lists. Names alone don't say who is inside; the rules (pixel, event, days) do.</p></div>
+  <div class="card warn"><h4>The login reaches 4 ad accounts</h4><p>The connection runs on your personal Facebook login. It can also reach FDX Sports, Agentsy and a personal account. The agent must be hard-locked to <b>Brevo PushOwl</b> (act_1068538947813085), and the token expires about every 60 days.</p></div>
+</div>
+
+<h2 id="model">Operating model <small>One goal per campaign, and a simple structure that suits Meta's current delivery system.</small></h2>
+<h3>The goal the agent chases</h3>
+<table>
+<tr><th>Field</th><th>PushOwl installs, Meta</th><th>PushOwl installs, Google</th></tr>
+<tr><td>Conversion event</td><td><code>Purchase</code> on PushOwl New Pixel (the App Store install)</td><td>GA4 <code>shopify_app_install</code>, imported into Google Ads</td></tr>
+<tr><td>Target CPI</td><td colspan="2">Yours to set. The agent keeps the 7-day CPI under it and never lets any ad set's CPI above your hard ceiling stand for more than 3 days.</td></tr>
+<tr><td>Monthly budget</td><td colspan="2">A hard cap. The agent paces to it and never spends past it.</td></tr>
+<tr><td>Quality check</td><td colspan="2">Installs that finish onboarding (the "PushOwl Onboarding" custom conversion), reported next to CPI. The agent can't see an uninstall inside 24 hours unless PushOwl shares that number (see What I need).</td></tr>
+</table>
+<h3>Meta structure</h3>
+<table>
+<tr><th>Campaign</th><th>Setup</th><th>Budget share</th><th>Job</th></tr>
+<tr><td><b>Cold · Scale</b></td><td>Sales objective, Purchase event, campaign budget. Advantage+ audience, broad within your countries, installers excluded. Holds only proven ads.</td><td>about 65%</td><td>Volume at target CPI</td></tr>
+<tr><td><b>Cold · Test</b></td><td>Same objective and event. Ad-set budgets: one ad set per weekly batch of 3 to 5 new concepts.</td><td>about 20%</td><td>Find the next winners</td></tr>
+<tr><td><b>Warm · Retarget</b></td><td>Confirmed warm audiences only (listing viewers, install-clickers who didn't install, site visitors), installers excluded.</td><td>about 15%</td><td>Close people who already looked</td></tr>
+</table>
+<p class="note">Why so few campaigns: Meta's newer delivery system (Andromeda) rewards <b>genuinely different creatives inside broad targeting</b>, not many narrow ad sets. Every extra ad set splits the install volume Meta needs to learn. Each ad set needs about <b>50 installs a week</b> to leave its learning phase.</p>
+
+<h2 id="test">Creative testing <small>How many creatives it tests, and when it pauses or promotes one.</small></h2>
+<div class="flow"><span>Monday: sweep and learnings</span><i>→</i><span>Agent picks 3 to 5 distinct concepts from approved Library ads</span><i>→</i><span>You approve the batch</span><i>→</i><span>New test ad set goes live</span><i>→</i><span>Daily verdicts per ad</span><i>→</i><span>Winners graduate to Scale on the next Monday</span></div>
+<table>
+<tr><th>Rule</th><th>Setting</th><th>Why</th></tr>
+<tr><td>Batch size</td><td>3 to 5 ads, one test ad set, one batch a week</td><td>More ads per ad set splits too little spend. Near-copies get treated as one ad, so each batch needs real variety in narrative, angle and format.</td></tr>
+<tr><td>Too early to judge</td><td>Nothing judged before 3 days <b>and</b> before it has spent 1x target CPI</td><td>Install events arrive late through the server, and Meta spreads spend unevenly at first.</td></tr>
+<tr><td>Pause, no installs</td><td>Spent <b>2.5x target CPI</b> with 0 installs</td><td>At that point there's about a 92% chance the ad is worse than target (Poisson). Practitioners use 2x to 3x.</td></tr>
+<tr><td>Pause, losing</td><td>3 or more installs, and less than a <b>10%</b> chance its true CPI beats target</td><td>A probability instead of a raw CPI, so a lucky or unlucky day doesn't decide.</td></tr>
+<tr><td>Starved by Meta</td><td>Under 10% of its ad set's spend after 4 days: <b>left alone</b>, logged as a weak signal</td><td>Meta's own allocation is already a verdict. Pausing it adds nothing.</td></tr>
+<tr><td>Winner</td><td>10 or more installs, and over an <b>80%</b> chance its CPI beats target</td><td>Enough evidence to put scale money behind it.</td></tr>
+<tr><td>Graduation</td><td>Winners move to Cold · Scale in <b>one weekly batch</b>, keeping the same post so likes and comments carry over</td><td>Adding an ad resets learning, so do it once a week, not five times.</td></tr>
+<tr><td>Fatigue</td><td>In Scale: frequency over 3, or CPI 30% above the ad's own first 2 weeks, for 5 days, means it's replaced by the next winner</td><td>Keeps 4 to 8 fresh winners in rotation.</td></tr>
+<tr><td>Late installs</td><td>An ad paused in the last 7 days that picks up late installs gets <b>reactivated</b></td><td>The same fix Birch uses for delayed conversions.</td></tr>
+</table>
+
+<h2 id="budget">Budgets and how many ad sets fit <small>The maths decides how much can be tested, so it's shown up front.</small></h2>
+<p>An ad set needs about 50 installs a week to leave learning, so it needs roughly <b>50 × target CPI</b> a week. The number of ad sets that can learn = monthly budget ÷ (4.3 × 50 × target CPI).</p>
+<table>
+<tr><th>Target CPI</th><th>$3,000 a month</th><th>$6,000 a month</th><th>$12,000 a month</th></tr>
+<tr><td>$5</td><td>2.8 ad sets</td><td>5.6</td><td>11</td></tr>
+<tr><td>$10</td><td>1.4</td><td>2.8</td><td>5.6</td></tr>
+<tr><td>$20</td><td>0.7 (nothing leaves learning)</td><td>1.4</td><td>2.8</td></tr>
+</table>
+<p class="note">If the budget buys fewer than 3 ad sets, the agent merges down to <b>one campaign</b>: new tests go into the Scale ad set, with no separate test and retargeting campaigns until volume allows. It will tell you when the budget is too small for the target, instead of spreading it thin.</p>
+<table>
+<tr><th>Budget move</th><th>Rule</th></tr>
+<tr><td>Up</td><td>7-day CPI at or under 80% of target, 30+ installs, under the month's pace: <b>+15%</b>, at most once every 72 hours per ad set, never over the monthly cap</td></tr>
+<tr><td>Down</td><td>7-day CPI over 130% of target: <b>-20%</b>, same 72-hour cooldown</td></tr>
+<tr><td>Stop</td><td>Ad set CPI over your hard ceiling for 3 days, with 2x target spent: pause the ad set and write a card explaining why</td></tr>
+<tr><td>Pacing</td><td>Projected month-end spend over 105% of budget: trim the worst ad set first. Under 85% with CPI on target: raise the best one.</td></tr>
+</table>
+
+<h2 id="learn">The learning loop <small>What it learns, from what, and when.</small></h2>
+<table>
+<tr><th>When</th><th>What runs</th><th>What it changes</th></tr>
+<tr><td>Twice a day (09:00, 17:00 IST)</td><td>Sync, then verdicts on ads and ad sets, then work-board cards. Only data at least 48 hours old is judged.</td><td>Pauses, budget moves and cards, all inside the guardrails</td></tr>
+<tr><td>When an ad gets its verdict</td><td>Its result is written to its creative record: narrative, angle, genre, hook type, format and source brand, with spend, installs and the chance it beat target</td><td>The evidence for every attribute that ad carried</td></tr>
+<tr><td>Nightly</td><td>Scores every attribute with a Bayesian model, so a single lucky ad can't make "number-hero ads win" a rule</td><td><code>learnings</code>: statements with evidence counts, which you can pin or overrule</td></tr>
+<tr><td>Monday</td><td>Plans the next batch: about <b>70%</b> from the attributes most likely to win, about <b>30%</b> deliberate exploration (new angles, competitor patterns)</td><td>What Studio makes this week</td></tr>
+<tr><td>3 and 7 days after any action</td><td>Checks whether the action worked (for example, did the budget cut bring CPI back?)</td><td>How much the agent trusts each rule. Rules that keep failing get flagged to you.</td></tr>
+<tr><td>Your approvals and rejections</td><td>Already recorded</td><td>Which concepts it proposes; kept separate from market results so taste and performance don't blur</td></tr>
+</table>
+
+<h2 id="aud">Audiences <small>The agent never guesses what an audience means. You confirm it once; then the agent uses only confirmed audiences.</small></h2>
+<div class="flow"><span>Import every audience with its rule, size and retention</span><i>→</i><span>Rule translated into plain words</span><i>→</i><span>Agent proposes a role and a reason</span><i>→</i><span>You confirm or correct (about 30 minutes, once)</span><i>→</i><span>Only confirmed audiences can be used</span></div>
+<table>
+<tr><th>Role</th><th>What it means</th><th>Examples it would propose</th></tr>
+<tr><td><b>Always exclude</b></td><td>Already installed or a current customer</td><td>Purchase on PushOwl New Pixel, 180 days; "PO - Users post Jan'25 - March 19th'26" (19.8k to 23.3k)</td></tr>
+<tr><td><b>Warm</b></td><td>Showed intent but didn't install</td><td>Listing viewers (ViewContent, 30 days) minus installers; install-clickers who didn't install (AddToCart minus Purchase, 14 days); pushowl.com visitors (30 days); reinstall-page visitors</td></tr>
+<tr><td><b>Cold seed</b></td><td>A signal for broad targeting, never a hard limit</td><td>1% lookalike of PO users; lookalike of installers. Used only if broad underperforms.</td></tr>
+<tr><td><b>Not for PushOwl</b></td><td>Other products or old programmes</td><td>MagicFit, Sendinblue, Mailchimp, CaaS, StoreLeads lists (unless you say StoreLeads merchant lists should be cold seeds)</td></tr>
+<tr><td><b>Stale</b></td><td>Empty, too small (under 1,000) or not updating</td><td>Lists last touched years ago</td></tr>
+</table>
+<p><b>Who selects:</b> the agent, at build time. Each campaign template states which confirmed roles it uses (Retarget = Warm plus Always exclude; Cold = broad plus Always exclude). You approve each new campaign before launch. Missing audiences (for example the 14-day install-clickers) are specified by the agent exactly. They're created through the API if a create route turns out to exist, otherwise by you in Events Manager from the agent's recipe.</p>
+<p><b>Cold targeting:</b> broad (Advantage+ audience) within your countries, with installers excluded. The creative does the targeting: a batch built around "Shopify stores losing carts" finds those merchants. That's how Meta's current system works, and it beats narrow interests.</p>
+
+<h2 id="auto">What the agent does, and what stays with you <small>Four tiers. Everything starts at the safest tier it can, and moves up one lever at a time when you decide.</small></h2>
+<table>
+<tr><th>Tier</th><th>Actions</th><th>How</th></tr>
+<tr><td><span class="t t0">0 · Agent alone</span></td><td>Sync, verdicts, learnings, diagnosis, making creatives, building <b>paused</b> drafts, writing cards, the pre-launch policy check</td><td>No approval. Reads and paused objects only.</td></tr>
+<tr><td><span class="t t1">1 · Agent, then tells you</span></td><td>Pause a losing ad (rules above). Budget down up to 20%. Pause an ad set over the hard ceiling. Reactivate an ad that got late installs.</td><td>Executes inside the caps, posts to the board with an Undo button, and appears in the daily digest</td></tr>
+<tr><td><span class="t t2">2 · Agent proposes, you click</span></td><td>Set anything ACTIVE (new ads, a test batch, graduation). Budget up. Change a Google target CPA or bid strategy. Create an audience.</td><td>A card with the evidence and one-click Approve. Nothing goes live without your click.</td></tr>
+<tr><td><span class="t t3">3 · You only</span></td><td>Campaign structure, confirming audiences, spending limits and billing, policy appeals, anything after a disapproval, any account other than PushOwl, turning the kill switch off</td><td>The agent prepares; you act in Ads Manager</td></tr>
+</table>
+<p class="note"><b>Promotion path:</b> after 4 weeks with no incidents, a Tier 2 action you approve more than 80% of the time can move to Tier 1. One lever at a time, and only when you switch it.</p>
+
+<h2 id="safe">Keeping the account safe <small>From Meta's rate-limit docs, Google's API policies and how tools like Birch and Optmyzr handle it. Sources are listed at the end.</small></h2>
+<h3>What actually gets accounts restricted</h3>
+<ul>
+<li><b>Behaviour, not the tool.</b> Meta publishes no rule saying API changes are judged differently from Ads Manager changes. The patterns tied to restrictions are repeated disapprovals, <b>resubmitting a rejected ad without real changes</b>, sudden budget jumps, payment failures and unfamiliar logins.</li>
+<li><b>The biggest current risk is already in the account:</b> 15 disapproved ads. The agent should read the reasons, and you decide whether to fix or appeal them. Nothing gets resubmitted automatically.</li>
+<li><b>Hard API limits:</b> 4 budget changes per ad set per hour, 10 spending-limit changes a day, and a shared hourly call quota per ad account. The agent's rules sit far below these: one budget change per ad set every 72 hours, and it never touches the spending limit.</li>
+</ul>
+<h3>Is the current connection (treg, over your login) safe?</h3>
+<table>
+<tr><th>Use</th><th>Verdict</th></tr>
+<tr><td>Reads and paused drafts</td><td><b>Safe.</b> Normal API use, no delivery impact.</td></tr>
+<tr><td>Launching, pausing, budget changes</td><td><b>Safe in pattern</b> (it's what every automation tool does) as long as the pacing and caps below hold.</td></tr>
+<tr><td>The weak point</td><td>The token is <b>your personal login</b>. It reaches 3 unrelated accounts and expires about every 60 days, which would silently stop the agent. Meta's recommendation for server automation is a <b>System User token</b> in the Brevo PushOwl Business Manager, assigned only this ad account and pixel. It doesn't expire, and it can only touch what it's given.</td></tr>
+<tr><td>A newer option</td><td>Meta's official <b>Ads AI Connectors</b> (April 2026) let the portfolio admin set rules for what agents may do, including budget changes. Worth adopting once we know whether treg can use a System User token.</td></tr>
+</table>
+<h3>Safety features to build</h3>
+<div class="grid">
+  <div class="card"><h4>Account lock</h4><p>Every write is checked against one allowed account, page and pixel. Anything else is refused in code.</p></div>
+  <div class="card"><h4>Write budget</h4><p>At most 20 writes a day across the account. One budget change per ad set per 72 hours, a 20% maximum step, at most +50% a week in total, never past the monthly cap.</p></div>
+  <div class="card"><h4>Rate awareness</h4><p>Reads Meta's usage header on every call, backs off at 75%, retries with exponential backoff, and never retries instantly.</p></div>
+  <div class="card"><h4>Pre-launch policy check</h4><p>Competitor names, the claims ledger, and Meta's sensitive categories (personal attributes, before and after, income claims) give each ad a risk score. High risk goes to you.</p></div>
+  <div class="card"><h4>Disapproval stop</h4><p>A disapproval pauses similar drafts, raises a card with Meta's reason, and blocks resubmission until the ad is really changed.</p></div>
+  <div class="card"><h4>Learning protection</h4><p>No edits to an ad set in learning unless a kill rule fires. Edits are batched so learning resets once, not repeatedly.</p></div>
+  <div class="card"><h4>Alarms</h4><p>Spend over 1.5x the daily plan, a CPI spike, a disapproval, or any change in account status: the agent stops that lane and alerts you.</p></div>
+  <div class="card"><h4>Kill switch and digest</h4><p>One switch stops all writes. A daily digest lists every action with its evidence and Undo.</p></div>
+</div>
+
+<h2 id="google">Google Ads <small>Starts after the treg sign-in, and runs more slowly than Meta by design.</small></h2>
+<ul>
+<li><b>Tracking:</b> Shopify supports GA4 on the App Store listing, which sends <code>shopify_app_install</code>. Mark it as a key event in GA4 and import it into Google Ads. The first import takes about 2 days.</li>
+<li><b>What the agent can do through treg:</b> read everything and change budgets. It can't create campaigns there, so it prepares them as an Ads Editor file that you import. They land as drafts.</li>
+<li><b>Bidding:</b> Maximize conversions first. Switch to target CPA only after 15 installs in 30 days (30 or more is better). Move target CPA at most 15% at a time, with 2 weeks between moves.</li>
+<li><b>New since August 2026:</b> a budget-limited target-CPA campaign now spends up to its target. A target set above your real CPI quietly raises cost, so the agent keeps the target in line with actual results.</li>
+<li><b>Structure:</b> one Search campaign on high-intent terms (for example "shopify push notifications", "abandoned cart push"). Competitor names never appear in ad text. Performance Max or Demand Gen come only once Search is on target.</li>
+</ul>
+
+<h2 id="build">What gets built <small>In order. Nothing spends until Phase 2 and your approval.</small></h2>
+<table>
+<tr><th>Phase</th><th>Build</th><th>Spends?</th></tr>
+<tr><td><b>1 · Foundations</b></td><td>
+  <ul>
+    <li>Goal model: event, target CPI, hard ceiling and monthly cap per campaign.</li>
+    <li>Install CPI across the whole agent.</li>
+    <li>Account lock.</li>
+    <li>Disapproval reader and fix list.</li>
+    <li>Audience registry with rules in plain words.</li>
+    <li>Safety layer: write budget, rate awareness, alarms, digest.</li>
+    <li>Goals page.</li>
+  </ul>
+</td><td>No</td></tr>
+<tr><td><b>2 · Launch v1</b></td><td>
+  <ul>
+    <li>Campaign templates (Scale, Test, Retarget).</li>
+    <li>Drafts rebuilt as Sales campaigns optimising Purchase on the right pixel, with exclusions.</li>
+    <li>Pre-launch policy check.</li>
+    <li>A "Go live" approval card on the board.</li>
+  </ul>
+</td><td>Yes, only when you click</td></tr>
+<tr><td><b>3 · Test engine</b></td><td>
+  <ul>
+    <li>Weekly batches.</li>
+    <li>Bayesian verdict per ad.</li>
+    <li>Graduation and fatigue swaps.</li>
+    <li>Reactivating ads that pick up late installs.</li>
+    <li>Test Lab page.</li>
+  </ul>
+</td><td>Within approved budgets</td></tr>
+<tr><td><b>4 · Optimiser</b></td><td>
+  <ul>
+    <li>Budget ladder and pacing to the monthly cap.</li>
+    <li>Tier 1 actions switched on.</li>
+    <li>Autonomy panel: tier switches, caps, write log, kill switch.</li>
+  </ul>
+</td><td>Within caps</td></tr>
+<tr><td><b>5 · Learning loop</b></td><td>
+  <ul>
+    <li>Attribute scoring.</li>
+    <li>70/30 batch planning.</li>
+    <li>Checking whether each action worked.</li>
+    <li>A weekly learning report.</li>
+  </ul>
+</td><td>No</td></tr>
+<tr><td><b>6 · Google</b></td><td>
+  <ul>
+    <li>Sync and the install import.</li>
+    <li>Search campaign file.</li>
+    <li>Budget and target recommendations.</li>
+  </ul>
+</td><td>After sign-in and your approval</td></tr>
+<tr><td><b>7 · Brevo sign-ups</b></td><td>
+  <ul>
+    <li>The same goal model on the Brevo ad accounts, with their own event, audiences and lock.</li>
+  </ul>
+</td><td>After you connect them</td></tr>
+</table>
+
+<h2 id="need">What I need from you</h2>
+<ol>
+<li><b>Target CPI</b> for an install, plus the most you'd tolerate (the hard ceiling).</li>
+<li><b>Monthly budget</b> for PushOwl installs on Meta now, and on Google later.</li>
+<li><b>Countries and languages.</b> The CaaS campaign ran US, CA, GB, AU, FR and DE.</li>
+<li><b>Source of truth for an install:</b> <code>Purchase</code> on PushOwl New Pixel (the App Store's own event) or <code>PushOwlAppInstall</code> on the old pixel? I'd optimise to the App Store one and use the other as a cross-check.</li>
+<li><b>Install quality:</b> is an install enough, or should onboarding count? If PushOwl can share installs that uninstall within 7 days, the agent can judge creatives on quality too.</li>
+<li><b>Audience review:</b> 30 minutes, once, to confirm the roles I pre-fill. Also: is "PO - Users post Jan'25" the current-customer exclusion list, and can PushOwl refresh it monthly?</li>
+<li><b>A System User token</b> in the Brevo PushOwl Business Manager, assigned only this ad account and pixel. I'll give you the exact steps. Or confirm we stay on your login with a 60-day re-auth reminder.</li>
+<li><b>The CaaS lead campaign:</b> keep it as a separate goal, or pause it for good? Either way, its 15 disapproved ads should be fixed or archived.</li>
+<li><b>Google:</b> the treg sign-in, and GA4 on the App Store listing with the install imported into Google Ads.</li>
+<li><b>Where alerts go:</b> Slack channel or email.</li>
+</ol>
+
+<h3>Sources</h3>
+<ul style="font-size:13px;color:var(--muted)">
+<li>Meta rate limits and budget-change caps: <a href="https://developers.facebook.com/docs/marketing-api/overview/rate-limiting/">developers.facebook.com, rate limiting</a></li>
+<li>Marketing API access tiers, May 2026: <a href="https://developers.meta.com/blog/updates-to-ads-management-standard-access-feature/">developers.meta.com</a></li>
+<li>System User tokens: <a href="https://developers.facebook.com/docs/business-management-apis/system-users/install-apps-and-generate-tokens/">developers.facebook.com, system users</a></li>
+<li>Restriction policy: <a href="https://transparency.meta.com/enforcement/taking-action/restricting-accounts/">transparency.meta.com</a>. Triggers in practice: <a href="https://bir.ch/blog/facebook-account-restricted-from-advertising">bir.ch</a></li>
+<li>Meta Ads AI Connectors: <a href="https://www.facebook.com/business/news/meta-ads-ai-connectors">facebook.com/business/news</a></li>
+<li>Andromeda and creative diversity: <a href="https://www.dentsu.com/ae/en/our-latest-thinking/meta-andromeda-strategy">dentsu</a></li>
+<li>Ad review feedback: <a href="https://developers.facebook.com/docs/marketing-api/adgroup/feedback/">developers.facebook.com</a></li>
+<li>Shopify App Store listing tracking (Meta CAPI events, GA4 install event): <a href="https://shopify.dev/docs/apps/launch/marketing/track-listing-traffic">shopify.dev</a></li>
+<li>Google Ads API access levels: <a href="https://developers.google.com/google-ads/api/docs/api-policy/access-levels">developers.google.com</a>. Smart bidding learning: <a href="https://support.google.com/google-ads/answer/13020501">support.google.com</a>. Target CPA minimums: <a href="https://support.google.com/google-ads/answer/6268632">support.google.com</a>. August 2026 target-CPA change: <a href="https://support.google.com/google-ads/answer/17061251">support.google.com</a></li>
+<li>Automation patterns: <a href="https://www.optmyzr.com/learn-with-optmyzr/smarter-automation-with-rule-engine/">Optmyzr</a>, <a href="https://bir.ch/birch-course/best-practices-for-meta">Birch</a>. Kill heuristics: <a href="https://admanage.ai/blog/when-to-kill-a-facebook-ad">admanage.ai</a>. Meta's spend allocation: <a href="https://mobiledevmemo.com/bayesian-bandits-behind-the-scenes-of-facebooks-spend-allocation-decisioning/">mobiledevmemo</a></li>
+</ul>
+</div>
+</body>
+</html>
