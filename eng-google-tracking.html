@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal Tracking Fix</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:800px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.big{font-size:26px;font-weight:700;color:var(--fg);display:block;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}
+
+pre{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto;font:12.5px/1.5 ui-monospace,Menlo,monospace}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0}
+.step h3{margin:0 0 4px}.step .who{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted)}
+.step .done{border-left:4px solid var(--forest);padding:8px 12px;background:var(--tag);border-radius:0 10px 10px 0;font-size:14px;margin-top:10px}
+.pri{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 7px;margin-left:6px;vertical-align:2px}
+.p0{background:var(--peony);color:#fff}.p1{background:var(--sun);color:var(--char)}.p2{background:var(--mint);color:var(--char)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For PushOwl engineering</span><span class="chip">26 Sep 2026</span>
+  <h1>Fix Owl Portal install tracking for Google Ads</h1>
+  <p>Google Ads has recorded <b>0 conversions</b> from the Owl Portal since the GA4 import was set up in May 2025, so the Owl Portal campaigns bid blind. This doc explains the three breaks, what to change, and how to test it. Most of it is small: a missing event call, a URL parameter list, and two IDs in a backend payload.</p>
+  <div class="toc"><a href="#tldr">Summary</a><a href="#flow">Where it breaks</a><a href="#evidence">Evidence</a><a href="#fixes">The fixes</a><a href="#marketing">What marketing does</a><a href="#test">Test plan</a><a href="#security">Security</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="tldr">Summary</h2>
+<div class="grid">
+  <div class="card bad"><h4>1. The install event isn't sent</h4><p><code>owl_portal_connect_shopify</code> hasn't fired since about Aug 2025. The constant still exists in the dashboard code, but nothing calls it. The "Connect with Shopify" button only sends a PostHog event.</p></div>
+  <div class="card bad"><h4>2. Events arrive without a session</h4><p>All <code>owl_portal_*</code> events go browser → PushOwl backend → GA4 (Measurement Protocol) with no <code>client_id</code>, <code>session_id</code> or page. GA4 can't tie them to the ad click, so Google Ads can't either. That's why <code>owl_portal_signup</code> (446 events in 90 days) also imports 0.</p></div>
+  <div class="card bad"><h4>3. The click ID is dropped on the way</h4><p>The landing page CTA copies only the 5 utm tags, so <code>gclid</code>, <code>gbraid</code>, <code>wbraid</code> and <code>_gl</code> are lost. The two sites use different GA4 properties, cross-domain linking doesn't include <code>dashboard.pushowl.io</code>, and the dashboard tag only loads after login.</p></div>
+  <div class="card warn"><h4>Cost of the gap</h4><p>The 4 Owl Portal YouTube campaigns (Demand Gen, Maximize conversions) spent <b>$4,528 in 90 days</b> with <b>0 conversions</b>. With nothing to learn from, Google can't find installers.</p></div>
+</div>
+<div class="note"><b>Definition of done:</b> a test click on a Google ad lands on the Owl Portal, connects a Shopify store, and within 48 hours Google Ads shows 1 conversion on the install action, attributed to that campaign.</div>
+
+<h2 id="flow">Where it breaks <small>The path a merchant takes from a Google ad to a connected store</small></h2>
+<div class="flow"><span>Google ad click<br><small>gclid on URL</small></span><i>→</i><span>pushowl.com/lp/email-marketing<br><small>GA4 G-4MLSL4TZ89</small></span><i>→ ✗ break 3: CTA drops gclid →</i><span>dashboard.pushowl.io/onboarding-portal/sign-up<br><small>no GA tag before login</small></span><i>→</i><span>magic link email</span><i>→</i><span>/connect-store<br><small>GA4 G-MESRBYCSCD loads</small></span><i>→ ✗ break 1: no event →</i><span>Shopify OAuth success</span><i>→ ✗ break 2: backend event has no session →</i><span>GA4 → Google Ads import</span></div>
+
+<h2 id="evidence">Evidence <small>GA4 Data + Admin API and Google Ads API, read-only, 28 Jun to 25 Sep 2026</small></h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td><code>owl_portal_connect_shopify</code> in GA4 property 393519649</td><td>0 in 90 days. It was 21 to 53 a month Mar to Jul 2025, 9 in Aug 2025, 0 to 3 a month to Mar 2026, then 0. It was marked a key event on 2025-09-29, after it stopped.</td></tr>
+<tr><td>Other portal events, same property</td><td>signup 446, store_select 70, continue_brevo 12. For every one, source/medium, Google Ads campaign, hostname and page path are "(not set)"; first-user source is "(direct) / (none)".</td></tr>
+<tr><td>Google / cpc sessions on the dashboard property</td><td>0 in 90 days.</td></tr>
+<tr><td>Landing page property 379010452</td><td>About 61,000 google / cpc sessions on <code>/lp/email-marketing</code> and <code>/lp/email-marketing-strategy</code>, 0 key events.</td></tr>
+<tr><td>Landing page tags</td><td>G-4MLSL4TZ89 (property 378973158, also forwards to G-DKNC4CCQ2D), AW-11391594536, GTM-W9BPQ9. Cross-domain rule lists only <code>^pushowl\.com$</code>.</td></tr>
+<tr><td>Landing page CTA</td><td>Script cancels the link and opens <code>data-base + ?utm_*</code> in a new tab. Only utm_source, utm_medium, utm_campaign, utm_term, utm_content survive.</td></tr>
+<tr><td>Dashboard tag</td><td>G-MESRBYCSCD loads inside the logged-in user setup. The anonymous sign-up page records about 1 page view in 90 days. Utm tags survive to <code>/connect-store</code> (e.g. utm_source ytrow1 to ytrow5, googleadsrow); gclid doesn't.</td></tr>
+<tr><td>Backend relay</td><td>Dashboard posts to <code>/analytics/track/events/</code>; backend relays to GA4 via Measurement Protocol. The code that builds event properties reads <code>gclid</code> into <code>clickid</code>, but only from the current URL, so it's always empty.</td></tr>
+<tr><td>Google Ads 8465254800</td><td>4 GA4 imports: owl_portal_signup (primary), owl_portal_connect_shopify (<b>secondary</b>, category Purchase), store_select, continue_brevo. All 0 all-conversions since May 2025. The 4 Owl Portal campaigns bid on custom goal "OwlPortal SignUp" (6454146621), which contains only the sign-up action. Auto-tagging is on.</td></tr>
+</table>
+
+<h2 id="fixes">The fixes <small>In order. E1 to E4 are required; E5 makes it robust.</small></h2>
+
+<div class="step"><span class="who">Dashboard / backend</span><h3>E1. Send <code>owl_portal_connect_shopify</code> when the store actually connects<span class="pri p0">P0</span></h3>
+<p>Fire it server-side when the Shopify OAuth callback succeeds (the <code>api.pushowl.io/auth/v1/pushowl/shopify</code> flow), not on the button click, so it counts real connections only. Keep the existing PostHog click event as it is.</p>
+<ul>
+<li>Once per shop: skip if this shop has already sent it (store a <code>portal_connect_sent_at</code> on the merchant).</li>
+<li>Only for merchants who came through the Owl Portal (the portal sign-up created the account).</li>
+<li>Send it through the same relay as the other portal events, with the fields in E4.</li>
+</ul>
+<div class="done">Done when: connecting a test store shows 1 <code>owl_portal_connect_shopify</code> in GA4 DebugView / Realtime for property 393519649.</div></div>
+
+<div class="step"><span class="who">Webflow (pushowl.com landing pages)</span><h3>E2. Keep the click IDs on the landing page CTA<span class="pri p0">P0</span></h3>
+<p>On <code>/lp/email-marketing</code> and <code>/lp/email-marketing-strategy</code> (and any page with the same CTA script), copy the click IDs along with the utm tags:</p>
+<pre>// in the CTA click handler
+const KEEP = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content",
+              "gclid","gbraid","wbraid","_gl","fbclid"];
+const here = new URLSearchParams(location.search);
+const out = new URL(btn.dataset.base);
+for (const k of KEEP) if (here.get(k)) out.searchParams.set(k, here.get(k));
+window.open(out.toString(), "_blank");</pre>
+<p>Better still, make the CTA a real <code>&lt;a href&gt;</code> and let the Google tag's linker decorate it (this also needs E6).</p>
+<div class="done">Done when: opening the LP with <code>?gclid=TEST123&amp;utm_source=x</code> and clicking the CTA lands on the sign-up page with <code>gclid=TEST123</code> in the URL.</div></div>
+
+<div class="step"><span class="who">Dashboard (onboarding portal)</span><h3>E3. Capture and keep the click ID through sign-up and the magic link<span class="pri p0">P0</span></h3>
+<ul>
+<li>On <code>/onboarding-portal/sign-up</code>, read <code>gclid</code>, <code>gbraid</code>, <code>wbraid</code> (and utm tags) from the URL and send them in <code>initiateSignup</code> <code>query_params</code>.</li>
+<li>Store them on the merchant record with the time of the click (<code>click_ids: {gclid, gbraid, wbraid, captured_at}</code>). Carry them through the magic link the same way utm tags already survive.</li>
+<li>Load the GA4 tag G-MESRBYCSCD on the pre-login onboarding-portal routes, not only after login, so the ad session starts on the sign-up page. Save the browser's <code>_ga</code> and <code>_ga_MESRBYCSCD</code> cookie values on the merchant at sign-up too (used in E4).</li>
+<li>Point the existing <code>clickid</code> property builder at the stored value instead of the current URL.</li>
+</ul>
+<div class="done">Done when: a merchant created from a URL with <code>?gclid=TEST123</code> has <code>click_ids.gclid = TEST123</code> after the magic link, on a different tab or device.</div></div>
+
+<div class="step"><span class="who">Backend</span><h3>E4. Send session fields on every Measurement Protocol event<span class="pri p0">P0</span></h3>
+<p>GA4 only joins a server event to the ad session when it carries the same <code>client_id</code> and <code>session_id</code> the browser tag used. Add them to the relay in <code>/analytics/track/events/</code>:</p>
+<pre>POST https://www.google-analytics.com/mp/collect?measurement_id=G-MESRBYCSCD&amp;api_secret=&lt;secret&gt;
+{
+  "client_id": "1234567890.1727300000",      // from the _ga cookie "GA1.1.<b>1234567890.1727300000</b>"
+  "user_id": "&lt;merchant id&gt;",
+  "timestamp_micros": 1727300000000000,       // when it happened; must be within 72 hours
+  "events": [{
+    "name": "owl_portal_connect_shopify",
+    "params": {
+      "session_id": "1727299000",             // from _ga_MESRBYCSCD "GS1.1.<b>1727299000</b>.1..."
+      "engagement_time_msec": 100,
+      "page_location": "https://dashboard.pushowl.io/connect-store",
+      "gclid": "TEST123",                     // from E3, when present
+      "shop_domain": "store.myshopify.com"
+    }
+  }]
+}</pre>
+<p>Use the cookie values saved in E3 when the event is sent from the OAuth callback (no browser in that request). Test with <code>/debug/mp/collect</code> first: it returns validation messages.</p>
+<div class="done">Done when: in GA4, the test event shows session source / medium <code>google / cpc</code> and the test campaign name, not "(not set)".</div></div>
+
+<div class="step"><span class="who">Backend</span><h3>E5. Upload the conversion to Google Ads directly (recommended)<span class="pri p1">P1</span></h3>
+<p>The GA4 import breaks whenever the session join fails (cookies blocked, a different device after the magic link). An offline click upload only needs the stored click ID, so it's the reliable path. Marketing creates the conversion action (see below) and gives you its ID.</p>
+<pre>POST https://googleads.googleapis.com/v24/customers/8465254800:uploadClickConversions
+{
+  "conversions": [{
+    "gclid": "TEST123",                        // or "gbraid" / "wbraid" when there's no gclid
+    "conversionAction": "customers/8465254800/conversionActions/&lt;id from marketing&gt;",
+    "conversionDateTime": "2026-09-26 12:00:00+05:30",
+    "orderId": "&lt;shop_domain&gt;"             // dedupes repeats
+  }],
+  "partialFailure": true
+}</pre>
+<ul>
+<li>Send it in the same place as E1 (OAuth success), once per shop, only when a click ID was stored within the last 90 days.</li>
+<li>Optional, for users with no click ID: add enhanced conversions for leads (<code>userIdentifiers: [{hashedEmail: sha256(lowercased trimmed email)}]</code>), since the portal captures email at sign-up.</li>
+<li>Needs a Google Ads API developer token and OAuth for account 8465254800. If that's a blocker, tell marketing: the agent can do the upload if you post the shop, click IDs and connect time to it.</li>
+</ul>
+<div class="done">Done when: Google Ads › Goals › Conversions › Diagnostics shows the upload accepted, and the test conversion appears on the campaign within 24 to 48 hours.</div></div>
+
+<div class="step"><span class="who">Marketing (GA4 UI)</span><h3>E6. Add the dashboard to cross-domain measurement<span class="pri p2">P2</span></h3>
+<p>In the G-4MLSL4TZ89 tag settings, under Configure your domains, add <code>dashboard.pushowl.io</code> next to <code>pushowl.com</code>. This only helps together with E2 (a real link) and E3 (the tag loading before login). The GA4 Admin API doesn't expose this setting, so it's a UI change.</p></div>
+
+<h2 id="marketing">What marketing does once E1 to E4 ship <small>Through the agent, via the Google Ads API; nothing here needs engineering</small></h2>
+<table>
+<tr><th>Step</th><th>Change</th></tr>
+<tr><td>1</td><td>Make <code>owl_portal_connect_shopify</code> (conversion action 7131692089) <b>primary</b>.</td></tr>
+<tr><td>2</td><td>Add it to the custom goal "OwlPortal SignUp" (6454146621), or replace that goal with an install goal, so the Owl Portal campaigns bid on connected stores, not sign-ups.</td></tr>
+<tr><td>3</td><td>For E5: create an upload conversion action "Owl Portal: Shopify connected (server)" (type UPLOAD_CLICKS, one per click, 90-day window) and share its ID with engineering. Then point the goal at it and make the GA4 import secondary, so nothing counts twice.</td></tr>
+<tr><td>4</td><td>Until then: decide whether the 4 Owl Portal YouTube campaigns keep spending on a goal with no data.</td></tr>
+</table>
+
+<h2 id="test">Test plan</h2>
+<ol>
+<li>Open <code>https://www.pushowl.com/lp/email-marketing?gclid=TEST-&lt;date&gt;&amp;utm_source=googleads&amp;utm_medium=cpc&amp;utm_campaign=tracking-test</code> in a clean browser profile.</li>
+<li>Click the CTA. Check the sign-up URL keeps <code>gclid</code> (E2).</li>
+<li>Sign up, open the magic link, connect a development store (E3). Check the merchant record has the click ID and cookie values.</li>
+<li>GA4 DebugView (property 393519649): <code>owl_portal_signup</code> and <code>owl_portal_connect_shopify</code> arrive once each, with session source <code>google / cpc</code> (E1, E4).</li>
+<li>For a real attribution test, run it from a real ad click on a paused-then-enabled test ad (a fake gclid is rejected by Google Ads). Google Ads shows the conversion within 24 to 48 hours (import) or after the upload (E5).</li>
+<li>Connect the same store again: no second event or upload (once per shop).</li>
+</ol>
+
+<h2 id="security">Security note</h2>
+<div class="note">The GA4 Admin API returns the Measurement Protocol secret in plain text to anyone with Admin access to the property. Rotate the secret used by the backend relay when you ship E4, and keep the new one in the backend's secret store only.</div>
+
+<p style="color:var(--muted);font-size:13px;margin-top:40px">Prepared by the Creative Performance Marketing Agent from a read-only audit of GA4 properties 393519649, 379010452 and 378973158 and Google Ads account 8465254800. Questions: Farooq Chisty.</p>
+</div>
+</body>
+</html>
