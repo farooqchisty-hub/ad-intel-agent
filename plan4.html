@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Search Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:800px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.big{font-size:26px;font-weight:700;color:var(--fg);display:block;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For review</span><span class="chip">Plan 4 · 26 Sep 2026</span>
+  <h1>Google Search for PushOwl installs</h1>
+  <p>How the agent should build, price and optimise Google Search for Shopify app installs at $20 each. It's built from a read-only audit of every PushOwl Search campaign since 2023 ($47.5k spend, 406 installs) and current Google and practitioner guidance. Nothing gets built until you approve.</p>
+  <div class="toc"><a href="#found">What the audit found</a><a href="#now">Today's generator</a><a href="#math">The maths</a><a href="#structure">Structure</a><a href="#keywords">Keywords</a><a href="#ads">Ads</a><a href="#bidding">Bidding</a><a href="#optimise">Optimisation loop</a><a href="#schedule">Schedule</a><a href="#tools">Tools</a><a href="#build">Build</a><a href="#decide">Your calls</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="found">What the audit found <small>Customer 8465254800, read-only. MagicFit and CaaS excluded.</small></h2>
+<div class="grid">
+  <div class="card bad"><h4>Possible past compromise</h4><p>Three "PD - HK - TYCUN" Search campaigns ran in <b>Nov 2025</b> with $5,000 to $10,000 daily budgets, pointing at what look like gambling sites. They spent $241 and are now removed. Current access is only pushowl.com, brevo.com and bigboost.agency users. <b>Someone should review the account's access history.</b></p></div>
+  <div class="card bad"><h4>No campaign can bid on portal installs</h4><p><code>owl_portal_connect_shopify</code> is secondary and has <b>never recorded a conversion</b>, and neither have the portal sign-up or the login page view. That points to a broken hand-off between pushowl.com, dashboard.pushowl.io and GA4. The Owl Portal YouTube campaigns spent about $8.4k with 0 portal installs.</p></div>
+  <div class="card warn"><h4>Bidding counts clicks as installs</h4><p>Account-default goals include "Install App Button" (a click: 3,367 conversions in one month), page views and lead forms. Campaigns on defaults bid partly on clicks.</p></div>
+  <div class="card good"><h4>What actually worked</h4><p><b>"App Store"</b> (Sep 2024 to Apr 2025): landing on the Shopify listing, broad match, Maximize conversions. In the 9 target countries: <b>$33 per install</b>, a 12% click-to-install rate, $4.00 cost per click. The best result in account history.</p></div>
+</div>
+<table style="margin-top:12px">
+<tr><th>Signal</th><th>What the data says</th></tr>
+<tr><td>Best keywords</td><td>"shopify email marketing" (broad): $2,855, 104 installs, <b>$28</b>. "shopify marketing automation": $39. "abandoned checkout email": $30. "shopify best email marketing app" (exact): $14. "sms shopify": $23.</td></tr>
+<tr><td>Worst keywords</td><td>"pop ups shopify": $6.1k at $161 to $196. "klaviyo" (exact): $2,708, 0 installs. "web push notifications app": $1,287, 0. <b>Web push, PushOwl's own core feature, converted worst.</b> Merchants search for email, abandoned carts and SMS.</td></tr>
+<tr><td>Competitor terms</td><td>$7,115 for 12 installs: <b>$593 per install</b>, CTR 0.5% to 3.1%.</td></tr>
+<tr><td>Landing pages</td><td>Every campaign that landed on a pushowl.com page shows <b>0 installs</b>. Installs only came from the apps.shopify.com listing.</td></tr>
+<tr><td>Device</td><td>Desktop $104 per install, mobile <b>$410</b>. Merchants install on desktop.</td></tr>
+<tr><td>Countries (all time)</td><td>IT $54, FR $73, DE $75, CA $97, US $164, UK $214, NL $262. ES and IE: almost nothing.</td></tr>
+<tr><td>Waste</td><td>34% of keyword spend ($16k) went to 318 keywords with 0 installs. Location targeting was "presence or interest", which reaches people outside the countries.</td></tr>
+<tr><td>Ad strength</td><td>Doesn't predict results: the three best ads were rated "Poor" (15 headlines, no pins). Google confirms ad strength isn't used in the auction.</td></tr>
+</table>
+
+<h2 id="now">Today's generator, and why it has to change</h2>
+<p>The agent's search generator (<code>google.js</code>) works like this: seed keywords by intent, then price them with keyword volume, cluster, mine competitor Google ads, write 5 RSAs per ad group, and enforce claims and competitor rules. That order is right, but it was built for <b>Brevo</b>, not PushOwl installs:</p>
+<ul>
+<li>Its seeds are Klaviyo alternatives and pricing, WooCommerce, WordPress and deliverability. The audit shows competitor terms at $593 per install, and non-Shopify terms can't install a Shopify app at all.</li>
+<li>It lands on brevo.com pages. Installs only come from the listing.</li>
+<li>It writes about 50 search ads a week that nothing launches, measures or learns from.</li>
+</ul>
+
+<h2 id="math">The maths that sets the rules</h2>
+<p><b>Cost per install = cost per click ÷ click-to-install rate.</b> Your own history in the target countries shows 6% to 12% click-to-install on the listing, so:</p>
+<table>
+<tr><th>Click-to-install rate</th><th>Max cost per click for $20</th><th>For the $25 ceiling</th></tr>
+<tr><td>6%</td><td>$1.20</td><td>$1.50</td></tr>
+<tr><td>9%</td><td>$1.80</td><td>$2.25</td></tr>
+<tr><td>12% (the App Store campaign)</td><td>$2.40</td><td>$3.00</td></tr>
+</table>
+<p class="note"><b>$20 is below every past Google result in these countries</b> (the best was $33). It's reachable only on cheaper, high-intent Shopify terms, in the cheaper countries, on desktop. The agent prices every keyword against this cap before it's used, and says honestly when a theme can't hit $20.</p>
+
+<h2 id="structure">Structure</h2>
+<table>
+<tr><th>Campaign</th><th>What's in it</th><th>Why</th></tr>
+<tr><td><b>Shopify core</b></td><td>Themed ad groups: email marketing, abandoned cart, SMS, marketing automation, all "for Shopify". Broad + phrase, landing on the listing.</td><td>The only themes that ever came near target ($14 to $39)</td></tr>
+<tr><td><b>Brand</b></td><td>PushOwl and Brevo PushOwl terms, exact and phrase</td><td>Cheap, protects the name, and keeps brand out of the other campaigns' numbers</td></tr>
+<tr><td><b>Competitor test</b> (optional)</td><td>Competitor names as keywords only, never in ad text. Hard daily cap.</td><td>$593 per install historically: a small, capped test at most</td></tr>
+</table>
+<ul>
+<li><b>Countries in two waves.</b> First IT, FR, DE and CA (historically $54 to $97 per install). Then US, UK, NL, ES and IE once Shopify core is on target.</li>
+<li><b>Desktop first:</b> mobile set to -100% until desktop is on target (mobile was 4x the cost).</li>
+<li><b>Location "presence" only</b>, not "presence or interest".</li>
+<li><b>Final URL:</b> the App Store listing with UTMs. AI Max's URL expansion is off, because it would send clicks to pushowl.com pages that have never produced an install.</li>
+<li><b>No Performance Max yet.</b> It bids on brand terms and needs about 3x CPA a day to learn. Revisit once Search has 30+ installs a month.</li>
+</ul>
+
+<h2 id="keywords">Keyword research, the agent's way</h2>
+<div class="flow"><span>Seed from winners and themes</span><i>→</i><span>Expand with Google's own keyword ideas</span><i>→</i><span>Price: volume, top-of-page bid range</span><i>→</i><span>Estimated CPI = bid ÷ theme's install rate</span><i>→</i><span>Keep under the $20 cap</span><i>→</i><span>Negatives from history</span><i>→</i><span>Ad groups</span></div>
+<ul>
+<li><b>Seeds:</b> your historical winners ("shopify email marketing", "abandoned checkout email", "sms shopify", "shopify best email marketing app", "shopify marketing automation"), expanded per theme.</li>
+<li><b>Pricing:</b> Google's own keyword data through the connected account (free on treg, and the most accurate), falling back to DataForSEO or SE Ranking. Low and high top-of-page bid ranges per country.</li>
+<li><b>Estimated CPI per keyword</b> uses that theme's own click-to-install history. A keyword stays out if even its low bid can't hit $25.</li>
+<li><b>Negatives loaded before the first click</b>, from the audit:
+  <ul>
+    <li>other platforms (WooCommerce, Wix, WordPress, BigCommerce);</li>
+    <li>login and sign-in terms;</li>
+    <li>android, iOS, chrome, disable, pop-up blocker;</li>
+    <li>bulk and mass SMS;</li>
+    <li>"shopify" on its own;</li>
+    <li>"age verification popup".</li>
+  </ul>
+  That's about $2k of past waste. Your existing 2,048-term "EN Generic Negative KWs" list is reused.</li>
+</ul>
+
+<h2 id="ads">Ads</h2>
+<ul>
+<li><b>2 to 3 RSAs per ad group</b>, 15 headlines and 4 descriptions, no pins. Pinning is what sank the 2023 popup ad.</li>
+<li><b>Angles that won:</b> "Email, Push, SMS in one", "Free unlimited active profiles", "Join 35,000+ stores", "Best email marketing for Shopify", abandoned-cart recovery. These come from the Test Lab's learned themes as well as history.</li>
+<li><b>Guardrails:</b> no competitor names in ad text (past ads said "Cheaper than Klaviyo" and "Klaviyo Email Marketing Rival"). Every claim goes through the claims ledger ("98% deliverability", "#1" and "50% off" need backing). One broken URL containing "??" was found and gets fixed.</li>
+<li><b>Judged on installs, never ad strength.</b></li>
+</ul>
+
+<h2 id="bidding">Bidding</h2>
+<table>
+<tr><th>Stage</th><th>Strategy</th><th>Move on when</th></tr>
+<tr><td>1 · Learn</td><td>Maximize conversions, <b>campaign-level goals: App Install (GA4) and owl_portal_connect_shopify only</b> (no button clicks or page views)</td><td>30 installs in 30 days</td></tr>
+<tr><td>2 · Target</td><td>Target CPA at <b>$20</b>, the real goal. Since Aug 2026, budget-limited campaigns drift to whatever target they're given, so the ceiling isn't used as the target.</td><td>Stable for 2 conversion cycles</td></tr>
+<tr><td>3 · Adjust</td><td>Target moves at most 15% at a time, only after 2 conversion cycles (practitioner rule; Google gives none)</td><td>Ongoing</td></tr>
+</table>
+<p>Budget starts at <b>$60 a day</b> for Shopify core (about 3x CPA, which Google recommends for learning) and $10 a day for brand. The Google budget sits on top of Meta's $10k, so it's a separate number from you (see Your calls).</p>
+
+<h2 id="optimise">The optimisation loop</h2>
+<table>
+<tr><th>Rule</th><th>Setting</th></tr>
+<tr><td>Keyword loser</td><td>Spent 2.5x target ($50) with no installs, or under a 10% chance of beating $20: <b>pause</b> (the same maths as Meta). For broad match, try negatives first.</td></tr>
+<tr><td>Keyword winner</td><td>10+ installs, over 80% chance of beating $20: gets its own exact-match version and more budget share</td></tr>
+<tr><td>Search terms</td><td>Mined daily. Terms with spend and no installs that match a negative pattern are proposed as negatives. Terms that convert are proposed as keywords. About 45% of spend never shows up in the search-term report, so keywords are judged too.</td></tr>
+<tr><td>Ads</td><td>Monthly: the weakest RSA in each ad group is replaced with a new one built from the best-performing assets and themes</td></tr>
+<tr><td>Countries and device</td><td>Monthly: a country over the $25 ceiling for 30 days is paused. Mobile comes back only if desktop has stayed under target for 30 days.</td></tr>
+<tr><td>Budget</td><td>Weekly: shifts between campaigns toward the one under target, at most 20% per change</td></tr>
+<tr><td>Security</td><td>Every sync: any new campaign, unknown final-URL domain, or budget over the cap raises a <b>critical alert</b>, so a repeat of Nov 2025 is caught in hours</td></tr>
+</table>
+
+<h2 id="schedule">Schedule</h2>
+<table>
+<tr><th>When</th><th>What runs</th></tr>
+<tr><td>09:00 and 17:00 IST</td><td>Sync, keyword and search-term verdicts, security check, alerts</td></tr>
+<tr><td>Daily</td><td>Search-term mining: negatives and new keywords proposed as board cards</td></tr>
+<tr><td>Monday</td><td>Budget shift between campaigns, keyword pauses and promotions, weekly Google section in the report</td></tr>
+<tr><td>Monthly (1st)</td><td>RSA refresh, country and device review, target review (only if 2 cycles have passed)</td></tr>
+</table>
+
+<h2 id="tools">Tools, and what they can and can't do</h2>
+<table>
+<tr><th>Tool</th><th>Used for</th><th>Limit</th></tr>
+<tr><td>treg Google Ads (connected)</td><td>Every report (GAQL), budget changes, Google's own keyword volumes and bids (free)</td><td><b>Can't create campaigns, pause keywords, add negatives or change goals.</b></td></tr>
+<tr><td>Google Ads Editor CSV</td><td>The agent writes campaigns, ad groups, keywords, negatives and RSAs as an Editor file. You import it and they land as drafts.</td><td>One import per change set</td></tr>
+<tr><td>treg keyword volume (DataForSEO, SE Ranking)</td><td>Fallback pricing and extra keyword ideas</td><td>About $0.002 a call</td></tr>
+<tr><td>ScrapeCreators Google ads</td><td>Competitor search copy, for angles only</td><td>Never copies competitor names into text</td></tr>
+</table>
+<p class="note">So on Google, the agent <b>reads, advises, prices and prepares</b>. Pauses, negatives and new campaigns go to you as an Editor file or a card with exact steps, until treg adds write routes. I'll ask treg for them.</p>
+
+<h2 id="build">What gets built</h2>
+<table>
+<tr><th>Phase</th><th>Build</th></tr>
+<tr><td>G1 · Measurement</td><td>
+  <ul>
+    <li>A board card with the exact goal fix: campaign-level goals on installs only, <code>owl_portal_connect_shopify</code> primary.</li>
+    <li>A check that the portal event fires (it has never recorded).</li>
+    <li>The security watch (new campaigns, domains, budgets).</li>
+  </ul>
+</td></tr>
+<tr><td>G2 · Research and pricing</td><td>
+  <ul>
+    <li>The new PushOwl seed set.</li>
+    <li>Google keyword ideas and bids per country.</li>
+    <li>Estimated CPI per keyword against the cap.</li>
+    <li>The negatives list.</li>
+  </ul>
+</td></tr>
+<tr><td>G3 · Build file</td><td>Shopify core and Brand campaigns, in the wave-one countries on desktop, as an Ads Editor file with RSAs from the winning angles, for you to import</td></tr>
+<tr><td>G4 · Optimisation loop</td><td>
+  <ul>
+    <li>Keyword and search-term verdicts.</li>
+    <li>Negative and promotion cards.</li>
+    <li>Budget shifts.</li>
+    <li>Monthly RSA refresh.</li>
+    <li>A Google section on the Goals page.</li>
+  </ul>
+</td></tr>
+<tr><td>G5 · Learning</td><td>Google themes and angles feed the same trait scores as Meta, so a message that wins on one platform is tried on the other</td></tr>
+</table>
+
+<h2 id="decide">Your calls</h2>
+<ol>
+<li><b>The possible compromise:</b> can someone with admin rights check the account's access history for Nov 2025?</li>
+<li><b>Google budget:</b> separate from Meta's $10k. I'd start at about $70 a day ($60 Shopify core, $10 brand), about $2.1k a month.</li>
+<li><b>The portal event:</b> it has never recorded a conversion. Can the PushOwl team check that <code>owl_portal_connect_shopify</code> reaches GA4 with the Google click ID? Until then, Google is judged on App Store installs only.</li>
+<li><b>Competitor test:</b> run a small capped one ($10 a day), or skip it? I'd skip it for now.</li>
+<li><b>Wave one countries:</b> IT, FR, DE and CA first, then the rest. OK?</li>
+<li><b>The Owl Portal YouTube campaigns</b> (about $50 a day, 0 portal installs tracked): keep, pause, or keep until tracking is fixed? That's your call in Google Ads.</li>
+</ol>
+<p style="font-size:13px;color:var(--muted)">Sources: Google Ads help on Target CPA (answer 6268632), the learning period (13020501), the Aug 2026 target-based bidding change (17061251), AI Max (15910187), RSAs (7684791), trademarks (adspolicy 6118) and Shopify listing tracking (shopify.dev track-listing-traffic); Optmyzr's 2026 match-type study; LocaliQ 2025 to 2026 benchmarks; Search Engine Land on ad strength. The full source list is in the research notes.</p>
+</div>
+</body>
+</html>
