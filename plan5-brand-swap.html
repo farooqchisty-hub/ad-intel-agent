@@ -37,7 +37,7 @@ a{color:var(--forest)}ol li,ul li{margin:3px 0}
   <span class="chip">For review</span><span class="chip">Plan 5 · 4 Oct 2026</span>
   <h1>Brand swap: run the agent end to end for any brand</h1>
   <p>Pick a brand in the header and everything follows it: sweeps, angles, creatives, sync, recommendations, the install engine, launches, goals, alerts and costs. Each brand brings its own ad connections, goals, guardrails and brand kit. PushOwl becomes brand number one, with no change in behaviour.</p>
-  <div class="toc"><a href="#today">Today</a><a href="#principles">Principles</a><a href="#model">Data model</a><a href="#access">Access and connections</a><a href="#backend">Backend</a><a href="#frontend">Frontend</a><a href="#onboard">Onboarding</a><a href="#scenarios">Scenarios</a><a href="#phases">Phases</a><a href="#tests">Tests</a><a href="#decide">Decisions</a></div>
+  <div class="toc"><a href="#today">Today</a><a href="#principles">Principles</a><a href="#model">Data model</a><a href="#access">Access and connections</a><a href="#backend">Backend</a><a href="#frontend">Frontend</a><a href="#onboard">Onboarding</a><a href="#scenarios">Scenarios</a><a href="#phases">Phases</a><a href="#tests">Tests</a><a href="#decide">Decisions</a><a href="#admin">Admin</a><a href="#vv">Vital Vogue</a></div>
 </div></header>
 <div class="wrap">
 
@@ -168,7 +168,8 @@ a{color:var(--forest)}ol li,ul li{margin:3px 0}
 <tr><td>Brand-safety leak (one brand's claim in another's ad)</td><td>Claims, creatives, narratives and brand guard are tenant-scoped; an isolation test seeds two brands and checks for leaks.</td></tr>
 <tr><td>A person who should only see one brand</td><td><code>tenant_users</code> roles; the switcher only lists their brands.</td></tr>
 <tr><td>Migrating PushOwl with zero downtime</td><td>Add columns with a default, backfill, switch the code, remove the default; tested on a D1 copy first.</td></tr>
-<tr><td>Brevo as the second tenant</td><td>The natural pilot. It replaces the planned Campaigns tab: the Brevo performance team gets its own brand with its own roles.</td></tr>
+<tr><td>Ecommerce brand with a purchase goal (Vital Vogue)</td><td>The ROAS goal type: purchase value from the pixel, verdicts on ROAS, catalog and purchaser audiences.</td></tr>
+<tr><td>Brevo as a later tenant</td><td>Its performance team gets its own brand and roles, which replaces the Campaigns tab idea.</td></tr>
 </tbody></table>
 
 <h2 id="phases">Phases</h2>
@@ -177,7 +178,7 @@ a{color:var(--forest)}ol li,ul li{margin:3px 0}
 <tr><td>1 · Tenant plumbing</td><td><code>tenant_id</code> migration, the context wrapper, per-tenant settings, holds, guardrails, crons and queues.</td><td>The isolation suite passes; PushOwl runs unchanged.</td></tr>
 <tr><td>2 · Connections</td><td>The connections table, encrypted secrets, health checks, partner and MCC request flows.</td><td>PushOwl moves onto the new connection records with no gap.</td></tr>
 <tr><td>3 · Frontend</td><td>The switcher, tenant settings, onboarding wizard, empty states, All brands overview.</td><td>A test brand is onboarded end to end in a dev environment.</td></tr>
-<tr><td>4 · Second brand</td><td>Brevo onboarded with holds on, then released step by step.</td><td>A week with both brands live and no leak alerts.</td></tr>
+<tr><td>4 · Second brand</td><td>Vital Vogue onboarded with holds on, the ROAS goal type and the admin dashboard, then released step by step.</td><td>A week with both brands live and no leak alerts.</td></tr>
 </tbody></table>
 
 <h2 id="tests">Tests that keep it durable</h2>
@@ -189,14 +190,31 @@ a{color:var(--forest)}ol li,ul li{margin:3px 0}
 <li><b>Migration rehearsal</b> on a D1 copy, with row counts compared before and after.</li>
 </ul>
 
-<h2 id="decide">Decisions for you</h2>
-<ol>
-<li><b>Meta access model:</b> partner access to our Business Manager (recommended), treg per brand, or the brand's own System User.</li>
-<li><b>Google access model:</b> our manager account (recommended) or treg per brand.</li>
-<li><b>A shared competitor corpus</b> across brands (recommended, cheaper) or a separate one per brand.</li>
-<li><b>Who can create brands</b>, and whether brand users are limited to their brand.</li>
-<li><b>Brevo as the pilot second brand</b> (it replaces the Campaigns tab idea).</li>
-</ol>
+<h2 id="decide">Decisions (4 Oct 2026)</h2>
+<table><thead><tr><th>Question</th><th>Decision</th></tr></thead><tbody>
+<tr><td>Meta access</td><td>Open: partner access to our Business Manager (recommended) vs each brand's own System User. treg per brand as the bridge while Meta approves our app.</td></tr>
+<tr><td>Google access</td><td><b>Our manager account (MCC).</b></td></tr>
+<tr><td>Competitor corpus</td><td>Each brand has its <b>own competitor list</b>. Only the stored ads are shared, so a competitor two brands both watch is swept once.</td></tr>
+<tr><td>Who can create brands</td><td><b>Anyone with dashboard access, no per-brand limits</b>, plus an admin dashboard where Farooq can restrict this later.</td></tr>
+<tr><td>Second brand</td><td><b>Vital Vogue</b> (shapewear), not Brevo.</td></tr>
+</tbody></table>
+
+<h2 id="admin">Admin dashboard</h2>
+<ul>
+<li><b>People:</b> everyone who has signed in through Access, their last activity, and their role (admin, operator, viewer). Default: everyone is an operator on every brand.</li>
+<li><b>Permissions you can switch off per role</b>, each one off or on: create brands; release Meta or Google holds; go live; approve budget increases; edit guardrails and autonomy; edit claims; delete or archive a brand; download data.</li>
+<li><b>Per-brand access:</b> optionally limit a person to some brands; the switcher then only lists those.</li>
+<li><b>Audit log:</b> who did what, on which brand, when, with before and after values, covering holds, approvals, guardrails, config and connections.</li>
+<li><b>Admins:</b> Farooq only to start. Enforced on the server, not just hidden in the UI.</li>
+</ul>
+
+<h2 id="vv">Vital Vogue: what changes for an ecommerce brand</h2>
+<ul>
+<li><b>The goal is a purchase, not an install.</b> The engine gets a second goal type: <b>ROAS and cost per purchase</b>, using purchase value from the pixel. The verdict maths changes from "chance cost per install beats target" to "chance ROAS beats target".</li>
+<li><b>Creatives</b> are built on its own product photos, shapewear competitors and its own claims (fit, sizing, fabric, returns), with stricter rules for body and before/after imagery under Meta's ad policies.</li>
+<li><b>Audiences</b> come from purchasers, add-to-carts and viewers on its pixel, plus catalog retargeting if it runs a Meta catalog.</li>
+<li>It starts with every hold on and goal tracking off, like PushOwl.</li>
+</ul>
 </div>
 </body>
 </html>
