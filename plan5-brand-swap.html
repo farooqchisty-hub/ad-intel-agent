@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand swap plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:800px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.big{font-size:26px;font-weight:700;color:var(--fg);display:block;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="chip">For review</span><span class="chip">Plan 5 · 4 Oct 2026</span>
+  <h1>Brand swap: run the agent end to end for any brand</h1>
+  <p>Pick a brand in the header and everything follows it: sweeps, angles, creatives, sync, recommendations, the install engine, launches, goals, alerts and costs. Each brand brings its own ad connections, goals, guardrails and brand kit. PushOwl becomes brand number one, with no change in behaviour.</p>
+  <div class="toc"><a href="#today">Today</a><a href="#principles">Principles</a><a href="#model">Data model</a><a href="#access">Access and connections</a><a href="#backend">Backend</a><a href="#frontend">Frontend</a><a href="#onboard">Onboarding</a><a href="#scenarios">Scenarios</a><a href="#phases">Phases</a><a href="#tests">Tests</a><a href="#decide">Decisions</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="today">Where it stands today<small>One brand, hard-coded. There is no tenant anywhere.</small></h2>
+<table><thead><tr><th>What</th><th>Where it's hard-coded</th></tr></thead><tbody>
+<tr><td>Goals, ad account, page, pixel, install event, Google customer</td><td><code>goals.js</code> GOAL_DEFAULTS, <code>sync.js</code>, <code>measure.js</code>, <code>draft.js</code></td></tr>
+<tr><td>Account lock (which account writes may touch)</td><td><code>safety.js</code></td></tr>
+<tr><td>Ads Manager and Google links, account id in diagnosis</td><td><code>kanban.js</code>, <code>views-ops.js</code></td></tr>
+<tr><td>Brand voice, facts, claims, narratives</td><td><code>generate.js</code> BRAND and CONSTITUTION, <code>seed/claims.sql</code>, <code>seed/narratives.sql</code>, <code>brand/BRAND.md</code>, planner prompts</td></tr>
+<tr><td>Competitor blocklists, allowed names and domains</td><td><code>brandguard.js</code>, <code>gsearch.js</code></td></tr>
+<tr><td>Weekly narratives n1 to n4, exclusions (MagicFit)</td><td><code>index.js</code> cron, <code>sync.js</code></td></tr>
+<tr><td>Holds, guardrails, autonomy, targets</td><td>global <code>settings</code> rows (one set for everyone)</td></tr>
+<tr><td>treg token and cost tag</td><td>one Worker secret, <code>customer=brevo-ecom</code></td></tr>
+</tbody></table>
+<p class="note">Note: the <code>brands</code> table today means <b>competitors</b>, not our brand. The new concept is called a <b>tenant</b> to avoid the clash.</p>
+
+<h2 id="principles">Principles<small>What makes it durable rather than a find-and-replace.</small></h2>
+<div class="grid">
+<div class="card good"><h4>Config in the database, not the code</h4><p>Every brand fact lives in tenant config. A CI check fails the build if a PushOwl id or name appears in code again.</p></div>
+<div class="card good"><h4>Isolation fails closed</h4><p>Every query and every write carries a tenant. A missing tenant is an error, never "all". The account lock reads the tenant's own accounts.</p></div>
+<div class="card good"><h4>Holds on by default</h4><p>A new brand starts with Meta and Google held, goal tracking off and writes read-only, until you switch each on.</p></div>
+<div class="card good"><h4>Connections are checked, not trusted</h4><p>Every sync tests each connection's reach and permissions. A lost permission blocks writes for that brand and raises an alert.</p></div>
+<div class="card good"><h4>No behaviour change for PushOwl</h4><p>Phase 0 moves PushOwl's values into tenant config and diffs the outputs before and after.</p></div>
+<div class="card good"><h4>Fair queues</h4><p>Jobs carry the tenant and run with per-tenant limits, so one brand's backlog can't starve another (the head-of-line trap we already hit).</p></div>
+</div>
+
+<h2 id="model">Data model<small>D1, migrated in place.</small></h2>
+<h3>New tables</h3>
+<table><thead><tr><th>Table</th><th>Holds</th></tr></thead><tbody>
+<tr><td><code>tenants</code></td><td>id (slug), name, status (onboarding, active, paused, archived), product, conversion definition (install, purchase, lead, signup), currency, timezone, locale, created_by</td></tr>
+<tr><td><code>tenant_config</code></td><td>tenant_id, key, JSON value: goals (target, ceiling, monthly budget, countries), meta ids, google ids, GA4 property, landing pages, brand kit (logo, colours, fonts, voice), pronunciation notes, exclusion rules, alert recipients, Slack webhook</td></tr>
+<tr><td><code>tenant_settings</code></td><td>Replaces global <code>settings</code>: holds, guardrails, autonomy, targets, kill switch, campaign targets, goal tracking, per tenant</td></tr>
+<tr><td><code>connections</code></td><td>tenant_id, provider (meta, google_ads, ga4, treg, scrapecreators, shopify), mode, account ids, scopes, credential reference, status, last check, last error</td></tr>
+<tr><td><code>secrets</code></td><td>Encrypted credentials (AES-GCM with a Worker master key). Never returned to the browser.</td></tr>
+<tr><td><code>tenant_watchlist</code></td><td>tenant_id, competitor brand id, why. Which competitors each tenant tracks.</td></tr>
+<tr><td><code>tenant_users</code></td><td>tenant_id, email, role (owner, operator, viewer). Who can see or act on each brand.</td></tr>
+</tbody></table>
+<h3>Existing tables</h3>
+<ul>
+<li><b>Get <code>tenant_id</code> (NOT NULL, default <code>pushowl</code> during migration, then the default is removed):</b> recommendations, perf_daily, ad_objects, agent_objects, action_log, write_log, alerts, verdicts, events, costs, cost_history, creatives, batches, narratives, narrative_angles, claims, storyboards, learnings, traits, concept_history, batches_plan, gsearch_verdicts, gsearch_known, gsearch_keywords, recommendations_google_archive.</li>
+<li><b>Stay shared:</b> the competitor ad corpus (ads, ad_assets, brands-as-competitors, angles mined from the corpus). Sweeping a competitor once serves every tenant that watches it, which cuts cost. Framework mining runs per tenant over its own watchlist.</li>
+<li><b>Indexes:</b> every hot query gets <code>(tenant_id, ...)</code>. Unique keys that could collide across tenants gain <code>tenant_id</code>.</li>
+<li><b>R2:</b> new keys under <code>t/&lt;tenant&gt;/</code>; existing keys stay where they are, recorded on the row.</li>
+</ul>
+
+<h2 id="access">Access and connections<small>The part that decides how durable this is.</small></h2>
+<table><thead><tr><th>Platform</th><th>Options</th><th>Recommendation</th></tr></thead><tbody>
+<tr><td>Meta</td><td>(A) a treg team per brand, which signs in once; (B) the brand gives our Business Manager <b>partner access</b> to its ad account, pixel and page, and we use our own System User token; (C) the brand creates a System User and gives us its token.</td><td><b>B</b> for durability: one long-lived token from our Business Manager covers every brand that grants partner access, and brands can revoke it from their side. A stays the fallback because it works today with no Meta app review. C is the least preferred, because it puts their token in our hands.</td></tr>
+<tr><td>Google Ads</td><td>(A) treg per brand; (B) our <b>manager account (MCC)</b> sends a link request, the brand accepts, and one OAuth refresh token plus our developer token reaches every linked account.</td><td><b>B</b>. It's the standard agency model. Writes still go through the per-tenant account lock.</td></tr>
+<tr><td>GA4</td><td>The brand adds our service account email as a Viewer on its property.</td><td>Service account, read only.</td></tr>
+<tr><td>Competitor data</td><td>ScrapeCreators through treg, shared.</td><td>Shared, with cost tagged to the tenant that asked.</td></tr>
+<tr><td>Image and video generation</td><td>Replicate, OpenRouter, treg.</td><td>Shared keys, with the cost ledger tagged by tenant and a monthly generation cap per tenant.</td></tr>
+</tbody></table>
+<div class="flow"><span>Request access</span><i>→</i><span>Brand accepts</span><i>→</i><span>Health check: reach + scopes</span><i>→</i><span>Read sync</span><i>→</i><span>You release holds</span><i>→</i><span>Writes allowed</span></div>
+<p class="note"><b>Health check per sync:</b> can we read the account, the pixel and the conversion event; do we have write scope; does the token expire soon. Any failure sets <code>writes_blocked</code> for that tenant, raises an alert, and shows a Reconnect button.</p>
+
+<h2 id="backend">Backend<small>Cloudflare Worker, D1, R2, Queues. Everything still runs in the cloud.</small></h2>
+<h3>Tenant context</h3>
+<ul>
+<li>Every request resolves a tenant from the <code>x-tenant</code> header (sent by the UI), checked against <code>tenant_users</code> for the signed-in Access email. If no tenant resolves, the request returns 400.</li>
+<li>The tenant is stored in AsyncLocalStorage (already used by the cost ledger), so deep code can read it without threading a parameter through every call.</li>
+<li>A <code>db(env)</code> wrapper adds <code>tenant_id</code> to inserts and refuses a SELECT, UPDATE or DELETE on a scoped table that doesn't filter on it. A unit test runs every query string through the same check.</li>
+</ul>
+<h3>Crons and queues</h3>
+<ul>
+<li><code>scheduled()</code> lists active tenants and sends one sync and one recommend message per tenant, staggered so they don't all start at once. Every message carries <code>tenantId</code>; consumers set the context first.</li>
+<li>Run times follow each tenant's timezone (default 09:00 and 17:00 local).</li>
+<li>Per-tenant concurrency: generation jobs check a per-tenant in-flight count, so one brand's weekly batch can't hold up another's sync.</li>
+</ul>
+<h3>What becomes tenant-aware</h3>
+<table><thead><tr><th>Module</th><th>Change</th></tr></thead><tbody>
+<tr><td>safety.js</td><td>Account lock reads the tenant's accounts; holds, caps, kill switch and <code>writes_blocked</code> are per tenant.</td></tr>
+<tr><td>treg.js</td><td>Token per tenant (from <code>connections</code>), cost tag = tenant.</td></tr>
+<tr><td>sync.js, measure.js</td><td>Account ids, conversion actions and exclusion rules come from config.</td></tr>
+<tr><td>goals.js, engine.js, recommend.js</td><td>Targets, ceiling, budget, countries and the conversion event come from tenant settings; the statistical prior uses the tenant's own history.</td></tr>
+<tr><td>generate.js, storyboard.js, kanban.js prompts</td><td>Brand facts, voice, claims and pronunciation are injected from config; nothing brand-specific stays in the prompt text.</td></tr>
+<tr><td>brandguard.js, gsearch.js</td><td>Blocked and allowed names and domains per tenant.</td></tr>
+<tr><td>launch.js, golive.js, audiences.js</td><td>Campaign naming, structure and audiences per tenant; the "AGENT ·" prefix includes the tenant.</td></tr>
+<tr><td>economics.js, costs.js</td><td>Ledger and baseline per tenant; a generation spend cap per tenant.</td></tr>
+<tr><td>alerts</td><td>Recipients and Slack webhook per tenant.</td></tr>
+</tbody></table>
+<h3>API</h3>
+<ul>
+<li><code>GET/POST /api/tenants</code>: list, create (owner only), pause, archive.</li>
+<li><code>GET/PUT /api/tenant/config</code>: the config sections, validated against a schema (types, required ids, formats).</li>
+<li><code>POST /api/connections/:provider/request</code>, <code>/check</code>, <code>/revoke</code>.</li>
+<li>Every existing route works unchanged and is scoped by the header.</li>
+</ul>
+
+<h2 id="frontend">Frontend<small>The switch has to be obvious, because acting on the wrong brand is the main risk.</small></h2>
+<ul>
+<li><b>Brand switcher</b> in the header: name, logo and a connection dot per platform. The choice is remembered per person and sent on every API call. A coloured band under the header shows the brand at all times.</li>
+<li><b>Any action that writes</b> names the brand and the account in its confirm dialog ("Pause ad X on PushOwl · act_…").</li>
+<li><b>New tenant settings page:</b> connections and their health, holds, guardrails and autonomy, goals, alert recipients, users and roles.</li>
+<li><b>Hard-coded links</b> (Ads Manager, Google Ads) are built from config.</li>
+<li><b>Empty states</b> for a new brand: "No data yet: connect Meta", with the next step.</li>
+<li><b>An "All brands" overview</b> for whoever runs several brands: spend, cost per conversion against target, open P0 cards and connection health per brand.</li>
+</ul>
+
+<h2 id="onboard">Onboarding wizard<small>About 15 minutes for the brand, most of it waiting for access to be accepted.</small></h2>
+<ol>
+<li><b>Basics:</b> name, website, product, what a conversion is (install, purchase, lead, signup), currency, timezone, markets and countries.</li>
+<li><b>Meta:</b> Business Manager id → we send a partner request → the brand accepts → we pick up the ad account, page, Instagram account, pixel and conversion event.</li>
+<li><b>Google:</b> customer id → MCC link request → accept → we pick up the conversion actions and flag ones that are secondary or have never fired (the PushOwl lesson).</li>
+<li><b>GA4:</b> property id plus a viewer grant to our service account.</li>
+<li><b>Brand kit:</b> logo, colours, fonts and voice, plus product photos and real UI screenshots from the site or app listing.</li>
+<li><b>Claims:</b> facts they've cleared, each with its source; anything else renders as a visible placeholder.</li>
+<li><b>Competitors:</b> picked from the shared corpus, or swept fresh.</li>
+<li><b>Goals and guardrails:</b> target, ceiling, budget, autonomy; defaults come from 90 days of history once synced.</li>
+<li><b>Review:</b> a checklist of what works and what's missing. The brand is activated with holds on.</li>
+</ol>
+
+<h2 id="scenarios">Scenarios<small>Every case the design has to handle.</small></h2>
+<table><thead><tr><th>Scenario</th><th>What happens</th></tr></thead><tbody>
+<tr><td>Full access (Meta, Google, GA4)</td><td>Every feature, holds released one by one by you.</td></tr>
+<tr><td>Only one ad platform</td><td>The other platform's tabs show a Connect state; its crons skip; no cards are raised for it.</td></tr>
+<tr><td>Read-only access</td><td>Recommendations and analysis only; executing buttons are disabled and say why.</td></tr>
+<tr><td>Conversion tracking broken or missing</td><td>Like Google today: a P0 tracking card, a per-platform hold, and the goal engine off until conversions fire.</td></tr>
+<tr><td>Non-Shopify or non-install business</td><td>Conversion definition and goal label come from config (cost per purchase, lead or signup).</td></tr>
+<tr><td>Several ad accounts per brand (regions)</td><td>Config holds a list; the account lock allows exactly that list; reporting rolls up or splits by account.</td></tr>
+<tr><td>An agency running many brands</td><td>Partner and MCC access, the All brands overview, and roles per brand.</td></tr>
+<tr><td>Same competitor watched by two brands</td><td>Swept once into the shared corpus; each brand mines its own framework from it.</td></tr>
+<tr><td>Token expires or access is revoked</td><td>The health check fails: writes blocked, alert, a Reconnect button. Reads retry and fall back to the last synced data.</td></tr>
+<tr><td>Switching brand mid-action</td><td>Every action carries the card's tenant; the server refuses a card that doesn't belong to the tenant in the request.</td></tr>
+<tr><td>Brand paused or offboarded</td><td>Holds on, crons skip, data kept; an export, then deletion on request.</td></tr>
+<tr><td>A brand runs up generation cost</td><td>A per-tenant monthly cap stops new generation and alerts; the ledger shows spend per brand.</td></tr>
+<tr><td>Different currency, timezone or language</td><td>Stored per tenant; reporting converts currency; runs follow local time; copy is generated in the tenant's locale.</td></tr>
+<tr><td>Brand-safety leak (one brand's claim in another's ad)</td><td>Claims, creatives, narratives and brand guard are tenant-scoped; an isolation test seeds two brands and checks for leaks.</td></tr>
+<tr><td>A person who should only see one brand</td><td><code>tenant_users</code> roles; the switcher only lists their brands.</td></tr>
+<tr><td>Migrating PushOwl with zero downtime</td><td>Add columns with a default, backfill, switch the code, remove the default; tested on a D1 copy first.</td></tr>
+<tr><td>Brevo as the second tenant</td><td>The natural pilot. It replaces the planned Campaigns tab: the Brevo performance team gets its own brand with its own roles.</td></tr>
+</tbody></table>
+
+<h2 id="phases">Phases</h2>
+<table><thead><tr><th>Phase</th><th>What ships</th><th>Proof it worked</th></tr></thead><tbody>
+<tr><td>0 · Extract</td><td>Every PushOwl value moves into tenant config for <code>pushowl</code>; code reads config. The CI grep check is added.</td><td>Recommendations, engine verdicts and prompts are identical before and after on the same day's data.</td></tr>
+<tr><td>1 · Tenant plumbing</td><td><code>tenant_id</code> migration, the context wrapper, per-tenant settings, holds, guardrails, crons and queues.</td><td>The isolation suite passes; PushOwl runs unchanged.</td></tr>
+<tr><td>2 · Connections</td><td>The connections table, encrypted secrets, health checks, partner and MCC request flows.</td><td>PushOwl moves onto the new connection records with no gap.</td></tr>
+<tr><td>3 · Frontend</td><td>The switcher, tenant settings, onboarding wizard, empty states, All brands overview.</td><td>A test brand is onboarded end to end in a dev environment.</td></tr>
+<tr><td>4 · Second brand</td><td>Brevo onboarded with holds on, then released step by step.</td><td>A week with both brands live and no leak alerts.</td></tr>
+</tbody></table>
+
+<h2 id="tests">Tests that keep it durable</h2>
+<ul>
+<li><b>Isolation suite:</b> seed brands A and B, run every route and job as A, and assert nothing of B's was read or written.</li>
+<li><b>Write-path tests:</b> a write against B's account from A's context must be refused.</li>
+<li><b>Query lint:</b> every SQL string touching a scoped table must filter on <code>tenant_id</code>.</li>
+<li><b>Hard-code check:</b> a CI grep for account ids, pixel ids, "PushOwl" and "Brevo" in <code>src/</code>.</li>
+<li><b>Migration rehearsal</b> on a D1 copy, with row counts compared before and after.</li>
+</ul>
+
+<h2 id="decide">Decisions for you</h2>
+<ol>
+<li><b>Meta access model:</b> partner access to our Business Manager (recommended), treg per brand, or the brand's own System User.</li>
+<li><b>Google access model:</b> our manager account (recommended) or treg per brand.</li>
+<li><b>A shared competitor corpus</b> across brands (recommended, cheaper) or a separate one per brand.</li>
+<li><b>Who can create brands</b>, and whether brand users are limited to their brand.</li>
+<li><b>Brevo as the pilot second brand</b> (it replaces the Campaigns tab idea).</li>
+</ol>
+</div>
+</body>
+</html>
