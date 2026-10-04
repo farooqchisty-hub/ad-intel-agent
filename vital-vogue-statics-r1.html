@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vital Vogue Statics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF7F5;--card:#fff;--ink:#2E2A39;--ink2:#6B6577;--line:#EADFDA;--plum:#9B046F;--blush:#F6EDEA;--warn:#B45309;--warnbg:#FEF3C7;--ok:#166534;--okbg:#DCFCE7;--bad:#991B1B;--badbg:#FEE2E2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17141C;--card:#221E29;--ink:#F3EEF2;--ink2:#B3ABBC;--line:#3A3342;--plum:#E06AB8;--blush:#2C2531;--warn:#FBBF24;--warnbg:#3B2F12;--ok:#86EFAC;--okbg:#14301F;--bad:#FCA5A5;--badbg:#3A1717}}
+:root[data-theme="dark"]{--bg:#17141C;--card:#221E29;--ink:#F3EEF2;--ink2:#B3ABBC;--line:#3A3342;--plum:#E06AB8;--blush:#2C2531;--warn:#FBBF24;--warnbg:#3B2F12;--ok:#86EFAC;--okbg:#14301F;--bad:#FCA5A5;--badbg:#3A1717}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 16px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.01em}.lede{color:var(--ink2);max-width:780px;margin:0 0 18px}
+.box{background:var(--blush);border-left:4px solid var(--plum);padding:14px 16px;border-radius:8px;margin:0 0 24px;max-width:880px}.box ul{margin:6px 0 0;padding-left:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--blush)}
+.card header{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:12px 14px 0}
+.card h3{font-size:18px;margin:8px 14px 4px;line-height:1.3}
+.sid{font-weight:700;color:var(--plum);margin-right:2px}
+.tag{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--blush);font-weight:500}.tag.soft{background:transparent;border:1px solid var(--line);color:var(--ink2)}
+.badge{font-size:12px;padding:2px 8px;border-radius:999px;font-weight:600}.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:var(--badbg);color:var(--bad)}.badge.warn{background:var(--warnbg);color:var(--warn)}
+.qa,.qa-why,.note{margin:4px 14px 10px;font-size:13.5px;color:var(--ink2)}.note{color:var(--ink)}
+.flags{margin:0 14px 14px;background:var(--warnbg);color:var(--warn);border-radius:8px;padding:8px 10px;font-size:13px}.flags ul{margin:4px 0 0;padding-left:18px}
+a{color:var(--plum)}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<h1>Vital Vogue: round 1 statics</h1>
+<p class="lede">The 10 approved concepts, rendered on 4 Oct 2026. Same IDs as the <a href="vital-vogue-concepts.html">concept review</a>. Tap an ad to open it full size. 7 of 10 passed the agent's own quality check.</p>
+<div class="box"><b>Notes for your review</b><ul>
+<li>The "Real product" ads show Vital Vogue's own catalogue photos. Every other ad is a photographed scene made by the image model, so any garment or prop in it is a stand-in, not the actual product (S10's lift strips, for example). The logo is traced from the brand's own.</li>
+<li>The canvas takes the colour of the photo's backdrop so the two never show a seam. Where the image model shot a warmer backdrop than brand blush (S07 came out terracotta), the ad follows it. Say if you'd rather lock every canvas to plum or blush.</li>
+<li>S02, S05, S10 carry lines nobody has confirmed (a discount, a price, a deadline). They're rendered as you approved, and marked so none can launch until the line is confirmed or changed.</li>
+<li>Nothing has been sent to Meta. There is no ad account connected and Meta is held.</li></ul></div>
+<div class="grid">
+<article class="card" id="S01">
+  <a href="https://cpma-agent.pages.dev/api/img2/5d2bf731-478" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/5d2bf731-478?w=900" alt="From baraat to breakfast, it holds."></a>
+  <header><span class="sid">S01</span><span class="badge ok">QA passed</span><span class="tag">Real product</span><span class="tag soft">Made for Indian outfits</span></header>
+  <h3>From baraat to breakfast, it holds.</h3>
+  <p class="qa">Design 88 · Stop power 62. First glance: The black dress centered on the white card</p>
+  
+</article>
+<article class="card" id="S02">
+  <a href="https://cpma-agent.pages.dev/api/img2/0faa0414-c42" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/0faa0414-c42?w=900" alt="Smaller price, bigger wedding season."></a>
+  <header><span class="sid">S02</span><span class="badge bad">QA failed</span><span class="badge warn">Can't launch until confirmed</span><span class="tag">Object metaphor</span><span class="tag soft">The occasion</span></header>
+  <h3>Smaller price, bigger wedding season.</h3>
+  <p class="qa">Design 91 · Stop power 34. First glance: Smaller price, bigger wedding season.</p>
+  <p class="qa-why">Why it failed: stop power 34</p><div class="flags"><b>Rules check</b><ul><li>Price claim not in the claims ledger (the only live offer is Buy 1 Get 1)</li></ul></div>
+</article>
+<article class="card" id="S03">
+  <a href="https://cpma-agent.pages.dev/api/img2/bcd919c3-120" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/bcd919c3-120?w=900" alt="First photo, saree finally sits right."></a>
+  <header><span class="sid">S03</span><span class="badge ok">QA passed</span><span class="tag">Occasion moment</span><span class="tag soft">Fits the outfit</span></header>
+  <h3>First photo, saree finally sits right.</h3>
+  <p class="qa">Design 89 · Stop power 57. First glance: The woman in the maroon saree, seen from behind</p>
+  
+</article>
+<article class="card" id="S04">
+  <a href="https://cpma-agent.pages.dev/api/img2/8e70934b-a04" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/8e70934b-a04?w=900" alt="Skip the petticoat, wear the fix."></a>
+  <header><span class="sid">S04</span><span class="badge ok">QA passed</span><span class="tag">Object metaphor</span><span class="tag soft">Creator try-on</span></header>
+  <h3>Skip the petticoat, wear the fix.</h3>
+  <p class="qa">Design 91 · Stop power 63. First glance: The brown shoe-like garment edge and the scattered safety pins</p>
+  
+</article>
+<article class="card" id="S05">
+  <a href="https://cpma-agent.pages.dev/api/img2/51703bb1-028" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/51703bb1-028?w=900" alt="Costs ₹799, looks like ₹15,000."></a>
+  <header><span class="sid">S05</span><span class="badge ok">QA passed</span><span class="badge warn">Can't launch until confirmed</span><span class="tag">Occasion moment</span><span class="tag soft">Instant shape</span></header>
+  <h3>Costs ₹799, looks like ₹15,000.</h3>
+  <p class="qa">Design 91 · Stop power 64. First glance: The bright magenta lehenga swirling across the top half</p>
+  <div class="flags"><b>Rules check</b><ul><li>₹15,000 is not a Vital Vogue price: label it as illustrative or cut it</li></ul></div>
+</article>
+<article class="card" id="S06">
+  <a href="https://cpma-agent.pages.dev/api/img2/532eb433-f12" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/532eb433-f12?w=900" alt="Softer than the petticoat you remember."></a>
+  <header><span class="sid">S06</span><span class="badge bad">QA failed</span><span class="tag">Occasion moment</span><span class="tag soft">Creator try-on</span></header>
+  <h3>Softer than the petticoat you remember.</h3>
+  <p class="qa">Design 92 · Stop power 52. First glance: Softer than the petticoat you remember.</p>
+  <p class="qa-why">Why it failed: stop power 52</p>
+</article>
+<article class="card" id="S07">
+  <a href="https://cpma-agent.pages.dev/api/img2/784b5510-122" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/784b5510-122?w=900" alt="9 pm sangeet, still smooth."></a>
+  <header><span class="sid">S07</span><span class="badge ok">QA passed</span><span class="tag">Real product</span><span class="tag soft">Instant shape</span></header>
+  <h3>9 pm sangeet, still smooth.</h3>
+  <p class="qa">Design 88 · Stop power 62. First glance: 9 pm sangeet, still smooth.</p>
+  
+</article>
+<article class="card" id="S08">
+  <a href="https://cpma-agent.pages.dev/api/img2/1e15b5a3-fe0" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/1e15b5a3-fe0?w=900" alt="By the pheras, it&#x27;s forgotten."></a>
+  <header><span class="sid">S08</span><span class="badge ok">QA passed</span><span class="tag">Offer hero</span><span class="tag soft">Lower-belly confidence</span></header>
+  <h3>By the pheras, it&#x27;s forgotten.</h3>
+  <p class="qa">Design 91 · Stop power 58. First glance: The large headline: &quot;By the pheras, it&#x27;s forgotten.&quot;</p>
+  
+</article>
+<article class="card" id="S09">
+  <a href="https://cpma-agent.pages.dev/api/img2/ad932b62-445" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/ad932b62-445?w=900" alt="At your first photo, nothing shifts."></a>
+  <header><span class="sid">S09</span><span class="badge bad">QA failed</span><span class="tag">Real product</span><span class="tag soft">Made for Indian outfits</span></header>
+  <h3>At your first photo, nothing shifts.</h3>
+  <p class="qa">Design 84 · Stop power 48. First glance: The large white product card with a roll of body tape</p>
+  <p class="qa-why">Why it failed: stop power 48</p><p class="note">Product swapped from the adhesive bra to the breast lift tape: every adhesive-bra photo on the site is worn on bare-chested models, which this story line rules out. Same promise, invisible lift under a backless blouse.</p>
+</article>
+<article class="card" id="S10">
+  <a href="https://cpma-agent.pages.dev/api/img2/b6c76509-8f0" target="_blank" rel="noopener"><img loading="lazy" src="https://cpma-agent.pages.dev/api/img2/b6c76509-8f0?w=900" alt="The offer ends before baraat."></a>
+  <header><span class="sid">S10</span><span class="badge ok">QA passed</span><span class="badge warn">Can't launch until confirmed</span><span class="tag">Offer hero</span><span class="tag soft">Invisible under clothes</span></header>
+  <h3>The offer ends before baraat.</h3>
+  <p class="qa">Design 88 · Stop power 63. First glance: The large headline: “The offer ends before baraat.”</p>
+  <p class="note">Earlier render, failed only on a scoring glitch: <a href="https://cpma-agent.pages.dev/api/img2/7fac6e48-a19" target="_blank" rel="noopener">open it</a>, in case you prefer it.</p><div class="flags"><b>Rules check</b><ul><li>Deadline or scarcity claim: no end date or stock limit is confirmed</li></ul></div>
+</article></div>
+</div></body></html>
