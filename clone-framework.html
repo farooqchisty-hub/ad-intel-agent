@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faithful Clone Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:820px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.big{font-size:26px;font-weight:700;color:var(--fg);display:block;margin:2px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}
+.decision{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--forest);border-radius:0 12px 12px 0;padding:12px 15px;margin:10px 0}
+.decision b.rec{color:var(--forest)}
+</style>
+</head><body>
+<header><div class="wrap">
+  <span class="chip">For approval</span><span class="chip">5 Oct 2026</span><span class="chip">All brands: Vital Vogue is the test bed</span>
+  <h1>Faithful Clone Framework</h1>
+  <p>How the agent turns one proven competitor ad into the same ad for our brand: same layout, type, photography and rhythm; our product, logo, colours, words and a new person. Built from a forensic review of every clone the agent has made (21 for Vital Vogue, 196 for PushOwl), Farooq's template libraries (the 140, the 459 and the 142 reel templates), the Winning Statics pipeline and current research.</p>
+  <div class="toc"><a href="#why">Why it failed</a><a href="#define">What faithful means</a><a href="#pipeline">The pipeline</a><a href="#gate">The QA gate</a><a href="#formats">Format recipes</a><a href="#build">Build plan</a><a href="#decide">Decisions for you</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="why">Why round 2 failed<small>The scene copies well. Everything that makes an ad that ad does not.</small></h2>
+<div class="grid">
+<div class="card good"><h4>Scene and camera</h4><span class="big">4.8 / 5</span><p>The image model reproduces the set, props, crop and light almost exactly.</p></div>
+<div class="card bad"><h4>Typography</h4><span class="big">0.7 / 5</span><p>Serif, script, capitals, colours and treatments all flattened into one sans font in sentence case.</p></div>
+<div class="card bad"><h4>Copy structure</h4><span class="big">1.7 / 5</span><p>A price anchor became an offer, part labels became adjectives, caption lines appeared where the ad had none.</p></div>
+<div class="card bad"><h4>New person</h4><span class="big">0 of 4</span><p>Every source face came back, because the face was in the reference image.</p></div>
+</div>
+<table style="margin-top:14px"><thead><tr><th>Root cause</th><th>Evidence</th><th>Fix in this framework</th></tr></thead><tbody>
+<tr><td>The source is read at 600 px</td><td>The sweep caches Meta's resized image; one source file was 12 KB</td><td>Store the original image; refuse sources under 1,000 px wide</td></tr>
+<tr><td>Nothing measures the type</td><td>The reader records text and a rough box only: no font class, weight, case, colour or treatment. Vision models identify fonts correctly only about 24 to 31% of the time (published benchmarks)</td><td>Measure type with code, check the measurement by re-drawing the source's own words</td></tr>
+<tr><td>New lines slide into the wrong boxes</td><td>Lines are bound to boxes by list position; dropping one line shifts the rest. Hit 9 of 21 Vital Vogue renders</td><td>Every line is bound to a slot id; a slot can be emptied, never shifted</td></tr>
+<tr><td>The post caption leaks onto the ad</td><td>The engine is handed the ad's caption and writes it into the image; 33 of 70 PushOwl clones carry lines that have no place on the source</td><td>Slots come only from text that is actually on the source image</td></tr>
+<tr><td>Our type system cannot draw the source's type</td><td>One sans font per brand, forced sentence case, a pill for every CTA, a chip for every label, no strikethrough, rules, outlines or rotation; 6 of 10 sources used serif or script</td><td>A type renderer driven by the measured spec, with a curated font library by class</td></tr>
+<tr><td>The rebuild gets contradictory orders</td><td>"Keep the scene" and also "recolour to the brand", "remove every badge and icon", "this garment IS our product"</td><td>Swap only an allow-list; keep every other element, including icons and type walls</td></tr>
+<tr><td>The judge scores the wrong thing</td><td>One vision call scores "same layout and objects", which copying satisfies. Its composition gate fired 0 times in 21 Vital Vogue renders and 0 of 126 PushOwl remasters. It never checks type, colour roles, product or line count</td><td>A gate that measures each dimension against the spec in code; a vision model can only veto</td></tr>
+</tbody></table>
+<div class="note">Farooq's own libraries hit the same wall. The 459 and 142 reel templates define a strict source contract (a box per element, exact counts, exact fonts and swatches, 13 weighted pixel-match dimensions where one failure blocks), but none of those measured fields were ever filled, so every one is blocked. The PushOwl campaign's QA never compared output to source: the AG1 ad passed with design 5/5 while switching serif to sans and 5 ingredient rows to 6. The one run that passed cleanly, the September "source-locked v4" pilot (12 of 12 on 7 gates, 0 mismatched product pixels across 50,548), drew the type and placed the product in code instead of asking an image model to do it.</div>
+
+<h2 id="define">What faithful means<small>Same ad, different brand. Written as rules a computer can check.</small></h2>
+<table><thead><tr><th>Stays the same (measured)</th><th>Changes (allow-list only)</th></tr></thead><tbody>
+<tr><td>
+<ul>
+<li>Canvas, crop and every element's box (layout grid)</li>
+<li>The inventory: how many products, people, text blocks, icons, badges, rules and panels</li>
+<li>Reading order and stacking order</li>
+<li>Typography: font class (serif, sans, script, condensed, slab), weight, italic, case, size ratios between lines, tracking, alignment, line breaks, colour role and treatment (strikethrough, outline, highlight, repeated wall, rotation)</li>
+<li>Photography: camera angle, lens feel, light direction and softness, set and props, pose and framing</li>
+<li>Colour relationships: which areas are light or dark, which element is the accent</li>
+<li>Copy architecture: each slot keeps its job (a price anchor stays a price anchor, a part label stays a part label), its line count and roughly its length</li>
+</ul></td><td>
+<ul>
+<li>The product: our real packshot or catalogue garment, never one the model invents</li>
+<li>The logo and any brand wordmark, in the source's logo position (or none if the source had none)</li>
+<li>The source's own brand colours, swapped to ours by role (see decision D1)</li>
+<li>The words: new copy per slot, from our claims ledger only</li>
+<li>The person: a new identity, same pose, build, styling and crop</li>
+<li>Nothing else. Any other difference is a defect.</li>
+</ul></td></tr>
+</tbody></table>
+
+<h2 id="pipeline">The pipeline<small>Parse, specify, draw, verify. Image models draw only the photograph; code draws type, product and graphics.</small></h2>
+<div class="flow"><span>1 Intake</span><i>→</i><span>2 Clone Spec</span><i>→</i><span>3 Swap Plan</span><i>→</i><span>4 Plate</span><i>→</i><span>5 Assets</span><i>→</i><span>6 Type and graphics</span><i>→</i><span>7 Gate</span><i>→</i><span>8 Approval</span></div>
+<table><thead><tr><th>Stage</th><th>What it does</th><th>Output</th><th>Who</th></tr></thead><tbody>
+<tr><td><b>1 Intake</b></td><td>Fetch the original image (not Meta's resize). Score proof (days live, variants, spend share). Classify the format (section 5). Refuse sources the image models can't render (lingerie worn on a body) or that are under 1,000 px.</td><td>Qualified source with its format class</td><td>Code</td></tr>
+<tr><td><b>2 Clone Spec</b></td><td>Deconstruct the source into layers and measurements:
+<ul><li>Text: two OCR engines, line by line, with boxes and line breaks</li>
+<li>Elements: segmentation masks and boxes for product, person, props, icons, badges, panels, rules</li>
+<li>Type, measured in code per line: cap height, stroke width (weight), tracking, leading, case, alignment, fill colour, treatments; font class from a classifier, then the nearest licensed font</li>
+<li>Colour roles with hex values; pose skeleton, depth map and lighting notes for people and scenes</li>
+<li>Copy architecture: each slot's job, line count and character budget</li></ul>
+<b>Self-test:</b> re-draw the source's own words from the spec and compare letter shapes. If they don't match, the spec is wrong and the clone stops.</td><td>Clone Spec JSON (extends Farooq's <code>visual_source_contract</code>, with every field actually measured)</td><td>Code plus vision model; human approves once per source, then it is a reusable template</td></tr>
+<tr><td><b>3 Swap Plan</b></td><td>Map only the allow-list: product to our packshot, logo to ours, the source's brand colours to ours by role, each slot to new copy within its character budget and job, the person to a casting reference. Lines are bound to slot ids. Claims come from the ledger only; a slot with no true equivalent is flagged for a human, never invented or repurposed.</td><td>Swap Plan JSON</td><td>Language model; human approves copy, claims and casting</td></tr>
+<tr><td><b>4 Plate</b></td><td>Generate the photograph with no text in it. Inputs: the source's structure (edges, depth, pose skeleton, box wireframe), never the source's face or product; the casting reference for people; our product reference for worn garments. 4 candidates, then repair box by box.</td><td>Text-free plate</td><td>Image model chosen by bake-off (stage A2)</td></tr>
+<tr><td><b>5 Assets</b></td><td>Off-body products: our real packshot is cut out and placed in its box with pixels locked; only shadows and contact are blended. Logo from the brand file into the source's logo box.</td><td>Plate with product and logo</td><td>Code</td></tr>
+<tr><td><b>6 Type and graphics</b></td><td>Draw every word in code from the spec: font class, weight, case, size, colour, alignment and treatment. Type walls are drawn as a repeating pattern. Callout lines and icons are drawn as vectors anchored to the product's parts. Type never shrinks more than 5%; if copy doesn't fit, the copy is rewritten.</td><td>Finished ad</td><td>Code</td></tr>
+<tr><td><b>7 Gate</b></td><td>Every check in section 4. Any failure fails the ad. A failed element is redrawn inside its box, up to 3 times, then the ad goes to a human.</td><td>Pass or fail, with a metric readout</td><td>Code, plus vision models that can only veto</td></tr>
+<tr><td><b>8 Approval</b></td><td>Board with source and clone side by side, an overlay of boxes, and the readout. Every decision is saved to calibrate the thresholds.</td><td>Approved ad, or labelled rejection</td><td>Human</td></tr>
+</tbody></table>
+
+<h2 id="gate">The QA gate<small>Fail-closed: a missing measurement, timeout or unreadable result is a fail. Thresholds are starting points, calibrated on Farooq's labels (stage A4).</small></h2>
+<table><thead><tr><th>Check</th><th>How</th><th>Pass rule (starting point)</th></tr></thead><tbody>
+<tr><td>Exact words</td><td>Two OCR engines on the finished ad</td><td>Every slot's text exactly as approved; no other text except on our own product</td></tr>
+<tr><td>Layout</td><td>Element boxes on the finished ad vs the spec</td><td>Overlap (IoU) 0.95 or more for code-drawn elements, 0.80 or more for generated ones</td></tr>
+<tr><td>Inventory and order</td><td>Count elements; compare reading and stacking order</td><td>Exact</td></tr>
+<tr><td>Type hierarchy</td><td>Measured per line, as in the spec</td><td>Size ratios within 5%; same font class, weight band, case, line count and treatment</td></tr>
+<tr><td>Text over text or object</td><td>Masks of text vs other text and objects</td><td>No overlap the source doesn't have</td></tr>
+<tr><td>Colour</td><td>Colour difference (ΔE) per role</td><td>2 or less for code-drawn areas, 4 or less for generated surfaces; contrast within 15% of the source</td></tr>
+<tr><td>Product identity</td><td>Pixel match under the product mask (placed products); feature match against the packshot (worn garments)</td><td>Placed: no changed pixels. Worn: matched to our catalogue item above a calibrated score</td></tr>
+<tr><td>New person</td><td>Face-identity embeddings, faces only</td><td>Below 0.20 similarity to every source face; 0.50 or more to the casting reference; same number of faces</td></tr>
+<tr><td>Pose and camera</td><td>Pose keypoints and depth</td><td>Pose similarity 0.80 or more; depth correlation 0.85 or more</td></tr>
+<tr><td>Not a copy</td><td>Image similarity to the source</td><td>Structure close, but not a near-duplicate</td></tr>
+<tr><td>Reading order, lighting, artifacts</td><td>Vision models, yes or no questions, source and clone side by side, both image orders, two model families</td><td>Any "no" or disagreement fails. A vision model can fail an ad, never pass one</td></tr>
+</tbody></table>
+<div class="note">Why this is stricter: research shows single-image vision judges are barely better than chance at spotting edit defects (the best tested model matched people's choices 59.6% of the time; in another study, 32% of the images a GPT judge passed had visible artifacts), while side-by-side comparison and decomposed yes or no checks agree with people far more often. So the judge can no longer give a holistic score: every dimension above is measured, and the vision model only gets narrow questions.</div>
+
+<h2 id="formats">Format recipes<small>Each source is routed by format class; what is generated, composited or drawn in code differs.</small></h2>
+<table><thead><tr><th>Format</th><th>Image model draws</th><th>Code draws</th><th>Watch for</th></tr></thead><tbody>
+<tr><td>Product on set (hangers, flat lay, packshot)</td><td>Set, props, light</td><td>Our real product (pixel-locked), logo, all type</td><td>Product colourways stay ours; pack artwork is ours, never blank</td></tr>
+<tr><td>Product worn on a body (shapewear, apparel)</td><td>Person and set, with our garment as reference; new face from casting</td><td>Logo, all type</td><td>Garment match to catalogue; face check; skip lingerie-on-body (image models refuse)</td></tr>
+<tr><td>Person-led scene or UGC</td><td>Scene and new person from pose and depth only</td><td>Logo, type, stickers</td><td>Face check; never pass the source photo</td></tr>
+<tr><td>Typographic poster, type wall</td><td>Background and subject only</td><td>The type wall as a pattern (period, rows, fill and outline), all type</td><td>Wall period and row count; no painted text</td></tr>
+<tr><td>Annotated diagram, feature callouts</td><td>Product on its background, or our packshot</td><td>Callout lines anchored to product parts, part labels, icons from a licensed set</td><td>Each label keeps its job (a part name stays a part name)</td></tr>
+<tr><td>Grid or collage</td><td>Each panel separately, in its box</td><td>Grid, gutters, labels</td><td>Panel count and crops</td></tr>
+<tr><td>Offer or price card</td><td>Little or nothing</td><td>Almost all of it: strike-throughs, badges, rules</td><td>Real prices and offers only</td></tr>
+<tr><td>Screen or interface (PushOwl)</td><td>Device and desk scene</td><td>Our real interface screens, type</td><td>No invented interface text</td></tr>
+</tbody></table>
+
+<h2 id="build">Build plan<small>Proven on Vital Vogue's 10 sources before anything else is generated; then PushOwl.</small></h2>
+<table><thead><tr><th>Stage</th><th>Work</th><th>Exit test</th></tr></thead><tbody>
+<tr><td>A1 Spec extractor</td><td>Fix intake to originals; build the Clone Spec (OCR, segmentation, type measurement, colour roles, pose and depth) and the re-draw self-test. Tools run as hosted APIs called from the Cloudflare agent; which hosted OCR, segmentation and face services to use is checked in this stage.</td><td>Self-test passes on at least 8 of the 10 sources; Farooq approves the specs</td></tr>
+<tr><td>A2 Plate bake-off</td><td>Same 10 sources through the leading reference-guided image models (GPT Image 2.5, Nano Banana Pro and 2, Seedream 5.0 Pro, FLUX 3 with layout boxes), structure inputs only.</td><td>Pick the model per format class on measured layout, pose and depth scores, not by eye</td></tr>
+<tr><td>A3 Type and graphics renderer</td><td>Font library by class (open licence fonts first), per-line styling, treatments, type walls, vector callouts and icons, slot-id binding, copy fitting.</td><td>Re-drawing each source's own text reaches the spec's thresholds</td></tr>
+<tr><td>A4 Gate and calibration</td><td>Build every check; Farooq labels about 50 source and clone pairs as faithful or not; set thresholds so 5% or fewer unfaithful ads pass.</td><td>On a held-out set the gate fails what Farooq fails</td></tr>
+<tr><td>A5 Round 2, redone</td><td>The same 10 Vital Vogue sources through the full pipeline.</td><td>Farooq approves at least 8 of 10 as faithful</td></tr>
+<tr><td>A6 All brands</td><td>Replace clone2 for PushOwl; approved specs feed the template library, filling the fields that are empty today.</td><td>PushOwl clones pass the same gate</td></tr>
+</tbody></table>
+<div class="note">Cost per finished clone is expected to be well under a dollar: one spec per source (reused afterwards), 4 plate candidates, and checks that mostly run as cheap measurement calls. Time per clone: a few minutes.</div>
+
+<h2 id="decide">Decisions for you<small>Recommendations first. Nothing is built until you approve.</small></h2>
+<div class="decision"><b>D1 Colour.</b> <b class="rec">Recommended: swap by role.</b> Only colours that carry the source brand's identity (its brand colour, accent and buttons) become ours; neutrals, backgrounds and photographic colours stay as in the source, and light and dark relationships never change. Alternative: keep the source palette exactly, with only our logo added.</div>
+<div class="decision"><b>D2 People.</b> <b class="rec">Recommended: a casting library per brand.</b> 6 to 10 approved synthetic models per brand (generated once, approved by you), cast to match the source's build and styling. Alternatives: the brand's own model photos, or skip person-led sources.</div>
+<div class="decision"><b>D3 Copy.</b> <b class="rec">Recommended: every slot keeps its job.</b> A price anchor shows our real price anchor (MRP struck through, real price), a size range shows our real sizes. If we lack a true equivalent, the slot is flagged for you, never invented and never swapped for a different message such as an offer.</div>
+<div class="decision"><b>D4 Fonts.</b> <b class="rec">Recommended: open-licence fonts matched by class first</b> (serif, sans, script, condensed, slab, handwritten), with a paid font-identification service only if A3 shows class matching isn't enough. A brand's own fonts override when supplied.</div>
+<div class="decision"><b>D5 Human gates.</b> <b class="rec">Recommended: two.</b> You approve each source's Clone Spec once (it then becomes a reusable template), and you approve finished ads. The gate itself never needs a human to pass an ad, only to accept one.</div>
+<div class="decision"><b>D6 Scope.</b> <b class="rec">Recommended: statics only, and no lingerie worn on a body,</b> since the image models refuse it. Video clones come later on the same spec idea.</div>
+<div class="decision"><b>D7 Calibration.</b> <b class="rec">Recommended: you label about 50 pairs</b> (about 20 minutes) so the thresholds match your eye; the round 2 renders and PushOwl's history give the first examples of unfaithful work.</div>
+
+</div></body></html>
