@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Loop Spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;--bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:860px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}h3{font-size:17px;margin:22px 0 8px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}.stage h3{margin:0 0 4px}.stage ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.new{background:var(--mint);color:var(--char);font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto;margin:8px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}tr:last-child td{border-bottom:0}
+.m{color:var(--muted);font-size:13px}code{font:12.5px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+.sw{display:inline-flex;align-items:center;gap:6px;margin:2px 10px 2px 0;font-size:13px;white-space:nowrap}.sw i{width:18px;height:18px;border-radius:5px;border:1px solid var(--line);display:inline-block}
+.rule{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--forest);border-radius:0 12px 12px 0;padding:12px 15px;margin:10px 0}.rule b{display:block;margin-bottom:2px}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+ol li,ul li{margin:3px 0}a{color:var(--forest)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0}.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.box b{font-size:28px;display:block;line-height:1.1}.box span{font-size:13px;color:var(--muted)}
+.chips span{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:3px 11px;margin:3px 6px 3px 0;font-size:13px;font-weight:600}
+</style></head><body>
+<header><div class="wrap">
+<span class="chip">Locked</span><span class="chip">7 Oct 2026</span><span class="chip">Any brand: Vital Vogue, PushOwl, Brevo</span>
+<h1>Creative Loop Spec</h1>
+<p>How the agent creates, reviews, launches, learns and creates again, every week, for any brand. Confirmed: 50 statics a week, the 10 / 10 / 10 / 12 / 8 starting mix, and six reason chips.</p>
+<div class="toc"><a href="#week">The weekly cycle</a><a href="#streams">Five streams</a><a href="#review">Review</a><a href="#learn">Two memories</a><a href="#alloc">Allocation</a><a href="#setup">Per brand</a><a href="#build">Build order</a></div>
+</div></header><div class="wrap">
+
+<div class="grid">
+<div class="box"><b>50</b><span>statics on the review board each week</span></div>
+<div class="box"><b>~70</b><span>candidates made and gated to pick the 50</span></div>
+<div class="box"><b>5</b><span>streams, shares shifting weekly with results</span></div>
+<div class="box"><b>20%</b><span>always kept for exploration</span></div>
+</div>
+
+<h2 id="week">The weekly cycle<small>Monday, every brand, in the cloud. Nobody supplies anything but the website URL.</small></h2>
+<div class="stage"><h3>1. Refresh</h3><ul><li>Re-read the brand's site: products, prices, offers, palette, facts with their quotes.</li><li>Sweep competitors with the statics pass; run competitor discovery monthly; sync ad results.</li></ul></div>
+<div class="stage"><h3>2. Learn</h3><ul><li>Update both memories (below) and turn them into this week's allocation: ads per stream, angle and format.</li></ul></div>
+<div class="stage"><h3>3. Create</h3><ul><li>About 70 candidates across the five streams.</li><li>Each passes its gate: faithfulness and truth checks for anything adapted from a competitor; design and claims checks for originals.</li></ul></div>
+<div class="stage"><h3>4. Rank and post 50</h3><ul><li>Ranking weighs predicted performance, your likely approval, and variety, within each stream's allocation.</li></ul></div>
+<div class="stage"><h3>5. You review each tile</h3><ul><li>Approve or reject, pick reason chips, add a note if you want.</li></ul></div>
+<div class="stage"><h3>6. Launch and optimise</h3><ul><li>Approved ads form the next test batch, paused behind a "Go live" card.</li><li>Daily: measure, kill losers, promote winners to scale.</li></ul></div>
+
+<h2 id="streams">The five streams<small>Starting shares of the 50. They move weekly with results.</small></h2>
+<table><tr><th>Stream</th><th>What it is</th><th>Gate</th><th>Start</th></tr>
+<tr><td><b>A. Faithful clones</b></td><td>Competitors' proven statics, same message, our product, facts, logo and palette</td><td>Clone gate (OCR, face, palette pixels, two judges)</td><td>10</td></tr>
+<tr><td><b>B. Angle clones</b></td><td>The same proven design and structure, copy rewritten to our narrative or angle</td><td>Clone gate, copy checked against our angle</td><td>10</td></tr>
+<tr><td><b>C. Inspired</b></td><td>The mechanism behind a competitor winner (hook type, format, proof device) in a new design of ours</td><td>Design and claims gate</td><td>10</td></tr>
+<tr><td><b>D. Originals and new testers</b></td><td>Our narratives x angles x formats, including new bets</td><td>Design and claims gate</td><td>12</td></tr>
+<tr><td><b>E. Winner iterations</b></td><td>New hooks or visuals on our own ads that performed</td><td>Design and claims gate</td><td>8</td></tr></table>
+
+<h2 id="review">Per-tile review<small>Every decision is stored against the tile and its traits.</small></h2>
+<div class="rule"><b>Each tile</b>Approve or reject. On reject (or approve with a caveat), pick one or more reason chips and add an optional note.</div>
+<div class="chips"><span>Off-brand</span><span>Wrong product</span><span>Weak copy</span><span>Design</span><span>Claim risk</span><span>Too similar</span></div>
+
+<h2 id="learn">Learning: two memories, kept apart<small>What you like is not evidence that it sells.</small></h2>
+<div class="rule"><b>Performance memory (what sells)</b>Launched ads' results score every trait: stream, angle, narrative, format, hook type, source competitor. Next week makes more of what wins and less of what loses; winners become references for stream E.</div>
+<div class="rule"><b>Taste memory (what you approve)</b>Every approve, reject, chip and note, per tile. Before each run it is distilled into rules (for example "no plain white backgrounds") plus approval rates per trait. Rules constrain generation and filter ranking.</div>
+<div class="note">When they disagree (you keep rejecting a type that wins in market), the agent flags it to you instead of quietly following either one.</div>
+
+<h2 id="alloc">Allocation<small>How the 50 split each week.</small></h2>
+<ul><li>Start at 10 / 10 / 10 / 12 / 8.</li><li>Each week, shares shift toward streams and traits that win in market and that you approve, within taste rules.</li><li>At least 20% of the 50 stays on exploration (untested angles, formats, sources), so new ideas keep getting tested.</li><li>A stream that cannot fill its share (too few eligible competitor ads, for example) hands the rest to the others and says why.</li></ul>
+
+<h2 id="setup">Per brand, set up once</h2>
+<ul><li>Website URL plus auto-discovered competitors give the brand kit, products, facts, palette and cast.</li><li>Narratives and angles drafted from the site and competitors' angles; approved once.</li><li>Results learning needs the brand's ad account. PushOwl's history is already loaded.</li></ul>
+
+<h2 id="build">Build order</h2>
+<table><tr><th>#</th><th>Piece</th><th>Status</th></tr>
+<tr><td>0</td><td>Faithful clone engine, packaged as a CLI, a Node library and a Cloudflare Worker kit (also the Winning Statics feature)</td><td>Done</td></tr>
+<tr><td>1</td><td>Per-tile approve or reject with reason chips and notes on the board, plus the taste memory</td><td>Next</td></tr>
+<tr><td>2</td><td>Stream A switched to the new clone engine</td><td>Next</td></tr>
+<tr><td>3</td><td>Angle clones (B) and winner iterations (E)</td><td>Then</td></tr>
+<tr><td>4</td><td>Stream C fed from mined patterns</td><td>Then</td></tr>
+<tr><td>5</td><td>Weekly allocation across all five streams from both memories</td><td>Then</td></tr></table>
+<p class="m">Faithful clone rules: <a href="clone-framework-v3.html">Faithful Adaptation Framework v3</a>. Latest round: <a href="vital-vogue-statics-r6.html">Vital Vogue round 6</a>.</p>
+</div></body></html>
