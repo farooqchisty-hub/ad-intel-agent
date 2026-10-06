@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faithful Adaptation Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:840px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.bad{border-left:4px solid var(--peony)}.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}
+.case{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0}
+.case img{width:100%;border-radius:10px;display:block;border:1px solid var(--line)}
+.case h3{margin:2px 0 8px}.case .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;align-items:start}
+.case ul{margin:6px 0 0;padding-left:18px;font-size:14px}.case .cause{margin-top:8px;font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;margin:2px 4px 0 0;background:var(--tag)}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.stage h3{margin:0 0 4px}.stage .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-top:8px}
+.stage ul{margin:4px 0 0;padding-left:18px;font-size:14px}.new{background:var(--mint);color:var(--char);font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.chg{background:var(--sun);color:var(--char);font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}
+.decision{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--forest);border-radius:0 12px 12px 0;padding:12px 15px;margin:10px 0}
+@media (max-width:760px){.case .cols{grid-template-columns:1fr}header h1{font-size:25px}}
+</style>
+</head><body>
+<header><div class="wrap">
+  <span class="chip">For approval</span><span class="chip">6 Oct 2026</span><span class="chip">Replaces the v1 Faithful Clone Framework</span>
+  <h1>Faithful Adaptation Framework</h1>
+  <p>Version 1 learned to copy the photograph and the type. It did not learn to adapt the ad: the product, the message, the brand and the graphic design. This version makes adaptation the job. It keeps every v1 measurement, adds four stages and a stricter gate, and moves the model's pose down to a warning.</p>
+  <div class="toc"><a href="#flagged">What you flagged</a><a href="#causes">Why it happened</a><a href="#define">What faithful adaptation means</a><a href="#pipeline">The pipeline</a><a href="#gate">The gate</a><a href="#recipes">The five ads under v2</a><a href="#build">Build plan</a><a href="#need">What I need from you</a></div>
+</div></header>
+<div class="wrap">
+
+<h2 id="flagged">What you flagged<small>Source on the left, our round 3 rebuild on the right. Every note you made is real, and none of them is about pose.</small></h2>
+
+<div class="case"><div class="cols"><img src="fw2/r02.jpg" alt="PINQ pack shot and our rebuild">
+<div><h3>Pack and product on white</h3><ul>
+<li>Our box is blank: no Vital Vogue name, no product name, no badges. It still carries PINQ's illustration.</li>
+<li>Mapped to the wrong product: a lift-tape roll. The true match is Vital Vogue's Adhesive Bra (reusable adhesive cups), which was missing from our product list.</li></ul>
+<p class="cause"><span class="tag">Brand surfaces erased, not translated</span><span class="tag">Product list incomplete</span><span class="tag">Packaging treated as photo</span></p></div></div></div>
+
+<div class="case"><div class="cols"><img src="fw2/r03.jpg" alt="Tummy Tucker type wall and our rebuild">
+<div><h3>Giant repeated-word poster with model</h3><ul>
+<li>The source wall is a heavy compressed grotesk; ours is a lighter, narrower face. Same class on paper, visibly not the same type.</li>
+<li>"SHAPERWEAR" is not a word: the writer made it up to fit the width.</li>
+<li>"TUMMY TUCKER" is Vital Vogue's own product name. A blanket "never reuse the source's words" rule blocked the most faithful, truthful line.</li>
+<li>No product was mapped, so the model wears a random bodysuit. The pill and dashed arrow came back as pink blobs.</li></ul>
+<p class="cause"><span class="tag">Display type not matched by style</span><span class="tag">Copy rules too blunt</span><span class="tag">Empty product map passed</span><span class="tag">Graphics left to the image model</span></p></div></div></div>
+
+<div class="case"><div class="cols"><img src="fw2/r06.jpg" alt="EazyShape offer card and our rebuild">
+<div><h3>Offer card: Buy 1 Get 1, colour range, model in shapewear</h3><ul>
+<li>She wears a red A-line skirt, not our saree shapewear: the image model had only a catalogue shot, not a photo of the product worn this way.</li>
+<li>"MADE IN / DESI" fills the sale banner; the banner itself came back as a faded ghost.</li>
+<li>The feature row reads as one broken sentence across four tiles: "Shape up / In 5-7 days" now claims a result in a week. Our ledger also says 5 to 7 days while the product page says 3 to 5.</li>
+<li>Buy 1 Get 1 was dropped because it sits as an unverified placeholder in our ledger, though the shorts page advertises it.</li>
+<li>The source's icons stayed under new labels (cash on delivery under a stretch-arrows icon), and a big EazyShape wordmark became a small mark.</li></ul>
+<p class="cause"><span class="tag">No product truth</span><span class="tag">Writer blind to modules</span><span class="tag">Honesty check is digits only</span><span class="tag">Icons not adapted</span><span class="tag">Brand prominence lost</span></p></div></div></div>
+
+<div class="case"><div class="cols"><img src="fw2/r07.jpg" alt="Bluberyl festive card and our rebuild">
+<div><h3>Festive offer card with model</h3><ul>
+<li>The prices are the Tummy Tucker shorts' real prices (₹1,599 to ₹799), but the model wears a full-length skirt. The price shown belongs to a product we are not showing.</li>
+<li>"Be / Sleek / Fit" says nothing. The source's headline is an occasion and a sale ("Big Festive Sale"); ours needs a real equivalent, not a word that fits.</li></ul>
+<p class="cause"><span class="tag">No product, price and picture consistency check</span><span class="tag">No message map</span></p></div></div></div>
+
+<div class="case"><div class="cols"><img src="fw2/r10.jpg" alt="Dermawear studio callouts and our rebuild">
+<div><h3>Studio model with circled feature callouts</h3><ul>
+<li>The model still wears the competitor's purple skirt, and the zoom circle shows it too. No product was mapped and the run went ahead anyway.</li>
+<li>The callouts are invented ("Cool Touch Cloth") while the product page lists real ones: side slit for walking, elastic waistband with no drawstring, microfiber and spandex stretch, works under silk, chiffon and bridal sarees.</li></ul>
+<p class="cause"><span class="tag">Empty product map passed</span><span class="tag">Callouts not adapted to our product</span><span class="tag">No product truth</span></p></div></div></div>
+
+<h2 id="causes">Why the engine missed this<small>Seven causes in the engine, one in how I worked.</small></h2>
+<table><thead><tr><th>Root cause</th><th>Evidence</th><th>What v2 does</th></tr></thead><tbody>
+<tr><td><b>1. Product knowledge is a stub</b></td><td>9 of 11 products, one photo, title, price, colours and sizes each. The product pages hold about 20 facts per product (fabric, fit, slit, waistband, use cases, delivery, returns) that never reached the writer.</td><td>A Product Truth Pack per brand, built from every product page and policy page, with a source line for each fact.</td></tr>
+<tr><td><b>2. Product matching is optional and unchecked</b></td><td>R03 and R10 ran with no product mapped; R02 got a tape roll for nipple covers; R07 priced the shorts and showed a skirt.</td><td>Product Match is a hard stage: no product, no run. A depiction contract fixes how the product appears (worn, flat, hanging, packed, close-up).</td></tr>
+<tr><td><b>3. The writer sees lines, not modules</b></td><td>One sentence split across four feature tiles; non-words to fit widths; headlines with no job.</td><td>An Ad Blueprint groups lines into modules (headline, offer lockup, feature tile, callout, price block, brand surface). Copy is written per module, then fitted.</td></tr>
+<tr><td><b>4. Honesty checks cover digits only</b></td><td>"Cool touch" passed because it has no number; "5 to 7 days" is in our ledger while the page says 3 to 5; Buy 1 Get 1 is a placeholder.</td><td>Every factual line cites a Truth Pack fact. The ledger is reconciled against the pages, and conflicts go to you.</td></tr>
+<tr><td><b>5. Brand surfaces are erased, not translated</b></td><td>A big wordmark became a small logo; a branded pack became a blank box.</td><td>Brand Translation: every source brand surface becomes a Vital Vogue surface of equal size and weight, including a designed pack face.</td></tr>
+<tr><td><b>6. Graphic design is left to the image model</b></td><td>Sale banner ghosted, pill turned into petals, arrows lost; icons copied from the source under our new words.</td><td>All non-photographic design is rebuilt in code: banners, pills, badges, arrows, rules, burst marks, icon tiles. Icons are chosen to match our words.</td></tr>
+<tr><td><b>7. Display type is matched only to what we stock</b></td><td>No heavy compressed grotesk in the library, so the closest face won.</td><td>Type is matched by style class first (weight, width, contrast) against a larger display library; a class mismatch fails the run.</td></tr>
+<tr><td><b>8. The gate measured sameness, not adaptation</b></td><td>It asked "same layout, same photo, no residue". It never asked "is that our product, is every claim true, is our brand as visible as theirs".</td><td>Gate v2 adds those checks and keeps the old ones. Pose drops to a warning.</td></tr>
+<tr><td><b>9. How I worked</b></td><td>I tuned the engine to pass the gate one failure at a time, at the pixel level, and spent hours on pose. I did not read each ad as a designer would: what makes it work, and what is the Vital Vogue version of each part.</td><td>v2 starts every ad with an adaptation brief you can read in one glance, checked before anything is rendered.</td></tr>
+</tbody></table>
+
+<h2 id="define">What faithful adaptation means<small>The definition the gate enforces.</small></h2>
+<div class="grid">
+<div class="card good"><h4>Keep exactly</h4><ul><li>Structure: the modules, their order and positions</li><li>Type style per module (class, weight, case, tracking, colour role)</li><li>Graphic language: banners, pills, badges, arrows, rules, icon tiles</li><li>Photography: set, light, camera, crop</li></ul></div>
+<div class="card warn"><h4>Translate</h4><ul><li>Each module's message into our strongest true equivalent</li><li>The product into our closest product, shown the same way (worn, flat, packed)</li><li>Every brand surface into ours at the same size</li><li>Brand-signature colours into our palette, by role</li><li>The person into a new person</li></ul></div>
+<div class="card bad"><h4>Never</h4><ul><li>Print a claim the Truth Pack can't cite</li><li>Show one product and price another</li><li>Leave a source brand surface blank or shrunken</li><li>Split one idea across two modules, or invent a word</li><li>Keep a source icon under a different meaning</li></ul></div>
+</div>
+
+<h2 id="pipeline">The pipeline<small>v1 stages stay. New stages are marked.</small></h2>
+
+<div class="stage"><h3>0. Product Truth Pack <span class="new">New</span></h3>
+<p>Built once per brand, refreshed weekly. Every fact keeps its source sentence and page link.</p>
+<div class="k">Contents</div><ul>
+<li>Every product (all 11 for Vital Vogue, including the Adhesive Bra): names and short names, price, compare-at price, colours with a photo per colour, sizes.</li>
+<li>Features and benefits as atomic facts ("side slit for natural movement", "elastic waistband, no drawstring", "microfiber and spandex").</li>
+<li>Depiction photos by mode: worn full length, worn cropped, flat, hanging, packed, close-up detail.</li>
+<li>Offers with their scope (which products), shipping, returns and payment from the policy pages, and proof ("40,000+ customers", "#1 selling saree shapewear in India").</li>
+<li>Conflicts flagged for you (our ledger says 5 to 7 days delivery; the pages say 3 to 5).</li></ul></div>
+
+<div class="stage"><h3>1. Intake</h3><p>Unchanged: the original image at full size, upscaled only when the competitor has pulled the ad, and flagged.</p></div>
+
+<div class="stage"><h3>2. Ad Blueprint <span class="new">New</span></h3>
+<p>The spec stops being a list of lines. Lines, shapes and icons are grouped into modules, each with a role, its parts, their positions and design tokens.</p>
+<div class="k">Module types</div><ul>
+<li>Headline block, sub-headline, offer lockup, price block (anchor and price), feature row (tile = icon + label), callout (pointer + container + text), badge, proof line, brand surface (wordmark, pack face, label), product depiction, background system.</li>
+<li>Each module records its message intent: "occasion sale hook", "Buy 1 Get 1 mechanic", "one product feature", "mechanism claim with a pointer to the body".</li></ul></div>
+
+<div class="stage"><h3>3. Product Match and depiction contract <span class="new">New</span></h3><ul>
+<li>Match by product type and use first, then look: nipple covers to Adhesive Bra; tummy-tucker shorts to Tummy Tucker Shaper Shorts; petticoat to Saree Shapewear.</li>
+<li>Depiction contract: if the source shows the product worn full length, the reference is our own photo of it worn full length, in the chosen colour.</li>
+<li>Price, offer and picture must agree: the price printed is the price of the product shown.</li>
+<li>No match, no run. A source with no honest match is reported, not forced.</li></ul></div>
+
+<div class="stage"><h3>4. Message Map <span class="chg">Replaces the v1 Swap Plan</span></h3><ul>
+<li>Per module: the source's intent, then our strongest true equivalent from the Truth Pack, with the fact it cites.</li>
+<li>A feature tile carries one complete feature; a sentence never spans two modules.</li>
+<li>Our own product names may coincide with the source's words ("TUMMY TUCKER"); the residue rule targets the competitor's brand names and slogans, not our product names.</li>
+<li>Language check: real words only, spelled right, case kept.</li>
+<li>Then the v1 width fit, with alternatives, as now.</li></ul></div>
+
+<div class="stage"><h3>5. Brand Translation <span class="new">New</span></h3><ul>
+<li>Wordmark for wordmark at the same height and weight; a mark for a mark. This needs our horizontal wordmark as well as the stacked lockup.</li>
+<li>Pack face for pack face: our logo, product name and two cited badges, laid out in the source pack's structure and fitted onto the plate's box in code.</li>
+<li>Brand colour roles mapped as in v1, keeping contrast roles.</li>
+<li>Prominence parity: our brand's area within 30% of the source brand's.</li></ul></div>
+
+<div class="stage"><h3>6. Plate: photography only <span class="chg">Changed</span></h3><ul>
+<li>The image model draws the person, our product (from the depiction-matched photo) and the set, and nothing else. All graphics and type are removed from its reference.</li>
+<li>Pose is matched as well as the model manages; a different head angle is a warning, not a fail.</li></ul></div>
+
+<div class="stage"><h3>7. Design rebuild in code <span class="chg">Expanded</span></h3><ul>
+<li>Banners, brush strokes, pills, cards, badges, bursts, pointers, dashed arrows and rules are traced from the source as shapes and redrawn as vectors in our colours.</li>
+<li>Icons are matched to our words from an open icon set, in the source's icon style (stroke weight, frame).</li>
+<li>Pack faces and wordmarks are drawn here too.</li></ul></div>
+
+<div class="stage"><h3>8. Type <span class="chg">Changed</span></h3><ul>
+<li>Style class first: weight, width (compressed to extended), contrast and terminals are measured from the source letters and must match, before letter shapes pick the face.</li>
+<li>The display library grows with compressed, heavy, brush and script faces.</li>
+<li>v1's measured size, tracking, baseline and colour stay.</li></ul></div>
+
+<div class="stage"><h3>9. Adaptation brief, before rendering <span class="new">New</span></h3>
+<p>One card per ad: modules, our line for each with its cited fact, the product match and its photo, and the brand translation. Cheap to produce, and you can strike a line before a cent is spent on images.</p></div>
+
+<h2 id="gate">The gate<small>Fail-closed as before. New checks in bold.</small></h2>
+<table><thead><tr><th>Check</th><th>How</th><th>Catches</th></tr></thead><tbody>
+<tr><td><b>Product is ours</b></td><td>Judges compare the product in the ad with our product photos (type, cut, construction)</td><td>R10's purple skirt, R06's A-line skirt, R03's bodysuit</td></tr>
+<tr><td><b>Depiction matches</b></td><td>Worn, flat, hanging or packed, as the source</td><td>A worn product shown flat, or the reverse</td></tr>
+<tr><td><b>Price belongs to product</b></td><td>Printed prices equal the Truth Pack price of the product shown</td><td>R07</td></tr>
+<tr><td><b>Claims are grounded</b></td><td>Every factual line maps to a Truth Pack fact; nothing else is printed as a claim</td><td>"Cool touch cloth", "shape up in 5 to 7 days"</td></tr>
+<tr><td><b>Copy is language</b></td><td>Dictionary and spelling; one complete idea per module</td><td>"SHAPERWEAR", "MADE IN / DESI"</td></tr>
+<tr><td><b>Module inventory</b></td><td>Every source module has its counterpart: banner for banner, pill for pill, arrow for arrow, icon for icon</td><td>R03's lost pill and arrow, R06's ghost banner</td></tr>
+<tr><td><b>Icon meaning</b></td><td>Each icon matches its label</td><td>Cash on delivery under a stretch icon</td></tr>
+<tr><td><b>Brand prominence</b></td><td>Our brand's area within 30% of theirs</td><td>A big wordmark shrunk to a small mark</td></tr>
+<tr><td><b>Type class</b></td><td>Weight and width class per module match the source</td><td>R03's lighter wall</td></tr>
+<tr><td>Words, size, placement, overlaps, residue</td><td>As v1</td><td>As v1</td></tr>
+<tr><td>Layout and photography judges</td><td>As v1, two model families</td><td>As v1; head angle and gaze become warnings</td></tr>
+</tbody></table>
+
+<h2 id="recipes">The five ads under v2</h2>
+<table><thead><tr><th>Ad</th><th>v2 adaptation</th></tr></thead><tbody>
+<tr><td>Pack and product on white</td><td>Adhesive Bra. A Vital Vogue pack face in the PINQ box's structure: our logo, "Adhesive Bra", two cited badges ("Reusable", "Sweat resistant"), our colour field. The cups shown as on our product page.</td></tr>
+<tr><td>Repeated-word poster</td><td>"TUMMY TUCKER" in a heavy compressed grotesk, as the source, because it is our product's name. The model wears our Tummy Tucker shorts. The pill and dashed arrow redrawn in code with a cited feature ("360° shaping" only if the page says it; otherwise "Lifts tummy and hips").</td></tr>
+<tr><td>Offer card</td><td>The model wears our saree shapewear, from our worn photo. Sale banner and Buy 1 Get 1 lockup kept if you confirm the offer's scope. "15 colours" (true). Four tiles, four real features, four matching icons. Our wordmark at EazyShape's size.</td></tr>
+<tr><td>Festive offer card</td><td>Either saree shapewear with no struck price (the slot becomes a cited offer) or the shorts shown as shorts with their real ₹1,599 to ₹799. The headline keeps its job: an occasion and an offer that are true.</td></tr>
+<tr><td>Studio callouts</td><td>Our saree shapewear on the model and in the zoom circle. Callouts from the page: side slit, elastic waistband, microfiber and spandex, works under any saree.</td></tr>
+</tbody></table>
+
+<h2 id="build">Build plan<small>About two working days, then all ten are rebuilt and the board republished.</small></h2>
+<table><thead><tr><th>Step</th><th>Work</th><th>Time</th></tr></thead><tbody>
+<tr><td>1</td><td>Truth Pack: all 11 product pages and the policy pages, per-colour and per-depiction photos, ledger reconciliation</td><td>3 hours</td></tr>
+<tr><td>2</td><td>Ad Blueprint and Product Match in the spec stage; adaptation briefs on the board</td><td>4 hours</td></tr>
+<tr><td>3</td><td>Message Map with cited claims, language checks, module-aware copy</td><td>3 hours</td></tr>
+<tr><td>4</td><td>Design rebuild in code: shapes, banners, pills, arrows, icon matching</td><td>5 hours</td></tr>
+<tr><td>5</td><td>Brand translation: wordmark parity, pack face builder</td><td>3 hours</td></tr>
+<tr><td>6</td><td>Type style classes and display library</td><td>2 hours</td></tr>
+<tr><td>7</td><td>Gate v2 and board v2</td><td>3 hours</td></tr>
+<tr><td>8</td><td>Briefs for all ten, to you first, then renders</td><td>2 hours</td></tr>
+</tbody></table>
+
+<h2 id="need">What I need from you</h2>
+<div class="decision"><b>1. Vital Vogue brand kit.</b> A horizontal wordmark (we only have the stacked lockup), brand fonts if there are any, and any packaging photos. Without these, the brand surfaces stay smaller than the competitor's.</div>
+<div class="decision"><b>2. Buy 1 Get 1 scope.</b> The ledger has it as a placeholder; the shorts page advertises a limited-time Buy 1 Get 1. Which products does it cover today?</div>
+<div class="decision"><b>3. Delivery time.</b> Our ledger says 5 to 7 days; the product pages say 3 to 5. Which is right?</div>
+<div class="decision"><b>4. Approve v2.</b> I build it, send you the ten adaptation briefs, then render on your nod.</div>
+</div></body></html>
