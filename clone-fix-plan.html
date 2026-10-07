@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clone Fix Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;--bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 16px 28px}header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:860px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}h3{font-size:17px;margin:22px 0 8px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}.stage h3{margin:0 0 4px}.stage ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.new{background:var(--mint);color:var(--char);font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto;margin:8px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}tr:last-child td{border-bottom:0}
+.m{color:var(--muted);font-size:13px}code{font:12.5px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+.sw{display:inline-flex;align-items:center;gap:6px;margin:2px 10px 2px 0;font-size:13px;white-space:nowrap}.sw i{width:18px;height:18px;border-radius:5px;border:1px solid var(--line);display:inline-block}
+.rule{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--forest);border-radius:0 12px 12px 0;padding:12px 15px;margin:10px 0}.rule b{display:block;margin-bottom:2px}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+ol li,ul li{margin:3px 0}a{color:var(--forest)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}.box b{display:block;font-size:15px;margin-bottom:3px}.box span{font-size:13px;color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+</style></head><body>
+<header><div class="wrap">
+<span class="chip">Plan</span><span class="chip">7 Oct 2026</span><span class="chip">From the Shaper Peach failure</span>
+<h1>Clone Fix Plan</h1>
+<p>Any proven static clones, however dense: the right model for each job, our real product swapped in, every line rewritten from the website, and flaws fixed and re-checked up to 4 times instead of the ad being dropped.</p>
+<div class="toc"><a href="#why">What failed</a><a href="#principles">Rules</a><a href="#pipeline">New pipeline</a><a href="#models">Model per job</a><a href="#retry">Retry loop</a><a href="#copy">Copy rules</a><a href="#build">Build order</a><a href="#proof">How we prove it</a></div>
+</div></header><div class="wrap">
+
+<h2 id="why">What failed, and the real cause<small>Shaper Peach infographic: a headline, about 25 small lines, 6 product callouts, 6 icons, before/after, 3 thumbnails.</small></h2>
+<table><tr><th>Symptom</th><th>Real cause in the engine</th><th>Fix</th></tr>
+<tr><td>Small lines missing or left in the competitor's words</td><td>One image model redraws the whole ad in one pass. Small text is tiny relative to the canvas, so models skip or garble it.</td><td>Text is its own job: each block is edited at full size in a crop by a text model, in parallel, then checked by OCR.</td></tr>
+<tr><td>Competitor's shorts (steel boning) instead of ours</td><td>The product is one instruction among dozens in the same pass; the model keeps what it sees.</td><td>Product swap is its own step, with our store photos as references, judged against the store photo before anything else.</td></tr>
+<tr><td>Plan rejected for one line 4 characters too long</td><td>Length is a hard reject; four sequential retries, then the ad is dropped.</td><td>Never drop the ad for length: shorter variants are written in parallel; the crop edit fits type to the box.</td></tr>
+<tr><td>seedream kept their headline, added logos, erased the face</td><td>A bad candidate is only judged, never fixed; repair skips anything outside a short list.</td><td>Every failed check has a fixer; the best candidate is fixed and re-checked, up to 4 rounds.</td></tr>
+<tr><td>gpt-image-2 refused (shapewear on a body)</td><td>The engine still sends body shots in intimate categories to a model that always refuses them.</td><td>Route by job and category: models that accept shapewear get those ads; no wasted call.</td></tr>
+<tr><td>Their features (steel boning) on our ad</td><td>Callouts were treated as "copy what's there".</td><td>Callouts point at our product's real features from the site, in the same positions.</td></tr></table>
+
+<h2 id="principles">Rules this plan adds<small>Binding for every clone, every brand.</small></h2>
+<div class="rule"><b>1. Density is never a reason to skip.</b>Any proven static of a product we sell gets cloned. More lines means more parallel text jobs, not a refusal.</div>
+<div class="rule"><b>2. Right model for each job.</b>Layout and scene, product swap, text, faces and colour are separate jobs, each done by the model that measures best at it.</div>
+<div class="rule"><b>3. Our product is placed, not imagined.</b>The store's own photos of the chosen product are the reference; the result must match them (cut, seams, colour, construction).</div>
+<div class="rule"><b>4. Every line becomes ours.</b>No source line survives. A line with no exact parallel gets another true site fact for the same job in the same place.</div>
+<div class="rule"><b>5. Fix, don't drop.</b>Any failed check triggers its fixer and a re-check, up to 4 rounds, many attempts in parallel per round. Only a product we don't sell is refused.</div>
+
+<h2 id="pipeline">The new pipeline<small>Stages run side by side wherever one doesn't need another's output.</small></h2>
+<div class="flow"><span>Measure the ad</span><i>&rarr;</i><span>Plan copy (3 drafts at once)</span><i>+</i><span>Pick product photos</span><i>+</i><span>Colour plan</span><i>&rarr;</i><span>Base image (3 models at once)</span><i>&rarr;</i><span>Product swap</span><i>+</i><span>Text blocks (one job per block, in parallel)</span><i>+</i><span>Face</span><i>&rarr;</i><span>Gate</span><i>&rarr;</i><span>Fix what failed, re-gate (max 4)</span></div>
+<div class="stage"><h3>A. Base image</h3><ul><li>Three models in parallel (category-aware: no gpt-image-2 for intimate wear on a body) redraw the layout, scene, colours, logo and the big headline.</li><li>The prompt no longer asks for every small line; small text blocks are handled in C.</li><li>The best base is chosen on layout, scene, palette and headline only.</li></ul></div>
+<div class="stage"><h3>B. Product swap</h3><ul><li>Crop around the measured product box (with margin), give the editor that crop plus 2 to 4 store photos of the chosen product in the chosen colour.</li><li>2 models x 2 tries in parallel; each result judged against the store photo (cut, seams, waistband, construction, colour). Best one pasted back with a feathered mask.</li><li>Off-body packshots keep the existing exact composite (our real photo, cut out).</li></ul></div>
+<div class="stage"><h3>C. Text, block by block</h3><ul><li>Each measured text block (callout, caption, label, button) is cropped, scaled up so its type is large, and edited: "replace these words with these, keep font, weight, colour, alignment".</li><li>All blocks run in parallel. OCR reads each block back; a block that misreads is redone (another model, another try) without touching the rest.</li><li>Fallback for any block still wrong after its tries: our line set in code in the measured font, size and colour (the existing typesetter), so the words are exact.</li></ul></div>
+<div class="stage"><h3>D. Face</h3><ul><li>A person in the source is redrawn from our casting reference in the face box; never erased or blanked.</li></ul></div>
+<div class="stage"><h3>E. Gate</h3><ul><li>Same fail-closed checks, now read per block too: OCR per block crop (small text read at full size), product judged on the product crop against the store photo, palette on pixels, two judges on the whole ad.</li></ul></div>
+
+<h2 id="models">Model per job<small>Starting assignment from what each model is known for; a bake-off on our failed and passed ads sets the final order (see How we prove it).</small></h2>
+<table><tr><th>Job</th><th>Candidates (all live on Replicate)</th><th>Why</th></tr>
+<tr><td>Base layout and scene</td><td>nano-banana-pro, seedream-4.5, gpt-image-2 (not for intimate wear on a body), flux-2-pro</td><td>Whole-image editing with references; flux-2-pro takes up to 8 references</td></tr>
+<tr><td>Product swap</td><td>flux-2-pro, qwen-image-edit-plus, nano-banana-pro</td><td>Multi-image references: our store photos go in directly</td></tr>
+<tr><td>Text blocks</td><td>qwen-image-edit, flux-kontext-max, ideogram-v3 (edit), gpt-image-2 where allowed</td><td>Built for lettering inside images; crops make small type large</td></tr>
+<tr><td>Exact-text fallback</td><td>Our typesetter (code, measured fonts)</td><td>Words exact by construction</td></tr>
+<tr><td>Face</td><td>nano-banana-pro with the casting reference</td><td>Identity from our cast, pose from the source</td></tr>
+<tr><td>Colour fixes</td><td>flux-kontext-pro or nano-banana-pro, local masks</td><td>Targeted recolour without redrawing</td></tr></table>
+<p class="m">Not used: IDM-VTON (try-on) is licensed for non-commercial use only.</p>
+
+<h2 id="retry">The fix-and-recheck loop<small>Up to 4 rounds; each round fixes only what failed, many attempts at once.</small></h2>
+<table><tr><th>Failed check</th><th>Fixer</th></tr>
+<tr><td>A line missing, misspelt or still theirs</td><td>Redo that text block (other model, other try); after 2 misses, typeset it in code</td></tr>
+<tr><td>Product doesn't match the store</td><td>Redo the product swap with more photos and the judge's evidence</td></tr>
+<tr><td>Competitor colour left</td><td>Local recolour of the flagged surfaces</td></tr>
+<tr><td>Extra or moved logo, layout drift</td><td>Local inpaint in that box; if wide, a new base</td></tr>
+<tr><td>Face reused, erased or wrong</td><td>Redo the face step</td></tr>
+<tr><td>Garbled marks, defects</td><td>Local inpaint of the box the judge names</td></tr></table>
+<p>Each round runs its fixes in parallel and re-gates once. The ad ships the moment every check passes; after round 4 it goes to the queue tile with what is still wrong.</p>
+
+<h2 id="copy">Copy rules (planner)<small>From the website only, nothing invented.</small></h2>
+<ul>
+<li>Every source line gets a line of ours with the same job (headline, benefit, callout, caption, label, button, price).</li>
+<li>No exact parallel? Use another true fact of the same kind for that product: a feature for a feature, a benefit for a benefit, an occasion for an occasion. "Steel boning support" becomes one of our product's own features, such as "Seamless, no visible lines".</li>
+<li>Callouts that point at a part of the product describe that part of ours.</li>
+<li>Length: a line over its range is never a reason to drop the ad; parallel drafts aim for the range, and the text step fits type to the box.</li>
+<li>Before/after captions, "wear it under" thumbnails, icon labels: all adapted to our product and the occasions our site names.</li>
+</ul>
+
+<h2 id="build">Build order</h2>
+<table><tr><th>#</th><th>Piece</th></tr>
+<tr><td>1</td><td>Planner: same-job substitution, callouts from our features, no reject on length</td></tr>
+<tr><td>2</td><td>Category-aware model routing (no wasted refusals)</td></tr>
+<tr><td>3</td><td>Text blocks: crop, parallel edit, per-block OCR, typeset fallback</td></tr>
+<tr><td>4</td><td>Product swap step with store photos and its own judge</td></tr>
+<tr><td>5</td><td>Face step from the casting reference</td></tr>
+<tr><td>6</td><td>Fix-and-recheck loop (4 rounds, a fixer for every check)</td></tr>
+<tr><td>7</td><td>Model bake-off, then the final per-job model order</td></tr>
+<tr><td>8</td><td>Sync to the portable package and the Winning Statics kit</td></tr></table>
+
+<h2 id="proof">How we prove it</h2>
+<div class="grid">
+<div class="box"><b>Test set</b><span>The Shaper Peach infographic, the 10 round 6 sources, and 5 more dense statics from the 5 tracked competitors.</span></div>
+<div class="box"><b>Pass bar</b><span>Shaper Peach passes; round 6 stays 10 of 10; at least 4 of the 5 dense ads pass.</span></div>
+<div class="box"><b>Speed</b><span>A clone finishes in under 10 minutes even for dense ads, because the extra jobs run side by side.</span></div>
+<div class="box"><b>Cost</b><span>Measured per run with the cost script; a dense ad is expected to cost more than the $0.61 of a simple one, and the review page will show the real figure.</span></div>
+</div>
+<p class="m">Review page with every test ad side by side, its checks and the model that won each job, published here when the run finishes. Rules: <a href="clone-framework-v3.html">Faithful Adaptation Framework v3</a>.</p>
+</div></body></html>
