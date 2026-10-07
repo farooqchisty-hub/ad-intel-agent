@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BFCM 2026 Playbook</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
+  --bg:#FAF5E3;--fg:#1B1B1B;--muted:#5d5a50;--line:#e6dfc8;--card:#fff;--tag:#eef8e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}}
+:root[data-theme="dark"]{--bg:#121411;--fg:#f1eee4;--muted:#a9a594;--line:#2a2d27;--card:#1a1d18;--tag:#1f2a1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 80px}
+header{background:var(--forest);color:var(--cream);padding:36px 0 28px}
+header h1{font-size:30px;line-height:1.15;margin:0 0 8px}header p{margin:0;max-width:820px;opacity:.92}
+.chip{display:inline-block;background:var(--mint);color:var(--char);font-weight:600;font-size:12px;border-radius:99px;padding:3px 10px;margin:0 6px 8px 0}
+.toc{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 14px}.toc a{color:inherit;font-size:14px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--mint)}
+h2{font-size:23px;margin:44px 0 6px}h2 small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:4px}
+h3{font-size:17px;margin:22px 0 8px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.card h4{margin:0 0 6px;font-size:15px}.card p,.card ul{margin:0;font-size:14px;color:var(--muted)}.card ul{padding-left:18px}
+.card.good{border-left:4px solid var(--forest)}.card.warn{border-left:4px solid var(--sun)}.card.bad{border-left:4px solid var(--peony)}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--tag)}
+tr:last-child td{border-bottom:0}
+.note{border-left:4px solid var(--sun);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}.flow span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;font-weight:600}.flow i{color:var(--muted);font-style:normal}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--tag);padding:1px 5px;border-radius:5px}
+a{color:var(--forest)}ol li,ul li{margin:3px 0}.muted{color:var(--muted)}
+</style></head><body><header><div class="wrap"><span class="chip">Plan of action, for review</span><span class="chip">7 Oct 2026</span><span class="chip">Supersedes "BFCM, free" (v20)</span>
+<h1>BFCM 2026: the asset playbook</h1>
+<p>Every asset for the Brevo BFCM offer (30% off monthly, 50% off annual, code BFCM2026, plus free Klaviyo migration, a free $300 strategy session, free BFCM ads and $200 in ad credits). All channels point to one promo page, which hands off to signup. Built around four narratives. Creative says Brevo only.</p>
+<div class="toc"><a href="#offer">Offer</a><a href="#nar">Narratives</a><a href="#funnel">Funnel</a><a href="#order">Build order</a><a href="#found">Foundation</a><a href="#lp">Landing page</a><a href="#email">Emails</a><a href="#ads">Ads</a><a href="#cre">Creators</a><a href="#seo">SEO/GEO</a><a href="#pr">PR</a><a href="#ops">Ops + tracking</a><a href="#cal">Calendar</a><a href="#dec">Open decisions</a></div></div></header><div class="wrap">
+
+<h2 id="offer">1. The offer (locked)</h2>
+<table><tr><th>Element</th><th>What it is</th><th>Still to confirm</th></tr>
+<tr><td><b>30% off monthly</b></td><td>Monthly paid plans</td><td>For how many months?</td></tr>
+<tr><td><b>50% off annual</b></td><td>Annual paid plans</td><td>First year only?</td></tr>
+<tr><td><b>Code BFCM2026</b></td><td>Applied at checkout after signup</td><td>Exact string (no space). Where it's redeemed on the Shopify path (App Store installs can't carry coupons).</td></tr>
+<tr><td><b>Free Klaviyo migration</b></td><td>Lists, flows, templates moved for them</td><td>Klaviyo only, or Mailchimp/Omnisend too? A $ value only if it's the real service price.</td></tr>
+<tr><td><b>Free $300 strategy session</b></td><td>Done-for-you setup of retention flows and BFCM ad campaigns</td><td>Who delivers it, sessions per week, booking tool</td></tr>
+<tr><td><b>Free BFCM ads</b></td><td>Ready-to-launch ads for their store, one click, through Cyber Monday</td><td>How many ads, which placements</td></tr>
+<tr><td><b>$200 ad credits</b></td><td>Free ad spend</td><td>What the credits are (Brevo ads wallet or Meta credit), conditions, expiry</td></tr></table>
+<p><b>Value stack headline:</b> "$500 of BFCM help, free, plus 50% off" ($300 session + $200 credits). Migration adds to it only once its value is confirmed.</p>
+
+<h2 id="nar">2. The four narratives<small>Every asset carries one narrative as its lead and the full offer as its close.</small></h2>
+<div class="grid">
+<div class="card good"><h4>N1. The Klaviyo tax</h4><p>You pay per profile, ghosts included. Subscribers who never open still bill you every month. Brevo prices on sends, contacts unlimited.</p><ul><li>The ghost list: paying for people who left</li><li>The BFCM hangover: the list you grow in November raises your bill forever</li><li>The invoice line item: "Ghost contacts: $X"</li><li>Delete them or pay for them? Neither.</li></ul></div>
+<div class="card good"><h4>N2. What you'd save</h4><p>Your number, not ours: contacts in, yearly saving out (no list tax + 50% off annual).</p><ul><li>Your BFCM ad budget is hiding in your email bill</li><li>Side-by-side at 10k, 25k, 50k, 100k contacts</li><li>"Pay for sends, not strangers"</li><li>Calculator result as the creative</li></ul></div>
+<div class="card good"><h4>N3. Done for you</h4><p>A $300 strategist sets up your retention flows and BFCM campaigns, and we move you off Klaviyo. Free.</p><ul><li>Moved before Black Friday (real deadline: claim by 15 Nov)</li><li>No migration weekend</li><li>Your BFCM, handled while you pack orders</li><li>Agency work without the agency invoice</li></ul></div>
+<div class="card good"><h4>N4. Ads in one click</h4><p>Paste your store URL, get BFCM ads ready to launch, plus $200 to run them.</p><ul><li>Your competitors' BF ads went live last week</li><li>Product photo in, Black Friday ad out</li><li>$200 of ad spend on us</li><li>No designer, no agency, no brief</li></ul></div>
+</div>
+<div class="note">Proof needed per narrative before copy ships: N1 verified Klaviyo price table (dated, sourced) + an inactive-share figure (Brevo aggregate or a cited benchmark). N2 the calculator engine. N3 the session scope and capacity. N4 real ad samples from real stores. Comparative claims naming Klaviyo need legal sign-off.</div>
+
+<h2 id="funnel">3. The funnel</h2>
+<div class="flow"><span>Meta, Google, YouTube</span><span>Email + in-app</span><span>Creators</span><span>PR + deal roundups</span><span>SEO/GEO</span><i>&rarr;</i><span>BFCM promo page (hero matched to narrative by UTM)</span><i>&rarr;</i><span>Claim</span><i>&rarr;</i><span>Signup (code BFCM2026)</span><i>&rarr;</i><span>Onboarding: book session, migration, ads, credits</span></div>
+<p>Message match: <code>utm_content=n1|n2|n3|n4</code> swaps the page hero to the narrative the visitor clicked on. Same offer below the fold.</p>
+<div class="note">Tracking lesson from the 6 Oct install audit: creator UTMs never reached a signup, and the page had no tracked Shopify path. This time the UTMs and the code variant must survive to the signup record, tested before launch.</div>
+
+<h2 id="order">4. Build order (we go one by one)</h2>
+<table><tr><th>#</th><th>Asset</th><th>Why this slot</th><th>Effort</th></tr>
+<tr><td>1</td><td>Offer sheet + claims ledger + T&amp;Cs + FAQ</td><td>Every asset copies from it; nothing ships with an unverified claim</td><td>0.5 day</td></tr>
+<tr><td>2</td><td>Messaging house: 4 narratives x 4 angles, proof, objections, hook bank</td><td>Source for ads, emails, creators, PR</td><td>1 day</td></tr>
+<tr><td>3</td><td>Savings calculator engine (Klaviyo vs Brevo)</td><td>Powers N2 on the page, a free tool, ads, emails, PR</td><td>1 day</td></tr>
+<tr><td>4</td><td>Creator brief + hook bank + scripts</td><td>Longest lead time (drafts, review, hold rule)</td><td>1 day</td></tr>
+<tr><td>5</td><td>Landing page (3 states: pre-launch, live, ended)</td><td>Destination for everything</td><td>2 to 3 days</td></tr>
+<tr><td>6</td><td>SEO posts 1 to 4 + calculator tool page</td><td>Needs indexing time before November</td><td>rolling</td></tr>
+<tr><td>7</td><td>Lifecycle emails (about 30)</td><td>Built in Brevo, not sent</td><td>2 days</td></tr>
+<tr><td>8</td><td>Paid ads: Meta statics, video recuts, Google RSAs, YouTube</td><td>Needs final page + claims</td><td>3 days</td></tr>
+<tr><td>9</td><td>PR: data story, release, deal roundups</td><td>Pitch by 20 Oct for early-Nov coverage</td><td>1.5 days</td></tr>
+<tr><td>10</td><td>Ops pack + tracking + dashboard</td><td>Session/migration capacity, support macros, KPIs</td><td>1 day</td></tr></table>
+
+<h2 id="found">5. Foundation assets</h2>
+<ul>
+<li><b>Offer sheet:</b> one page, the single source of truth (offer, dates, eligibility, code, cap, redemption steps per path).</li>
+<li><b>Claims ledger:</b> every number with its source and date (Klaviyo tiers, inactive share, savings examples, session scope). Copy can only use ledger lines.</li>
+<li><b>T&amp;Cs + FAQ:</b> eligibility, stacking, duration, refunds, what the session covers, credit expiry.</li>
+<li><b>Messaging house:</b> platform line, 4 narratives, 16 angles, proof per angle, top 8 objections ("migration is risky", "I'll lose my flows", "is Brevo as good for Shopify").</li>
+<li><b>Calculator engine:</b> inputs contacts + monthly sends; outputs Klaviyo cost, Brevo cost at BFCM price, yearly saving. One JS module reused everywhere.</li>
+<li><b>Visual system:</b> extend the deck's Black Friday retail-object system (receipt, price tag, sticker roll) into the four narratives.</li>
+</ul>
+
+<h2 id="lp">6. Landing page<small>Promo page, one job: understand the offer, click Claim.</small></h2>
+<ol>
+<li><b>Hero:</b> narrative-matched headline, offer line (30% monthly / 50% annual, code BFCM2026), value stack, Claim CTA, deadline.</li>
+<li><b>What you get:</b> 4 cards (migration, $300 session, BFCM ads, $200 credits) with what happens and when.</li>
+<li><b>The Klaviyo tax:</b> ghost-contact explainer, one visual.</li>
+<li><b>Your savings:</b> inline calculator, result feeds the CTA ("Claim my $X").</li>
+<li><b>Done for you:</b> session agenda, migration timeline, "claim by 15 Nov to be live before Black Friday".</li>
+<li><b>Ads in one click:</b> sample ads from real stores (or a live URL preview).</li>
+<li><b>How to claim:</b> 3 steps (Claim, sign up, apply BFCM2026, book your session).</li>
+<li><b>Brevo vs Klaviyo:</b> short comparison table from the ledger.</li>
+<li><b>Proof:</b> reviews, ratings, merchant logos.</li>
+<li><b>FAQ + T&amp;Cs</b>, sticky mobile CTA.</li>
+</ol>
+<p><b>States:</b> pre-launch (early-access email capture), live (2 Nov), ended (offer closed, normal signup). <b>Events:</b> view, calculator used, claim click, by UTM.</p>
+
+<h2 id="email">7. Emails: broadcast + lifecycle (about 30)<small>All built and tested; nothing sends without your go-ahead.</small></h2>
+<h3>A. Pre-launch</h3>
+<table><tr><th>#</th><th>Email</th><th>Audience</th><th>Date</th></tr>
+<tr><td>E1</td><td>Teaser: "Black Friday's coming. So is your Klaviyo bill." (N1)</td><td>Newsletter, prospects, free users</td><td>27 Oct</td></tr>
+<tr><td>E2</td><td>Early access: the offer 48 h before everyone</td><td>Free users, Insiders</td><td>31 Oct</td></tr></table>
+<h3>B. Launch broadcast series (one narrative each)</h3>
+<table><tr><th>#</th><th>Email</th><th>Date</th></tr>
+<tr><td>E3</td><td>Launch: the full offer</td><td>2 Nov</td></tr>
+<tr><td>E4</td><td>N1: you're paying for ghosts</td><td>5 Nov</td></tr>
+<tr><td>E5</td><td>N2: here's what you'd save (calculator)</td><td>9 Nov</td></tr>
+<tr><td>E6</td><td>N3: claim by 15 Nov to be moved before Black Friday</td><td>12 Nov</td></tr>
+<tr><td>E7</td><td>N3 deadline: migration cut-off tonight</td><td>15 Nov</td></tr>
+<tr><td>E8</td><td>N4: your BFCM ads are ready (personalised ads for free users' stores)</td><td>18 Nov</td></tr>
+<tr><td>E9</td><td>BF week: still time, $200 in ad credits</td><td>23 Nov</td></tr>
+<tr><td>E10</td><td>Black Friday</td><td>27 Nov</td></tr>
+<tr><td>E11 / E12</td><td>Cyber Monday: last day / final hours</td><td>30 Nov</td></tr></table>
+<p><b>Free-user layer:</b> dynamic blocks in E3 to E12 (their contact count, their savings, their store's ads). Plus in-app banner, plans-page badge and a push notification for free users.</p>
+<h3>C. Triggered (behaviour)</h3>
+<table><tr><th>#</th><th>Trigger</th><th>Email</th></tr>
+<tr><td>T1</td><td>Calculator used, email given</td><td>Your savings report (their number) + claim</td></tr>
+<tr><td>T2</td><td>Signed up, no paid plan (1 h / 24 h / 72 h)</td><td>"Your BFCM2026 code is waiting" x 3</td></tr>
+<tr><td>T3</td><td>Promo page visited, known contact, no claim</td><td>One nudge, the narrative they clicked</td></tr>
+<tr><td>T4</td><td>Upgraded monthly during window</td><td>Switch to annual for 50%</td></tr>
+<tr><td>T5</td><td>Session booked, no-show</td><td>Rebook link</td></tr></table>
+<h3>D. Post-claim onboarding (the lifecycle that delivers the promise)</h3>
+<table><tr><th>#</th><th>When</th><th>Email</th></tr>
+<tr><td>O1</td><td>On claim</td><td>Welcome: code confirmed, what you get and when</td></tr>
+<tr><td>O2</td><td>On claim, +1 day</td><td>Book your $300 strategy session</td></tr>
+<tr><td>O3</td><td>Day 0</td><td>Migration kickoff: connect Klaviyo, export checklist</td></tr>
+<tr><td>O4</td><td>Day 1</td><td>Your BFCM ads are ready + how to use the $200 credits</td></tr>
+<tr><td>O5</td><td>Day before session</td><td>What to bring to your session</td></tr>
+<tr><td>O6</td><td>Migration done</td><td>You're live: check your flows</td></tr>
+<tr><td>O7</td><td>23 Nov</td><td>BFCM go-live checklist</td></tr>
+<tr><td>O8</td><td>2 Dec</td><td>Your BFCM results recap</td></tr>
+<tr><td>O9</td><td>Day 30</td><td>Check-in + NPS</td></tr>
+<tr><td>O10</td><td>Before discount ends</td><td>Honest heads-up on renewal price</td></tr></table>
+
+<h2 id="ads">8. Paid ads</h2>
+<table><tr><th>Line</th><th>Assets</th><th>Notes</th></tr>
+<tr><td><b>Meta statics</b></td><td>16 concepts (4 narratives x 4 angles), each in 1:1, 4:5, 9:16 = 48 files</td><td>Built from the ranked template library, scored before render</td></tr>
+<tr><td><b>Meta video</b></td><td>Recut the 4 finished teasers (Meter = N1/N2, Ghost List = N1, Overnight Crew = N3, Dossier = N4) with the real offer end card</td><td>Cheap: swap the "revealed soon" outro only</td></tr>
+<tr><td><b>Creator whitelisting</b></td><td>Top creator posts run as partnership ads</td><td>Rights in the creator contract</td></tr>
+<tr><td><b>Google Search</b></td><td>6 clusters: Klaviyo alternative, Klaviyo pricing, cheaper than Klaviyo, migrate from Klaviyo, Shopify email app, Black Friday email deal. RSAs + promo extension (BFCM2026) + sitelinks</td><td>Trademark: Klaviyo as keyword is fine; in ad text it can be restricted, check before launch</td></tr>
+<tr><td><b>YouTube</b></td><td>15 s + 6 s cutdowns of the 4 videos</td><td></td></tr>
+<tr><td><b>Shopify App Store search ads</b></td><td>Listing promo text for the window</td><td>Shopify path only</td></tr>
+<tr><td><b>Retargeting</b></td><td>Page visitors no claim, calculator users, signups no code: 3 statics + 1 video each</td><td>Lead with their narrative, close on deadline</td></tr></table>
+<p><b>Phased copy:</b> warm-up (value, "revealed soon"), launch (offer), migration cut-off (15 Nov), BF week, last 48 h. No fake extensions.</p>
+
+<h2 id="cre">9. Creators</h2>
+<ul>
+<li><b>Brief (one doc):</b> offer, 4 narratives, must-say (code, deadline, Brevo), must-not (PushOwl name, unverified numbers, competitor bashing beyond the ledger), disclosure, link + per-creator code, hold-until-approved line.</li>
+<li><b>Hook bank:</b> 40 hooks, 10 per narrative, first 3 seconds written out.</li>
+<li><b>4 script templates:</b> talking head (N1), screen-share of the calculator (N2), "I moved my store before BF" (N3), product URL to ads demo (N4).</li>
+<li><b>B-roll pack:</b> screen recordings of the calculator, ads generator, migration flow, offer card.</li>
+<li><b>Roster:</b> Shopify YouTubers, ecom IG/TikTok, X operators via the creator engine; LinkedIn via Partner Voices (partner agencies, no fee).</li>
+<li><b>Terms:</b> one payout after final video approval, via Tolt. Nothing publishes before our go-ahead.</li>
+<li><b>Dates:</b> brief out 14 Oct, drafts 26 Oct, live from 2 Nov, second wave 20 Nov.</li>
+</ul>
+
+<h2 id="seo">10. SEO, blog and GEO<small>Publish by 20 Oct so pages are indexed before November.</small></h2>
+<table><tr><th>#</th><th>Piece</th><th>Narrative</th><th>Target</th></tr>
+<tr><td>B1</td><td>Klaviyo pricing 2026: what you really pay per contact</td><td>N1</td><td>klaviyo pricing</td></tr>
+<tr><td>B2</td><td>Inactive subscribers: what they cost and what to do</td><td>N1</td><td>ghost contacts, inactive subscribers</td></tr>
+<tr><td>B3</td><td>Klaviyo alternatives for Shopify (2026)</td><td>N2</td><td>klaviyo alternative</td></tr>
+<tr><td>B4</td><td>Brevo vs Klaviyo</td><td>N2</td><td>brevo vs klaviyo</td></tr>
+<tr><td>B5</td><td>How to migrate from Klaviyo before Black Friday</td><td>N3</td><td>migrate from klaviyo</td></tr>
+<tr><td>B6</td><td>Done-for-you email marketing: what it costs</td><td>N3</td><td>email marketing agency cost</td></tr>
+<tr><td>B7</td><td>Black Friday ad examples for Shopify stores</td><td>N4</td><td>black friday ads shopify</td></tr>
+<tr><td>B8</td><td>BFCM 2026 email and SMS checklist for Shopify</td><td>all</td><td>top of funnel</td></tr>
+<tr><td>T1</td><td>Free tool: Klaviyo cost / list tax calculator</td><td>N1+N2</td><td>klaviyo cost calculator</td></tr></table>
+<p><b>GEO:</b> add the four narratives as tracked prompts in LLM Radar, push roundup citations through the Citation Engine, FAQ schema on every piece. <b>Organic:</b> LinkedIn (you + Brevo page), X, Reddit value posts (r/shopify, r/ecommerce), Shopify Community, one YouTube migration walkthrough.</p>
+
+<h2 id="pr">11. PR</h2>
+<ul>
+<li><b>Data story (pitch 13 to 20 Oct):</b> "The ghost contact tax: what Shopify brands pay for subscribers who never open". Needs one defensible number.</li>
+<li><b>Offer release (2 Nov)</b> + exec quote.</li>
+<li><b>Deal roundups:</b> submit to SaaS BFCM deal lists, Shopify app roundups, ecom newsletters (by 25 Oct).</li>
+<li><b>Bylines:</b> one BFCM retention playbook piece for an ecom trade outlet.</li>
+<li><b>Recap (2 Dec):</b> what Brevo merchants sent and earned over BFCM.</li>
+<li><b>Partners + affiliates:</b> asset kit (banners, copy, codes) for the Expert Directory and Tolt affiliates.</li>
+</ul>
+
+<h2 id="ops">12. Ops, tracking and measurement</h2>
+<div class="grid">
+<div class="card warn"><h4>Delivery capacity</h4><p>Who runs the $300 sessions and migrations, and how many per week. Capacity sets the 15 Nov cut-off and any cap.</p></div>
+<div class="card warn"><h4>Redemption paths</h4><p>Test BFCM2026 end to end on the Brevo signup path and the Shopify path before 30 Oct.</p></div>
+<div class="card warn"><h4>Support pack</h4><p>Macros, FAQ, escalation for code issues, internal one-pager for sales and CS.</p></div>
+<div class="card good"><h4>Tracking</h4><p>UTM scheme (source, campaign, narrative), per-creator code variants, PostHog events, UTMs carried to the signup record.</p></div>
+<div class="card good"><h4>Dashboard</h4><p>Visits by channel and narrative, claim rate, signups, code redemptions, paid conversions, sessions booked, migrations done, CAC by channel.</p></div>
+</div>
+
+<h2 id="cal">13. Calendar</h2>
+<table><tr><th>Week</th><th>Ship</th></tr>
+<tr><td>7 to 11 Oct</td><td>Decisions locked, offer sheet, claims ledger, messaging house, calculator</td></tr>
+<tr><td>12 to 18 Oct</td><td>Creator brief out (14 Oct), page build, SEO B1 to B4 + T1, PR pitching starts</td></tr>
+<tr><td>19 to 25 Oct</td><td>Page QA, emails built, Meta statics + video recuts, Google RSAs, SEO B5 to B8, roundup submissions</td></tr>
+<tr><td>26 Oct to 1 Nov</td><td>Creator drafts reviewed, code tested end to end, E1 teaser, E2 early access</td></tr>
+<tr><td>2 to 15 Nov</td><td>Launch. Lead N3 (migration cut-off 15 Nov) + N1</td></tr>
+<tr><td>16 to 26 Nov</td><td>Lead N2 + N4, creator wave 2, retargeting up</td></tr>
+<tr><td>27 to 30 Nov</td><td>Black Friday to Cyber Monday, last call. Offer ends 30 Nov 23:59 (to confirm)</td></tr>
+<tr><td>1 to 4 Dec</td><td>Recap PR, onboarding continues, results email</td></tr></table>
+
+<h2 id="dec">14. Open decisions (blocking)</h2>
+<ol>
+<li>Discount duration: 30% for how many months; 50% first year only?</li>
+<li>Code string: <code>BFCM2026</code> (no space)?</li>
+<li>Eligibility: new signups only, free-plan upgrades, existing paid switching to annual?</li>
+<li>Shopify path: where a Shopify merchant enters the code.</li>
+<li>$200 ad credits: what they are, conditions, expiry.</li>
+<li>Free BFCM ads: how many per store, which placements.</li>
+<li>$300 session: who delivers, weekly capacity, booking tool.</li>
+<li>Migration scope (Klaviyo only?) and whether we state a value.</li>
+<li>Dates: launch 2 Nov? End 30 Nov or 1 Dec? Any cap?</li>
+<li>Legal: naming Klaviyo in ads and on the page.</li>
+<li>Budget split (v20's $30k still valid?).</li>
+<li>Page home: brevo.com path or standalone domain; signup URL.</li>
+</ol>
+</div></body></html>
