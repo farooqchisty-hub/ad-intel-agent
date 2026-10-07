@@ -2,17 +2,17 @@
  "ads": [
   {
    "file": "vv-01.webp",
-   "alt": "VitalVogue Black Friday offer ad: 'It's Black Friday! 40% off every shaper this week, from ₹389' beside three shapewear products",
+   "alt": "VitalVogue Black Friday offer ad: 'It's Black Friday! 40% off every shaper this week, from $24' beside three shapewear products, free US shipping over $50",
    "format": "Offer poster"
   },
   {
    "file": "vv-02.webp",
-   "alt": "VitalVogue comparison ad: saree shapewear (tapered, zero bulk, #1 selling in India) against a regular cotton petticoat, Black Friday ₹599",
+   "alt": "VitalVogue comparison ad: saree shapewear (tapered, zero bulk, bestselling shaper) against a regular cotton petticoat, Black Friday $36, 40% off",
    "format": "Us vs them comparison"
   },
   {
    "file": "vv-03.webp",
-   "alt": "VitalVogue review ad: 'Now I can eat at every party without worrying over my belly' with the black tummy tucker shorts, Black Friday ₹479",
+   "alt": "VitalVogue review ad: 'Now I can eat at every party without worrying over my belly' with the black tummy tucker shorts, Black Friday $29, 40% off",
    "format": "Review card"
   },
   {
@@ -22,12 +22,12 @@
   },
   {
    "file": "vv-05.webp",
-   "alt": "VitalVogue product ad: hands holding the nude tummy tucker belt with callouts (adjustable hooks, breathable fabric, ₹479) and '40% off till Cyber Monday'",
+   "alt": "VitalVogue product ad: hands holding the nude tummy tucker belt with callouts (adjustable hooks, breathable fabric, $29) and '40% off till Cyber Monday'",
    "format": "Product + callouts"
   },
   {
    "file": "vv-06.webp",
-   "alt": "VitalVogue handwritten Cyber Monday ad: 'Cyber Monday ends tonight', ₹649 crossed out to ₹389, grey tummy control underwear photo taped to the page",
+   "alt": "VitalVogue handwritten Cyber Monday ad: 'Cyber Monday ends tonight', $40 crossed out to $24, grey tummy control underwear photo taped to the page",
    "format": "Handwritten countdown"
   }
  ]
