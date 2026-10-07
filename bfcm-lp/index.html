@@ -169,7 +169,7 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(
 .ads{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
 .ad{position:relative;border-radius:18px;overflow:hidden;background:var(--ink-3);aspect-ratio:1/1;border:1px solid var(--line)}
 .ad img{width:100%;height:100%;object-fit:cover}
-.ad .pill{position:absolute;left:12px;top:12px;background:var(--ink);color:var(--lime);font:600 12px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:7px 10px;z-index:2}
+.adfig{margin:0}.adfig figcaption{display:flex;align-items:center;gap:10px;margin-top:10px;color:var(--muted);font:500 15px var(--display)}.adfig .pill{border:1px solid var(--lime);color:var(--lime);font:600 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:6px 9px}
 .ad.ph{display:grid;place-items:center;color:var(--muted-2);font:600 16px var(--display);background:repeating-linear-gradient(135deg,var(--ink-3) 0 14px,#243034 14px 28px)}
 .credit-chip{display:inline-flex;align-items:center;gap:12px;margin-top:28px;border:1px solid var(--lime);border-radius:var(--pill);padding:10px 18px 10px 10px;font:600 17px var(--display)}
 .credit-chip i{font-style:normal;background:var(--lime);color:var(--ink);border-radius:99px;padding:6px 12px;font-weight:700}
@@ -341,7 +341,7 @@ footer a{color:var(--muted)}
   <div>
     <span class="tag">The Klaviyo tax</span>
     <h2 style="margin-top:22px">You're paying for contacts who <span class="hl">never open.</span></h2>
-    <p class="lede" style="margin-top:18px">Klaviyo bills you for every profile on your list. Engaged or not. With PushOwl you pay for the emails you send. Contacts are unlimited.</p>
+    <p class="lede" style="margin-top:18px">Klaviyo bills you for every active profile on your list, whether they open or not. With PushOwl you pay for the emails you send. Contacts are unlimited.</p>
     <ul class="rows">
       <li><span class="i"><svg viewBox="0 0 24 24"><path d="M4 18 10 12l4 4 6-8"/></svg></span><div><b>Your list grows, so does your bill</b><span>Every Black Friday signup adds to your profile count. The bill stays after the sale ends.</span></div></li>
       <li><span class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="5"/><path d="M8 20h8M10 15v5m4-5v5"/></svg></span><div><b>Ghost contacts cost the same</b><span>Someone who hasn't opened in months still counts as a paid profile.</span></div></li>
@@ -377,13 +377,13 @@ footer a{color:var(--muted)}
     <div class="receipt" aria-live="polite">
       <h3>Your yearly email bill</h3>
       <p class="sub" id="r-sub">20,000 contacts · 120,000 emails a month</p>
-      <div class="line"><span>Klaviyo</span><b id="r-kl">$4,500</b></div>
+      <div class="line"><span id="r-kl-l">Klaviyo</span><b id="r-kl">$4,500</b></div>
       <div class="line ghost"><span>Ghost contacts in that bill</span><b id="r-ghost">$900</b></div>
       <div class="line"><span>PushOwl, list price</span><b id="r-pol">$1,890</b></div>
       <div class="line po"><span><strong>PushOwl with BFCM2026</strong> (annual)</span><b id="r-po">$945</b></div>
       <div class="save"><div><div class="n" id="r-save">$3,555</div><small id="r-save-l">you'd save a year</small></div>
         <a class="btn btn-lime cta" data-pos="calc" href="#">Claim my savings <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a></div>
-      <p class="calc-note">Estimate. Klaviyo Email plan prices from klaviyo.com/pricing and PushOwl email prices from pushowl.com/pricing, both checked 7 Oct 2026, USD, before tax. Same emails sent on both.</p>
+      <p class="calc-note" id="calc-note">Estimate. Klaviyo Email plan prices from klaviyo.com/pricing and PushOwl email prices from pushowl.com/pricing, both checked 7 Oct 2026, USD, before tax. Same emails sent on both.</p>
     </div>
   </div>
 </div></section>
@@ -516,7 +516,7 @@ var HERO = {
   n3:{tag:"Done for you", t:'Your Black Friday, <span class="hl">done for you.</span>', s:"Free Klaviyo migration and a free $300 strategy session to set up your flows and campaigns. Plus 50% off annual plans."},
   n4:{tag:"Ads in one click", t:'Your Black Friday ads, <span class="hl">ready in one click.</span>', s:"Paste your store URL and get ads made from your products, plus $200 in ad credits. And 50% off annual plans."}
 };
-var nKey = ((qs.get("n") || qs.get("utm_content") || "").toLowerCase().match(/n[1-4]/) || [])[0];
+var nKey = ([qs.get("n"), qs.get("utm_term"), qs.get("utm_content")].map(function(v){ return ((v || "").toLowerCase().match(/(^|[^a-z0-9])(n[1-4])([^0-9]|$)/) || [])[2]; }).filter(Boolean)[0]);
 if (nKey && HERO[nKey]) {
   document.getElementById("h-tag").textContent = HERO[nKey].tag;
   document.getElementById("h-title").innerHTML = HERO[nKey].t;
@@ -573,11 +573,16 @@ document.querySelectorAll(".copy").forEach(function(b){
   function ph(){ var h=""; for (var i=0;i<6;i++) h+='<div class="ad ph">Example ad '+(i+1)+'</div>'; grid.innerHTML=h; }
   fetch("assets/ads/manifest.json").then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(m){
     var items = (m.ads || m).slice(0,6), h = "";
-    items.forEach(function(a){ h += '<figure class="ad" style="margin:0"><span class="pill">Example</span><img src="assets/ads/'+a.file+'" alt="'+(a.alt||"Example Black Friday ad")+'" loading="lazy"></figure>'; });
+    items.forEach(function(a){ h += '<figure class="adfig"><div class="ad"><img src="assets/ads/'+a.file+'" alt="'+(a.alt||"Example Black Friday ad").replace(/"/g,"&quot;")+'" loading="lazy" width="1200" height="1200"></div><figcaption><span class="pill">Example</span>'+(a.format||"")+'</figcaption></figure>'; });
     grid.innerHTML = h || ""; if (!items.length) ph();
   }).catch(ph);
 })();
 
+/* ---------------- neutral mode (?mode=neutral): no competitor name, for ad and creator screen recordings ---------------- */
+if (qs.get("mode") === "neutral") {
+  document.getElementById("r-kl-l").textContent = "Per-contact pricing";
+  document.getElementById("calc-note").textContent = "Estimate. Per-contact prices from a leading email platform's public pricing page and PushOwl email prices from pushowl.com/pricing, both checked 7 Oct 2026, USD, before tax. Same emails sent on both.";
+}
 /* ---------------- calculator ---------------- */
 (function(){
   var $ = function(id){ return document.getElementById(id); };
