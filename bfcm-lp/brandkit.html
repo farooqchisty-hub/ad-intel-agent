@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PushOwl Design System</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:"Degular";font-weight:400;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64a134abfbc556132609e2a5_Degular%20Regular.otf")}
+@font-face{font-family:"Degular";font-weight:600;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64a134d30cf476b49e39c781_Degular%20Semibold.otf")}
+@font-face{font-family:"Degular";font-weight:700;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64a134f11a72bd5a81561a28_Degular%20Bold.otf")}
+@font-face{font-family:"Degular";font-weight:900;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64a1350164a2d2510ef99959_Degular%20Black.otf")}
+@font-face{font-family:"Aktiv Grotesk";font-weight:400;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64ac296620744d8ec5b8a929_.14032.otf")}
+@font-face{font-family:"Aktiv Grotesk";font-weight:500;src:url("https://cdn.prod.website-files.com/649c1bc8c68d9600b9a74616/64ac2b6638d61f81b4baa2a1_.14038.otf")}
+:root{--ink:#1b2427;--ink-2:#1a2428;--ink-3:#212c30;--line:#3a474c;--lime:#f0ff42;--lime-hover:#bee76e;--aqua:#73c4a7;--mint-700:#3e9494;--razz:#e23067;--mist:#dbebea;--white:#fefefe;--muted:rgba(254,254,254,.72);--display:"Degular",system-ui,sans-serif;--body:"Aktiv Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box}html{overflow-x:clip}
+body{margin:0;background:var(--ink-2);color:var(--white);font:400 16px/1.55 var(--body);overflow-x:clip}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+@media(max-width:760px){.wrap{padding:0 16px}}
+header{padding:56px 0 36px;border-bottom:1px solid var(--line)}
+header img{height:44px;margin-bottom:28px}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0}
+h1{font-size:clamp(36px,5vw,60px);line-height:1.05}
+h2{font-size:30px;margin:64px 0 8px}
+h3{font-size:18px;font-weight:600;margin:0 0 6px}
+p.lead{color:var(--muted);max-width:720px;font-size:18px;margin:14px 0 0}
+.note{color:var(--muted);font-size:14px;margin:4px 0 18px;max-width:760px}
+.hl{background:linear-gradient(transparent 48%,var(--razz) 50%,var(--razz) 82%,transparent 84%);padding:0 .06em}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.sw{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--ink-3)}
+.sw .c{height:92px}
+.sw div.m{padding:12px 14px;font-size:13px}
+.sw b{display:block;font:600 15px var(--display)}
+.sw code{font:12px ui-monospace,Menlo,monospace;color:var(--muted)}
+.type>div{border-bottom:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:baseline}
+@media(max-width:760px){.type>div{grid-template-columns:1fr}}
+.type small{color:var(--muted);font:12px ui-monospace,Menlo,monospace}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 18px/1 var(--body);border-radius:99px;padding:16px 26px;border:1px solid transparent;text-decoration:none}
+.btn svg{width:14px;height:14px}
+.lime{background:var(--lime);color:var(--ink)}.ghost{border-color:var(--white);color:var(--white)}
+.tag{display:inline-block;font:400 15px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--white);border-radius:99px;padding:11px 18px}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.gcard{position:relative;border-radius:30px;padding:26px;background:linear-gradient(180deg,rgba(240,255,66,.07),rgba(115,196,167,.07)),var(--ink-2)}
+.gcard::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(160deg,var(--lime),var(--aqua));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.lcard{border:1px solid var(--lime);border-radius:24px;padding:26px;background:rgba(240,255,66,.03)}
+.mcard{background:#fff;color:var(--ink);border:1px solid var(--aqua);border-radius:24px;padding:26px}
+.card p{color:inherit;opacity:.75;margin:0;font-size:15px}
+.ill{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.ill figure{margin:0;border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--ink-3);display:grid;place-items:center;aspect-ratio:1}
+.ill img{max-width:100%;max-height:120px}
+.ill figcaption{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:15px;display:block;overflow-x:auto}
+td,th{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{font:600 13px var(--display);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.dos{display:grid;gap:16px;grid-template-columns:1fr 1fr}@media(max-width:760px){.dos{grid-template-columns:1fr}}
+.dos div{border-radius:16px;padding:18px 20px;background:var(--ink-3)}
+.dos .y{border-left:4px solid var(--lime)}.dos .n{border-left:4px solid var(--razz)}
+.dos ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+footer{padding:60px 0 80px;color:var(--muted);font-size:14px}
+a{color:var(--lime)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img src="assets/po/logo.webp" alt="Brevo PushOwl">
+  <h1>PushOwl <span class="hl">design system</span></h1>
+  <p class="lead">Extracted from pushowl.com (homepage, pricing and /lp/email-marketing) on 7 Oct 2026. The source of truth for the BFCM 2026 landing page and any PushOwl web page. Static and video ads follow the Brevo palette and the Brevo PushOwl lockup instead (see the static ads workflow doc).</p>
+  <p class="lead" style="font-size:15px">Site stack: Webflow (site id 649c1bc8c68d9600b9a74616), GSAP, Intercom (app ntcl5suv), GTM GTM-W9BPQ9. Live BFCM page preview: <a href="./">BFCM landing page</a>.</p>
+</div></header>
+<main class="wrap">
+
+<h2>Colour</h2>
+<p class="note">Dark-first. Charcoal is the canvas, lime is the action colour, razz is only for the marker highlight, aqua and mint carry borders and secondary accents. Mist is the one light surface, used to break long dark pages.</p>
+<div class="grid">
+  <div class="sw"><div class="c" style="background:#1b2427;border-bottom:1px solid #3a474c"></div><div class="m"><b>Ink</b><code>#1b2427 · --dark</code><br>Primary canvas, button text</div></div>
+  <div class="sw"><div class="c" style="background:#1a2428"></div><div class="m"><b>Ink 2</b><code>#1a2428</code><br>Body background</div></div>
+  <div class="sw"><div class="c" style="background:#212c30"></div><div class="m"><b>Ink 3</b><code>#212c30</code><br>Raised panels</div></div>
+  <div class="sw"><div class="c" style="background:#3a474c"></div><div class="m"><b>Line</b><code>#3a474c</code><br>Hairlines, tile borders</div></div>
+  <div class="sw"><div class="c" style="background:#f0ff42"></div><div class="m"><b>Sunny lime</b><code>#f0ff42 · --brand--sunny-lime</code><br>CTAs, ticks, numbers</div></div>
+  <div class="sw"><div class="c" style="background:#bee76e"></div><div class="m"><b>Lime hover</b><code>#bee76e · --brand--hover</code><br>Button hover</div></div>
+  <div class="sw"><div class="c" style="background:#73c4a7"></div><div class="m"><b>Aquamarine</b><code>#73c4a7</code><br>Card borders, eyebrows, line art</div></div>
+  <div class="sw"><div class="c" style="background:#3e9494"></div><div class="m"><b>Mint 700</b><code>#3e9494</code><br>Secondary accent</div></div>
+  <div class="sw"><div class="c" style="background:#e23067"></div><div class="m"><b>Razz</b><code>#e23067 · --razz</code><br>Marker highlight only</div></div>
+  <div class="sw"><div class="c" style="background:#dbebea"></div><div class="m"><b>Mist</b><code>#dbebea · --grey--100--bg</code><br>Light section</div></div>
+  <div class="sw"><div class="c" style="background:#4e6470"></div><div class="m"><b>Grey 300</b><code>#4e6470</code><br>Muted text on mist</div></div>
+  <div class="sw"><div class="c" style="background:#fefefe"></div><div class="m"><b>White</b><code>#fefefe</code><br>Text; 75% for body copy</div></div>
+</div>
+
+<h2>Type</h2>
+<p class="note">Degular (display, Bold 700 for headings, Black 900 for big numbers) over Aktiv Grotesk (body and buttons). Both are self-hosted .otf files on the Webflow CDN, CORS open. Headlines are short, sentence case, tight leading.</p>
+<div class="type">
+  <div><small>H1 · Degular 700 · 82/90 desktop</small><span style="font:700 clamp(40px,6vw,72px)/1.06 var(--display)">Turn every <span class="hl">visitor</span> into a customer</span></div>
+  <div><small>H2 · Degular 700 · 52/57</small><span style="font:700 clamp(30px,4vw,48px)/1.1 var(--display)">Every visitor that leaves is <span class="hl">lost revenue.</span></span></div>
+  <div><small>H3 · Degular 600 · 22</small><span style="font:600 22px var(--display)">Built exclusively for Shopify</span></div>
+  <div><small>Big number · Degular 900</small><span style="font:900 72px/1 var(--display);color:var(--lime)">50% off</span></div>
+  <div><small>Body · Aktiv Grotesk 400 · 17 to 20, 75% white</small><span style="color:var(--muted);font-size:19px">PushOwl seals the leaks, combining email, push and SMS inside one app.</span></div>
+  <div><small>Eyebrow · Degular 400 · 15 to 20, caps, outlined pill</small><span><span class="tag">The leaky bucket</span></span></div>
+</div>
+
+<h2>Signature: the marker highlight</h2>
+<p class="note">One or two words per headline sit on a razz bar covering the lower half of the x-height: <code>linear-gradient(transparent 48%, #e23067 50%, #e23067 82%, transparent 84%)</code>. Highlight the payoff word, never a whole line, at most once per headline.</p>
+<p style="font:700 44px/1.1 var(--display);margin:8px 0 0">Don't leave <span class="hl">money</span> on the table</p>
+
+<h2>Buttons and tags</h2>
+<p class="note">Fully rounded pills with an up-right arrow. Lime filled is the primary action (one per view); white outline is secondary. 16 to 20px Aktiv Grotesk 500, ~16px by 26px padding. The current /lp page still uses square lime buttons; the homepage pill is the newer system and is what the BFCM page uses.</p>
+<div class="row">
+  <a class="btn lime" href="#">Start Free <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a>
+  <a class="btn ghost" href="#">Pricing <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a>
+  <span class="tag">Email marketing</span>
+</div>
+
+<h2>Surfaces</h2>
+<p class="note">Three card types. Radii: 30 (feature panels), 24 (cards), 16 (tiles and strips), 10 (icon tiles).</p>
+<div class="cards">
+  <div class="gcard card"><h3>Gradient-border panel</h3><p>1px lime to aqua border, faint lime/aqua wash. Hero promos, closing CTA, "customised solution" block.</p></div>
+  <div class="lcard card"><h3>Lime-outline card</h3><p>1px #f0ff42 border, 24 radius. Feature grids and checklists ("SMS Marketing").</p></div>
+  <div class="mcard card"><h3>Mist card</h3><p>White on #dbebea, 1px aqua border. Testimonials, feature grids on light sections, calculators.</p></div>
+</div>
+
+<h2>Illustration and imagery</h2>
+<p class="note">Two families, never mixed in one block. (1) Thin aqua line-art owls and doodles as decoration at the edges. (2) Flat "-bro" style scenes in lime, charcoal and olive (#3d4a3a blob) for explanatory sections. Product UI screenshots sit in rounded frames with aqua borders and lime callout chips.</p>
+<div class="ill">
+  <figure><img src="assets/po/owl-laptop.webp" alt=""><figcaption>owl-laptop (line)</figcaption></figure>
+  <figure><img src="assets/po/owl-book.webp" alt=""><figcaption>owl-book (line)</figcaption></figure>
+  <figure><img src="assets/po/owl-angel.webp" alt=""><figcaption>owl-angel (line)</figcaption></figure>
+  <figure><img src="assets/po/sparkle.webp" alt=""><figcaption>sparkle (line)</figcaption></figure>
+  <figure><img src="assets/po/plane.webp" alt=""><figcaption>plane (line)</figcaption></figure>
+  <figure><img src="assets/po/illustration.webp" alt=""><figcaption>leaky funnel (flat)</figcaption></figure>
+  <figure><img src="assets/po/consultative-sales-bro-1.webp" alt=""><figcaption>strategy session (flat)</figcaption></figure>
+  <figure><img src="assets/po/digital-tools-bro-1.webp" alt=""><figcaption>omnichannel (flat)</figcaption></figure>
+  <figure><img src="assets/po/card-7.webp" alt=""><figcaption>channels orbit (flat)</figcaption></figure>
+  <figure><img src="assets/po/frame-6569-p-1080.webp" alt=""><figcaption>product UI collage</figcaption></figure>
+</div>
+
+<h2>Layout</h2>
+<table>
+  <tr><th>Token</th><th>Value</th></tr>
+  <tr><td>Content width</td><td>1200px max, centred</td></tr>
+  <tr><td>Gutter</td><td>40px desktop, 16px phone</td></tr>
+  <tr><td>Section padding</td><td>96px desktop, 68px phone; heading block centred with an eyebrow pill above</td></tr>
+  <tr><td>Grids</td><td>3 or 4 columns desktop, 2 tablet, 1 phone; 18px gaps</td></tr>
+  <tr><td>Split sections</td><td>Illustration and copy 50/50, alternate sides, copy column holds an icon-row list and one CTA</td></tr>
+  <tr><td>Rhythm</td><td>Dark, dark, mist, dark... one mist band every 2 to 3 dark sections</td></tr>
+  <tr><td>Proof strip</td><td>Review badges (Gartner, G2, Capterra, Trustpilot), then a greyscale logo marquee</td></tr>
+</table>
+
+<h2>BFCM components (new, built on the system)</h2>
+<table>
+  <tr><th>Component</th><th>Spec</th></tr>
+  <tr><td>Coupon ticket</td><td>Lime card, 28 radius, rotated -2.5deg, punched side notches in page colour, dashed perforation, Degular 900 offer, ink code box with Copy button. Line-art owl peeks over the top.</td></tr>
+  <tr><td>Announcement bar</td><td>Lime strip, code in a dashed box, live countdown to the real deadline only.</td></tr>
+  <tr><td>Bill receipt</td><td>White card on mist, dashed line items, ghost-contact line in razz with strike, ink savings block with a lime number.</td></tr>
+  <tr><td>Comparison table</td><td>PushOwl column headed in lime, cells tinted 6% lime; competitor column plain. Sources and date under the table.</td></tr>
+  <tr><td>Example-ad tiles</td><td>Square, 18 radius, "EXAMPLE" pill in ink and lime top-left.</td></tr>
+</table>
+
+<h2>Voice on the page</h2>
+<div class="dos">
+  <div class="y"><b>Do</b><ul><li>Short, punchy, sentence case ("Black Friday won't wait.")</li><li>One highlighted payoff word</li><li>Talk to Shopify store owners directly, contractions always</li><li>Show sources and dates next to any price</li></ul></div>
+  <div class="n"><b>Don't</b><ul><li>Lime text on mist, or razz anywhere but the marker</li><li>Two primary buttons side by side</li><li>Mix line-art and flat illustration in one block</li><li>Em or en dashes in copy</li></ul></div>
+</div>
+</main>
+<footer><div class="wrap">Built 7 Oct 2026 for BFCM 2026. Tokens extracted from pushowl-site.webflow.shared.css and computed styles on pushowl.com.</div></footer>
+</body>
+</html>
