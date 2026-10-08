@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BFCM Emails v2</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#1B1B1B;--muted:#5d5d5d;--line:#e3e3e3;--mint:#C0FFA5;--lav:#DBD9F7;--bg:#fff;--card:#fafafa}
+@media (prefers-color-scheme:dark){:root{--ink:#f1f1f1;--muted:#a9a9a9;--line:#2c2c2c;--bg:#111;--card:#191919}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,Helvetica,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}header{padding:34px 0 16px;border-bottom:1px solid var(--line)}
+h1{margin:0 0 8px;font-size:30px}header p{margin:0 0 8px;color:var(--muted);max-width:860px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.toc a{font-size:13px;text-decoration:none;background:var(--mint);color:#1B1B1B;border-radius:99px;padding:4px 10px}
+h2{margin:40px 0 4px;font-size:22px}.sd{margin:0 0 6px;color:var(--muted)}
+.em{display:grid;grid-template-columns:1fr 290px 290px;gap:18px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
+.meta h3{margin:0 0 8px;font-size:18px}.id{display:inline-block;background:var(--lav);color:#1B1B1B;border-radius:6px;padding:1px 7px;font-size:13px;margin-right:4px}
+dl{display:grid;grid-template-columns:72px 1fr;gap:4px 10px;margin:0 0 8px;font-size:14px}dt{color:var(--muted)}dd{margin:0}
+.pv{color:var(--muted);margin:0 0 10px}.lbl{margin:10px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.subj{margin:0;padding-left:20px}.open{font-weight:600;color:inherit}
+figure{margin:0}figcaption{font-size:12px;color:var(--muted);margin-bottom:6px}figure img{width:100%;border:1px solid var(--line);border-radius:10px;display:block}
+@media (max-width:900px){.em{grid-template-columns:1fr 1fr}.meta{grid-column:1/-1}}@media (max-width:520px){.em{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<header><h1>BFCM 2026 emails v2</h1>
+<p>12 emails, casual and short, for free-plan PushOwl merchants only: Sequence A for existing free users (October value emails, then the offer), Sequence B for new installs, and a short after-claim track. Light design: one banner, plain text, one button, deal terms in the footer. Shown on a phone in light and dark mode.</p>
+<p>Framework, research sources, trigger map and guardrails: <a href="https://app.notion.com/p/3f3449002dcb81cbacc9ebdedda288ce">Notion plan</a>. Nothing has been built in Brevo or sent.</p>
+<div class="toc"><a href="#a1">A1</a><a href="#a2">A2</a><a href="#a3">A3</a><a href="#a4">A4</a><a href="#a5">A5</a><a href="#a6">A6</a><a href="#a7">A7</a><a href="#b1">B1</a><a href="#b2">B2</a><a href="#p1">P1</a><a href="#p2">P2</a><a href="#p3">P3</a></div></header>
+<section><h2>Sequence A: existing free users</h2><p class="sd">Installed PushOwl merchants on the free plan. Value first in October, then the offer. Exits on claim.</p><article class="em" id="a1">
+  <div class="meta"><h3><span class="id">A1</span> Value 1: the 3-wave BFCM plan</h3>
+    <dl><dt>Trigger</dt><dd>Date: Tue 20 Oct 2026, 10:00 store local time.</dd><dt>Send if</dt><dd>Sequence A audience: PushOwl installed, on the free plan, never paid, not MagicFit-only, subscribed to PushOwl marketing email, not bounced or complained, not in Sequence B (installed before 1 Nov). Engaged tier only (clicked a PushOwl email or used the app in the last 90 days). Dormant tier skips the warm-up.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Unique click rate; opt-in prompt switched on within 7 days of send.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>black friday starts in october now</li><li>your bfcm plan in 3 waves (steal it)</li><li>when your shoppers will actually buy</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Shoppers spend early now. Here&#x27;s when to send, what to send, and the 2026 numbers.</p>
+    <p><a class="open" href="out/a1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a1_mob_light.jpg" alt="Value 1: the 3-wave BFCM plan, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a1_mob_dark.jpg" alt="Value 1: the 3-wave BFCM plan, dark mode"></figure>
+</article><article class="em" id="a2">
+  <div class="meta"><h3><span class="id">A2</span> Value 2: clean, prove, warm (inbox prep)</h3>
+    <dl><dt>Trigger</dt><dd>Date: Tue 27 Oct 2026, 10:00 store local time.</dd><dt>Send if</dt><dd>Sequence A audience: PushOwl installed, on the free plan, never paid, not MagicFit-only, subscribed to PushOwl marketing email, not bounced or complained, not in Sequence B (installed before 1 Nov). Engaged tier only.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Unique click rate to the LP calculator.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>will your bfcm emails land in spam?</li><li>3 inbox checks before black friday</li><li>the ghosts on your list cost you twice</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Gmail, Yahoo and Outlook all tightened their sender rules. Here&#x27;s what to fix now.</p>
+    <p><a class="open" href="out/a2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a2_mob_light.jpg" alt="Value 2: clean, prove, warm (inbox prep), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a2_mob_dark.jpg" alt="Value 2: clean, prove, warm (inbox prep), dark mode"></figure>
+</article><article class="em" id="a3">
+  <div class="meta"><h3><span class="id">A3</span> Launch: it&#x27;s live</h3>
+    <dl><dt>Trigger</dt><dd>Date: Mon 2 Nov 2026, 09:00 store local time (engaged tier). Dormant tier on Tue 3 Nov, 10:00, only if the engaged send&#x27;s spam complaint rate is under 0.1%.</dd><dt>Send if</dt><dd>Sequence A audience: PushOwl installed, on the free plan, never paid, not MagicFit-only, subscribed to PushOwl marketing email, not bounced or complained, not in Sequence B (installed before 1 Nov). Engaged and dormant tiers. Not claimed.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Claim rate within 7 days (BFCM2026 redemptions / delivered); Plans page visit rate.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>it&#x27;s live: 50% off for free-plan stores</li><li>your code BFCM2026 works from today</li><li>half price, and we set up your bfcm</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">50% off annual or 30% off monthly, plus free setup and BFCM ads. Ends 30 Nov.</p>
+    <p><a class="open" href="out/a3.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a3_mob_light.jpg" alt="Launch: it&#x27;s live, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a3_mob_dark.jpg" alt="Launch: it&#x27;s live, dark mode"></figure>
+</article><article class="em" id="a4">
+  <div class="meta"><h3><span class="id">A4</span> Follow-up: we&#x27;ll set it up for you (shared with B)</h3>
+    <dl><dt>Trigger</dt><dd>Date: Thu 12 Nov 2026, 10:00 store local time. Sequence B gets the same email at install + 6 days, 10:00 store local time, if that falls on or before Tue 24 Nov.</dd><dt>Send if</dt><dd>Sequence A (engaged and dormant tiers) and Sequence B. Not claimed.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Claim rate within 7 days of send.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>too busy for bfcm setup? we&#x27;ll do it</li><li>your bfcm flows, built by our team</li><li>a $300 setup session, on the house</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Claim BFCM2026 and a strategist sets up your flows and BFCM campaigns. Free.</p>
+    <p><a class="open" href="out/a4.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a4_mob_light.jpg" alt="Follow-up: we&#x27;ll set it up for you (shared with B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a4_mob_dark.jpg" alt="Follow-up: we&#x27;ll set it up for you (shared with B), dark mode"></figure>
+</article><article class="em" id="a5">
+  <div class="meta"><h3><span class="id">A5</span> Last call (shared with B)</h3>
+    <dl><dt>Trigger</dt><dd>Date: Mon 30 Nov 2026, 09:00 store local time (no send later than 18:00 PT).</dd><dt>Send if</dt><dd>Sequence A (engaged and dormant tiers) and Sequence B, not claimed. Skip anyone who already got a BFCM email on 30 Nov (for example B1 after a same-day install).</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Claims on 30 Nov.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>BFCM2026 stops working tonight</li><li>last call: 50% off ends tonight, 11:59 pm PT</li><li>your 50% off ends at 11:59 pm tonight</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">50% off annual or 30% off monthly, plus free setup and BFCM ads. Gone at 11:59 pm PT.</p>
+    <p><a class="open" href="out/a5.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a5_mob_light.jpg" alt="Last call (shared with B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a5_mob_dark.jpg" alt="Last call (shared with B), dark mode"></figure>
+</article><article class="em" id="a6">
+  <div class="meta"><h3><span class="id">A6</span> Branch: clicked, didn&#x27;t claim (shared with B)</h3>
+    <dl><dt>Trigger</dt><dd>Event: clicked the CTA in A3, A4, B1 or B2, then no BFCM2026 redemption within 48 h. Sends at the next 10:00 store local time after the 48 h window.</dd><dt>Send if</dt><dd>Sequence A or B, not claimed. Once per contact. Not sent after Wed 25 Nov (A5 covers the end). If A7 is also due, A7 wins and A6 is dropped.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Claim rate within 7 days of send.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>here&#x27;s the math on your email bill</li><li>up to 10x less than per-contact pricing</li><li>still deciding? here&#x27;s the short version</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Contacts are free here. You pay for the emails you send, now with 50% off.</p>
+    <p><a class="open" href="out/a6.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a6_mob_light.jpg" alt="Branch: clicked, didn&#x27;t claim (shared with B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a6_mob_dark.jpg" alt="Branch: clicked, didn&#x27;t claim (shared with B), dark mode"></figure>
+</article><article class="em" id="a7">
+  <div class="meta"><h3><span class="id">A7</span> Branch: visited Plans, didn&#x27;t upgrade (shared with B)</h3>
+    <dl><dt>Trigger</dt><dd>Event: viewed the Plans page, then no BFCM2026 redemption within 24 h. Sends at the next 10:00 store local time after the 24 h window.</dd><dt>Send if</dt><dd>Sequence A or B, not claimed. Once per contact. Not sent after Thu 26 Nov. Takes priority over A6.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Claim rate within 72 h of send.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>you were one step from 50% off</li><li>where the code goes (and which plan)</li><li>annual or monthly? quick answer inside</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Pick a plan, type BFCM2026 in the code field, confirm. Here&#x27;s how to choose.</p>
+    <p><a class="open" href="out/a7.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a7_mob_light.jpg" alt="Branch: visited Plans, didn&#x27;t upgrade (shared with B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a7_mob_dark.jpg" alt="Branch: visited Plans, didn&#x27;t upgrade (shared with B), dark mode"></figure>
+</article></section><section><h2>Sequence B: new installs (1 to 30 Nov)</h2><p class="sd">Triggered by install, or by an email left in the landing page claim box without an install. Also gets A4 to A7. Exits on claim.</p><article class="em" id="b1">
+  <div class="meta"><h3><span class="id">B1</span> Welcome: your code and a first win</h3>
+    <dl><dt>Trigger</dt><dd>Event: app install between 1 and 30 Nov, send 1 h after install (held to 08:00 to 20:00 store local time; 1 Nov installs get it Mon 2 Nov, 09:00). Also: LP claim-box email captured with no install after 24 h (send at 24 h).</dd><dt>Send if</dt><dd>Sequence B: installed on or after 1 Nov, free plan, never paid, not MagicFit-only; or an LP claim-box lead with no install. LP-lead variant: first line becomes &quot;You grabbed the code. Next, install PushOwl (it&#x27;s free).&quot; and the CTA becomes &quot;Install PushOwl free&quot; to {{INSTALL_URL}}. LP leads get only B1 and A5 unless they install.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Opt-in prompt switched on within 48 h (installs); install within 72 h (LP leads); claim within 14 days.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>welcome! your bfcm code is inside</li><li>you&#x27;re in. here&#x27;s your code: BFCM2026</li><li>your first PushOwl win (plus a code)</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Switch on one setting today. Save 50% when you&#x27;re ready. Code ends 30 Nov.</p>
+    <p><a class="open" href="out/b1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/b1_mob_light.jpg" alt="Welcome: your code and a first win, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/b1_mob_dark.jpg" alt="Welcome: your code and a first win, dark mode"></figure>
+</article><article class="em" id="b2">
+  <div class="meta"><h3><span class="id">B2</span> Activation: win back abandoned carts</h3>
+    <dl><dt>Trigger</dt><dd>Event: install + 2 days, 10:00 store local time.</dd><dt>Send if</dt><dd>Sequence B installs only (not LP-only leads), not claimed. Skip if the install was on or after Sat 28 Nov.</dd><dt>Exit</dt><dd>Claim (BFCM2026 redeemed) exits to P1. Uninstall, any paid plan, unsubscribe, hard bounce or spam complaint removes the contact from every BFCM email.</dd><dt>Goal</dt><dd>Plans page visit rate; claim within 7 days of send.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>7 in 10 carts get abandoned. get yours back</li><li>the bfcm leak most stores ignore</li><li>your first win, part two: carts</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Cart reminders win back sales that almost happened. Here&#x27;s how to switch them on.</p>
+    <p><a class="open" href="out/b2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/b2_mob_light.jpg" alt="Activation: win back abandoned carts, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/b2_mob_dark.jpg" alt="Activation: win back abandoned carts, dark mode"></figure>
+</article></section><section><h2>After claiming (both sequences)</h2><p class="sd">Starts when BFCM2026 is redeemed.</p><article class="em" id="p1">
+  <div class="meta"><h3><span class="id">P1</span> You&#x27;re in: book your free session</h3>
+    <dl><dt>Trigger</dt><dd>Event: BFCM2026 redeemed. Send 10 min later, any time of day.</dd><dt>Send if</dt><dd>Anyone who redeemed BFCM2026, from Sequence A or B. Redemption exits A and B.</dd><dt>Exit</dt><dd>Uninstall or cancellation stops the P track.</dd><dt>Goal</dt><dd>Strategy session booked within 7 days of claim.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>you&#x27;re in. let&#x27;s book your free setup</li><li>50% off: done. next, your free session</li><li>BFCM2026 is on. here&#x27;s what&#x27;s next</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Pick a time and a strategist sets up your flows and BFCM campaigns with you.</p>
+    <p><a class="open" href="out/p1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p1_mob_light.jpg" alt="You&#x27;re in: book your free session, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p1_mob_dark.jpg" alt="You&#x27;re in: book your free session, dark mode"></figure>
+</article><article class="em" id="p2">
+  <div class="meta"><h3><span class="id">P2</span> Free migration</h3>
+    <dl><dt>Trigger</dt><dd>Event: claim + 1 day, 10:00 store local time.</dd><dt>Send if</dt><dd>Claimed, no migration request yet.</dd><dt>Exit</dt><dd>Migration requested, uninstall or cancellation.</dd><dt>Goal</dt><dd>Migration request rate.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>we&#x27;ll move your email over, free</li><li>switching tools in november? we&#x27;ll do it</li><li>leave the moving to us. it&#x27;s free</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Tell us what you use now. We move it, and your old tool runs until we&#x27;re done.</p>
+    <p><a class="open" href="out/p2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p2_mob_light.jpg" alt="Free migration, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p2_mob_dark.jpg" alt="Free migration, dark mode"></figure>
+</article><article class="em" id="p3">
+  <div class="meta"><h3><span class="id">P3</span> Black Friday week checklist</h3>
+    <dl><dt>Trigger</dt><dd>Date: Mon 23 Nov 2026, 10:00 store local time. Claims after that get it at claim + 1 day, until Thu 26 Nov.</dd><dt>Send if</dt><dd>Claimed (P track).</dd><dt>Exit</dt><dd>Uninstall or cancellation.</dd><dt>Goal</dt><dd>BFCM ads launched before Fri 27 Nov.</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>your black friday week checklist</li><li>5 quick checks before black friday hits</li><li>4 days out. here&#x27;s what to check</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Carts, early access, send times, ads and mobile. Five checks, then go sell.</p>
+    <p><a class="open" href="out/p3.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p3_mob_light.jpg" alt="Black Friday week checklist, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p3_mob_dark.jpg" alt="Black Friday week checklist, dark mode"></figure>
+</article></section>
+</div></body></html>
