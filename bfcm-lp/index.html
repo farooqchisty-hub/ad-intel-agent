@@ -425,6 +425,42 @@ h3{font-size:19px}
   .z1::after{right:auto;left:50%;top:auto;bottom:-21px;margin:0 0 0 -15px;rotate:90deg}
 }
 @media (prefers-reduced-motion:reduce){ .demo *{transition:none!important;animation:none!important} }
+
+/* ---------------- claim panel: portal-style sign-up with code, then the App Store (8 Oct) ---------------- */
+.claim{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px}
+.claim[hidden]{display:none}
+.claim-back{position:absolute;inset:0;background:rgba(10,15,17,.72);backdrop-filter:blur(4px)}
+.claim-card{position:relative;width:100%;max-width:460px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;color:#2f3437;border-radius:18px;padding:30px 30px 22px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.5);animation:claimIn .28s cubic-bezier(.2,1.2,.4,1)}
+@keyframes claimIn{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.claim-x{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:#f1f3f3;color:#2f3437;font:400 24px/1 var(--body);cursor:pointer}
+.claim-owl{width:84px;height:84px;margin:0 auto 6px;object-fit:contain}
+.claim h2{font:700 26px/1.15 var(--display);color:#1b2427;margin:0 0 8px}
+.claim-sub{margin:0 0 18px;font-size:14px;line-height:1.5;color:#5b6266}
+.claim form{text-align:left}
+.claim-lbl{display:block;font:500 14px/1.2 var(--body);color:#1b2427;margin:12px 0 6px}
+.claim input{width:100%;font:400 16px/1.2 var(--body);color:#1b2427;background:#fff;border:1px solid #c9cdd0;border-radius:8px;padding:12px 12px;outline:none}
+.claim input:focus{border-color:#3e9494;box-shadow:0 0 0 3px rgba(115,196,167,.3)}
+.claim input[aria-invalid="true"]{border-color:#c0392b}
+.claim-help{margin:6px 0 0;font-size:13px;color:#6b7378}
+.claim-help.err{color:#c0392b}
+.claim-help.good{color:#2e7d5b;display:flex;align-items:center;gap:6px}
+.claim-help .tick{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#73c4a7;color:#1b2427;font-size:12px;font-weight:700}
+.claim-code{display:flex;gap:8px}
+.claim-code input{font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.claim-code button{flex:none;border:1px solid #1b2427;background:#fff;color:#1b2427;border-radius:8px;padding:0 16px;font:600 14px/1 var(--body);cursor:pointer}
+.claim-go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:18px;border:0;border-radius:8px;background:#1b2427;color:#fff;font:600 16px/1 var(--body);padding:15px;cursor:pointer;text-decoration:none}
+.claim-go:hover{background:#2c3940}
+.claim-shopify{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;border:1px solid #c9cdd0;border-radius:8px;padding:13px;font:600 15px/1 var(--body);color:#1b2427;text-decoration:none;background:#fff}
+.claim-shopify svg{width:18px;height:18px}
+.claim-fine{margin:14px 0 0;font-size:12px;line-height:1.5;color:#6b7378;text-align:center}
+.claim-alt{margin:16px 0 0;padding-top:14px;border-top:1px solid #eceeef;font-size:13px;color:#6b7378}
+.claim-alt a{color:#0b6efd}
+.claim-done{padding:10px 0 4px}
+.claim-check{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#f0ff42;color:#1b2427;font:700 28px/1 var(--display);margin-bottom:10px}
+.claim-done h3{font:700 22px/1.2 var(--display);color:#1b2427;margin:0 0 6px}
+.claim-done p{margin:0;font-size:14px;color:#5b6266}
+body.claim-open{overflow:hidden}
+@media (max-width:520px){ .claim{padding:0;place-items:end center} .claim-card{max-width:none;border-radius:18px 18px 0 0;max-height:100vh;padding:26px 20px 18px} }
 </style>
 </head>
 <body>
@@ -726,6 +762,36 @@ h3{font-size:19px}
 
 <div class="sticky" id="sticky"><div class="t">50% off with <span>BFCM2026</span></div><a class="btn btn-lime cta" data-pos="sticky" href="#">Claim <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a></div>
 <button class="chat" type="button" id="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Questions? Chat with us</span></button>
+<div class="claim" id="claim" role="dialog" aria-modal="true" aria-labelledby="claim-h" hidden>
+  <div class="claim-back" data-close></div>
+  <div class="claim-card">
+    <button class="claim-x" type="button" data-close aria-label="Close">&times;</button>
+    <img class="claim-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true" width="96" height="96">
+    <h2 id="claim-h">Claim your Black Friday deal</h2>
+    <p class="claim-sub">50% off annual or 30% off monthly, plus free migration, a free $300 strategy session and $200 in ad credits. Free to install, no card needed.</p>
+    <form id="claim-form" novalidate>
+      <label class="claim-lbl" for="claim-email">Enter your email</label>
+      <input id="claim-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" required>
+      <p class="claim-help" id="claim-email-help">We'll keep your Black Friday pricing linked to this email.</p>
+      <label class="claim-lbl" for="claim-code">Discount code</label>
+      <div class="claim-code">
+        <input id="claim-code" name="code" type="text" value="BFCM2026" autocomplete="off" spellcheck="false" aria-describedby="claim-code-help">
+        <button type="button" id="claim-apply">Apply</button>
+      </div>
+      <p class="claim-help good" id="claim-code-help" aria-live="polite"><span class="tick">&#10003;</span> BFCM2026 applied: 50% off annual, 30% off monthly</p>
+      <button class="claim-go" type="submit">Continue <span aria-hidden="true">&rarr;</span></button>
+      <a class="claim-shopify" id="claim-shopify" href="https://apps.shopify.com/pushowl"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#95BF47" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</a>
+      <p class="claim-fine">You'll go to PushOwl on the Shopify App Store. Install it free, then open Plans and enter <b>BFCM2026</b>. We'll copy the code for you. For new and free-plan accounts. Ends 30 Nov, 11:59 pm PT.</p>
+    </form>
+    <div class="claim-done" id="claim-done" hidden>
+      <span class="claim-check">&#10003;</span>
+      <h3>Code BFCM2026 copied</h3>
+      <p>Taking you to PushOwl on the Shopify App Store. After you install, open Plans and paste the code.</p>
+      <a class="claim-go" id="claim-continue" href="https://apps.shopify.com/pushowl">Go to the App Store <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <p class="claim-alt">Already use PushOwl? Open it from your Shopify admin and use the code on Plans. Not on Shopify? <a id="claim-nonshop" href="https://dashboard.pushowl.io/onboarding-portal/sign-up">Click here</a></p>
+  </div>
+</div>
 <div class="toast" id="toast">Code copied: BFCM2026</div>
 
 <script>
@@ -734,7 +800,8 @@ var CONFIG = {
   signupUrl: "https://dashboard.pushowl.io/onboarding-portal/sign-up",
   offerEnd: "2026-11-30T23:59:59-08:00",     // TO CONFIRM: end date and timezone
   intercomAppId: "ntcl5suv",                   // live PushOwl Intercom workspace
-  loadIntercom: false                          // false on the preview; true when live on pushowl.com
+  loadIntercom: false,                         // false on the preview; true when live on pushowl.com
+  leadEndpoint: null                           // claim form leads: set to an approved endpoint before launch
 };
 var KLAVIYO = [[500,20],[1000,30],[1500,45],[2500,60],[3000,70],[3500,80],[5000,100],[5500,110],[6000,130],[6500,140],[10000,150],[10500,175],[11000,200],[11500,225],[12000,250],[12500,275],[13000,300],[13500,325],[15000,350],[20000,375],[25000,400],[26000,425],[27000,450],[28000,475],[30000,500],[35000,550],[40000,600],[45000,650],[50000,720],[55000,790],[60000,860],[65000,930],[70000,1000],[75000,1070],[80000,1140],[85000,1205],[90000,1265],[95000,1325],[100000,1380],[105000,1440],[110000,1495],[115000,1555],[120000,1610],[125000,1670],[130000,1725],[135000,1785],[140000,1840],[145000,1900],[150000,1955]];
 var PUSHOWL = [[500,0],[5000,19],[10000,25],[25000,45],[50000,75],[75000,94],[100000,113],[125000,175],[150000,210],[175000,245],[200000,281],[250000,300],[300000,375],[350000,413],[400000,450],[450000,488],[500000,500],[550000,525],[600000,563],[650000,581],[700000,600],[750000,619],[800000,638],[850000,675],[900000,713],[950000,750],[1000000,788]];
@@ -880,6 +947,85 @@ if (qs.get("mode") === "neutral") {
     }, 75);
   }
   new IntersectionObserver(function(es, ob){ es.forEach(function(e){ if (e.isIntersecting){ play(); ob.disconnect(); } }); }, {threshold:.35}).observe(d);
+})();
+
+/* ---------------- claim panel: open on every Claim CTA, then App Store with all tracking ---------------- */
+(function(){
+  var APP = "https://apps.shopify.com/pushowl";
+  var box = document.getElementById("claim"); if (!box) return;
+  var form = document.getElementById("claim-form"), email = document.getElementById("claim-email"),
+      code = document.getElementById("claim-code"), codeHelp = document.getElementById("claim-code-help"),
+      emailHelp = document.getElementById("claim-email-help"), done = document.getElementById("claim-done"),
+      cont = document.getElementById("claim-continue"), shop = document.getElementById("claim-shopify"),
+      nonshop = document.getElementById("claim-nonshop"), lastFocus = null, pos = "unknown";
+  var KEYS = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","utm_id","gclid","gbraid","wbraid","fbclid","msclkid","ttclid","li_fat_id"];
+
+  // every tracking param on the landing URL, plus defaults; the narrative and CTA ride in utm_term / utm_content when absent
+  function tracking(where){
+    var p = new URLSearchParams();
+    KEYS.forEach(function(k){ var v = qs.get(k); if (v) p.set(k, v); });
+    if (!p.get("utm_source")) p.set("utm_source", document.referrer ? "referral" : "direct");
+    if (!p.get("utm_medium")) p.set("utm_medium", "landing_page");
+    if (!p.get("utm_campaign")) p.set("utm_campaign", "bfcm2026");
+    if (!p.get("utm_term")) p.set("utm_term", nKey || "n0");
+    if (!p.get("utm_content")) p.set("utm_content", "lp-" + where);
+    return p;
+  }
+  function appUrl(where){ return APP + "?" + tracking(where).toString(); }
+  function portalUrl(where){ return CONFIG.signupUrl + "?" + tracking(where).toString(); }
+
+  function open(where){
+    pos = where || "unknown"; lastFocus = document.activeElement;
+    shop.href = appUrl(pos + "-shopify"); cont.href = appUrl(pos); nonshop.href = portalUrl(pos + "-nonshopify");
+    form.hidden = false; done.hidden = true; box.hidden = false; document.body.classList.add("claim-open");
+    setTimeout(function(){ email.focus(); }, 60);
+    dataLayer.push({event:"bfcm_claim_open", position:pos, narrative:nKey || "default"});
+  }
+  function close(){ box.hidden = true; document.body.classList.remove("claim-open"); if (lastFocus) lastFocus.focus(); }
+  box.addEventListener("click", function(e){ if (e.target.hasAttribute("data-close")) close(); });
+  document.addEventListener("keydown", function(e){ if (!box.hidden && e.key === "Escape") close(); });
+
+  function applyCode(){
+    var v = (code.value || "").trim().toUpperCase(); code.value = v;
+    if (v === "BFCM2026"){ codeHelp.className = "claim-help good"; codeHelp.innerHTML = '<span class="tick">&#10003;</span> BFCM2026 applied: 50% off annual, 30% off monthly'; return true; }
+    codeHelp.className = "claim-help err"; codeHelp.textContent = v ? "That code isn't valid for this deal. Use BFCM2026." : "Enter the code BFCM2026."; return false;
+  }
+  document.getElementById("claim-apply").addEventListener("click", applyCode);
+  code.addEventListener("change", applyCode);
+
+  function copy(){ try { if (navigator.clipboard) navigator.clipboard.writeText("BFCM2026"); } catch(e){} }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    email.setAttribute("aria-invalid", ok ? "false" : "true");
+    emailHelp.className = ok ? "claim-help" : "claim-help err";
+    emailHelp.textContent = ok ? "We'll keep your Black Friday pricing linked to this email." : "Enter a valid email address.";
+    if (!ok){ email.focus(); return; }
+    if (!applyCode()){ code.focus(); return; }
+    copy();
+    var url = appUrl(pos), lead = {email: email.value.trim(), code: "BFCM2026", position: pos, narrative: nKey || "default",
+      tracking: Object.fromEntries(tracking(pos)), page: location.href.split("#")[0], at: new Date().toISOString()};
+    // lead capture: off until an endpoint is approved (CONFIG.leadEndpoint). No email ever goes into dataLayer or URLs.
+    if (CONFIG.leadEndpoint){
+      try { var b = new Blob([JSON.stringify(lead)], {type:"application/json"});
+        if (!(navigator.sendBeacon && navigator.sendBeacon(CONFIG.leadEndpoint, b))) fetch(CONFIG.leadEndpoint, {method:"POST", body:b, keepalive:true, headers:{"content-type":"application/json"}}); } catch(_){}
+    }
+    dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026"});
+    form.hidden = true; done.hidden = false; cont.href = url;
+    setTimeout(function(){ location.assign(url); }, 1400);
+  });
+  shop.addEventListener("click", function(){ copy(); dataLayer.push({event:"bfcm_claim_shopify", position:pos, narrative:nKey || "default"}); });
+
+  // every Claim CTA opens the panel; the href stays a tracked App Store link for no-JS and new-tab clicks
+  document.querySelectorAll(".cta").forEach(function(a){
+    a.href = appUrl(a.dataset.pos || "cta"); a.removeAttribute("target");
+    a.addEventListener("click", function(e){
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault(); e.stopImmediatePropagation(); open(a.dataset.pos);
+    }, true);
+  });
+  if (location.hash === "#claim") open("hash");
 })();
 </script>
 </body>
