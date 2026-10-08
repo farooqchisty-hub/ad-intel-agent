@@ -348,6 +348,83 @@ h3{font-size:19px}
   .final .gcard{padding:30px 20px 0}
   .blob img{max-width:240px}
 }
+
+/* ---------------- the aha block: store link -> ads dashboard (8 Oct) ---------------- */
+.demo{margin-top:28px}
+.rail{list-style:none;margin:0 0 16px;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;counter-reset:r}
+.rail li{position:relative;display:flex;align-items:center;gap:8px;font:500 14px/1.25 var(--display);color:var(--muted);background:var(--ink-3);border:1px solid var(--line);border-radius:12px;padding:10px 12px;overflow:hidden;transition:color .3s,border-color .3s}
+.rail li b{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--line);color:var(--white);font:700 13px/1 var(--display);transition:background .3s,color .3s}
+.rail li::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--lime);transition:width .9s ease}
+.demo.s1 .r1,.demo.s2 .r2,.demo.s3 .r3,.demo.s4 .r4{color:var(--white);border-color:var(--lime)}
+.demo.s1 .r1 b,.demo.s2 .r2 b,.demo.s3 .r3 b,.demo.s4 .r4 b{background:var(--lime);color:var(--ink)}
+.demo.s1 .r1::after,.demo.s2 .r1::after,.demo.s2 .r2::after,.demo.s3 .r1::after,.demo.s3 .r2::after,.demo.s3 .r3::after,.demo.s4 .rail li::after{width:100%}
+.demo.s2 .r1,.demo.s3 .r1,.demo.s3 .r2,.demo.s4 .r1,.demo.s4 .r2,.demo.s4 .r3{color:var(--white)}
+.demo.s2 .r1 b,.demo.s3 .r1 b,.demo.s3 .r2 b,.demo.s4 .r1 b,.demo.s4 .r2 b,.demo.s4 .r3 b{background:var(--aqua);color:var(--ink)}
+
+.win{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#11191c;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.win-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#0d1416;border-bottom:1px solid var(--line)}
+.win-bar i{width:10px;height:10px;border-radius:50%;background:#3a474c}
+.win-url{margin-left:10px;font:500 13px/1 var(--body);color:var(--muted);background:var(--ink-3);border-radius:99px;padding:6px 12px}
+.win-badge{margin-left:auto;font:600 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--aqua);border-radius:99px;padding:6px 9px}
+.win-body{display:grid;grid-template-columns:56px 1fr}
+.side{display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0;background:#0f171a;border-right:1px solid var(--line)}
+.s-logo{width:28px;height:28px;border-radius:8px;background:var(--lime)}
+.s-ico{width:22px;height:22px;border-radius:6px;background:#26333a}.s-ico.on{background:var(--aqua)}
+.main{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"z1 z2" "z3 z3" "z4 z4";gap:12px;padding:16px}
+.zone{position:relative;background:var(--ink-3);border:1px solid var(--line);border-radius:14px;padding:14px;transition:border-color .4s,box-shadow .4s}
+.z1{grid-area:z1;display:flex;flex-direction:column;justify-content:center;gap:10px}.z2{grid-area:z2}.z3{grid-area:z3}.z4{grid-area:z4;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pin{position:absolute;top:-10px;left:-10px;z-index:2;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--lime);color:var(--ink);font:700 13px/1 var(--display);box-shadow:0 0 0 4px rgba(240,255,66,.18);transform:scale(.6);opacity:0;transition:transform .35s cubic-bezier(.2,1.6,.4,1),opacity .3s}
+.demo.s1 .z1 .pin,.demo.s2 .z1 .pin,.demo.s2 .z2 .pin,.demo.s3 .zone:not(.z4) .pin,.demo.s4 .pin{opacity:1;transform:none}
+.demo.s1 .z1,.demo.s2 .z2,.demo.s3 .z3,.demo.s4 .z4{border-color:var(--lime);box-shadow:0 0 0 1px rgba(240,255,66,.35),0 0 36px rgba(240,255,66,.08)}
+.field{display:flex;align-items:center;gap:8px;background:#0d1416;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:500 16px/1 var(--body);color:var(--white);min-height:44px}
+.field svg{width:18px;height:18px;flex:none;stroke:var(--aqua);fill:none;stroke-width:2}
+.caret{width:2px;height:18px;background:var(--lime);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.make,.launch{position:relative;align-self:flex-start;border:0;border-radius:99px;font:600 15px/1 var(--body);padding:12px 18px;cursor:default;background:var(--lime);color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.make .cursor{position:absolute;right:-14px;bottom:-16px;width:22px;height:22px;opacity:0;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l15 9-7 1.6L8.6 20z' fill='%23fefefe' stroke='%231b2427' stroke-width='1.6'/%3E%3C/svg%3E");transition:opacity .2s}
+.demo.clicked .make{transform:scale(.95);background:var(--lime-hover)}.demo.clicked .make .cursor{opacity:1}
+.zlbl{margin:0 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:600 14px/1.2 var(--display);color:var(--white)}
+.cnt{font:600 12px/1 var(--display);color:var(--ink);background:var(--aqua);border-radius:99px;padding:4px 8px}
+.fmt{margin-left:auto;font:500 12px/1 var(--body);color:var(--muted)}
+.prods{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;overflow:hidden;border-radius:10px}
+.prod{display:block;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#fff;opacity:.15;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.prod img{width:100%;height:100%;object-fit:cover}
+.demo.s2 .prod,.demo.s3 .prod,.demo.s4 .prod{opacity:1;transform:none}
+.demo.s2 .prod:nth-child(2){transition-delay:.15s}.demo.s2 .prod:nth-child(3){transition-delay:.3s}
+.scan{position:absolute;top:0;bottom:0;width:30%;left:-30%;background:linear-gradient(90deg,transparent,rgba(240,255,66,.35),transparent);pointer-events:none}
+.demo.s2 .scan{animation:scan 1.3s ease-in-out 2}
+@keyframes scan{to{left:100%}}
+.dads{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.dad{margin:0;opacity:0;transform:translateY(14px) scale(.96);transition:opacity .45s,transform .45s cubic-bezier(.2,1.3,.4,1);transition-delay:calc(var(--i) * .14s)}
+.demo.s3 .dad,.demo.s4 .dad{opacity:1;transform:none}
+.dad-img{aspect-ratio:1;border-radius:10px;overflow:hidden;background:#0d1416;border:1px solid var(--line)}
+.dad-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dad figcaption{display:flex;align-items:center;gap:6px;margin-top:6px;font:500 12px/1.2 var(--display);color:var(--muted)}
+.ok{font:700 10px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--lime);border-radius:99px;padding:4px 6px}
+.credits{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cr-lbl{font:600 14px/1 var(--display);color:var(--white)}
+.cr-val{font:900 32px/1 var(--display);color:var(--lime)}
+.cr-note{font:500 13px/1 var(--body);color:var(--muted)}
+.launch{align-self:center;white-space:nowrap;font-size:16px;padding:14px 22px}
+.launch svg,.make svg{width:14px;height:14px;flex:none}
+/* augmented flow: connectors between zones light up as each step completes */
+.z1::after,.z2::after,.z3::after{content:"";position:absolute;z-index:3;width:30px;height:30px;border-radius:50%;background:var(--lime) no-repeat center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2 7h10M8 3l4 4-4 4' fill='none' stroke='%231b2427' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");box-shadow:0 0 0 5px rgba(240,255,66,.16);opacity:0;transform:scale(.4);transition:opacity .3s,transform .4s cubic-bezier(.2,1.6,.4,1)}
+.z1::after{right:-21px;top:50%;margin-top:-15px}
+.z2::after,.z3::after{left:50%;bottom:-21px;margin-left:-15px;rotate:90deg}
+.demo.s2 .z1::after,.demo.s3 .z1::after,.demo.s4 .z1::after,.demo.s3 .z2::after,.demo.s4 .z2::after,.demo.s4 .z3::after{opacity:1;transform:none}
+.demo.s4 .launch{animation:pulse 1.6s ease-in-out 3}
+@keyframes pulse{50%{box-shadow:0 0 0 10px rgba(240,255,66,.18)}}
+.demo-note{margin:12px 2px 0;font-size:13px;color:var(--muted);text-align:center}
+@media (max-width:900px){ .dads{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){
+  .rail{grid-template-columns:repeat(2,1fr)} .rail li{font-size:12px;padding:8px 10px}
+  .win-body{grid-template-columns:1fr} .side{display:none}
+  .main{grid-template-columns:1fr;grid-template-areas:"z1" "z2" "z3" "z4";padding:12px}
+  .dads{grid-template-columns:repeat(2,1fr)} .win-url{display:none}
+  .z4{flex-direction:column;align-items:flex-start}
+  .z1::after{right:auto;left:50%;top:auto;bottom:-21px;margin:0 0 0 -15px;rotate:90deg}
+}
+@media (prefers-reduced-motion:reduce){ .demo *{transition:none!important;animation:none!important} }
 </style>
 </head>
 <body>
@@ -523,10 +600,68 @@ h3{font-size:19px}
   <div class="center stack">
     <span class="tag">Ads in one click</span>
     <h2>Black Friday ads from your store, <span class="hl">in one click.</span></h2>
-    <p class="lede">Paste your store URL. Get ready-to-launch ads made from your own products. Here's what we made for a demo store.</p>
+    <p class="lede">Paste your store link and PushOwl reads your products, then makes ready-to-launch Black Friday ads from them. Watch it happen for a demo store.</p>
   </div>
-  <div class="ads" id="adgrid"></div>
-  <div class="center"><span class="credit-chip"><i>$200</i> in ad credits included, free</span></div>
+  <div class="demo" id="demo" aria-label="How one click turns a store link into Black Friday ads">
+  <ol class="rail" aria-hidden="true">
+    <li class="r1"><b>1</b>Paste your store link</li>
+    <li class="r2"><b>2</b>We read your products</li>
+    <li class="r3"><b>3</b>Black Friday ads are made</li>
+    <li class="r4"><b>4</b>Launch with $200 in credits</li>
+  </ol>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span class="win-url">dashboard.pushowl.io / ads</span><span class="win-badge">Demo store</span></div>
+    <div class="win-body">
+      <aside class="side" aria-hidden="true"><span class="s-logo"></span><span class="s-ico"></span><span class="s-ico on"></span><span class="s-ico"></span><span class="s-ico"></span></aside>
+      <div class="main">
+        <div class="zone z1"><span class="pin">1</span>
+          <p class="zlbl">Your store link</p>
+          <div class="field"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span class="typed" data-text="yourstore.com"></span><span class="caret"></span></div>
+          <button class="make" type="button" tabindex="-1">Make my ads<span class="cursor"></span></button>
+        </div>
+        <div class="zone z2"><span class="pin">2</span>
+          <p class="zlbl">Products found in your store <span class="cnt">3</span></p>
+          <div class="prods"><span class="prod"><img src="assets/demo/p1.webp" alt="" width="120" height="120" loading="lazy"></span><span class="prod"><img src="assets/demo/p2.webp" alt="" width="120" height="120" loading="lazy"></span><span class="prod"><img src="assets/demo/p3.webp" alt="" width="120" height="120" loading="lazy"></span><span class="scan"></span></div>
+        </div>
+        <div class="zone z3"><span class="pin">3</span>
+          <p class="zlbl">Your Black Friday ads <span class="cnt">6 ready</span><span class="fmt">1:1 · 4:5 · 9:16</span></p>
+          <div class="dads">
+<figure class="dad" style="--i:0"><div class="dad-img"><img src="assets/ads/vv-01-360.webp"
+ srcset="assets/ads/vv-01-360.webp 360w, assets/ads/vv-01-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue Black Friday offer ad, 40% off every shaper, from $24"></div>
+<figcaption><span class="ok">Ready</span>Offer poster</figcaption></figure>
+<figure class="dad" style="--i:1"><div class="dad-img"><img src="assets/ads/vv-02-360.webp"
+ srcset="assets/ads/vv-02-360.webp 360w, assets/ads/vv-02-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue comparison ad: saree shapewear against a regular petticoat, Black Friday $36"></div>
+<figcaption><span class="ok">Ready</span>Us vs them</figcaption></figure>
+<figure class="dad" style="--i:2"><div class="dad-img"><img src="assets/ads/vv-03-360.webp"
+ srcset="assets/ads/vv-03-360.webp 360w, assets/ads/vv-03-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue review ad for the tummy tucker shorts, Black Friday $29"></div>
+<figcaption><span class="ok">Ready</span>Review card</figcaption></figure>
+<figure class="dad" style="--i:3"><div class="dad-img"><img src="assets/ads/vv-04-360.webp"
+ srcset="assets/ads/vv-04-360.webp 360w, assets/ads/vv-04-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue iMessage-style ad for the saree shapewear"></div>
+<figcaption><span class="ok">Ready</span>Native iMessage</figcaption></figure>
+<figure class="dad" style="--i:4"><div class="dad-img"><img src="assets/ads/vv-05-360.webp"
+ srcset="assets/ads/vv-05-360.webp 360w, assets/ads/vv-05-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue product ad for the tummy tucker belt with callouts, $29 this Black Friday"></div>
+<figcaption><span class="ok">Ready</span>Product + callouts</figcaption></figure>
+<figure class="dad" style="--i:5"><div class="dad-img"><img src="assets/ads/vv-06-360.webp"
+ srcset="assets/ads/vv-06-360.webp 360w, assets/ads/vv-06-720.webp 720w" sizes="(max-width:760px) 45vw, 250px"
+ width="360" height="360" loading="lazy" decoding="async" alt="VitalVogue handwritten Cyber Monday ad, $40 crossed out to $24"></div>
+<figcaption><span class="ok">Ready</span>Handwritten countdown</figcaption></figure>
+          </div>
+        </div>
+        <div class="zone z4"><span class="pin">4</span>
+          <div class="credits"><span class="cr-lbl">Ad credits</span><span class="cr-val">$<span class="odo">200</span></span><span class="cr-note">free with BFCM2026</span></div>
+          <button class="launch" type="button" tabindex="-1">Launch Black Friday ads <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="demo-note">Example ads made for VitalVogue, a demo store, from its own product photos. Your ads use your products and your brand.</p>
+</div>
+  
   <div class="center" style="margin-top:28px"><a class="btn btn-lime btn-lg cta" data-pos="ads" href="#">Make my Black Friday ads <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a></div>
 </div></section>
 
@@ -664,16 +799,6 @@ document.querySelectorAll(".copy").forEach(function(b){
   document.getElementById("logos").innerHTML = html;
 })();
 
-/* ---------------- ad showcase (filled from assets/ads/manifest.json) ---------------- */
-(function(){
-  var grid = document.getElementById("adgrid");
-  function ph(){ var h=""; for (var i=0;i<6;i++) h+='<div class="ad ph">Example ad '+(i+1)+'</div>'; grid.innerHTML=h; }
-  fetch("assets/ads/manifest.json").then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(m){
-    var items = (m.ads || m).slice(0,6), h = "";
-    items.forEach(function(a){ h += '<figure class="adfig"><div class="ad"><img src="assets/ads/'+a.file+'" alt="'+(a.alt||"Example Black Friday ad").replace(/"/g,"&quot;")+'" loading="lazy" width="1200" height="1200"></div><figcaption><span class="pill">Example</span>'+(a.format||"")+'</figcaption></figure>'; });
-    grid.innerHTML = h || ""; if (!items.length) ph();
-  }).catch(ph);
-})();
 
 /* ---------------- neutral mode (?mode=neutral): no competitor name, for ad and creator screen recordings ---------------- */
 if (qs.get("mode") === "neutral") {
@@ -731,6 +856,30 @@ if (qs.get("mode") === "neutral") {
   }
   document.getElementById("chat").addEventListener("click", open);
   document.querySelectorAll(".chatlink").forEach(function(b){ b.addEventListener("click", open); });
+})();
+
+/* ---------------- aha block: play the store-link -> ads sequence once when it scrolls into view ---------------- */
+(function(){
+  var d = document.getElementById("demo"); if (!d) return;
+  var typed = d.querySelector(".typed"), text = typed.getAttribute("data-text");
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function finalState(){ typed.textContent = text; d.className = "demo s4"; }
+  if (reduce || !("IntersectionObserver" in window)) { finalState(); return; }
+  var played = false;
+  function play(){
+    if (played) return; played = true;
+    d.classList.add("s1");
+    var n = 0, t = setInterval(function(){
+      typed.textContent = text.slice(0, ++n);
+      if (n >= text.length){ clearInterval(t);
+        setTimeout(function(){ d.classList.add("clicked"); }, 250);
+        setTimeout(function(){ d.className = "demo s2"; }, 700);
+        setTimeout(function(){ d.className = "demo s3"; }, 2500);
+        setTimeout(function(){ d.className = "demo s4"; if (window.dataLayer) dataLayer.push({event:"bfcm_demo_complete"}); }, 4300);
+      }
+    }, 75);
+  }
+  new IntersectionObserver(function(es, ob){ es.forEach(function(e){ if (e.isIntersecting){ play(); ob.disconnect(); } }); }, {threshold:.35}).observe(d);
 })();
 </script>
 </body>
