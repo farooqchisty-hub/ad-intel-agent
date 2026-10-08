@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BFCM Emails v3</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#1B1B1B;--muted:#5d5d5d;--line:#e3e3e3;--mint:#C0FFA5;--lav:#DBD9F7;--bg:#fff;--card:#f7f8f7;--green:#006A43}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#f1f1f1;--muted:#a9a9a9;--line:#2c2c2c;--bg:#111;--card:#191919;--green:#C0FFA5}}
+:root[data-theme="dark"]{--ink:#f1f1f1;--muted:#a9a9a9;--line:#2c2c2c;--bg:#111;--card:#191919;--green:#C0FFA5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,Helvetica,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}header{padding:34px 0 10px}h1{margin:0 0 8px;font-size:30px}
+header p{margin:0 0 8px;color:var(--muted);max-width:860px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}.toc a{font-size:13px;text-decoration:none;background:var(--mint);color:#1B1B1B;border-radius:99px;padding:4px 10px}
+details.plan{border:1px solid var(--line);border-radius:12px;padding:6px 18px 14px;margin:18px 0 8px;background:var(--card)}
+details.plan summary{cursor:pointer;font-weight:700;font-size:17px;padding:10px 0}
+.plan h2{font-size:19px;margin:24px 0 8px}.plan p,.plan li{max-width:900px}.plan ul{padding-left:20px}.plan li{margin:0 0 6px}
+.tw{overflow-x:auto;margin:8px 0 12px}table{border-collapse:collapse;font-size:13.5px;min-width:640px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--bg)}code{font-size:13px}
+.sh{margin:44px 0 4px;font-size:22px}.sd{margin:0 0 6px;color:var(--muted)}
+.em{display:grid;grid-template-columns:1fr 290px 290px;gap:18px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
+.meta h3{margin:0 0 8px;font-size:18px}.id{display:inline-block;background:var(--lav);color:#1B1B1B;border-radius:6px;padding:1px 7px;font-size:13px;margin-right:4px}
+.lay{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:2px 8px;vertical-align:middle;color:var(--muted)}
+.lay.pb{border-color:var(--green);color:var(--green)}
+dl{display:grid;grid-template-columns:62px 1fr;gap:4px 10px;margin:0 0 8px;font-size:14px}dt{color:var(--muted)}dd{margin:0}
+.pv{color:var(--muted);margin:0 0 10px}.lbl{margin:10px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.subj{margin:0;padding-left:20px}.open{font-weight:600;color:inherit}.var{font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+figure{margin:0}figcaption{font-size:12px;color:var(--muted);margin-bottom:6px}figure img{width:100%;border:1px solid var(--line);border-radius:10px;display:block}
+@media (max-width:900px){.em{grid-template-columns:1fr 1fr}.meta{grid-column:1/-1}}@media (max-width:520px){.em{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<header><h1>BFCM 2026 emails v3</h1>
+<p>16 emails across 4 user types: existing free stores (A), new installs (B), landing-page leads who haven't installed (L) and stores that claimed (P). Sent as Pranavi at Brevo PushOwl. Value emails use the playbook layout; offer and trigger emails stay light. No footnotes. Shown on a phone in light and dark mode.</p>
+<p>Nothing has been built in Brevo or sent. Builds go on contact@pushowl.com after your sign-off.</p>
+<div class="toc"><a href="#a1">A1</a><a href="#a2">A2</a><a href="#a3">A3</a><a href="#a4">A4</a><a href="#a5">A5</a><a href="#a6">A6</a><a href="#a7">A7</a><a href="#a8">A8</a><a href="#b1">B1</a><a href="#b2">B2</a><a href="#l1">L1</a><a href="#l2">L2</a><a href="#l3">L3</a><a href="#p1">P1</a><a href="#p2">P2</a><a href="#p3">P3</a></div></header>
+<details class="plan" open><summary>The plan: who gets what, triggers, data, deliverability</summary><div class="plan"><p>Draft for Farooq&#x27;s review, 8 Oct 2026. Nothing is built in Brevo and nothing is sent. After sign-off it gets built on the contact@pushowl.com account.</p>
+<h2>What changed from v2 (your 8 Oct notes)</h2>
+<ul><li><b>Sender:</b> Pranavi at Brevo PushOwl. Replies go straight to Pranavi, and the emails sign off as her.</li><li><b>No fine print:</b> every source line and footnote is gone. The offer terms live behind the footer link only.</li><li><b>Value emails redesigned as playbooks</b>, after your references: A1, A2, B2 and P3 have a headline, a &quot;why it matters&quot; box, framework cards, number tiles, a checklist, &quot;where PushOwl fits&quot; and one button. Offer and trigger emails stay light: banner, short text, one button.</li><li><b>Install-gated:</b> anyone who hasn&#x27;t installed only gets install emails (Sequence L). Installer emails only go to stores that have PushOwl installed.</li><li><b>Every installed-store email opens the PushOwl dashboard</b>, on the screen that does the job: /pricing, /optins, /campaigns, /ads, /automation/abandoned-cart-recovery.</li><li><b>Setup email moved earlier:</b> 5 Nov, 3 days after launch (it was 12 Nov). That gives stores over 3 weeks of setup before Black Friday. The 17 Nov slot now carries the free-ads email.</li><li><b>Named contacts only</b>, plus guardrails for inactive stores (below).</li><li><b>Holdout dropped.</b></li><li>16 emails in total. Nobody gets more than 7 before claiming.</li></ul>
+<h2>Who gets what</h2>
+<div class="tw"><table><thead><tr><th>User type</th><th>Who</th><th>Sequence</th><th>Max emails before claiming</th></tr></thead><tbody><tr><td>Existing free stores</td><td>Installed before 1 Nov, free plan, never paid</td><td>A: A1 to A6, plus A7 or A8</td><td>7</td></tr><tr><td>New installs</td><td>Installed 1 to 30 Nov, free plan</td><td>B: B1, B2, then A4, A5, A6, plus A7 or A8</td><td>6</td></tr><tr><td>LP leads, not installed</td><td>Left an email in the LP claim box; no install matched</td><td>L: L1, L2, L3</td><td>3</td></tr><tr><td>Claimed</td><td>Applied BFCM2026</td><td>P: P1, P2, P3</td><td>3 after claiming</td></tr></tbody></table></div>
+<ul><li><b>One sequence at a time.</b> P beats A and B, and they beat L. A lead who installs moves to B and gets B1. Anyone who claims moves to P.</li><li><b>Everyone leaves every BFCM email on:</b> uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</li><li><b>Frequency cap:</b> at most 1 BFCM email a day and 3 in any 7 days per contact. The last call and P1 are exempt.</li></ul>
+<h2>The calendar</h2>
+<div class="tw"><table><thead><tr><th>When</th><th>A: existing free</th><th>B: new installs</th><th>L: leads</th><th>P: claimed</th></tr></thead><tbody><tr><td>Tue 20 Oct</td><td>A1 value: 3-wave plan</td><td></td><td></td><td></td></tr><tr><td>Tue 27 Oct</td><td>A2 value: inbox check</td><td></td><td></td><td></td></tr><tr><td>Mon 2 Nov</td><td>A3 launch</td><td></td><td>L2 for leads from before launch</td><td></td></tr><tr><td>Thu 5 Nov</td><td>A4 setup, done for you</td><td></td><td></td><td></td></tr><tr><td>Tue 17 Nov</td><td>A5 free ads in one click</td><td>A5 (installed by 14 Nov)</td><td></td><td></td></tr><tr><td>Mon 23 Nov</td><td></td><td></td><td></td><td>P3 value: BF week checklist</td></tr><tr><td>Mon 30 Nov</td><td>A6 last call</td><td>A6 last call</td><td>L3 last call</td><td></td></tr><tr><td>Install + 1 h</td><td></td><td>B1 welcome</td><td>(moves to B)</td><td></td></tr><tr><td>Install + 2 days</td><td></td><td>B2 value: cart recovery</td><td></td><td></td></tr><tr><td>Install + 4 days</td><td></td><td>A4 setup (until 24 Nov)</td><td></td><td></td></tr><tr><td>Claim box + 10 min</td><td></td><td></td><td>L1 your code&#x27;s saved</td><td></td></tr><tr><td>Claim box + 2 days</td><td></td><td></td><td>L2 install, we do the rest</td><td></td></tr><tr><td>Click, no claim for 48 h</td><td>A7 the math</td><td>A7</td><td></td><td></td></tr><tr><td>Plans visit, no claim for 24 h</td><td>A8 one step left</td><td>A8</td><td></td><td></td></tr><tr><td>Claim + 10 min / + 1 day</td><td></td><td></td><td></td><td>P1 book session / P2 migration</td></tr></tbody></table></div>
+<h2>Triggers and the data they need</h2>
+<p>The contact@pushowl account has no install, plan or code data today (audit, 7 Oct). Its merchants came from Intercom on 30 Mar 2026, so roughly 12,000 later installs aren&#x27;t in it yet. PushOwl needs to sync the fields below into that account before A1 goes out on 20 Oct. Without them, no trigger here can fire and we can&#x27;t tell free stores from paid ones.</p>
+<div class="tw"><table><thead><tr><th>Data</th><th>Type</th><th>Used for</th><th>Comes from</th></tr></thead><tbody><tr><td>PO_INSTALLED, PO_INSTALLED_AT</td><td>Contact attribute</td><td>Splitting A from B, gating every installer email</td><td>PushOwl app</td></tr><tr><td>PO_PLAN, PO_EVER_PAID</td><td>Contact attribute</td><td>Free-only eligibility, exits</td><td>PushOwl billing</td></tr><tr><td>PO_SHOP_DOMAIN</td><td>Contact attribute</td><td>Dedupe, one store one sequence</td><td>PushOwl app</td></tr><tr><td>PO_LAST_ACTIVE_AT</td><td>Contact attribute</td><td>Engaged vs inactive tier</td><td>PushOwl app</td></tr><tr><td>app_installed</td><td>Event</td><td>B1; moves a lead from L to B</td><td>PushOwl app to the Brevo events API</td></tr><tr><td>app_uninstalled</td><td>Event</td><td>Exits everything</td><td>PushOwl app</td></tr><tr><td>pricing_viewed</td><td>Event</td><td>A8</td><td>Dashboard /pricing page</td></tr><tr><td>bfcm_code_applied</td><td>Event</td><td>P1; exits A, B and L</td><td>PushOwl billing</td></tr><tr><td>Claim-box lead</td><td>List add</td><td>L1</td><td>LP claim box (see below)</td></tr><tr><td>session_booked, migration_requested</td><td>Event</td><td>P1 and P2 exits</td><td>Booking tool and migration form (CX)</td></tr><tr><td>Email clicks</td><td>Native Brevo</td><td>A7</td><td>Brevo</td></tr></tbody></table></div>
+<p><b>Matching caveat:</b> a lead is matched to an install by email. If the owner installs with a different email, they keep getting L emails, so every L email says &quot;Already have PushOwl installed? Skip the install. Open the app, go to Plans and enter BFCM2026 at checkout.&quot;</p>
+<h2>Audience and deliverability</h2>
+<ul><li><b>Named contacts only.</b> The first name is filled and looks like a person (no digits, not a store or team word), and the address isn&#x27;t a role inbox: info@, support@, hello@, contact@, sales@, admin@, team@, shop@, store@, orders@, help@, service@, care@, office@, marketing@, billing@, noreply@. LP leads are the exception: they asked for the code, so they get &quot;Hey there&quot;.</li><li><b>Two tiers inside A, both getting the whole sequence.</b> Engaged means active in the app in the last 60 days, or clicked any PushOwl email since 1 Apr 2026. Inactive is everyone else.</li><li><b>Inactive guardrails:</b><ol><li>The inactive tier sends 24 h after the engaged tier, and only if that send stayed under 0.1% spam complaints, 0.5% unsubscribes and 2% hard bounces.</li><li>Past hard bounces and blacklisted addresses are excluded before the first send. The first send to this list in April bounced 1.95%.</li><li><b>Sunset:</b> an inactive contact who hasn&#x27;t opened or clicked any of their first 3 BFCM emails gets only the last call after that.</li><li><b>Kill switch:</b> any send that hits 0.1% complaints or 1% unsubscribes pauses the inactive tier until we&#x27;ve reviewed it.</li></ol></li><li><b>Ramp:</b> the account hasn&#x27;t sent volume since April, so every scheduled email goes to the engaged tier first.</li><li><b>Send time:</b> store local time from CONTACT_TIMEZONE. Contacts without it get 10:00 ET.</li></ul>
+<h2>LP leads: getting claim-box emails into Brevo</h2>
+<p><b>Recommendation:</b> a Brevo form on contact@pushowl that adds the email to a new list, &quot;BFCM 2026: LP claim leads&quot;. It&#x27;s single opt-in, because the claim box now tells people we&#x27;ll email them about their credits and bonuses. The claim box posts to the form in the background before it opens the App Store. That works the same on GitHub Pages and on pushowl.com, so the move needs no change: whoever moves the page keeps the claim-box script. There&#x27;s no API key in the page, and joining the list triggers L1.</p>
+<p><b>Alternative</b>, if you want UTMs and the narrative on each lead: a small Cloudflare Worker that writes the contact through the Brevo API. Nothing is built until you approve.</p>
+<h2>The framework (unchanged from v2, tightened)</h2>
+<ul><li><b>Voice:</b> one store owner talking to another. Contractions always, 1 to 2 sentence paragraphs, the point in the first line. One bit of wit at most, and only if it&#x27;s true.</li><li><b>Two layouts:</b><ol><li>  - Playbook, for value emails (A1, A2, B2, P3): skimmable cards and tiles, about 200 words.</li><li>  - Light, for offer, trigger and lead emails: banner, 60 to 120 words, one button.</li></ol></li><li><b>Honest urgency:</b> the only deadline is 30 Nov, 11:59 pm PT, said once per offer email. No &quot;limited spots&quot;, no fake countdowns.</li><li><b>Subjects:</b> 30 to 45 characters, casual lowercase, a number, date or clear payoff. Three per email for A/B testing.</li><li><b>Previews:</b> 40 to 90 characters that continue the subject.</li><li><b>CTA:</b> one per email, verb first, first person (&quot;Claim my 50% off&quot;), landing on the screen that finishes the job.</li><li><b>Never in an email:</b><ol><li>  - Shopify or Klaviyo by name.</li><li>  - &quot;Forever&quot; or &quot;lifetime&quot;, credit counts, or team capacity.</li><li>  - Source lines or footnotes.</li><li>  - Emoji, em dashes or en dashes.</li></ol></li><li><b>Prices:</b> Plus at $114 a year with the code (normally $180) appears in A3, A8 and B2. Approved 8 Oct.</li></ul>
+<h2>Still needed</h2>
+<ul><li>Pranavi&#x27;s sender address. I&#x27;ve assumed pranavi@pushowl.com. pushowl.com is already authenticated, so it only needs the sender created and the mailbox verified.</li><li>PushOwl eng: the data sync above, before 20 Oct.</li><li>CX: the booking link (P1) and the migration form (P2).</li><li>A check that dashboard.pushowl.io deep links (/pricing, /optins, /ads, /campaigns, /automation/abandoned-cart-recovery) open in the app for a logged-in merchant.</li></ul></div></details>
+<section><h2 class="sh">Sequence A: existing free stores</h2><p class="sd">Installed before 1 Nov, free plan. Value in October, then the offer. A4 to A8 are shared with Sequence B.</p><article class="em" id="a1">
+  <div class="meta"><h3><span class="id">A1</span> Value: the 3-wave BFCM plan <span class="lay pb">Playbook</span></h3>
+    <dl><dt>When</dt><dd>Tue 20 Oct, 10:00 store time</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Existing free stores (engaged first, inactive 24 h later)</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Clicks into the opt-in settings</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>black friday starts in october now</li><li>your bfcm plan in 3 waves (steal it)</li><li>when your shoppers will actually buy</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Shoppers start early now. Here&#x27;s when to send, what to send, and one thing to switch on today.</p>
+    <p><a class="open" href="out/a1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a1_mob_light.jpg" alt="Value: the 3-wave BFCM plan, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a1_mob_dark.jpg" alt="Value: the 3-wave BFCM plan, dark mode"></figure>
+</article><article class="em" id="a2">
+  <div class="meta"><h3><span class="id">A2</span> Value: inbox check before BFCM <span class="lay pb">Playbook</span></h3>
+    <dl><dt>When</dt><dd>Tue 27 Oct, 10:00 store time</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Existing free stores (engaged first, inactive 24 h later)</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Clicks into push campaigns</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>will your bfcm emails land in spam?</li><li>3 inbox checks before black friday</li><li>the 0.1% rule gmail cares about</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Gmail, Yahoo and Outlook tightened their rules. Three fixes to make now, before the rush.</p>
+    <p><a class="open" href="out/a2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a2_mob_light.jpg" alt="Value: inbox check before BFCM, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a2_mob_dark.jpg" alt="Value: inbox check before BFCM, dark mode"></figure>
+</article><article class="em" id="a3">
+  <div class="meta"><h3><span class="id">A3</span> Launch: it&#x27;s live <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Mon 2 Nov, 09:00 store time</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Existing free stores (engaged first, inactive 24 h later)</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>it&#x27;s live: 50% off for free-plan stores</li><li>your code BFCM2026 works from today</li><li>half price, and we set up your bfcm</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">50% off annual or 30% off monthly. Plus free setup, free migration and free BFCM ads.</p>
+    <p><a class="open" href="out/a3.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a3_mob_light.jpg" alt="Launch: it&#x27;s live, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a3_mob_dark.jpg" alt="Launch: it&#x27;s live, dark mode"></figure>
+</article><article class="em" id="a4">
+  <div class="meta"><h3><span class="id">A4</span> Setup, done for you (also B, at install + 4 days) <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Thu 5 Nov, 10:00 store time. New installs: install + 4 days, until 24 Nov</dd><dt>Trigger</dt><dd>Scheduled (A) / install + 4 days (B)</dd><dt>Who</dt><dd>Existing free stores and new installs, not claimed</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>too busy for bfcm setup? we&#x27;ll do it</li><li>your bfcm flows, built by our team</li><li>a $300 setup session, on us</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Claim BFCM2026 and a strategist sets up your flows and BFCM campaigns with you.</p>
+    <p><a class="open" href="out/a4.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a4_mob_light.jpg" alt="Setup, done for you (also B, at install + 4 days), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a4_mob_dark.jpg" alt="Setup, done for you (also B, at install + 4 days), dark mode"></figure>
+</article><article class="em" id="a5">
+  <div class="meta"><h3><span class="id">A5</span> Free BFCM ads in one click (also B) <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Tue 17 Nov, 10:00 store time</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Existing free stores and new installs (installed by 14 Nov), not claimed</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>your black friday ads, made in one click</li><li>no designer? your bfcm ads are ready</li><li>10 days out. got your ads sorted?</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Claim BFCM2026 and get ready-to-launch ads from your own store, plus $200 in ad credits.</p>
+    <p><a class="open" href="out/a5.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a5_mob_light.jpg" alt="Free BFCM ads in one click (also B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a5_mob_dark.jpg" alt="Free BFCM ads in one click (also B), dark mode"></figure>
+</article><article class="em" id="a6">
+  <div class="meta"><h3><span class="id">A6</span> Last call (also B) <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Mon 30 Nov, 09:00 store time (nothing after 18:00 PT)</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Existing free stores and new installs, not claimed</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims on 30 Nov</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>BFCM2026 stops working tonight</li><li>last call: 50% off ends at 11:59 pm PT</li><li>your 50% off ends tonight</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">50% off annual or 30% off monthly, plus free setup and BFCM ads. Gone at 11:59 pm PT.</p>
+    <p><a class="open" href="out/a6.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a6_mob_light.jpg" alt="Last call (also B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a6_mob_dark.jpg" alt="Last call (also B), dark mode"></figure>
+</article><article class="em" id="a7">
+  <div class="meta"><h3><span class="id">A7</span> Clicked, didn&#x27;t claim (also B) <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>48 h after the click, at the next 10:00 store time</dd><dt>Trigger</dt><dd>Email click, then no claim for 48 h</dd><dt>Who</dt><dd>Clicked a claim button in A3 to A5, B1 or B2 and hasn&#x27;t claimed. Once. Not after 25 Nov</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>here&#x27;s the math on your email bill</li><li>you pay for ghosts. we don&#x27;t charge for them</li><li>still deciding? here&#x27;s the short version</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Contacts are free here. You pay for the emails you send, now with 50% off.</p>
+    <p><a class="open" href="out/a7.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a7_mob_light.jpg" alt="Clicked, didn&#x27;t claim (also B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a7_mob_dark.jpg" alt="Clicked, didn&#x27;t claim (also B), dark mode"></figure>
+</article><article class="em" id="a8">
+  <div class="meta"><h3><span class="id">A8</span> Viewed Plans, didn&#x27;t upgrade (also B) <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>24 h after the Plans visit, at the next 10:00 store time</dd><dt>Trigger</dt><dd>Plans page view, then no claim for 24 h</dd><dt>Who</dt><dd>Opened the Plans page and hasn&#x27;t claimed. Once. Not after 26 Nov. Wins over A7</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Claims within 72 h</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>you were one step from 50% off</li><li>where the code goes (and which plan)</li><li>annual or monthly? quick answer inside</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Pick a plan, enter BFCM2026 at checkout, confirm. Here&#x27;s how to choose.</p>
+    <p><a class="open" href="out/a8.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/a8_mob_light.jpg" alt="Viewed Plans, didn&#x27;t upgrade (also B), light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/a8_mob_dark.jpg" alt="Viewed Plans, didn&#x27;t upgrade (also B), dark mode"></figure>
+</article></section><section><h2 class="sh">Sequence B: new installs (1 to 30 Nov)</h2><p class="sd">Starts on install. After B1 and B2 they get A4 (install + 4 days), A5, A6 and A7 or A8.</p><article class="em" id="b1">
+  <div class="meta"><h3><span class="id">B1</span> Welcome: your code and a first win <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>1 h after install (held to 08:00 to 20:00 store time; 1 Nov installs get it 2 Nov, 09:00)</dd><dt>Trigger</dt><dd>App installed</dd><dt>Who</dt><dd>Installed 1 to 30 Nov, free plan. Includes L leads who install</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Opt-in prompt on within 48 h; claim within 14 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>welcome! your bfcm code is inside</li><li>you&#x27;re in. here&#x27;s your code: BFCM2026</li><li>your first PushOwl win (plus a code)</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Switch on one setting today. Save 50% when you&#x27;re ready. Code works until 30 Nov.</p>
+    <p><a class="open" href="out/b1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/b1_mob_light.jpg" alt="Welcome: your code and a first win, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/b1_mob_dark.jpg" alt="Welcome: your code and a first win, dark mode"></figure>
+</article><article class="em" id="b2">
+  <div class="meta"><h3><span class="id">B2</span> Value: win back abandoned carts <span class="lay pb">Playbook</span></h3>
+    <dl><dt>When</dt><dd>Install + 2 days, 10:00 store time (not for installs from 28 Nov)</dd><dt>Trigger</dt><dd>App installed + 2 days</dd><dt>Who</dt><dd>New installs, not claimed</dd>
+    <dt>Exit</dt><dd>Leaves on: claim (moves to P), uninstall, any paid plan, unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Clicks into cart recovery; claims within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>7 in 10 carts get abandoned. get yours back</li><li>the bfcm leak most stores ignore</li><li>your first win, part two: carts</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Cart reminders win back sales that almost happened. Here&#x27;s the 3-touch plan.</p>
+    <p><a class="open" href="out/b2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/b2_mob_light.jpg" alt="Value: win back abandoned carts, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/b2_mob_dark.jpg" alt="Value: win back abandoned carts, dark mode"></figure>
+</article></section><section><h2 class="sh">Sequence L: LP leads who haven&#x27;t installed</h2><p class="sd">Only install emails. Installing moves them to B; claiming moves them to P.</p><article class="em" id="l1">
+  <div class="meta"><h3><span class="id">L1</span> Your code&#x27;s saved: 2 steps to claim <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>10 min after the claim-box email</dd><dt>Trigger</dt><dd>LP claim-box submit (added to the leads list)</dd><dt>Who</dt><dd>Left an email in the LP claim box; no matching install</dd>
+    <dt>Exit</dt><dd>Leaves on: install (moves to B), claim (moves to P), unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Install within 72 h</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>your code&#x27;s saved: BFCM2026</li><li>2 steps to claim your 50% off</li><li>here&#x27;s how to use BFCM2026</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Add PushOwl to your store, then enter the code at checkout in the app. About 2 minutes.</p><p class="var"><b>Variant:</b> Before 2 Nov, the deadline line reads: &quot;The code works from 2 Nov to 30 Nov, 11:59 pm PT. Install now and you&#x27;re ready on day one.&quot;</p>
+    <p><a class="open" href="out/l1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/l1_mob_light.jpg" alt="Your code&#x27;s saved: 2 steps to claim, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/l1_mob_dark.jpg" alt="Your code&#x27;s saved: 2 steps to claim, dark mode"></figure>
+</article><article class="em" id="l2">
+  <div class="meta"><h3><span class="id">L2</span> 2 minutes to install, we do the rest <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Lead + 2 days, 10:00 (leads before launch get it 2 Nov, 09:00)</dd><dt>Trigger</dt><dd>LP claim-box submit + 2 days, no install</dd><dt>Who</dt><dd>L leads still not installed</dd>
+    <dt>Exit</dt><dd>Leaves on: install (moves to B), claim (moves to P), unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Install within 72 h</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>2 minutes to install. we do the rest</li><li>your bfcm setup, done for you</li><li>still want that 50% off?</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Add PushOwl, claim BFCM2026, and our team sets up your flows and BFCM ads with you.</p>
+    <p><a class="open" href="out/l2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/l2_mob_light.jpg" alt="2 minutes to install, we do the rest, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/l2_mob_dark.jpg" alt="2 minutes to install, we do the rest, dark mode"></figure>
+</article><article class="em" id="l3">
+  <div class="meta"><h3><span class="id">L3</span> Last call for leads <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Mon 30 Nov, 09:00 (nothing after 18:00 PT)</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>L leads still not installed</dd>
+    <dt>Exit</dt><dd>Leaves on: install (moves to B), claim (moves to P), unsubscribe, hard bounce or spam complaint.</dd><dt>Goal</dt><dd>Install and claim on 30 Nov</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>BFCM2026 stops working tonight</li><li>last call: add PushOwl, save 50%</li><li>your code ends at 11:59 pm PT</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Add PushOwl and enter the code before 11:59 pm PT tonight. Two minutes, then you&#x27;re done.</p>
+    <p><a class="open" href="out/l3.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/l3_mob_light.jpg" alt="Last call for leads, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/l3_mob_dark.jpg" alt="Last call for leads, dark mode"></figure>
+</article></section><section><h2 class="sh">Sequence P: after claiming</h2><p class="sd">Starts when BFCM2026 is applied.</p><article class="em" id="p1">
+  <div class="meta"><h3><span class="id">P1</span> You&#x27;re in: book your free session <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>10 min after the code is applied</dd><dt>Trigger</dt><dd>BFCM2026 applied</dd><dt>Who</dt><dd>Anyone who applied BFCM2026</dd>
+    <dt>Exit</dt><dd>Leaves on: uninstall or cancellation. P1 reminders stop once a session is booked.</dd><dt>Goal</dt><dd>Session booked within 7 days</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>you&#x27;re in. let&#x27;s book your free setup</li><li>50% off: done. next, your free session</li><li>BFCM2026 is on. here&#x27;s what&#x27;s next</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Pick a time and a strategist sets up your flows and BFCM campaigns with you.</p>
+    <p><a class="open" href="out/p1.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p1_mob_light.jpg" alt="You&#x27;re in: book your free session, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p1_mob_dark.jpg" alt="You&#x27;re in: book your free session, dark mode"></figure>
+</article><article class="em" id="p2">
+  <div class="meta"><h3><span class="id">P2</span> Free migration <span class="lay">Light</span></h3>
+    <dl><dt>When</dt><dd>Claim + 1 day, 10:00 store time</dd><dt>Trigger</dt><dd>BFCM2026 applied + 1 day</dd><dt>Who</dt><dd>Claimed, no migration request yet</dd>
+    <dt>Exit</dt><dd>Leaves on: uninstall or cancellation. Also leaves on a migration request.</dd><dt>Goal</dt><dd>Migration requests</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>we&#x27;ll move your email over, free</li><li>switching tools in november? we&#x27;ll do it</li><li>leave the moving to us</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Tell us what you use now. We move it, and your old tool keeps running until we&#x27;re done.</p>
+    <p><a class="open" href="out/p2.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p2_mob_light.jpg" alt="Free migration, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p2_mob_dark.jpg" alt="Free migration, dark mode"></figure>
+</article><article class="em" id="p3">
+  <div class="meta"><h3><span class="id">P3</span> Value: Black Friday week checklist <span class="lay pb">Playbook</span></h3>
+    <dl><dt>When</dt><dd>Mon 23 Nov, 10:00 store time (claims after that: claim + 1 day, until 26 Nov)</dd><dt>Trigger</dt><dd>Scheduled</dd><dt>Who</dt><dd>Claimed</dd>
+    <dt>Exit</dt><dd>Leaves on: uninstall or cancellation.</dd><dt>Goal</dt><dd>BFCM ads launched before 27 Nov</dd></dl>
+    <p class="lbl">Subject lines (A/B/C)</p><ol class="subj"><li>your black friday week checklist</li><li>5 quick checks before black friday</li><li>4 days out. here&#x27;s what to check</li></ol>
+    <p class="lbl">Preview text</p><p class="pv">Ads, early access, send times, carts and mobile. Five checks, then go sell.</p>
+    <p><a class="open" href="out/p3.html" target="_blank">Open the live email &rarr;</a></p></div>
+  <figure><figcaption>Phone, light</figcaption><img loading="lazy" src="shots/p3_mob_light.jpg" alt="Value: Black Friday week checklist, light mode"></figure>
+  <figure><figcaption>Phone, dark mode</figcaption><img loading="lazy" src="shots/p3_mob_dark.jpg" alt="Value: Black Friday week checklist, dark mode"></figure>
+</article></section>
+</div></body></html>

@@ -440,7 +440,9 @@ h3{font-size:19px}
 .cb-code input{font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding-right:100px}
 .cb-applied{position:absolute;right:10px;top:50%;transform:translateY(-50%);font:600 12px/1 var(--body);color:#1b2427;background:#c9f0dc;border-radius:99px;padding:6px 9px}
 .cb-applied.bad{background:#fde2df;color:#a3261b}
-.cb-note{margin:8px 0 0;font-size:13px;color:#5b6266}
+.cb-help{margin:6px 0 0;font-size:12.5px;line-height:1.45;color:#5b6266}
+.cb-how{margin:14px 0 6px;font:600 12px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#1b2427}
+.cb-steps{margin:0;padding-left:20px;font-size:13.5px;line-height:1.5;color:#2f3437}.cb-steps li{margin:0 0 3px}.cb-steps b{color:#1b2427}
 .cb-go{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:16px;border:0;border-radius:8px;background:#1b2427;color:#fff;font:600 16px/1 var(--body);padding:15px;cursor:pointer;transition:background .2s,opacity .2s}
 .cb-go svg{width:18px;height:18px;color:#95BF47}
 .cb-go:disabled{background:#d4d8da;color:#7c8589;cursor:not-allowed}
@@ -743,7 +745,7 @@ h3{font-size:19px}
   <div class="gcard">
     <div class="body">
       <h2>Black Friday <span class="hl">won't wait.</span></h2>
-      <p class="lede" style="margin-top:16px">Get 50% off, move over for free and launch your Black Friday ads this week. Enter your email, then continue with Shopify to install PushOwl. We copy your code so it's ready on the Plans page.</p>
+      <p class="lede" style="margin-top:16px">Get 50% off, move over for free and launch your Black Friday ads this week. Enter your email, then continue with Shopify to install PushOwl. After you install, apply the code at checkout inside the app.</p>
     </div>
     <div class="claimbox" id="claim">
       <img class="cb-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true" width="72" height="72">
@@ -751,13 +753,15 @@ h3{font-size:19px}
       <form id="claim-form" novalidate>
         <label for="claim-email">Your email</label>
         <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="name@yourstore.com" required>
+        <p class="cb-help">We'll email you about your $200 ad credits, free strategy session, free migration and BFCM ads.</p>
         <label for="claim-code">Discount code</label>
         <div class="cb-code"><input id="claim-code" type="text" value="BFCM2026" autocomplete="off" spellcheck="false"><span class="cb-applied" id="claim-code-help" aria-live="polite">&#10003; Applied</span></div>
-        <p class="cb-note" id="claim-note">50% off annual or 30% off monthly, ends 30 Nov.</p>
+        <p class="cb-how">How to claim</p>
+        <ol class="cb-steps"><li>Install PushOwl from the Shopify App Store. It's free.</li><li>In the app, open Plans and pick a plan.</li><li>Apply <b>BFCM2026</b> at checkout: 50% off annual or 30% off monthly. Ends 30 Nov.</li></ol>
         <button class="cb-go" id="claim-go" type="submit" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</button>
         <p class="cb-hint" id="claim-hint">Enter your email to continue.</p>
       </form>
-      <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> Opening PushOwl on the Shopify App Store. After you install, open Plans and paste the code. <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
+      <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> Opening PushOwl on the Shopify App Store. After you install, open Plans in the app and apply the code at checkout. <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
       <p class="cb-fine">Free to install, no card needed. For new and free-plan accounts. Not on Shopify? <a id="claim-nonshop" href="https://dashboard.pushowl.io/onboarding-portal/sign-up">Click here</a>. <a href="terms.html">Deal terms</a></p>
     </div>
     <div class="trust">
