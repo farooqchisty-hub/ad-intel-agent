@@ -13,7 +13,7 @@
 <h1>Brevo PushOwl Google Ads: conversion tracking audit</h1>
 <p class="sub">14 Oct 2026 · account 846-525-4800 (Brevo PushOwl, USD) · read-only audit via the Google Ads API plus live tag checks on pushowl.com, dashboard.pushowl.io and the App Store listing. Nothing was changed.</p>
 
-<div class="box"><b>In one line:</b> the GA4 link to Google Ads works, but the only GA4 events reaching Ads are YouTube engagement and a few "Install" button clicks. The events that mean a signup or an install never reach GA4 with the ad click attached, so every bidding goal has had <b>0 conversions since July</b> while the 4 live YouTube campaigns spent about <b>$5,300</b>.</div>
+<div class="box"><b>In one line:</b> the GA4 link to Google Ads works and installs do reach GA4 (2,112 in 28 days), but none is credited to Google: the YouTube traffic shows no install intent, most installs can't be joined to a visit, and the portal signups the campaigns bid on are untracked, so every bidding goal has had <b>0 conversions since July</b> while the 4 live YouTube campaigns spent about <b>$5,300</b>.</div>
 
 <h2>What the account is doing now</h2>
 <div class="tw"><table><tr><th>Campaign (spend since 1 Jul)</th><th>Bidding</th><th>Goal it bids on</th><th>Spend</th><th>Conversions</th></tr>
@@ -35,8 +35,9 @@
 <p>For comparison, the App Store's Meta integration logged <b>1,471 installs</b> (Purchase on PushOwl New Pixel) in the last 14 days, and the Meta pixel saw <b>85 <code>owl_portal_signup</code></b> events. The events exist; Google just never receives them with the ad attached.</p>
 
 <h2>Why: three breaks</h2>
-<h3>1. App installs never reach GA4 <span class="tag bad">install tracking</span></h3>
-<p>The App Store sends <code>shopify_app_install</code> to GA4 <b>server-side</b>, and only when the listing has a GA4 <b>Measurement Protocol API secret</b> (Shopify docs). The browser-side "Install" button click does reach GA4 (22 attributed to Google), but the install itself has recorded zero in 3.5 months, which points to a missing or mismatched API secret on the listing. Meta works because its pixel ID and access token are both set.</p>
+<h3>1. Installs reach GA4, but almost none can be credited to an ad <span class="tag bad">install attribution</span></h3>
+<p><b>Checked in GA4 (property "PushOwl - Prod - GA4", stream "PushOwl Shopify App Store | GA4", G-DKNC4CCQ2D):</b> the Measurement Protocol API secret exists (created Sep 2023) and <code>shopify_app_install</code> is live: <b>2,112 installs in the last 28 days</b>. By session channel: Unassigned 1,287 (61%), Direct 405 (19%), Organic Shopping 346 (16%), Referral 39, Organic Search 20, <b>Cross-network (the Google Ads YouTube campaigns) 0</b>, Paid Search 0.</p>
+<p>The App Store sends the install server-side, and most installs can't be joined to the visit that came before them, so they land in Unassigned or Direct. The 18,541 YouTube-ad sessions in the same 28 days produced <b>0 Install-button clicks and 0 installs</b> in GA4. So two things are true at once: Google can only ever see a small share of installs, and the YouTube traffic shows no install intent at all.</p>
 <h3>2. The ad click ID is dropped on the way to signup <span class="tag bad">attribution</span></h3>
 <ul>
 <li>The YouTube campaigns land on <code>pushowl.com/lp/email-marketing</code>. Its "Get started" opens the portal with <code>utm_*</code> only: the <b>gclid is dropped</b> (tested with a test gclid).</li>
@@ -53,7 +54,7 @@
 <h2>The fix, in order</h2>
 <ol>
 <li><b>Stop the leak (today, your call):</b> pause the 4 YouTube Owl Portal campaigns, or set them to a goal that has data, until steps 2 to 5 are verified. They bid on a goal with zero data.</li>
-<li><b>Turn on install tracking (15 minutes, GA4 + Partner Dashboard):</b> in the GA4 property whose measurement ID is on the App Store listing: Admin, Data streams, the web stream, Measurement Protocol API secrets, Create. Then Partner Dashboard, Apps, PushOwl, Distribution, Manage listing, Tracking information: paste the API secret and confirm the GA4 ID is the property imported into Ads ("PushOwl - Prod - GA4"). Verify one test install in GA4 Realtime as <code>shopify_app_install</code>.</li>
+<li><b>Install tracking is already on</b> (API secret set, 2,112 installs in GA4 in 28 days). No Partner Dashboard change needed. The work is attribution: steps 3 to 5.</li>
 <li><b>Make install the goal (Google Ads):</b> one primary conversion, "App Install (GA4)". Set Page view, Add to cart (button click), Download (Android), Lead form and the MagicFit actions to secondary. Campaigns that send people to the listing bid on installs only.</li>
 <li><b>Keep the click attached:</b> every landing page must forward <code>gclid</code>, <code>gbraid</code>, <code>wbraid</code> and the UTMs to apps.shopify.com and the portal. The BFCM page already does; <code>/lp/email-marketing</code> needs its Get started script to add them. In GA4, set cross-domain measurement (Configure your domains: pushowl.com, dashboard.pushowl.io, apps.shopify.com).</li>
 <li><b>Portal signups and installs (PushOwl eng):</b> load the Google tag (GA4 + AW-11391594536) on the onboarding portal and fire <code>owl_portal_signup</code> / <code>owl_portal_connect_shopify</code> in the browser, or, if they stay backend, send the visitor's GA client id and session id with each event. Most robust: store the gclid at signup and upload <code>owl_portal_connect_shopify</code> to Google Ads as an offline conversion.</li>
