@@ -941,6 +941,37 @@ if (qs.get("mode") === "neutral") {
   new IntersectionObserver(function(es, ob){ es.forEach(function(e){ if (e.isIntersecting){ play(); ob.disconnect(); } }); }, {threshold:.35}).observe(d);
 })();
 
+/* ---------------- frame bridge (14 Oct): pushowl.com embeds this page in an iframe. App Store and the portal refuse to
+   load inside a frame, the ad's UTMs/fbclid live on the parent URL, the parent owns the pixel and Intercom. ---------------- */
+var IN_FRAME = (function(){ try { return window.top !== window.self; } catch(_) { return true; } })();
+var PARENT_OK = /^https:\/\/([a-z0-9-]+\.)*pushowl\.com$/;
+function toParent(m){ if (IN_FRAME) { try { window.parent.postMessage(m, "*"); } catch(_){} } }
+function goTop(url){
+  if (IN_FRAME) { try { window.top.location.href = url; return; } catch(_){} if (window.open(url, "_blank")) return; }
+  location.assign(url);
+}
+(function(){
+  if (!IN_FRAME) return;
+  // forward analytics events (no personal data is ever pushed to dataLayer) so the parent can fire its pixel and GA
+  var push = dataLayer.push.bind(dataLayer);
+  dataLayer.push = function(o){ toParent({type:"bfcm-lp-event", data:o}); return push(o); };
+  // chat: the parent page runs Intercom
+  function chat(e){ e.preventDefault(); e.stopImmediatePropagation(); toParent({type:"bfcm-open-chat"}); push({event:"bfcm_chat_open"}); }
+  var c = document.getElementById("chat"); if (c) c.addEventListener("click", chat, true);
+  document.querySelectorAll(".chatlink").forEach(function(b){ b.addEventListener("click", chat, true); });
+  // links that must leave the frame
+  document.querySelectorAll('a[href*="terms.html"]').forEach(function(a){ a.target = "_blank"; a.rel = "noopener"; });
+  // UTMs and click ids from the parent URL (backup for when the parent did not pass them in the iframe src)
+  window.addEventListener("message", function(e){
+    if (!PARENT_OK.test(e.origin) || !e.data || e.data.type !== "bfcm-params" || !e.data.search) return;
+    new URLSearchParams(e.data.search).forEach(function(v, k){ if (!qs.get(k)) qs.set(k, v); });
+    var k = ([qs.get("n"), qs.get("utm_term"), qs.get("utm_content")].map(function(v){ return ((v || "").toLowerCase().match(/(^|[^a-z0-9])(n[1-4])([^0-9]|$)/) || [])[2]; }).filter(Boolean)[0]);
+    if (k && HERO[k] && k !== nKey) { nKey = k; document.getElementById("h-tag").textContent = HERO[k].tag; document.getElementById("h-title").innerHTML = HERO[k].t; document.getElementById("h-sub").textContent = HERO[k].s; }
+    document.dispatchEvent(new Event("bfcm-params"));
+  });
+  toParent({type:"bfcm-lp-ready"});
+})();
+
 /* ---------------- claim box: email unlocks Continue with Shopify; all CTAs scroll here ---------------- */
 (function(){
   var APP = "https://apps.shopify.com/pushowl";
@@ -962,7 +993,9 @@ if (qs.get("mode") === "neutral") {
     return p;
   }
   function appUrl(where){ return APP + "?" + tracking(where).toString(); }
-  nonshop.href = CONFIG.signupUrl + "?" + tracking("nonshopify").toString();
+  function setNonshop(){ nonshop.href = CONFIG.signupUrl + "?" + tracking("nonshopify").toString(); }
+  setNonshop(); document.addEventListener("bfcm-params", setNonshop);
+  if (IN_FRAME) { nonshop.target = "_top"; cont.target = "_top"; }
 
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function codeOk(){
@@ -990,7 +1023,7 @@ if (qs.get("mode") === "neutral") {
     }
     dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026"});
     form.hidden = true; done.hidden = false; cont.href = url;
-    setTimeout(function(){ location.assign(url); }, 1300);
+    setTimeout(function(){ goTop(url); }, 900);
   });
 
   // every Claim CTA scrolls to the box (remembering which CTA was used); no popup
