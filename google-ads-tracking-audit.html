@@ -11,7 +11,15 @@
 .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}ol li,ul li{margin:0 0 6px}code{font-size:13px}
 </style></head><body><div class="wrap">
 <h1>Brevo PushOwl Google Ads: conversion tracking audit</h1>
-<p class="sub">14 Oct 2026 · account 846-525-4800 (Brevo PushOwl, USD) · read-only audit via the Google Ads API plus live tag checks on pushowl.com, dashboard.pushowl.io and the App Store listing. Nothing was changed.</p>
+<p class="sub">14 Oct 2026 · account 846-525-4800 (Brevo PushOwl, USD) · read-only audit via the Google Ads API plus live tag checks on pushowl.com, dashboard.pushowl.io and the App Store listing. The audit itself was read-only; the fixes below were made afterwards.</p>
+
+<div class="box"><b>Changed on 14 Oct (Google Ads, verified via the API):</b>
+<ul>
+<li>Account-default bidding goals: removed Page view, Leads from messages, Add to cart (Install button click), Submit lead form and Download. Account-default bidding is now <b>App Install (GA4) only</b>.</li>
+<li>The 4 YouTube Owl Portal campaigns moved off "OwlPortal SignUp" (0 data) to the install goal. <b>Still enabled; nothing paused.</b></li>
+</ul>
+<b>Blocked:</b> GA4 cross-domain. The combined Google tag G-4MLSL4TZ89 (bundles G-DKNC4CCQ2D and AW-11391594536) is read-only for this login, and its domain list is only <code>pushowl.com</code>. A GA4 admin must add dashboard.pushowl.io and apps.shopify.com.<br>
+<b>Open with engineering:</b> portal Google tag and events, gclid forwarding on /lp/email-marketing, BFCM embed snippet, BugHerd removal.</div>
 
 <div class="box"><b>In one line:</b> the GA4 link to Google Ads works and installs do reach GA4 (2,112 in 28 days), but none is credited to Google: the YouTube traffic shows no install intent, most installs can't be joined to a visit, and the portal signups the campaigns bid on are untracked, so every bidding goal has had <b>0 conversions since July</b> while the 4 live YouTube campaigns spent about <b>$5,300</b>.</div>
 
