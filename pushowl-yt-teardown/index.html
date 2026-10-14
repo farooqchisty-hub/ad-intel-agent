@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PushOwl YouTube Teardown</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#18201c;--muted:#5b625e;--line:#e2e6e3;--bg:#fbfcfb;--card:#fff;--soft:#f2f5f3;--accent:#0b996e;--bad:#b4232f;--badbg:#ffecee;--good:#006a43;--goodbg:#e9f8f1;--warn:#8a5a00;--warnbg:#fff6d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#eef2ef;--muted:#a3aba6;--line:#2b302d;--bg:#101312;--card:#171b19;--soft:#1d2220;--accent:#37c995;--bad:#ff8a95;--badbg:#3a1418;--good:#8fe0b6;--goodbg:#12261d;--warn:#f2cf6b;--warnbg:#2e2610}}
+:root[data-theme="dark"]{--ink:#eef2ef;--muted:#a3aba6;--line:#2b302d;--bg:#101312;--card:#171b19;--soft:#1d2220;--accent:#37c995;--bad:#ff8a95;--badbg:#3a1418;--good:#8fe0b6;--goodbg:#12261d;--warn:#f2cf6b;--warnbg:#2e2610}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 16px 90px}
+h1{font-size:28px;line-height:1.2;margin:0 0 6px}h2{font-size:21px;margin:40px 0 10px}h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.verdict{border-left:4px solid var(--accent)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top}th{background:var(--soft);font-weight:600;white-space:nowrap}td.n{text-align:right;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:600;border-radius:99px;padding:1px 8px;white-space:nowrap}.bad{background:var(--badbg);color:var(--bad)}.good{background:var(--goodbg);color:var(--good)}.warn{background:var(--warnbg);color:var(--warn)}
+.vid{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0}
+.vid img{width:100%;height:auto;border-radius:8px;display:block;margin:10px 0;background:#111}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.cols{grid-template-columns:1fr}}
+.meta{color:var(--muted);font-size:13px}
+ul{padding-left:20px;margin:6px 0}li{margin:0 0 5px}
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:860px){.layers{grid-template-columns:1fr 1fr}}@media(max-width:520px){.layers{grid-template-columns:1fr}}
+.layer{background:var(--soft);border-radius:10px;padding:12px}.layer b{display:block;margin-bottom:4px}
+code{font-size:13px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<h1>PushOwl YouTube ads: creative teardown and a better video system</h1>
+<p class="sub">15 Oct 2026 · Google Ads 846-525-4800 · the 4 live Demand Gen campaigns (YT ROW, YT India and their 2 remarketing twins) · 22 enabled ads, 8 unique videos · delivery data 1 Apr to 14 Oct 2026 (per-video asset report) · frames are YouTube's 1-per-second scrub previews.</p>
+
+<div class="box verdict"><b>In short</b>
+<ul>
+<li><b>Google spent 77% of the video budget on two old landscape brand films</b> (2023 and 2024) that pitch web push, while every headline and the landing page sell pay-per-send email ("$25 for 10K emails"). The viewer is promised one product and shown another.</li>
+<li><b>The vertical creator videos hold attention 4 to 6 times better</b> (24 to 41% view rate against 6 to 7%), but they get little budget because each ad also carries a brand film and Demand Gen keeps choosing it.</li>
+<li><b>All six vertical videos are one template</b>: a talking head under a static screenshot, the same recycled dashboard footage, the same blue price card, and pricing tables too small to read on a phone. <b>Nobody ever uses the product on screen.</b></li>
+<li><b>Things on screen that must not ship again:</b> a dashboard banner that says "Introducing MagicFit AI agents" (another product), a competitor named on the price card, "Shopify" in the voiceover, and a BFCM 2025 video (14-day trial, stock "80% OFF" art) still live in October 2026.</li>
+<li><b>Best idea to build on:</b> "paying for ghost subscribers". Its video kept 41% of viewers and 45% watched to the end on YT ROW.</li>
+</ul></div>
+
+<h2>The 8 videos, ranked by spend</h2>
+<div class="tw"><table>
+<tr><th>Video</th><th>Format</th><th>Length</th><th>Impressions</th><th>Spend</th><th>View rate</th><th>CTR</th><th>Verdict</th></tr>
+<tr><td>"Brevo PushOwl for Shopify" (2023 brand film, web push)</td><td>16:9</td><td class="n">91 s</td><td class="n">2,634,118</td><td class="n">$4,820</td><td class="n">7.0%</td><td class="n">3.7%</td><td><span class="tag bad">retire</span></td></tr>
+<tr><td>"Web push, email, and SMS campaigns" (2024 brand film)</td><td>16:9</td><td class="n">66 s</td><td class="n">894,966</td><td class="n">$1,305</td><td class="n">6.3%</td><td class="n">2.8%</td><td><span class="tag bad">retire</span></td></tr>
+<tr><td>"Stop paying for ghost email subscribers" (creator, split screen)</td><td>9:16</td><td class="n">31 s</td><td class="n">296,773</td><td class="n">$583</td><td class="n">41.0%</td><td class="n">1.5%</td><td><span class="tag good">best angle</span></td></tr>
+<tr><td>"Abandoned carts are costing you thousands" (creator)</td><td>9:16</td><td class="n">52 s</td><td class="n">109,976</td><td class="n">$357</td><td class="n">26.4%</td><td class="n">4.2%</td><td><span class="tag warn">rework</span></td></tr>
+<tr><td>"Same 10K emails, totally different bills" (podcast style)</td><td>9:16</td><td class="n">25 s</td><td class="n">109,064</td><td class="n">$319</td><td class="n">26.1%</td><td class="n">2.6%</td><td><span class="tag warn">rework</span></td></tr>
+<tr><td>"No more surprise email bills" (creator, split screen)</td><td>9:16</td><td class="n">24 s</td><td class="n">107,309</td><td class="n">$275</td><td class="n">40.0%</td><td class="n">2.5%</td><td><span class="tag warn">rework</span></td></tr>
+<tr><td>"Recover abandoned carts this BFCM" (BFCM 2025)</td><td>9:16</td><td class="n">38 s</td><td class="n">78,116</td><td class="n">$193</td><td class="n">17.9%</td><td class="n">3.0%</td><td><span class="tag bad">retire now</span></td></tr>
+<tr><td>"Tired of exploding email bills?" (creator, split screen)</td><td>9:16</td><td class="n">23 s</td><td class="n">44,189</td><td class="n">$116</td><td class="n">24.0%</td><td class="n">3.1%</td><td><span class="tag warn">rework</span></td></tr>
+</table></div>
+<p class="meta">View rate = views ÷ impressions. Demand Gen counts views and clicks differently by placement (Shorts, feed, Gmail), so read view rate as the attention signal and CTR as secondary. Installs can't be compared per video until the tracking fixes ship (see the <a href="../google-ads-tracking-audit.html">tracking audit</a>).</p>
+
+<h2>Video by video</h2>
+
+<div class="vid"><h3>1. "Brevo PushOwl for Shopify": the 2023 brand film (77% of spend with #2)</h3>
+<div class="meta">16:9 · 91 s · professional motion graphics, voiceover, stock shoppers, UI cards</div>
+<img src="img/PG57yb-YhPU_0.jpg" alt="Frames 0 to 30 s" loading="lazy"><img src="img/PG57yb-YhPU_2.jpg" alt="Frames 64 to 90 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Clean, well-crafted motion design and brand colours.</li><li>Shows a real product flow (notification builder, cart recovery) at 32 to 50 s.</li></ul></div>
+<div><b>Broken</b><ul><li>Opens on a blank white frame; the logo lands at 12 s. Most viewers are gone by then.</li><li>Sells web push. The headline beside it says "$25 for 10K emails" and the landing page sells email.</li><li>Stale claims: "the number one web push app", "25,000 stores", "$3 billion in merchant revenue last year" (2022 data).</li><li>16:9 and 91 s on a placement mix that is mostly phones.</li></ul></div></div></div>
+
+<div class="vid"><h3>2. "Web push, email, and SMS campaigns": the 2024 brand film</h3>
+<div class="meta">16:9 · 66 s · flat UI animation on teal, voiceover</div>
+<img src="img/4SkvqP6Djiw_0.jpg" alt="Frames 0 to 28 s" loading="lazy"><img src="img/4SkvqP6Djiw_1.jpg" alt="Frames 32 to 60 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Explains the multichannel story clearly; good UI cards and the integrations wheel.</li></ul></div>
+<div><b>Broken</b><ul><li>No hook and no pain: it starts with "thousands of stores use PushOwl".</li><li>Never mentions price, the thing every headline and the landing page are about.</li><li>Shopify logo and name throughout.</li></ul></div></div></div>
+
+<div class="vid"><h3>3. "Stop paying for ghost email subscribers": the winner</h3>
+<div class="meta">9:16 · 31 s · creator talking head bottom, screenshots top, burned-in captions</div>
+<img src="img/K8yzVwuHJc0_0.jpg" alt="Frames 0 to 13 s" loading="lazy"><img src="img/K8yzVwuHJc0_1.jpg" alt="Frames 14 to 27 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>A real hook in the first second ("POV: you open your email bill...").</li><li>A sharp, true mechanism: you pay to store people who never open.</li><li>Best attention in the account: 41% view rate, 45% to the end on YT ROW.</li></ul></div>
+<div><b>Broken</b><ul><li>The top half is static screenshots; the dashboard frame shows an "Introducing MagicFit AI agents" banner.</li><li>The price card names a competitor; the voice says "for Shopify brands".</li><li>A pricing table is held for 6 s at a size no phone can read.</li><li>Fragment lines ("No subscriber tax, unlimited contacts, just simple pay-per-send") instead of explaining the bill.</li></ul></div></div></div>
+
+<div class="vid"><h3>4. "Abandoned carts are costing you thousands"</h3>
+<div class="meta">9:16 · 52 s · single creator, word-by-word captions, product shot only at 34 s</div>
+<img src="img/Lurx0p044hg_0.jpg" alt="Frames 0 to 13 s" loading="lazy"><img src="img/Lurx0p044hg_2.jpg" alt="Frames 28 to 41 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Natural, credible creator; teaches a tactic before selling.</li><li>Highest CTR of the vertical set (4.2%).</li></ul></div>
+<div><b>Broken</b><ul><li>34 seconds of talking before the product appears, and then only as a static picture.</li><li>"Head to the Shopify app store", while the ad sends people to the email landing page.</li></ul></div></div></div>
+
+<div class="vid"><h3>5 and 6. "Same 10K emails" and "No more surprise bills"</h3>
+<div class="meta">9:16 · 24 to 25 s · podcast guest and creator variants of the same template</div>
+<img src="img/GD_yzpDK5nY_0.jpg" alt="Same 10K emails frames" loading="lazy"><img src="img/uo9zkm2NSos_0.jpg" alt="Surprise bills frames" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Simple, one-idea scripts; decent holds (26% and 40%).</li></ul></div>
+<div><b>Broken</b><ul><li>The same blue "cost comparison" card and the same footage as #3, so the account shows one ad four times.</li><li>The "two bills" promise is never shown: no two invoices, no number that moves.</li></ul></div></div></div>
+
+<div class="vid"><h3>7. "Recover abandoned carts this BFCM": last year's Black Friday</h3>
+<div class="meta">9:16 · 38 s · creator plus stock cart and sale artwork</div>
+<img src="img/sJj-H--7F88_0.jpg" alt="Frames 0 to 13 s" loading="lazy"><img src="img/sJj-H--7F88_2.jpg" alt="Frames 28 to 38 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Connects the pain (carts lost) to the price angle in one script.</li></ul></div>
+<div><b>Broken</b><ul><li>2025 offer ("14-day free trial", "win BFCM") live in October 2026, beside the BFCM2026 campaign.</li><li>Stock "Black Friday Big Sale 80% OFF" art that has nothing to do with PushOwl.</li><li>Lowest hold of the vertical set (17.9%).</li></ul></div></div></div>
+
+<div class="vid"><h3>8. "Tired of exploding email bills?"</h3>
+<div class="meta">9:16 · 23 s · creator under the price card</div>
+<img src="img/ndxwHuJ6H3Y_0.jpg" alt="Frames 0 to 13 s" loading="lazy">
+<div class="cols"><div><b>Works</b><ul><li>Clear pain line in the first sentence.</li></ul></div>
+<div><b>Broken</b><ul><li>The price card sits on screen from frame one to 8 s, so the hook is a static graphic.</li><li>Same template and assets as #3, #5 and #6.</li></ul></div></div></div>
+
+<h2>What to make instead: one hybrid video system</h2>
+<p>Every new video stacks four layers. Each layer has one job, so nothing is decoration.</p>
+<div class="layers">
+<div class="layer"><b>1. AI presenter (story)</b>A North American store owner on camera in a real setting, speaking in calm, complete sentences. Generated with native in-video audio, about 30 s single takes, through the cinematic-ads-harness. Carries the hook and the emotion.</div>
+<div class="layer"><b>2. Real product walkthrough (proof)</b>Screen recordings of the actual PushOwl app on a demo store in USD: auto zoom on the click that matters, smoothed cursor, the rest of the screen dimmed. Shown as picture-in-picture or full-screen inserts while the presenter keeps talking.</div>
+<div class="layer"><b>3. Motion graphics (explain)</b>The mechanism the UI can't show: two invoices printing side by side, a per-contact bill climbing while the per-send bill stays flat, a cart-recovery timeline (abandon, push at 30 min, email at 2 h, order). Built in HyperFrames with our existing receipt, counter and kinetic-type parts.</div>
+<div class="layer"><b>4. Animation (metaphor)</b>Short character beats that make the idea memorable: ghost subscribers drifting through a contact list, each one dropping a coin into the bill. Used for 2 to 4 s at a time, never over a face.</div>
+</div>
+
+<h3 style="margin-top:22px">The 60-second spine (30-second cutdown keeps beats 1, 3, 4, 6)</h3>
+<div class="tw"><table>
+<tr><th>Time</th><th>Beat</th><th>Layer</th><th>Example ("Ghost list")</th></tr>
+<tr><td>0 to 3 s</td><td>1. Hook: name the audience and the pain</td><td>AI presenter + kinetic type</td><td>"If you run an online store, part of your email bill pays for people who will never open a single message."</td></tr>
+<tr><td>3 to 12 s</td><td>2. Mechanism: why it happens</td><td>Animation + motion graphics</td><td>Ghosts fill a contact list; the monthly bill climbs with list size, not with sales.</td></tr>
+<tr><td>12 to 30 s</td><td>3. Proof: the product doing it</td><td>Real walkthrough</td><td>Import 12,000 contacts, see "unlimited contacts", send one campaign, open the bill: charged only for what was sent.</td></tr>
+<tr><td>30 to 42 s</td><td>4. The number</td><td>Motion graphics</td><td>Two invoices, same 10,000 emails, the gap counted up on screen with its footnote.</td></tr>
+<tr><td>42 to 52 s</td><td>5. Ease</td><td>Walkthrough + presenter</td><td>Turn on the cart-recovery template; it's live.</td></tr>
+<tr><td>52 to 60 s</td><td>6. Offer, deadline, action</td><td>Presenter + end card</td><td>Spoken: "Install PushOwl today." On screen only: the code, the deadline, the Brevo PushOwl lockup and the button.</td></tr>
+</table></div>
+
+<h3 style="margin-top:22px">First five concepts</h3>
+<div class="tw"><table>
+<tr><th>Concept</th><th>Lead layer</th><th>Why</th></tr>
+<tr><td><b>The Ghost List</b></td><td>Animation + walkthrough</td><td>Extends the account's best-holding angle and finally shows it.</td></tr>
+<tr><td><b>Watch a cart come back</b></td><td>Motion graphics timeline + device mockups</td><td>A shopper abandons at 9:14 pm; push, email and SMS bring the order back in real time; then the 3 clicks that switch it on.</td></tr>
+<tr><td><b>Set up before your coffee cools</b></td><td>Pure walkthrough, timer on screen</td><td>Proves ease with an honest, measured setup time. Only if the real run is short.</td></tr>
+<tr><td><b>Two Bills</b></td><td>Motion graphics explainer</td><td>Two invoices for the same 10,000 emails; competitors stay "other tools".</td></tr>
+<tr><td><b>BFCM 2026 offer</b></td><td>AI presenter + end card</td><td>Replaces the 2025 video: the offer, bonuses and 30 Nov deadline, code on screen only.</td></tr>
+</table></div>
+
+<h3 style="margin-top:22px">Rules every new video follows</h3>
+<ul>
+<li>Spoken lines say "PushOwl"; visuals may show the Brevo PushOwl lockup. Never "Shopify" or a competitor's name, spoken or on screen; the audience is "online store owners".</li>
+<li>Calm, explanatory narration (about 130 to 145 words a minute), complete sentences, numbers with their conditions.</li>
+<li>Full videos 60 s, cutdowns 30 s, nothing shorter.</li>
+<li>Delivered in 9:16, 16:9 and 1:1 so Demand Gen has the right shape for every placement; text inside the Shorts safe zone; anything readable stays on screen long enough to read and big enough for a phone.</li>
+<li>Product footage comes from a demo store with USD prices and fictional data, never from a real merchant's account, and never from a frame that shows another product.</li>
+<li>Every claim on screen is current and sourced (no 2022 stats, no expired offers).</li>
+</ul>
+
+<h2>Account fixes so the better videos get the budget</h2>
+<ul>
+<li>Remove the two brand films and the BFCM 2025 video from the live ads. Demand Gen will keep picking the cheapest-to-serve asset as long as it is there.</li>
+<li>One concept per ad, with headlines and landing page written for that concept, so the click lands on the promise the video made.</li>
+<li>Judge new videos on hook rate (25% watched) and hold (100% watched) in week one, then on installs once the tracking fixes are live.</li>
+</ul>
+
+</div></body></html>
