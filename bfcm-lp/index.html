@@ -458,6 +458,7 @@ h3{font-size:19px}
 .cb-done span{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#f0ff42;color:#1b2427;font-weight:700;margin-right:6px}
 .cb-done a{color:#1b2427;font-weight:600}
 .claimbox label.cb-optin{display:flex;gap:8px;align-items:flex-start;margin:8px 0 12px;font:400 12.5px/1.45 var(--body);color:#4a5257;cursor:pointer;text-transform:none;letter-spacing:0}.claimbox label.cb-optin input{margin:2px 0 0;width:15px;height:15px;accent-color:#1b2427;flex:none}
+.cb-note{margin:8px 0 12px;font:500 12.5px/1.45 var(--body);color:#4a5257}
 .cb-fine{margin:14px 0 0;padding-top:12px;border-top:1px solid #eceeef;font-size:12px;line-height:1.5;color:#6b7378}
 .cb-fine a{color:#0b6efd}
 
@@ -491,7 +492,7 @@ h3{font-size:19px}
         <a class="btn btn-lime btn-lg cta" data-pos="hero" href="#">Claim my deal <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a>
         <a class="btn btn-ghost btn-lg" href="#calculator">See what I'd save</a>
       </div>
-      <p class="fine">For new and free-plan accounts. Sign up, then enter the code in the app.</p>
+      <p class="fine" id="h-fine">For new and free-plan accounts. Sign up, then enter the code in the app.</p>
     </div>
     <div class="ticket-wrap">
       <img class="spark" src="assets/po/sparkle.webp" alt="" aria-hidden="true">
@@ -595,7 +596,7 @@ h3{font-size:19px}
       <div class="line"><span id="r-kl-l">Klaviyo</span><b id="r-kl">$4,500</b></div>
       <div class="line ghost"><span>Ghost contacts in that bill</span><b id="r-ghost">$900</b></div>
       <div class="line"><span>PushOwl annual, list price</span><b id="r-pol">$1,890</b></div>
-      <div class="line po"><span><strong>PushOwl with BFCM2026</strong> (annual)</span><b id="r-po">$945</b></div>
+      <div class="line po"><span><strong>PushOwl with BFCM2026</strong> <span id="r-po-l">(annual)</span></span><b id="r-po">$945</b></div>
       <div class="save"><div><div class="n" id="r-save">$3,555</div><small id="r-save-l">you'd save a year</small></div>
         <a class="btn btn-lime cta" data-pos="calc" href="#">Claim my savings <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a></div>
       <p class="calc-note" id="calc-note">Estimate. Klaviyo Email plan prices from klaviyo.com/pricing and PushOwl email prices from pushowl.com/pricing, both checked 7 Oct 2026, USD, before tax. Same emails sent on both.</p>
@@ -615,8 +616,8 @@ h3{font-size:19px}
       <tr><td>You're billed for</td><td class="po">Emails you send</td><td>Every active profile on your list</td></tr>
       <tr><td>Contacts</td><td class="po">Unlimited, on every plan</td><td>Price rises with your profile count</td></tr>
       <tr><td>Free plan</td><td class="po">500 emails a month, unlimited contacts</td><td>Up to 250 profiles, 500 emails a month</td></tr>
-      <tr><td>20,000 contacts, 3 emails each a month</td><td class="po">$94/mo list price<br><strong class="lime">$47/mo with BFCM2026</strong> (billed yearly)</td><td>$375/mo</td></tr>
-      <tr><td>That's</td><td class="po"><strong class="lime">8x less</strong></td><td></td></tr>
+      <tr><td>20,000 contacts, 3 emails each a month</td><td class="po">$94/mo list price<br><strong class="lime" id="cmp-deal">$67.68/mo with BFCM2026</strong> <span id="cmp-note">(billed yearly)</span></td><td>$375/mo</td></tr>
+      <tr><td>That's</td><td class="po"><strong class="lime" id="cmp-x">5x less</strong></td><td></td></tr>
     </tbody>
   </table></div>
   <p class="fine cmp-src center">Prices from klaviyo.com/pricing and pushowl.com/pricing, checked 7 Oct 2026, USD.</p>
@@ -734,8 +735,8 @@ h3{font-size:19px}
 <section id="faq"><div class="wrap">
   <div class="center stack"><span class="tag">FAQ</span><h2>Questions? <span class="hl">Answers.</span></h2></div>
   <div class="faq">
-    <details open><summary>Who can get the deal?</summary><p>New PushOwl accounts and stores on the free plan, until the deal ends.</p></details>
-    <details><summary>How do I use the code?</summary><p>Sign up, open Plans in the app, pick your plan and enter BFCM2026.</p></details>
+    <details open><summary>Who can get the deal?</summary><p id="faq-who">New PushOwl accounts and stores on the free plan, until the deal ends.</p></details>
+    <details><summary>How do I use the code?</summary><p id="faq-how">Sign up, open Plans in the app, pick your plan and enter BFCM2026.</p></details>
     <details><summary>When does it end?</summary><p>Cyber Monday, 30 November 2026.</p></details>
     <details><summary>Is the Klaviyo migration really free?</summary><p>Yes. Our team moves your lists, flows and templates for you.</p></details>
     <details><summary>What happens in the strategy session?</summary><p>An expert helps you set up your retention flows and Black Friday campaigns. You book it after you sign up.</p></details>
@@ -765,6 +766,7 @@ h3{font-size:19px}
         <div class="cb-code"><input id="claim-code" type="text" value="BFCM2026" autocomplete="off" spellcheck="false"><span class="cb-applied" id="claim-code-help" aria-live="polite">&#10003; Applied</span></div>
         <p class="cb-how">How to claim</p>
         <ol class="cb-steps"><li>Install PushOwl from the Shopify App Store. It's free.</li><li id="cb-step2">In the app, open Plans and pick an annual plan.</li><li id="cb-step3">Apply <b>BFCM2026</b> at checkout: 20% off annual plans. Ends 30 Nov.</li></ol>
+        <p class="cb-note" id="cb-note" hidden>Already on our free plan? BFCM2026 gets you 30% off.</p>
         <button class="cb-go" id="claim-go" type="submit" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</button>
         <button class="cb-go cb-alt" id="claim-go-brevo" type="button" disabled>Continue for non-Shopify</button>
         <p class="cb-hint" id="claim-hint">Enter your email to continue.</p>
@@ -800,21 +802,26 @@ var CONFIG = {
   signupUrl: "https://dashboard.pushowl.io/onboarding-portal/sign-up",
   offerEnd: "2026-11-30T23:59:59-08:00",     // TO CONFIRM: end date and timezone
   intercomAppId: "ntcl5suv",                   // live PushOwl Intercom workspace
+  offer: "A",                                  // A = 20% annual (live); C = $0 first month for new stores, then 30% off. Preview C with ?offer=c
   loadIntercom: false,                         // false on the preview; true when live on pushowl.com
   leadEndpoint: "https://bfcm-leads.winningstatics.workers.dev/lead"   // claim emails -> Brevo list 73 (bfcm-leads Worker)
 };
 var KLAVIYO = [[500,20],[1000,30],[1500,45],[2500,60],[3000,70],[3500,80],[5000,100],[5500,110],[6000,130],[6500,140],[10000,150],[10500,175],[11000,200],[11500,225],[12000,250],[12500,275],[13000,300],[13500,325],[15000,350],[20000,375],[25000,400],[26000,425],[27000,450],[28000,475],[30000,500],[35000,550],[40000,600],[45000,650],[50000,720],[55000,790],[60000,860],[65000,930],[70000,1000],[75000,1070],[80000,1140],[85000,1205],[90000,1265],[95000,1325],[100000,1380],[105000,1440],[110000,1495],[115000,1555],[120000,1610],[125000,1670],[130000,1725],[135000,1785],[140000,1840],[145000,1900],[150000,1955]];
 var PUSHOWL = [[500,0],[5000,19],[10000,25],[25000,45],[50000,75],[75000,94],[100000,113],[125000,175],[150000,210],[175000,245],[200000,281],[250000,300],[300000,375],[350000,413],[400000,450],[450000,488],[500000,500],[550000,525],[600000,563],[650000,581],[700000,600],[750000,619],[800000,638],[850000,675],[900000,713],[950000,750],[1000000,788]];
-var ANNUAL_LIST = 0.9, BFCM_ANNUAL = 0.9 * 0.8;   // BFCM2026 = 20% off the annual price; annual list = monthly x 12 x 0.9
+var OFFER_ID = ((new URLSearchParams(location.search).get("offer")) || CONFIG.offer || "A").toUpperCase();
+var ANNUAL_LIST = 0.9, BFCM_ANNUAL = OFFER_ID === "C" ? 0.9 * 0.7 : 0.9 * 0.8;   // A: 20% off annual; C: 30% off annual; annual list = monthly x 12 x 0.9
+var FIRST_YEAR_MONTHS = OFFER_ID === "C" ? 11 : 12;   // C: new stores on annual get one month off the first year
 /* ---------------- offer phases: until 4 Nov the code works on annual plans only; from 5 Nov 00:00 PT monthly plans get 30% off too ---------------- */
 var PHASE2 = (function(){ var p = new URLSearchParams(location.search).get("phase"); if (p === "2") return true; if (p === "1") return false; return Date.now() >= Date.parse("2026-11-05T00:00:00-08:00"); })();
-var OFFER = PHASE2 ? "up to 30% off" : "20% off annual plans";
+var OFFER = OFFER_ID === "C" ? (PHASE2 ? "$0 for your first month, then 30% off" : "$0 for your first month, then 30% off annual plans")
+                            : (PHASE2 ? "up to 30% off" : "20% off annual plans");
+var MULT = OFFER_ID === "C" ? "8x" : "7x";
 
 /* ---------------- narrative-matched hero (utm_content or ?n=) ---------------- */
 var qs = new URLSearchParams(location.search);
 var HERO = {
   n1:{tag:"The Klaviyo tax", t:'Stop paying Klaviyo for <span class="hl">ghost contacts.</span>', s:"Per-profile pricing bills you for people who never open. With PushOwl you pay for emails you send. Now " + OFFER + " for Black Friday."},
-  n2:{tag:"Black Friday savings", t:'See how much you\'d <span class="hl">save</span> this Black Friday.', s:"No per-contact pricing, plus " + OFFER + ". Stores with 25,000+ contacts sending 2 emails a month pay up to 7x less. Check your number below."},
+  n2:{tag:"Black Friday savings", t:'See how much you\'d <span class="hl">save</span> this Black Friday.', s:"No per-contact pricing, plus " + OFFER + ". Stores with 25,000+ contacts sending 2 emails a month pay up to " + MULT + " less. Check your number below."},
   n3:{tag:"Done for you", t:'Your Black Friday, <span class="hl">done for you.</span>', s:"Free Klaviyo migration and a free $300 strategy session to set up your flows and campaigns. Plus " + OFFER + "."},
   n4:{tag:"Ads in one click", t:'Your Black Friday ads, <span class="hl">ready in one click.</span>', s:"Paste your store URL and get ads made from your products, plus $200 in ad credits. And " + OFFER + "."}
 };
@@ -825,20 +832,53 @@ if (nKey && HERO[nKey]) {
   document.getElementById("h-sub").textContent = HERO[nKey].s;
 }
 
-/* ---------------- phase 2 (from 5 Nov): monthly plans get 30% off too ---------------- */
+/* ---------------- offer copy: A (20% annual; up to 30% from 5 Nov) or C ($0 first month for new stores, then 30% off) ---------------- */
 (function(){
-  if (!PHASE2) return;
   function set(id, html){ var e = document.getElementById(id); if (e) e.innerHTML = html; }
-  set("bar-offer", "20% off annual, 30% off monthly");
-  set("h-off", "up to 30% off");
-  var sub = document.getElementById("h-sub");
-  if (sub && !nKey) sub.textContent = sub.textContent.replace("20% off annual plans.", "20% off annual plans, 30% off monthly.");
-  var t = document.getElementById("ticket"); if (t) t.setAttribute("aria-label", "Coupon: 20% off annual plans, 30% off monthly plans, code BFCM2026");
-  set("ticket-row", "<span>Monthly plans</span><b>30% off</b>");
-  set("sticky-off", "Up to 30% off");
-  var f = document.getElementById("final-lede"); if (f) f.innerHTML = f.innerHTML.replace("Get 20% off annual plans,", "Get up to 30% off,");
-  set("cb-step2", "In the app, open Plans and pick a plan.");
-  set("cb-step3", "Apply <b>BFCM2026</b> at checkout: 20% off annual or 30% off monthly. Ends 30 Nov.");
+  function txt(id, t){ var e = document.getElementById(id); if (e) e.textContent = t; }
+  if (OFFER_ID !== "C") {
+    if (!PHASE2) return;   // the static HTML is offer A, phase 1
+    set("bar-offer", "20% off annual, 30% off monthly");
+    set("h-off", "up to 30% off");
+    var sub = document.getElementById("h-sub");
+    if (sub && !nKey) sub.textContent = sub.textContent.replace("20% off annual plans.", "20% off annual plans, 30% off monthly.");
+    var t = document.getElementById("ticket"); if (t) t.setAttribute("aria-label", "Coupon: 20% off annual plans, 30% off monthly plans, code BFCM2026");
+    set("ticket-row", "<span>Monthly plans</span><b>30% off</b>");
+    set("sticky-off", "Up to 30% off");
+    var f = document.getElementById("final-lede"); if (f) f.innerHTML = f.innerHTML.replace("Get 20% off annual plans,", "Get up to 30% off,");
+    set("cb-step2", "In the app, open Plans and pick a plan.");
+    set("cb-step3", "Apply <b>BFCM2026</b> at checkout: 20% off annual or 30% off monthly. Ends 30 Nov.");
+    return;
+  }
+  // offer C: new stores (installed 14 Oct to 30 Nov) pay $0 for the first month, then 30% off; free-plan stores get 30% off
+  document.title = "Black Friday Deal: Your First Month $0 | PushOwl by Brevo";
+  set("bar-offer", PHASE2 ? "$0 first month, then 30% off any plan" : "$0 first month, then 30% off annual plans");
+  if (!nKey) {
+    set("h-title", 'This Black Friday, your first bill is <span class="hl">on us.</span>');
+    txt("h-sub", (PHASE2 ? "New stores pay $0 for the first month, then get 30% off." : "New stores pay $0 for the first month, then get 30% off annual plans.") +
+      " Plus free Klaviyo migration, a free strategy session and Black Friday ads for your store.");
+  }
+  txt("h-fine", "$0 first month for new stores. Stores already on our free plan get 30% off. Enter the code in the app.");
+  var t = document.getElementById("ticket");
+  if (t) {
+    t.setAttribute("aria-label", "Coupon: first month $0 for new stores, then 30% off, code BFCM2026");
+    var big = t.querySelector(".big"), sub2 = t.querySelector(".sub");
+    if (big) big.textContent = "$0";
+    if (sub2) sub2.innerHTML = "your first month <s>$19</s>";
+  }
+  set("ticket-row", PHASE2 ? "<span>Then any plan</span><b>30% off</b>" : "<span>Then annual plans</span><b>30% off</b>");
+  set("sticky-off", "$0 first month");
+  var f = document.getElementById("final-lede");
+  if (f) f.innerHTML = f.innerHTML.replace("Get 20% off annual plans,", PHASE2 ? "Pay $0 for your first month, then get 30% off," : "Pay $0 for your first month, then get 30% off annual plans,");
+  set("cb-step2", PHASE2 ? "In the app, open Plans and pick a plan." : "In the app, open Plans and pick an annual plan.");
+  set("cb-step3", "Apply <b>BFCM2026</b> at checkout: your first month is on us, then 30% off. Ends 30 Nov.");
+  var note = document.getElementById("cb-note"); if (note) note.hidden = false;
+  set("cmp-deal", "$59.22/mo with BFCM2026"); set("cmp-note", "(billed yearly, first month on us)"); set("cmp-x", "6x less");
+  set("r-po-l", "(first year)");
+  set("faq-who", "New stores get their first month at $0, then 30% off. Stores already on our free plan get 30% off. Paid plans aren't included.");
+  set("faq-how", PHASE2 ? "Install PushOwl, open Plans, pick a plan and enter BFCM2026 at checkout."
+                        : "Install PushOwl, open Plans, pick an annual plan and enter BFCM2026 at checkout. From 5 November it works on monthly plans too.");
+  document.querySelectorAll('a[href="terms.html"]').forEach(function(a){ a.setAttribute("href", "terms-c.html"); });
 })();
 
 /* ---------------- CTA: forward UTMs to signup (same behaviour as the current LP) ---------------- */
@@ -911,7 +951,7 @@ if (qs.get("mode") === "neutral") {
       ["r-kl","r-ghost","r-pol","r-po"].forEach(function(id){ $(id).textContent = "Let's talk"; });
       $("r-save").textContent = "Custom"; $("r-save-l").textContent = "big list? chat with us for a quote"; return;
     }
-    var kY = kM * 12, ghostY = (kM - kEng) * 12, poList = poM * 12 * ANNUAL_LIST, poDeal = poM * 12 * BFCM_ANNUAL, save = kY - poDeal;
+    var kY = kM * 12, ghostY = (kM - kEng) * 12, poList = poM * 12 * ANNUAL_LIST, poDeal = poM * FIRST_YEAR_MONTHS * BFCM_ANNUAL, save = kY - poDeal;
     $("r-kl").textContent = money(kY); $("r-ghost").textContent = money(ghostY);
     $("r-pol").textContent = money(poList); $("r-po").textContent = money(poDeal);
     if (save > 0){ var x = poDeal > 0 ? kY / poDeal : 0; $("r-save").textContent = money(save); $("r-save-l").textContent = "you'd save a year" + (x >= 2 ? " · " + (x >= 10 ? Math.round(x) : Math.round(x*10)/10) + "x less" : ""); }
