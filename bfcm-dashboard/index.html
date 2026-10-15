@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>BFCM 2026 Dashboard</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f5f2; --surface:#fcfcfb; --surface-2:#f0efec; --line:#e2e0da; --line-2:#cfccc4;
+  --text:#121211; --text-2:#52514e; --muted:#7a7873;
+  --accent:#006a43; --accent-soft:#e3f1ea;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s7:#4a3aa7;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --good-text:#006300; --crit-text:#b42525; --warn-text:#8a5a00;
+  --band:#eaf3ea; --band-2:#fbecec;
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 2px 10px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --line:#2f2f2c; --line-2:#3d3d39;
+    --text:#ffffff; --text-2:#c3c2b7; --muted:#8f8e86;
+    --accent:#5fd49b; --accent-soft:#16301f;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s7:#9085e9;
+    --good-text:#5fd45f; --crit-text:#ff8a8a; --warn-text:#ffc95c;
+    --band:#17301a; --band-2:#3a1c1c;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --line:#2f2f2c; --line-2:#3d3d39;
+  --text:#ffffff; --text-2:#c3c2b7; --muted:#8f8e86;
+  --accent:#5fd49b; --accent-soft:#16301f;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s7:#9085e9;
+  --good-text:#5fd45f; --crit-text:#ff8a8a; --warn-text:#ffc95c;
+  --band:#17301a; --band-2:#3a1c1c;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text)}
+body{font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0 8px}
+.top h1{font-size:17px;margin:0;font-weight:700;letter-spacing:-.01em}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.badge.neutral{background:var(--surface-2);color:var(--text-2)}
+.spacer{flex:1}
+.btn{font:inherit;font-size:13px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer}
+.btn:hover{border-color:var(--text-2)}
+.btn[aria-pressed="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.pills{display:flex;gap:6px;flex-wrap:wrap;padding:0 0 10px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--text-2);white-space:nowrap;cursor:default}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--muted)}
+.dot.green{background:var(--good)} .dot.amber{background:var(--warn)} .dot.red{background:var(--crit)} .dot.waiting{background:transparent;border:1.5px dashed var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 0 6px}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--text-2);padding:6px 10px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--surface)}
+select,input[type=date]{font:inherit;font-size:13px;border:1px solid var(--line-2);border-radius:8px;padding:5px 8px;background:var(--surface);color:var(--text)}
+.flabel{font-size:12px;color:var(--muted);margin-left:4px}
+main{padding-bottom:60px}
+section.block{margin-top:22px}
+section.block > h2{font-size:15px;margin:0 0 4px;font-weight:700}
+.sub{font-size:12.5px;color:var(--text-2);margin:0 0 10px;max-width:900px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.tile{padding:12px 14px 10px;min-height:128px;display:flex;flex-direction:column;position:relative}
+.tile .k{font-size:12px;color:var(--text-2);font-weight:600;display:flex;gap:6px;align-items:center}
+.tile .v{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.tile .v.small{font-size:18px}
+.tile .d{font-size:12px;color:var(--text-2);margin-top:2px;font-variant-numeric:tabular-nums}
+.tile .spark{margin-top:auto;height:30px}
+.tile.waiting .v{color:var(--muted);font-size:15px;font-weight:600}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:var(--surface-2);color:var(--text-2)}
+.tag.wait{border:1px dashed var(--line-2);background:transparent}
+.up{color:var(--good-text)} .down{color:var(--crit-text)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.pad{padding:14px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;overflow:visible}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text-2);margin:2px 0 8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.line{height:3px;border-radius:2px;vertical-align:3px;width:14px}
+.legend i.dash{height:0;border-top:2px dashed var(--muted);background:none!important;vertical-align:3px;width:14px;border-radius:0}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11.5px;font-weight:600;color:var(--text-2);background:var(--surface-2);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td.l,th.l{text-align:left}
+tr:last-child td{border-bottom:0}
+td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-right:8px;background:var(--surface-2)}
+.funnel .row{display:grid;grid-template-columns:150px 1fr 92px 70px;gap:10px;align-items:center;padding:5px 0;font-variant-numeric:tabular-nums}
+.funnel .grp{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
+.funnel .grp:first-child{margin-top:0}
+.funnel .bar{height:14px;border-radius:0 4px 4px 0;background:var(--s1)}
+.funnel .track{background:var(--surface-2);border-radius:0 4px 4px 0;height:14px}
+.funnel .n{text-align:right;font-weight:600}
+.funnel .r{text-align:right;color:var(--text-2);font-size:12px}
+.funnel .src{font-size:11px;color:var(--muted)}
+.lens{padding:14px;display:flex;flex-direction:column;gap:4px}
+.lens.active{outline:2px solid var(--text);outline-offset:-1px}
+.lens .v{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.lens p{margin:4px 0 0;font-size:12.5px;color:var(--text-2)}
+.alerts{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.alert{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:13px}
+.alert .ic{font-weight:800;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;flex:none;color:#fff}
+.alert.red{border-color:color-mix(in srgb,var(--crit) 55%,var(--line));background:var(--band-2)} .alert.red .ic{background:var(--crit)}
+.alert.amber{border-color:color-mix(in srgb,var(--warn) 70%,var(--line))} .alert.amber .ic{background:var(--warn);color:#121211}
+.alert small{color:var(--text-2)}
+.note{font-size:12.5px;color:var(--text-2);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:10px}
+.note b{color:var(--text)}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.kv div{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.kv b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.kv span{font-size:12px;color:var(--text-2)}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--text);color:var(--surface);font-size:12px;line-height:1.4;padding:7px 9px;border-radius:8px;max-width:260px;opacity:0;transition:opacity .08s;font-variant-numeric:tabular-nums}
+#tip b{font-weight:700}
+#tip .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.gate{max-width:440px;margin:80px auto;padding:22px}
+.gate input{width:100%;font:inherit;padding:10px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--text);margin:10px 0}
+.err{color:var(--crit-text)}
+.foot{margin-top:28px;font-size:12px;color:var(--muted)}
+.toggle-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.hide{display:none!important}
+@media (max-width:640px){
+  .tile .v{font-size:22px}
+  .funnel .row{grid-template-columns:110px 1fr 70px 52px;gap:6px}
+  .top h1{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div id="tip" role="tooltip"></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="row1">
+      <h1>PushOwl BFCM 2026</h1>
+      <span class="badge" id="phase">Loading</span>
+      <span class="badge neutral" id="countdown"></span>
+      <span class="spacer"></span>
+      <span class="flabel" id="updated"></span>
+      <button class="btn" id="refresh" type="button" title="Fetch now">Refresh</button>
+      <button class="btn" id="theme" type="button" title="Switch light or dark">Theme</button>
+    </div>
+    <div class="pills" id="pills" aria-label="Data freshness per source"></div>
+  </div>
+</header>
+
+<main class="wrap" id="app" aria-live="polite">
+  <div class="filters" id="filters">
+    <div class="seg" id="range" role="group" aria-label="Date range">
+      <button type="button" data-r="today">Today</button>
+      <button type="button" data-r="yesterday">Yesterday</button>
+      <button type="button" data-r="7d">Last 7 days</button>
+      <button type="button" data-r="all" aria-pressed="true">Since 14 Oct</button>
+      <button type="button" data-r="custom">Custom</button>
+    </div>
+    <span id="custom" class="hide"><input type="date" id="from" aria-label="From"> <input type="date" id="to" aria-label="To"></span>
+    <label class="flabel" for="channel">Channel</label>
+    <select id="channel">
+      <option value="all">All channels</option><option value="meta">Meta</option><option value="google">Google</option><option value="email">Email</option>
+      <option value="intercom">Intercom</option><option value="creator">Creators</option><option value="organic">Organic and direct</option><option value="other">Other</option>
+    </select>
+    <span class="flabel">Installs lens</span>
+    <div class="seg" id="lensSeg" role="group" aria-label="Install lens">
+      <button type="button" data-l="ga4" aria-pressed="true">GA4 by UTM</button>
+      <button type="button" data-l="platform">Ad platform</button>
+      <button type="button" data-l="first_party">First-party</button>
+      <button type="button" data-l="intercom">All installs</button>
+    </div>
+  </div>
+  <div class="alerts" id="alerts"></div>
+  <div id="content"><p class="sub" style="margin-top:30px">Loading the numbers.</p></div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var API = "https://bfcm-dash.winningstatics.workers.dev";
+var LS = { get:function(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }, set:function(k,v){ try { localStorage.setItem(k,v); } catch(_){} } };
+var state = { range:"all", from:null, to:null, channel:"all", lens:LS.get("bfcm_lens") || "ga4", creators:"bfcm", data:null };
+
+// ---------- view key: #k=... in the link (never sent to any server except as a header), kept in this browser
+var key = (location.hash.match(/[#&]k=([^&]+)/) || [])[1] || LS.get("bfcm_view_key");
+if (key) { LS.set("bfcm_view_key", key); if (/[#&]k=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search); }
+
+// ---------- theme
+var root = document.documentElement;
+var savedTheme = LS.get("bfcm_theme"); if (savedTheme) root.setAttribute("data-theme", savedTheme);
+document.getElementById("theme").addEventListener("click", function(){
+  var dark = root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  var next = dark ? "light" : "dark"; root.setAttribute("data-theme", next); LS.set("bfcm_theme", next); if (state.data) render(state.data);
+});
+
+// ---------- formatting (no em or en dashes anywhere: API strings are cleaned too)
+function clean(s){ return String(s == null ? "" : s).replace(/[\u2013\u2014]/g, "-"); }
+function esc(s){ return clean(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function n(v){ return v == null || isNaN(v) ? null : Number(v); }
+function fmtInt(v){ v = n(v); return v == null ? "n/a" : Math.round(v).toLocaleString("en-US"); }
+function fmtMoney(v){ v = n(v); if (v == null) return "n/a"; return "$" + (Math.abs(v) >= 100 ? Math.round(v).toLocaleString("en-US") : v.toFixed(2).replace(/\.00$/, "")); }
+function fmtPct(v){ v = n(v); return v == null ? "n/a" : (Math.round(v * 10) / 10) + "%"; }
+function fmtDay(d){ var t = new Date(d + "T00:00:00Z"); return t.toLocaleDateString("en-GB", {day:"numeric", month:"short", timeZone:"UTC"}); }
+function ago(iso){ if (!iso) return "never"; var m = Math.round((Date.now() - Date.parse(iso)) / 60000); if (m < 1) return "just now"; if (m < 60) return m + " min ago"; var h = Math.round(m / 60); if (h < 48) return h + " h ago"; return Math.round(h / 24) + " days ago"; }
+function istDay(offset){ var t = new Date(Date.now() + 330 * 60000); t.setUTCDate(t.getUTCDate() + (offset || 0)); return t.toISOString().slice(0, 10); }
+function css(v){ return getComputedStyle(root).getPropertyValue(v).trim(); }
+
+// ---------- tooltip
+var tip = document.getElementById("tip");
+function showTip(html, x, y){ tip.innerHTML = html; tip.style.opacity = 1; var w = tip.offsetWidth, h = tip.offsetHeight; var left = Math.min(window.innerWidth - w - 8, x + 14), top = y - h - 12; if (top < 8) top = y + 16; tip.style.left = Math.max(8, left) + "px"; tip.style.top = top + "px"; }
+function hideTip(){ tip.style.opacity = 0; }
+
+// ---------- charts (hand-built SVG: thin marks, one axis, hover layer)
+function sparkline(values, labels, fmt){
+  values = (values || []).map(function(v){ return n(v) || 0; });
+  if (!values.length) return '<div class="spark"></div>';
+  var W = 200, H = 30, max = Math.max.apply(null, values) || 1, step = W / Math.max(1, values.length - 1);
+  var pts = values.map(function(v, i){ return [i * step, H - 2 - (v / max) * (H - 6)]; });
+  var d = pts.map(function(p, i){ return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+  var id = "sp" + Math.random().toString(36).slice(2, 8);
+  sparkData[id] = { values: values, labels: labels || [], fmt: fmt || fmtInt, pts: pts, W: W };
+  return '<svg class="spark" data-spark="' + id + '" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Last 48 hours, hourly">' +
+    '<path d="' + d + '" fill="none" stroke="' + css("--s1") + '" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>' +
+    '<circle r="3" cx="-10" cy="-10" fill="' + css("--s1") + '" stroke="' + css("--surface") + '" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>';
+}
+var sparkData = {};
+document.addEventListener("mousemove", function(e){
+  var svg = e.target.closest && e.target.closest("svg[data-spark]");
+  if (!svg) return;
+  var s = sparkData[svg.getAttribute("data-spark")]; if (!s) return;
+  var r = svg.getBoundingClientRect(), i = Math.round((e.clientX - r.left) / r.width * (s.values.length - 1));
+  i = Math.max(0, Math.min(s.values.length - 1, i));
+  var c = svg.querySelector("circle"); c.setAttribute("cx", s.pts[i][0]); c.setAttribute("cy", s.pts[i][1]);
+  var lab = s.labels[i] ? hourLabel(s.labels[i]) : "";
+  showTip("<b>" + s.fmt(s.values[i]) + "</b><br>" + lab, e.clientX, e.clientY);
+});
+document.addEventListener("mouseout", function(e){ var svg = e.target.closest && e.target.closest("svg[data-spark]"); if (svg) { hideTip(); var c = svg.querySelector("circle"); if (c) c.setAttribute("cx", -10); } });
+function hourLabel(h){ var t = new Date(h + ":00:00Z"); return t.toLocaleString("en-GB", {timeZone:"Asia/Kolkata", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) + " IST"; }
+
+// Line or stacked-bar chart over IST days. series: [{name, color, values}], refs: [{y, label}]
+var charts = {};
+function chart(id, opt){
+  charts[id] = opt;
+  return '<div class="legend">' + opt.series.map(function(s){ return '<span><i class="' + (opt.type === "line" ? "line" : "") + '" style="background:' + s.color + '"></i>' + esc(s.name) + '</span>'; }).join("") +
+    (opt.refs || []).map(function(r){ return '<span><i class="dash"></i>' + esc(r.label) + '</span>'; }).join("") + '</div><div class="chart" id="' + id + '"></div>';
+}
+function drawCharts(){
+  Object.keys(charts).forEach(function(id){
+    var el = document.getElementById(id); if (!el) return;
+    var o = charts[id], W = Math.max(280, el.clientWidth), H = o.height || 220, padL = 52, padR = 12, padT = 10, padB = 26;
+    var x = o.x, nX = x.length, iw = W - padL - padR, ih = H - padT - padB;
+    var totals = x.map(function(_, i){ return o.type === "stack" ? o.series.reduce(function(a, s){ return a + (n(s.values[i]) || 0); }, 0) : Math.max.apply(null, o.series.map(function(s){ return n(s.values[i]) || 0; })); });
+    var max = Math.max.apply(null, totals.concat((o.refs || []).map(function(r){ return r.y; }))) || 1;
+    max = niceMax(max);
+    var Y = function(v){ return padT + ih - (v / max) * ih; };
+    var bw = iw / nX, X = function(i){ return padL + bw * i + bw / 2; };
+    var g = [];
+    var grid = css("--line"), muted = css("--muted"), surface = css("--surface");
+    for (var k = 0; k <= 4; k++) { var v = max * k / 4, yy = Y(v); g.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + grid + '" stroke-width="1"/>'); g.push('<text x="' + (padL - 8) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="11" fill="' + muted + '">' + (o.yfmt || fmtInt)(v) + '</text>'); }
+    var every = Math.ceil(nX / Math.max(2, Math.floor(iw / 64)));
+    x.forEach(function(d, i){ if (i % every === 0 || i === nX - 1) g.push('<text x="' + X(i) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="11" fill="' + muted + '">' + fmtDay(d) + '</text>'); });
+    if (o.type === "stack") {
+      var w = Math.max(3, Math.min(34, bw * 0.62));
+      x.forEach(function(_, i){
+        var base = 0;
+        o.series.forEach(function(s, si){
+          var v = n(s.values[i]) || 0; if (!v) return;
+          var y1 = Y(base + v), y0 = Y(base), h = Math.max(1, y0 - y1 - (base ? 2 : 0));
+          var top = si === o.series.length - 1 || !o.series.slice(si + 1).some(function(t){ return n(t.values[i]); });
+          g.push(roundedBar(X(i) - w / 2, y1, w, h, top ? 4 : 0, s.color));
+          base += v;
+        });
+      });
+    } else {
+      o.series.forEach(function(s){
+        var pts = s.values.map(function(v, i){ return v == null ? null : [X(i), Y(n(v) || 0)]; });
+        var d = "", pen = false;
+        pts.forEach(function(p){ if (!p) { pen = false; return; } d += (pen ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1) + " "; pen = true; });
+        g.push('<path d="' + d + '" fill="none" stroke="' + s.color + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>');
+        if (nX <= 20) pts.forEach(function(p){ if (p) g.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3" fill="' + s.color + '" stroke="' + surface + '" stroke-width="2"/>'); });
+      });
+    }
+    (o.refs || []).forEach(function(r){ var yy = Y(r.y); g.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + muted + '" stroke-width="1.5" stroke-dasharray="5 4"/><text x="' + (W - padR) + '" y="' + (yy - 5) + '" text-anchor="end" font-size="11" fill="' + muted + '">' + esc(r.label) + '</text>'); });
+    g.push('<line class="xh" x1="0" x2="0" y1="' + padT + '" y2="' + (padT + ih) + '" stroke="' + muted + '" stroke-width="1" visibility="hidden"/>');
+    g.push('<rect x="' + padL + '" y="' + padT + '" width="' + iw + '" height="' + ih + '" fill="transparent" class="hit"/>');
+    el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" height="' + H + '" role="img" aria-label="' + esc(o.label || "chart") + '">' + g.join("") + '</svg>';
+    var svg = el.querySelector("svg"), xh = svg.querySelector(".xh");
+    svg.querySelector(".hit").addEventListener("mousemove", function(e){
+      var r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * (W / r.width), i = Math.max(0, Math.min(nX - 1, Math.floor((px - padL) / bw)));
+      xh.setAttribute("x1", X(i)); xh.setAttribute("x2", X(i)); xh.setAttribute("visibility", "visible");
+      var rows = o.series.map(function(s){ return '<span class="sw" style="background:' + s.color + '"></span>' + esc(s.name) + ": <b>" + (s.values[i] == null ? "n/a" : (o.yfmt || fmtInt)(s.values[i])) + "</b>"; });
+      if (o.type === "stack") rows.push("Total: <b>" + (o.yfmt || fmtInt)(totals[i]) + "</b>");
+      showTip("<b>" + fmtDay(x[i]) + "</b><br>" + rows.join("<br>"), e.clientX, e.clientY);
+    });
+    svg.querySelector(".hit").addEventListener("mouseleave", function(){ hideTip(); xh.setAttribute("visibility", "hidden"); });
+  });
+}
+function roundedBar(x, y, w, h, r, fill){
+  if (!r || h < r) return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + fill + '"/>';
+  return '<path d="M' + x + ' ' + (y + h) + 'V' + (y + r) + 'Q' + x + ' ' + y + ' ' + (x + r) + ' ' + y + 'H' + (x + w - r) + 'Q' + (x + w) + ' ' + y + ' ' + (x + w) + ' ' + (y + r) + 'V' + (y + h) + 'Z" fill="' + fill + '"/>';
+}
+function niceMax(v){ if (v <= 0) return 1; var p = Math.pow(10, Math.floor(Math.log10(v))), m = v / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+var rz; window.addEventListener("resize", function(){ clearTimeout(rz); rz = setTimeout(drawCharts, 150); });
+
+// ---------- data
+function params(){
+  var from, to, today = istDay(0);
+  if (state.range === "today") from = to = today;
+  else if (state.range === "yesterday") from = to = istDay(-1);
+  else if (state.range === "7d") { from = istDay(-6); to = today; }
+  else if (state.range === "custom") { from = state.from || "2026-10-14"; to = state.to || today; }
+  else { from = "2026-10-14"; to = today; }
+  return "from=" + from + "&to=" + to + "&channel=" + state.channel;
+}
+var loading = false;
+function load(fresh){
+  if (!key) return gate();
+  if (loading) return; loading = true;
+  document.getElementById("updated").textContent = "Updating";
+  fetch(API + "/api/summary?" + params() + (fresh ? "&fresh=1" : ""), { headers: { "x-view-key": key }, cache: "no-store" })
+    .then(function(r){ if (r.status === 401) { throw new Error("401"); } if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function(d){ state.data = d; render(d); })
+    .catch(function(e){
+      if (String(e.message) === "401") { LS.set("bfcm_view_key", ""); key = null; return gate("That view key didn't work. Paste the full link or key again."); }
+      document.getElementById("updated").innerHTML = '<span class="err">Couldn\'t refresh (' + esc(e.message) + '). Showing the last numbers.</span>';
+    })
+    .then(function(){ loading = false; });
+}
+function gate(msg){
+  document.getElementById("filters").classList.add("hide");
+  document.getElementById("content").innerHTML = '<div class="card gate"><h2 style="margin:0 0 6px;font-size:16px">View key needed</h2><p class="sub">This page holds no data until you add the view key from the link you were sent (the part after #k=).</p>' +
+    (msg ? '<p class="err">' + esc(msg) + '</p>' : '') + '<input id="keyIn" type="password" autocomplete="off" placeholder="View key or full link"><button class="btn" id="keyGo" type="button">Open dashboard</button></div>';
+  document.getElementById("keyGo").addEventListener("click", function(){
+    var v = document.getElementById("keyIn").value.trim(); var m = v.match(/[#&]k=([^&]+)/); key = m ? m[1] : v;
+    if (key) { LS.set("bfcm_view_key", key); document.getElementById("filters").classList.remove("hide"); load(true); }
+  });
+}
+
+// ---------- render
+var LENS_LABEL = { ga4:"GA4 by UTM", platform:"Ad platform", first_party:"First-party", intercom:"All installs" };
+var SOURCE_LABEL = { meta:"Meta", google:"Google Ads", ga4:"GA4", intercom:"Intercom", calendly:"Calendly", brevo:"Brevo", creators:"Creator sheet", lp_beacon:"LP beacon", engineering:"Redemption feed", bfcm_leads:"Lead capture" };
+var CH_LABEL = { meta:"Meta", google:"Google", email:"Email", intercom:"Intercom", creator:"Creators", organic:"Organic and direct", other:"Other" };
+
+function render(d){
+  charts = {}; sparkData = {};
+  document.getElementById("filters").classList.remove("hide");
+  document.getElementById("phase").textContent = d.phase.label;
+  document.getElementById("updated").textContent = "Updated " + ago(d.generated_at) + " · IST days";
+  countdown(d.phase.deadline);
+  pills(d.health);
+  alerts(d.alerts);
+  var h = d.headline, vs = d.vs, sp = d.spark, L = d.lens[state.lens] || {};
+  var out = [];
+
+  // 1. headline strip
+  var lensInstalls = L.installs, lensCpi = L.cpi;
+  var cpiTxt = lensCpi == null ? "n/a" : fmtMoney(lensCpi);
+  var cpiNote = lensCpi == null ? "no installs or no spend yet" : (lensCpi <= d.targets.cpi_target ? '<span class="up">within the $15 target</span>' : lensCpi <= d.targets.cpi_ceiling ? "above $15, under the $19 ceiling" : '<span class="down">above the $19 ceiling</span>');
+  out.push('<section class="block"><h2>Headline</h2><p class="sub">' + esc(rangeText(d.range)) + '. Change is today against yesterday (IST). Sparklines are the last 48 hours, hourly.</p><div class="tiles">' +
+    tile("Spend", fmtMoney(h.spend), "Meta " + fmtMoney(h.meta_spend) + " · Google " + fmtMoney(h.google_spend) + " · Creators " + fmtMoney(h.creator_spend), sparkline(sp.spend, sp.hours, fmtMoney), delta(vs.today.spend, vs.yesterday.spend, fmtMoney)) +
+    tile("LP sessions", fmtInt(h.lp_sessions), "First-party beacon. GA4 sees " + fmtInt(h.ga4_lp_sessions), sparkline(sp.lp_sessions, sp.hours), delta(vs.today.lp_sessions, vs.yesterday.lp_sessions)) +
+    tile("Leads", h.leads == null ? "n/a" : fmtInt(h.leads), "Emails in the claim box · " + fmtInt(h.consent) + " opted in", sparkline(sp.leads, sp.hours), delta(vs.today.leads, vs.yesterday.leads)) +
+    tile("App Store clicks", fmtInt(h.appstore_clicks), fmtInt(h.brevo_clicks) + " went to Brevo instead", sparkline(sp.appstore_clicks, sp.hours), delta(vs.today.appstore_clicks, vs.yesterday.appstore_clicks)) +
+    tile("Installs", lensInstalls == null ? "n/a" : fmtInt(lensInstalls), "Lens: " + LENS_LABEL[state.lens] + (state.lens === "intercom" ? " · " + fmtInt(L.new_stores) + " new stores" : ""), state.lens === "intercom" ? sparkline(sp.intercom_installs, sp.hours) : state.lens === "ga4" ? sparkline(sp.ga4_installs, sp.hours) : "", state.lens === "intercom" ? delta(vs.today.intercom_installs, vs.yesterday.intercom_installs) : state.lens === "ga4" ? delta(vs.today.ga4_installs, vs.yesterday.ga4_installs) : state.lens === "platform" ? delta(vs.today.meta_installs, vs.yesterday.meta_installs) : "") +
+    tile("Cost per install", cpiTxt, cpiNote + " · " + LENS_LABEL[state.lens], "", "") +
+    waitTile("Redemptions", d.redemptions.total, d.redemptions.state, d.redemptions.state === "live" ? "New " + fmtInt(d.redemptions.new) + " · Existing free " + fmtInt(d.redemptions.existing_free) : (d.redemptions.state === "tags" ? d.redemptions.source : "Counts stores that apply BFCM2026 and start a plan")) +
+    waitTile("$0 first-month starts", d.redemptions.zero_month, d.redemptions.state, "New stores starting on the $0 first month") +
+    waitTile("First paid charges", d.redemptions.first_charge, d.redemptions.state === "live" ? "live" : "waiting", "First non-zero charge after redeeming") +
+    tile("Calls booked", fmtInt(h.calls_booked), "Strategy call (Calendly) · " + fmtInt(d.calls.upcoming) + " upcoming", "", "") +
+    '</div></section>');
+
+  // 2. funnel
+  out.push('<section class="block"><h2>Funnel</h2><p class="sub">Each bar is scaled within its group. The rate is against the step above it. LP numbers come from the first-party beacon (people only: bots, link previewers and test hits are left out).</p><div class="card pad funnel">' + funnel(d.funnel) + '</div></section>');
+
+  // 3. installs, three lenses (never added together)
+  out.push('<section class="block"><h2>Installs, side by side</h2><p class="sub">Four ways of counting installs. They measure different things and are never added together. Click one to make it the lens for the headline and cost per install.</p><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))">' +
+    lensCard("ga4", "GA4 by UTM", d.lens.ga4.installs, "Installs in sessions tagged bfcm26 or bfcm2026. " + fmtInt(d.lens.ga4.lp_linked) + " linked to an exact LP session. Cost per install " + fmtMoney(d.lens.ga4.cpi) + " (paid channels).") +
+    lensCard("platform", "Ad platform", d.lens.platform.installs, "Meta " + fmtInt(d.lens.platform.meta) + " (App Store pixel Purchase), Google " + fmtInt(d.lens.platform.google) + " (App Install, GA4 import), Google BFCM claims " + fmtInt(d.lens.platform.google_claims) + ". Meta CPI " + fmtMoney(d.lens.platform.cpi) + ".") +
+    lensCard("first_party", "First-party", d.lens.first_party.installs, "LP lead emails matched to a store that installed after the lead. Cost per install " + fmtMoney(d.lens.first_party.cpi) + " (paid channels).") +
+    lensCard("intercom", "All installs (Intercom)", d.lens.intercom.installs, fmtInt(d.lens.intercom.new_stores) + " new stores, " + fmtInt(d.lens.intercom.reinstalls) + " older stores reinstalling. Any source, BFCM or not. GA4 sees " + fmtInt(d.lens.ga4.all_installs) + " installs from all sources and the app backend " + fmtInt(d.lens.ga4.backend_installs) + ".") +
+    '</div><div class="card pad" style="margin-top:12px">' +
+    chart("c_installs", { type:"line", label:"Installs per day by lens", x:d.daily.map(function(r){ return r.d; }), series:[
+      { name:"All installs (Intercom)", color:css("--s1"), values:d.daily.map(function(r){ return r.intercom_installs; }) },
+      { name:"GA4, all sources", color:css("--s2"), values:d.daily.map(function(r){ return r.ga4_installs_all; }) },
+      { name:"GA4, BFCM campaigns", color:css("--s3"), values:d.daily.map(function(r){ return r.ga4_installs; }) },
+      { name:"Meta reported", color:css("--s7"), values:d.daily.map(function(r){ return r.meta_installs; }) } ] }) +
+    '<div class="note"><b>Why the counts differ.</b> Intercom counts every store with an install date in range, from any source. GA4 only sees installs whose App Store session kept its tracking, so it runs lower. The app backend event counts install events, including reinstalls. Use GA4 by UTM to compare channels, Intercom for the total.</div></div></section>');
+
+  // 4. pacing
+  var pc = d.pacing;
+  out.push('<section class="block"><h2>Spend and pacing</h2><p class="sub">Daily spend against the Meta plan of ' + fmtMoney(pc.meta_daily_plan) + ' a day (ad set budgets) and Google ' + fmtMoney(pc.google_daily_plan) + '. Today so far: Meta ' + fmtMoney(pc.meta_today) + ' of ' + fmtMoney(pc.meta_expected_now) + ' expected by now, Google ' + fmtMoney(pc.google_today) + '. Live Meta budgets right now: ' + fmtMoney(pc.meta_active_budget) + ' a day. ' + pc.days_left + ' days to the deadline.</p><div class="grid2"><div class="card pad"><b style="font-size:13px">Spend per day</b>' +
+    chart("c_spend", { type:"stack", label:"Spend per day", yfmt:fmtMoney, x:d.daily.map(function(r){ return r.d; }), series:[
+      { name:"Meta", color:css("--s1"), values:d.daily.map(function(r){ return r.meta_spend; }) },
+      { name:"Google", color:css("--s2"), values:d.daily.map(function(r){ return r.google_spend; }) },
+      { name:"Creators (on live date)", color:css("--s3"), values:d.daily.map(function(r){ return r.creator_spend; }) } ],
+      refs:[{ y:pc.meta_daily_plan + pc.google_daily_plan, label:"Plan " + fmtMoney(pc.meta_daily_plan + pc.google_daily_plan) + " a day" }] }) +
+    '</div><div class="card pad"><b style="font-size:13px">Meta cost per install per day</b>' +
+    chart("c_cpi", { type:"line", label:"Meta CPI per day", yfmt:fmtMoney, x:d.daily.map(function(r){ return r.d; }), series:[
+      { name:"Meta CPI", color:css("--s1"), values:d.daily.map(function(r){ return r.meta_installs ? r.meta_spend / r.meta_installs : null; }) } ],
+      refs:[{ y:d.targets.cpi_target, label:"Target $15" }, { y:d.targets.cpi_ceiling, label:"Ceiling $19" }] }) +
+    '</div></div></section>');
+
+  // 5. traffic per day
+  out.push('<section class="block"><h2>Traffic and leads per day</h2><div class="card pad">' +
+    chart("c_traffic", { type:"line", label:"Traffic per day", x:d.daily.map(function(r){ return r.d; }), series:[
+      { name:"LP sessions (beacon)", color:css("--s1"), values:d.daily.map(function(r){ return r.lp_sessions; }) },
+      { name:"LP sessions (GA4)", color:css("--s2"), values:d.daily.map(function(r){ return r.ga4_lp_sessions; }) },
+      { name:"Leads", color:css("--s3"), values:d.daily.map(function(r){ return r.leads; }) },
+      { name:"App Store clicks", color:css("--s7"), values:d.daily.map(function(r){ return r.appstore_clicks; }) } ] }) +
+    '</div></section>');
+
+  // 6. channels
+  out.push('<section class="block"><h2>Channels</h2><p class="sub">A visit belongs to one channel, from its UTMs and click ids. Cost per install uses GA4 BFCM installs.</p><div class="card tbl"><table><thead><tr><th>Channel</th><th>Spend</th><th>LP sessions</th><th>GA4 LP sessions</th><th>Leads</th><th>Lead rate</th><th>App Store clicks</th><th>GA4 installs</th><th>First-party installs</th><th>Platform installs</th><th>Cost per install</th></tr></thead><tbody>' +
+    d.channels.map(function(c){ return '<tr><td>' + esc(CH_LABEL[c.channel] || c.channel) + '</td><td>' + (c.spend ? fmtMoney(c.spend) : "") + '</td><td>' + fmtInt(c.lp_sessions) + '</td><td>' + fmtInt(c.ga4_lp_sessions) + '</td><td>' + fmtInt(c.leads) + '</td><td>' + (c.lead_rate == null ? "" : fmtPct(c.lead_rate)) + '</td><td>' + fmtInt(c.appstore_clicks) + '</td><td>' + fmtInt(c.ga4_installs) + '</td><td>' + fmtInt(c.first_party_installs) + '</td><td>' + (c.platform_installs == null ? "" : fmtInt(c.platform_installs)) + '</td><td>' + (c.cost_per_ga4_install == null ? "" : fmtMoney(c.cost_per_ga4_install)) + '</td></tr>'; }).join("") +
+    '</tbody></table></div></section>');
+
+  // 7. meta
+  var M = d.meta;
+  out.push('<section class="block"><h2>Meta</h2><p class="sub">BFCM campaigns only (registry). Installs are Purchase on the App Store pixel, 7-day click and 1-day view, so they restate for up to 28 days. Verdicts use the $15 target and $19 ceiling.</p>' +
+    '<div class="card tbl"><table><thead><tr><th>Ad set</th><th class="l">Status</th><th>Budget a day</th><th>Spend</th><th>CTR</th><th>CPC</th><th>LP views</th><th>Installs</th><th>CPI</th><th>Frequency</th><th class="l">Verdict</th></tr></thead><tbody>' +
+    (M.adsets.length ? M.adsets.map(function(s){ return '<tr><td>' + esc(s.name) + '</td><td class="l">' + status(s.status) + '</td><td>' + fmtMoney(s.daily_budget) + '</td><td>' + fmtMoney(s.spend) + '</td><td>' + (s.ctr == null ? "" : fmtPct(s.ctr)) + '</td><td>' + (s.cpc == null ? "" : fmtMoney(s.cpc)) + '</td><td>' + fmtInt(s.lp_views) + '</td><td>' + fmtInt(s.installs) + '</td><td>' + (s.cpi == null ? "" : fmtMoney(s.cpi)) + '</td><td>' + (s.frequency == null ? "" : s.frequency.toFixed(2)) + '</td><td class="l">' + esc(s.verdict) + '</td></tr>'; }).join("") : '<tr><td colspan="11">No BFCM ad sets yet.</td></tr>') +
+    '</tbody></table></div>' +
+    '<details style="margin-top:10px"><summary style="cursor:pointer;font-size:13px;font-weight:600">Ads (' + M.ads.length + ')</summary><div class="card tbl" style="margin-top:8px;max-height:520px;overflow:auto"><table><thead><tr><th>Ad</th><th class="l">Ad set</th><th class="l">Narrative</th><th class="l">Status</th><th>Spend</th><th>Impressions</th><th>CTR</th><th>LP views</th><th>Installs</th><th>CPI</th></tr></thead><tbody>' +
+    M.ads.map(function(a){ return '<tr><td>' + (a.thumb ? '<img class="thumb" loading="lazy" referrerpolicy="no-referrer" alt="" src="' + esc(a.thumb) + '" onerror="this.style.visibility=\'hidden\'">' : '') + esc(a.name) + '</td><td class="l">' + esc(a.adset || "") + '</td><td class="l">' + esc((a.narrative || "").toUpperCase()) + '</td><td class="l">' + status(a.status) + '</td><td>' + fmtMoney(a.spend) + '</td><td>' + fmtInt(a.impressions) + '</td><td>' + (a.ctr == null ? "" : fmtPct(a.ctr)) + '</td><td>' + fmtInt(a.lp_views) + '</td><td>' + fmtInt(a.installs) + '</td><td>' + (a.cpi == null ? "" : fmtMoney(a.cpi)) + '</td></tr>'; }).join("") +
+    '</tbody></table></div></details></section>');
+
+  // 8. google
+  var G = d.google;
+  out.push('<section class="block"><h2>Google</h2><p class="sub">BFCM campaigns (YouTube Demand Gen, Demand Gen images, Display remarketing) appear here once they exist and have a BFCM name. Bidding goal is "BFCM claim", so the headline number is cost per claim.</p><div class="card tbl"><table><thead><tr><th>Campaign</th><th class="l">Status</th><th>Spend</th><th>Impressions</th><th>Views</th><th>Clicks</th><th>BFCM claims</th><th>Cost per claim</th><th>Installs (GA4 import)</th></tr></thead><tbody>' +
+    (G.campaigns.length ? G.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td class="l">' + status(c.status) + '</td><td>' + fmtMoney(c.spend) + '</td><td>' + fmtInt(c.impressions) + '</td><td>' + fmtInt(c.views) + '</td><td>' + fmtInt(c.clicks) + '</td><td>' + fmtInt(c.claims) + '</td><td>' + (c.cost_per_claim == null ? "" : fmtMoney(c.cost_per_claim)) + '</td><td>' + fmtInt(c.installs) + '</td></tr>'; }).join("") : '<tr><td colspan="9">No BFCM Google campaign has been created yet.</td></tr>') +
+    '</tbody></table></div>' +
+    (G.excluded_evergreen.spend ? '<div class="note"><b>Left out of BFCM numbers:</b> ' + fmtMoney(G.excluded_evergreen.spend) + ' on evergreen campaigns in this range (' + G.excluded_evergreen.campaigns.map(function(c){ return esc(c.name) + " " + fmtMoney(c.spend); }).join(", ") + ').</div>' : '') + '</section>');
+
+  // 9. email and intercom
+  var E = d.email, ic = d.cohorts.tag_counts;
+  out.push('<section class="block"><h2>Email and Intercom</h2><div class="grid2"><div class="card pad"><b style="font-size:13px">Brevo lists and automations</b><div class="kv" style="margin-top:8px">' +
+    E.lists.map(function(l){ return '<div><b>' + fmtInt(l.size) + '</b><span>' + esc(l.name) + '</span></div>'; }).join("") +
+    '<div><b>' + fmtInt(E.channel.leads) + '</b><span>Leads from email links</span></div><div><b>' + fmtInt(E.channel.ga4_installs) + '</b><span>GA4 installs from email links</span></div></div>' +
+    '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Automation email</th><th class="l">Subject</th><th class="l">State</th></tr></thead><tbody>' +
+    E.templates.map(function(t){ return '<tr><td>' + esc(t.name) + '</td><td class="l">' + esc(t.subject) + '</td><td class="l">' + (t.active ? '<span class="tag">active</span>' : '<span class="tag wait">inactive</span>') + '</td></tr>'; }).join("") +
+    '</tbody></table></div><div class="note">' + esc(E.gap) + '</div>' +
+    (E.campaigns.length ? '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Broadcast</th><th>Sent</th><th>Delivered</th><th>Unique clicks</th><th>Click rate</th><th>Unsubscribes</th></tr></thead><tbody>' + E.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td>' + fmtInt(c.sent) + '</td><td>' + fmtInt(c.delivered) + '</td><td>' + fmtInt(c.unique_clicks) + '</td><td>' + fmtPct(c.click_rate) + '</td><td>' + fmtInt(c.unsubscriptions) + '</td></tr>'; }).join("") + '</tbody></table></div>' : '<p class="sub" style="margin-top:10px">No BFCM broadcast has been sent yet (D1 to D3 show here with sent, delivered, clicks and unsubscribes once they go out).</p>') +
+    '</div><div class="card pad"><b style="font-size:13px">Intercom cohorts (contacts)</b><div class="kv" style="margin-top:8px">' +
+    '<div><b>' + fmtInt(ic.existing_free) + '</b><span>Existing free</span></div><div><b>' + fmtInt(ic.new_since_14oct) + '</b><span>New since 14 Oct</span></div><div><b>' + fmtInt(ic.page_lead) + '</b><span>BFCM page lead</span></div>' +
+    '<div><b>' + (ic.used == null ? "not yet" : fmtInt(ic.used)) + '</b><span>Tag "BFCM2026 used"</span></div><div><b>' + (ic.zero_month == null ? "not yet" : fmtInt(ic.zero_month)) + '</b><span>Tag "BFCM2026 $0 month"</span></div>' +
+    '<div><b>' + (d.redemptions.migrations == null ? "not yet" : fmtInt(d.redemptions.migrations)) + '</b><span>Migration requests</span></div></div>' +
+    '<p class="sub" style="margin-top:10px">The two BFCM2026 tags and the "BFCM migration" conversation tag don\'t exist yet. They count here as soon as engineering and CX start using them. Per-message Intercom stats are not pulled yet.</p></div></div></section>');
+
+  // 10. creators
+  var C = d.creators, ct = C.totals[state.creators];
+  var crRows = C.rows.filter(function(r){ return state.creators === "all" || r.bfcm; });
+  out.push('<section class="block"><h2>Creators</h2><div class="toggle-row"><div class="seg" id="crSeg"><button type="button" data-c="bfcm" aria-pressed="' + (state.creators === "bfcm") + '">BFCM posts</button><button type="button" data-c="all" aria-pressed="' + (state.creators === "all") + '">All creators</button></div><span class="sub" style="margin:0">BFCM = tracked link with utm_campaign bfcm26 or bfcm2026, or live on or after 14 Oct. Spend = allocated cost, else the deal amount.</span></div>' +
+    (C.state === "waiting" ? '<div class="note"><b>Waiting for the creator sheet.</b> The Apps Script push hasn\'t run yet. Creator traffic still counts below through utm_source=creator.</div>' :
+    '<div class="kv"><div><b>' + fmtInt(ct.creators) + '</b><span>Creators</span></div><div><b>' + fmtMoney(ct.spend) + '</b><span>Spend</span></div><div><b>' + fmtInt(ct.views) + '</b><span>Views</span></div><div><b>' + fmtInt(ct.lp_sessions) + '</b><span>LP sessions</span></div><div><b>' + fmtInt(ct.leads) + '</b><span>Leads</span></div><div><b>' + fmtInt(ct.ga4_installs) + '</b><span>GA4 installs</span></div></div>' +
+    '<div class="card tbl" style="margin-top:10px;max-height:560px;overflow:auto"><table><thead><tr><th>Creator</th><th class="l">Platform</th><th class="l">Live</th><th>Spend</th><th>Views</th><th>Likes</th><th>Comments</th><th>Shares</th><th>Link clicks</th><th>Engagement</th><th>CPM</th><th>LP sessions</th><th>Leads</th><th>GA4 installs</th><th>Cost per install</th></tr></thead><tbody>' +
+    (crRows.length ? crRows.map(function(r){ return '<tr><td>' + esc(r.handle) + '</td><td class="l">' + esc(r.platform || "") + '</td><td class="l">' + (r.date_live ? fmtDay(r.date_live) : "not live") + '</td><td>' + fmtMoney(r.spend) + '</td><td>' + fmtInt(r.views) + '</td><td>' + fmtInt(r.likes) + '</td><td>' + fmtInt(r.comments) + '</td><td>' + fmtInt(r.shares) + '</td><td>' + fmtInt(r.link_clicks) + '</td><td>' + esc(r.engagement_rate || "") + '</td><td>' + (r.cpm == null ? "" : fmtMoney(r.cpm)) + '</td><td>' + fmtInt(r.lp_sessions) + '</td><td>' + fmtInt(r.leads) + '</td><td>' + fmtInt(r.ga4_installs) + '</td><td>' + (r.cost_per_install == null ? "" : fmtMoney(r.cost_per_install)) + '</td></tr>'; }).join("") : '<tr><td colspan="15">No rows for this filter.</td></tr>') +
+    '</tbody></table></div>') + '</section>');
+
+  // 11. cohorts
+  var I = d.cohorts.installs;
+  out.push('<section class="block"><h2>Cohorts</h2><p class="sub">Stores that installed in this range (Intercom, test stores left out). Paid means the store\'s plan price is above $0 now.</p><div class="kv">' +
+    '<div><b>' + fmtInt(I.new_stores) + '</b><span>New stores installed</span></div><div><b>' + fmtInt(I.reinstalls) + '</b><span>Older stores reinstalled</span></div>' +
+    '<div><b>' + fmtInt(I.new_paid) + '</b><span>New stores now paid (' + fmtPct(I.paid_rate_new) + ')</span></div><div><b>' + fmtInt(I.paid_now) + '</b><span>All installs now paid</span></div>' +
+    '<div><b>' + fmtInt(I.uninstalled) + '</b><span>Uninstalled since (' + fmtPct(I.uninstall_rate) + ')</span></div><div><b>' + fmtInt(I.uninstalled_7d) + '</b><span>Uninstalled within 7 days</span></div>' +
+    '<div><b>' + (d.redemptions.state === "live" ? fmtInt(d.redemptions.new) : "waiting") + '</b><span>Redemptions, new</span></div><div><b>' + (d.redemptions.state === "live" ? fmtInt(d.redemptions.existing_free) : "waiting") + '</b><span>Redemptions, existing free</span></div>' +
+    '</div></section>');
+
+  // 12. calls
+  var K = d.calls;
+  out.push('<section class="block"><h2>Strategy calls</h2><p class="sub">"Managed Services - Strategy call" bookings made since 14 Oct, matched to a store by the store URL answer, then email.</p><div class="kv">' +
+    '<div><b>' + fmtInt(K.booked) + '</b><span>Booked</span></div><div><b>' + fmtInt(K.upcoming) + '</b><span>Upcoming</span></div><div><b>' + fmtInt(K.held) + '</b><span>Held</span></div><div><b>' + fmtInt(K.no_show) + '</b><span>No-show</span></div><div><b>' + fmtInt(K.canceled) + '</b><span>Canceled</span></div>' +
+    '<div><b>' + fmtInt(K.matched) + '</b><span>Matched to a store</span></div><div><b class="' + (K.unpaid ? "down" : "") + '">' + fmtInt(K.unpaid) + '</b><span>Booked by a store not on a paid plan</span></div><div><b>' + fmtInt(K.by_cohort.new) + ' / ' + fmtInt(K.by_cohort.existing) + '</b><span>New / existing stores</span></div></div>' +
+    (K.other_strategy_calls && K.other_strategy_calls.length ? '<div class="note"><b>Other strategy calls since 14 Oct (not in the BFCM count):</b> ' + K.other_strategy_calls.map(function(o){ return esc(o.name) + " " + fmtInt(o.booked); }).join(", ") + '.</div>' : '') +
+    '</section>');
+
+  // 13. geo and device
+  var maxGeo = Math.max.apply(null, d.geo.map(function(g){ return g.lp_sessions + g.ga4_lp_sessions; }).concat([1]));
+  out.push('<section class="block"><h2>Geo and device</h2><div class="grid2"><div class="card tbl"><table><thead><tr><th>Country</th><th>Meta spend</th><th>Meta installs</th><th>Meta CPI</th><th>LP sessions</th><th>GA4 LP sessions</th><th>Leads</th><th>Lead rate</th><th>GA4 installs</th></tr></thead><tbody>' +
+    d.geo.map(function(g){ return '<tr><td>' + esc(g.country === "GB" ? "UK" : g.country) + '</td><td>' + fmtMoney(g.spend) + '</td><td>' + fmtInt(g.meta_installs) + '</td><td>' + (g.meta_cpi == null ? "" : fmtMoney(g.meta_cpi)) + '</td><td>' + fmtInt(g.lp_sessions) + '</td><td>' + fmtInt(g.ga4_lp_sessions) + '</td><td>' + fmtInt(g.leads) + '</td><td>' + (g.lead_rate == null ? "" : fmtPct(g.lead_rate)) + '</td><td>' + fmtInt(g.ga4_installs) + '</td></tr>'; }).join("") +
+    '</tbody></table></div><div class="card pad"><b style="font-size:13px">Device (LP sessions)</b>' + deviceBars(d.lp.device, d.lp.ga4_device) +
+    '<b style="font-size:13px;display:block;margin-top:14px">Narrative on the LP</b>' + narrBars(d.lp.narrative) + '</div></div></section>');
+
+  // 14. data health
+  var mr = d.match;
+  out.push('<section class="block"><h2>Data health</h2><p class="sub">Green: fresh within two refresh cycles. Amber: late but under 6 hours. Red: older, or failing. Dashed: waiting for something outside this dashboard.</p><div class="card tbl"><table><thead><tr><th>Source</th><th class="l">State</th><th class="l">Last good pull</th><th>Rows</th><th class="l">Note or last error</th></tr></thead><tbody>' +
+    d.health.map(function(s){ return '<tr><td>' + esc(SOURCE_LABEL[s.source] || s.source) + '</td><td class="l"><span class="pill"><span class="dot ' + s.status + '"></span>' + esc(s.status) + '</span></td><td class="l">' + (s.last_ok_at ? ago(s.last_ok_at) : "never") + '</td><td>' + (s.rows == null ? "" : fmtInt(s.rows)) + '</td><td class="l" style="white-space:normal;min-width:240px">' + esc(s.error || s.note || "") + '</td></tr>'; }).join("") +
+    '</tbody></table></div><div class="kv" style="margin-top:10px">' +
+    '<div><b>' + rate(mr.lead_to_store) + '</b><span>Leads matched to a store</span></div><div><b>' + rate(mr.lead_to_install_after_lead) + '</b><span>Leads that installed after the lead</span></div>' +
+    '<div><b>' + rate(mr.booking_to_store) + '</b><span>Bookings matched to a store</span></div><div><b>' + rate(mr.beacon_to_lead) + '</b><span>LP clicks with a lead row</span></div>' +
+    '<div><b>' + (mr.datacenter_share == null ? "n/a" : fmtPct(mr.datacenter_share)) + '</b><span>LP sessions from bots and datacenters (left out)</span></div></div>' +
+    '<div class="note"><b>Notes.</b> Installs come from Intercom, GA4 and the lead match, not the Shopify Partner API, so there is no exact per-store install, uninstall or charge feed. Redemptions, $0 first-month starts and first paid charges wait for the engineering redemption event (the endpoint is ready). Brevo automation emails have no per-email stats in the API. Calendly is polled every 15 minutes.</div>' +
+    '<p class="foot">Range ' + esc(d.range.from) + ' to ' + esc(d.range.to) + ' (IST). Generated ' + esc(new Date(d.generated_at).toLocaleString("en-GB", {timeZone:"Asia/Kolkata"})) + ' IST. Counts only: no emails, store domains or merchant names are sent to this page.</p></section>');
+
+  document.getElementById("content").innerHTML = out.join("");
+  drawCharts();
+  document.querySelectorAll("[data-lenscard]").forEach(function(c){ c.addEventListener("click", function(){ setLens(c.getAttribute("data-lenscard")); }); c.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLens(c.getAttribute("data-lenscard")); } }); });
+  var cs = document.getElementById("crSeg"); if (cs) cs.addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; state.creators = b.getAttribute("data-c"); render(state.data); });
+}
+
+function rangeText(r){ var ch = r.channel === "all" ? "all channels" : (CH_LABEL[r.channel] || r.channel); return (r.from === r.to ? fmtDay(r.from) : fmtDay(r.from) + " to " + fmtDay(r.to)) + ", " + ch; }
+function tile(k, v, sub, spark, dlt){ return '<div class="card tile"><div class="k">' + esc(k) + '</div><div class="v">' + v + '</div><div class="d">' + sub + (dlt ? "<br>" + dlt : "") + '</div>' + (spark || "") + '</div>'; }
+function waitTile(k, v, st, sub){
+  if (st === "waiting" || v == null) return '<div class="card tile waiting"><div class="k">' + esc(k) + ' <span class="tag wait">waiting</span></div><div class="v">Waiting for engineering</div><div class="d">' + esc(sub) + '. The endpoint is ready.</div></div>';
+  return tile(k, fmtInt(v), esc(sub) + (st === "tags" ? " (Intercom tags, count only)" : ""), "", "");
+}
+function delta(a, b, f){ a = n(a); b = n(b); if (a == null || b == null) return ""; f = f || fmtInt; var diff = a - b; var cls = diff > 0 ? "up" : diff < 0 ? "down" : ""; return 'Today ' + f(a) + ' vs ' + f(b) + ' yesterday' + (diff ? ' <span class="' + cls + '">(' + (diff > 0 ? "+" : "-") + f(Math.abs(diff)) + ')</span>' : ""); }
+function lensCard(id, name, v, text){ return '<div class="card lens' + (state.lens === id ? " active" : "") + '" data-lenscard="' + id + '" role="button" tabindex="0" aria-pressed="' + (state.lens === id) + '" style="cursor:pointer"><span class="k" style="font-size:12px;font-weight:600;color:var(--text-2)">' + esc(name) + '</span><span class="v">' + (v == null ? "n/a" : fmtInt(v)) + '</span><p>' + esc(text) + '</p></div>'; }
+function status(s){ s = String(s || "").toUpperCase(); var map = { ACTIVE:"Live", PAUSED:"Paused", ENABLED:"Live", CAMPAIGN_PAUSED:"Paused (campaign)", ADSET_PAUSED:"Paused (ad set)", ARCHIVED:"Archived", REMOVED:"Removed" }; return '<span class="tag">' + esc(map[s] || s.toLowerCase().replace(/_/g, " ")) + '</span>'; }
+function rate(m){ if (!m || !m.total) return "n/a"; return fmtPct(m.rate) + ' <span style="font-size:12px;font-weight:400;color:var(--text-2)">' + fmtInt(m.matched) + ' of ' + fmtInt(m.total) + '</span>'; }
+function funnel(steps){
+  var groups = [["Ads", ["Impressions", "Link clicks"]], ["Landing page", ["LP sessions", "Claim box views", "Leads (emails)", "App Store clicks"]], ["App Store", ["Listing views", "Add App clicks", "Installs"]], ["After install", ["Redemptions", "First paid charge", "Calls booked"]]];
+  var by = {}; steps.forEach(function(s){ by[s.step] = s; });
+  return groups.map(function(g){
+    var rows = g[1].map(function(k){ return by[k]; }).filter(Boolean);
+    var max = Math.max.apply(null, rows.map(function(r){ return n(r.value) || 0; }).concat([1]));
+    return '<div class="grp">' + g[0] + '</div>' + rows.map(function(r){
+      var w = !n(r.value) ? 0 : Math.max(0.6, 100 * n(r.value) / max);
+      return '<div class="row"><div>' + esc(r.step) + '<div class="src">' + esc(r.source) + (r.alt ? " · " + esc(r.alt.label) + " " + fmtInt(r.alt.value) : "") + '</div></div><div class="track">' + (r.waiting ? "" : '<div class="bar" style="width:' + w + '%"></div>') + '</div><div class="n">' + (r.waiting ? '<span class="tag wait">waiting</span>' : fmtInt(r.value)) + '</div><div class="r">' + (r.rate == null ? "" : fmtPct(r.rate)) + '</div></div>';
+    }).join("");
+  }).join("");
+}
+function hbars(rows){
+  var max = Math.max.apply(null, rows.map(function(r){ return r.v; }).concat([1]));
+  return '<div class="funnel" style="margin-top:8px">' + rows.map(function(r){ return '<div class="row" style="grid-template-columns:110px 1fr 60px"><div>' + esc(r.k) + '</div><div class="track"><div class="bar" style="width:' + (r.v ? Math.max(0.6, 100 * r.v / max) : 0) + '%"></div></div><div class="n">' + fmtInt(r.v) + '</div></div>'; }).join("") + '</div>';
+}
+function deviceBars(beacon, ga){
+  var rows = (beacon || []).filter(function(r){ return r.lp_sessions; }).map(function(r){ return { k: (r.device || "unknown"), v: r.lp_sessions }; });
+  if (rows.length) return hbars(rows) + '<p class="sub" style="margin-top:6px">From the beacon.</p>';
+  rows = (ga || []).filter(function(r){ return r.lp_sessions; }).map(function(r){ return { k: (r.device || "unknown"), v: r.lp_sessions }; });
+  return rows.length ? hbars(rows) + '<p class="sub" style="margin-top:6px">From GA4 (no beacon sessions in this range yet).</p>' : '<p class="sub">No sessions in this range.</p>';
+}
+function narrBars(rows){
+  rows = (rows || []).filter(function(r){ return r.lp_sessions; }).map(function(r){ return { k: r.narrative === "default" ? "No narrative" : r.narrative.toUpperCase(), v: r.lp_sessions }; });
+  return rows.length ? hbars(rows) : '<p class="sub">No beacon sessions in this range yet.</p>';
+}
+function pills(health){
+  document.getElementById("pills").innerHTML = health.map(function(s){
+    var t = (SOURCE_LABEL[s.source] || s.source) + ": " + (s.status === "waiting" ? "waiting" : "last good pull " + ago(s.last_ok_at)) + (s.error ? ". Error: " + s.error : "");
+    return '<span class="pill" title="' + esc(t) + '"><span class="dot ' + s.status + '"></span>' + esc(SOURCE_LABEL[s.source] || s.source) + (s.status === "waiting" ? "" : " · " + esc(ago(s.last_ok_at))) + '</span>';
+  }).join("");
+}
+function alerts(list){
+  var el = document.getElementById("alerts");
+  el.innerHTML = (list || []).map(function(a){ return '<div class="alert ' + a.level + '" role="status"><span class="ic" aria-hidden="true">!</span><div><b>' + (a.level === "red" ? "Act now" : "Check") + '.</b> ' + esc(a.message) + ' <small>since ' + esc(ago(a.first_seen)) + '</small></div></div>'; }).join("");
+}
+var cdTimer;
+function countdown(deadline){
+  clearInterval(cdTimer);
+  var el = document.getElementById("countdown");
+  function tick(){ var ms = Date.parse(deadline) - Date.now(); if (ms <= 0) { el.textContent = "Deal ended"; return; } var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4); el.textContent = d + "d " + h + "h " + m + "m to 30 Nov, 11:59 pm PT"; }
+  tick(); cdTimer = setInterval(tick, 30000);
+}
+function setLens(l){ state.lens = l; LS.set("bfcm_lens", l); document.querySelectorAll("#lensSeg button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-l") === l); }); if (state.data) render(state.data); }
+
+// ---------- controls
+document.getElementById("range").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  state.range = b.getAttribute("data-r");
+  document.querySelectorAll("#range button").forEach(function(x){ x.setAttribute("aria-pressed", x === b); });
+  document.getElementById("custom").classList.toggle("hide", state.range !== "custom");
+  if (state.range !== "custom") load();
+});
+["from", "to"].forEach(function(id){ var el = document.getElementById(id); el.min = "2026-10-01"; el.max = istDay(0); el.addEventListener("change", function(){ state[id] = el.value; if (state.from && state.to) load(); }); });
+document.getElementById("channel").addEventListener("change", function(e){ state.channel = e.target.value; load(); });
+document.getElementById("lensSeg").addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) setLens(b.getAttribute("data-l")); });
+document.querySelectorAll("#lensSeg button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-l") === state.lens); });
+document.getElementById("refresh").addEventListener("click", function(){ load(true); });
+setInterval(function(){ if (!document.hidden) load(); }, 5 * 60000);
+document.addEventListener("visibilitychange", function(){ if (!document.hidden && state.data && Date.now() - Date.parse(state.data.generated_at) > 5 * 60000) load(); });
+load();
+})();
+</script>
+</body>
+</html>
