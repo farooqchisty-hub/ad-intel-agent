@@ -804,7 +804,8 @@ var CONFIG = {
   intercomAppId: "ntcl5suv",                   // live PushOwl Intercom workspace
   offer: "A",                                  // A = 20% annual (live); C = $0 first month for new stores, then 30% off. Preview C with ?offer=c
   loadIntercom: false,                         // false on the preview; true when live on pushowl.com
-  leadEndpoint: "https://bfcm-leads.winningstatics.workers.dev/lead"   // claim emails -> Brevo list 73 (bfcm-leads Worker)
+  leadEndpoint: "https://bfcm-leads.winningstatics.workers.dev/lead",  // claim emails -> Brevo list 73 (bfcm-leads Worker)
+  beacon: "https://bfcm-dash.winningstatics.workers.dev/e"             // page events -> bfcm-dash (session id, UTMs, click ids; never an email)
 };
 var KLAVIYO = [[500,20],[1000,30],[1500,45],[2500,60],[3000,70],[3500,80],[5000,100],[5500,110],[6000,130],[6500,140],[10000,150],[10500,175],[11000,200],[11500,225],[12000,250],[12500,275],[13000,300],[13500,325],[15000,350],[20000,375],[25000,400],[26000,425],[27000,450],[28000,475],[30000,500],[35000,550],[40000,600],[45000,650],[50000,720],[55000,790],[60000,860],[65000,930],[70000,1000],[75000,1070],[80000,1140],[85000,1205],[90000,1265],[95000,1325],[100000,1380],[105000,1440],[110000,1495],[115000,1555],[120000,1610],[125000,1670],[130000,1725],[135000,1785],[140000,1840],[145000,1900],[150000,1955]];
 var PUSHOWL = [[500,0],[5000,19],[10000,25],[25000,45],[50000,75],[75000,94],[100000,113],[125000,175],[150000,210],[175000,245],[200000,281],[250000,300],[300000,375],[350000,413],[400000,450],[450000,488],[500000,500],[550000,525],[600000,563],[650000,581],[700000,600],[750000,619],[800000,638],[850000,675],[900000,713],[950000,750],[1000000,788]];
@@ -1044,6 +1045,62 @@ function goTop(url){
   toParent({type:"bfcm-lp-ready"});
 })();
 
+/* ---------------- first-party beacon (16 Oct): page events to bfcm-dash. Session id, UTMs and click ids only:
+   never an email or any other personal data ("email_valid" is a yes/no). ---------------- */
+var SID = (function(){ var a = new Uint8Array(8); try { crypto.getRandomValues(a); } catch(_) { for (var i = 0; i < 8; i++) a[i] = Math.random() * 256 | 0; } return Array.prototype.map.call(a, function(x){ return ("0" + x.toString(16)).slice(-2); }).join(""); })();
+var VID = (function(){ try { var v = JSON.parse(localStorage.getItem("bfcm_vid") || "null"); if (v && v.id && Date.now() - v.t < 2592e6) return v.id; localStorage.setItem("bfcm_vid", JSON.stringify({id: SID, t: Date.now()})); } catch(_){} return SID; })();
+var T0 = Date.now(), DEPTH = 0;
+function bx(ev, extra){
+  if (!CONFIG.beacon) return;
+  try {
+    var cut = function(v){ return v ? String(v).slice(0, 100) : null; };
+    var o = {v:1, ev:ev, sid:SID, vid:VID, ts:Date.now(), narrative:nKey || "default", offer:OFFER_ID, phase:PHASE2 ? "2" : "1", in_frame:IN_FRAME,
+      utm:{source:cut(qs.get("utm_source")), medium:cut(qs.get("utm_medium")), campaign:cut(qs.get("utm_campaign")), term:cut(qs.get("utm_term")), content:cut(qs.get("utm_content")), id:cut(qs.get("utm_id"))},
+      click:{}, page_host:location.host, vw:window.innerWidth, lang:(navigator.language || "").slice(0, 12)};
+    try { o.ref_host = document.referrer ? new URL(document.referrer).host : null; } catch(_){}
+    ["fbclid","gclid","gbraid","wbraid","msclkid","ttclid","li_fat_id"].forEach(function(k){ var v = qs.get(k); if (v) o.click[k] = String(v).slice(0, 200); });
+    if (extra) for (var k in extra) o[k] = extra[k];
+    var body = JSON.stringify(o);
+    if (!(navigator.sendBeacon && navigator.sendBeacon(CONFIG.beacon, new Blob([body], {type:"text/plain"}))))
+      fetch(CONFIG.beacon, {method:"POST", body:body, keepalive:true, mode:"no-cors", headers:{"content-type":"text/plain"}}).catch(function(){});
+  } catch(_){}
+}
+(function(){
+  // mirror the page's own dataLayer events (in every context, framed or not)
+  var MAP = {bfcm_claim_click:"cta_click", bfcm_claim_submit:"claim_submit", bfcm_code_copy:"code_copy"}, calc = false, prev = dataLayer.push;
+  dataLayer.push = function(o){
+    try { if (o && MAP[o.event]) bx(MAP[o.event], {position: o.position || null, dest: o.destination || null}); else if (o && o.event === "bfcm_calc" && !calc) { calc = true; bx("calc_use"); } } catch(_){}
+    return prev.apply(dataLayer, arguments);
+  };
+  // one lp_view per page load, after the parent's UTMs have been merged (framed) or at once
+  var viewed = false;
+  function view(){ if (!viewed) { viewed = true; bx("lp_view"); } }
+  if (IN_FRAME) { document.addEventListener("bfcm-params", view); setTimeout(view, 1500); } else view();
+  // scroll depth from what has been on screen (works whether this page or the parent page scrolls)
+  var s50 = false, s90 = false;
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(es){
+      var H = document.documentElement.scrollHeight || 1;
+      es.forEach(function(e){ if (e.isIntersecting) DEPTH = Math.max(DEPTH, Math.min(1, (e.intersectionRect.bottom + (window.scrollY || 0)) / H)); });
+      if (DEPTH >= 0.5 && !s50) { s50 = true; bx("scroll_50"); }
+      if (DEPTH >= 0.9 && !s90) { s90 = true; bx("scroll_90"); }
+    }, {threshold: [0, 0.25, 0.5, 0.75, 1]});
+    document.querySelectorAll("section, footer").forEach(function(el){ io.observe(el); });
+    var box = document.getElementById("claim");
+    if (box) { var bo = new IntersectionObserver(function(es){ if (es.some(function(e){ return e.intersectionRatio >= 0.5; })) { bx("claim_box_view"); bo.disconnect(); } }, {threshold: [0.5]}); bo.observe(box); }
+  }
+  // chat and terms opens (capture phase: runs before the frame bridge's own handlers)
+  document.addEventListener("click", function(e){
+    var t = e.target && e.target.closest ? e.target : null; if (!t) return;
+    if (t.closest("#chat, .chatlink")) bx("chat_open");
+    else if (t.closest('a[href*="terms"]')) bx("terms_open");
+  }, true);
+  var gone = false;
+  function bye(){ if (!gone) { gone = true; bx("exit", {dwell: Date.now() - T0, depth: Math.round(DEPTH * 100)}); } }
+  document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "hidden") bye(); });
+  window.addEventListener("pagehide", bye);
+})();
+
 /* ---------------- claim box: email unlocks Continue with Shopify; all CTAs scroll here ---------------- */
 (function(){
   var APP = "https://apps.shopify.com/pushowl";
@@ -1065,11 +1122,12 @@ function goTop(url){
     if (!p.get("utm_content")) p.set("utm_content", "lp-" + where);
     return p;
   }
-  function appUrl(where){ return APP + "?" + tracking(where).toString(); }
+  function appUrl(where){ var p = tracking(where); if (!qs.get("utm_id")) p.set("utm_id", "lp-" + SID); return APP + "?" + p.toString(); }
   function brevoUrl(where){ return BREVO + "?" + tracking(where + "-brevo").toString(); }
   if (IN_FRAME) cont.target = "_top";
 
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var emailOk = false, lastDest = "shopify";
   function codeOk(){
     var v = (code.value || "").trim().toUpperCase(); code.value = v;
     var ok = v === "BFCM2026";
@@ -1079,6 +1137,7 @@ function goTop(url){
   function refresh(){
     var ok = EMAIL.test(email.value.trim()) && codeOk();
     go.disabled = !ok; goB.disabled = !ok;
+    if (ok && !emailOk) { emailOk = true; bx("email_valid", {position: pos}); }
     hint.className = "cb-hint"; hint.textContent = ok ? "Shopify store? Continue with Shopify. Anything else? Continue for non-Shopify. We'll copy the code for you." : "Enter your email to continue.";
   }
   email.addEventListener("input", refresh); code.addEventListener("input", refresh); code.addEventListener("change", refresh);
@@ -1088,7 +1147,7 @@ function goTop(url){
     try { if (navigator.clipboard) navigator.clipboard.writeText("BFCM2026"); } catch(_){}
     var url = dest === "brevo" ? brevoUrl(pos) : appUrl(pos);
     var lead = {email: email.value.trim(), code: "BFCM2026", destination: dest, position: pos, narrative: nKey || "default",
-      tracking: Object.fromEntries(tracking(pos)), page: location.href.split("#")[0], at: new Date().toISOString(),
+      tracking: Object.assign(Object.fromEntries(tracking(pos)), {lp_sid: SID}), page: location.href.split("#")[0], at: new Date().toISOString(),
       marketing_optin: !!(document.getElementById("claim-optin") || {}).checked, website: (document.getElementById("claim-website") || {}).value || "",
       tz: (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(_) { return ""; } })()};
     if (CONFIG.leadEndpoint){
@@ -1097,9 +1156,11 @@ function goTop(url){
     }
     dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026", destination: dest});
     if (dest === "brevo") doneMsg.textContent = "Opening Brevo for ecommerce stores.";
-    form.hidden = true; done.hidden = false; cont.href = url;
+    form.hidden = true; done.hidden = false; cont.href = url; lastDest = dest;
+    bx(dest === "brevo" ? "brevo_click" : "appstore_click", {position: pos, dest: dest});
     setTimeout(function(){ goTop(url); }, 900);
   }
+  cont.addEventListener("click", function(){ bx(lastDest === "brevo" ? "brevo_click" : "appstore_click", {position: pos, dest: lastDest, manual: 1}); });
   form.addEventListener("submit", function(e){ e.preventDefault(); claim("shopify"); });
   goB.addEventListener("click", function(){ claim("brevo"); });
 
