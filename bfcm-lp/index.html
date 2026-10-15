@@ -958,9 +958,9 @@ function goTop(url){
   // forward analytics events (no personal data is ever pushed to dataLayer) so the parent can fire its pixel and GA
   var push = dataLayer.push.bind(dataLayer);
   dataLayer.push = function(o){ toParent({type:"bfcm-lp-event", data:o}); return push(o); };
-  // chat: the parent page runs Intercom
+  // chat: the parent page runs Intercom and shows its own launcher (same as the rest of pushowl.com), so hide our pill
   function chat(e){ e.preventDefault(); e.stopImmediatePropagation(); toParent({type:"bfcm-open-chat"}); push({event:"bfcm_chat_open"}); }
-  var c = document.getElementById("chat"); if (c) c.addEventListener("click", chat, true);
+  var c = document.getElementById("chat"); if (c) { c.style.display = "none"; c.addEventListener("click", chat, true); }
   document.querySelectorAll(".chatlink").forEach(function(b){ b.addEventListener("click", chat, true); });
   // links that must leave the frame
   document.querySelectorAll('a[href*="terms.html"]').forEach(function(a){ a.target = "_blank"; a.rel = "noopener"; });
