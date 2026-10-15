@@ -574,6 +574,7 @@ document.getElementById("channel").addEventListener("change", function(e){ state
 document.getElementById("lensSeg").addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) setLens(b.getAttribute("data-l")); });
 document.querySelectorAll("#lensSeg button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-l") === state.lens); });
 document.getElementById("refresh").addEventListener("click", function(){ load(true); });
+window.addEventListener("hashchange", function(){ var m = location.hash.match(/[#&]k=([^&]+)/); if (!m) return; key = m[1]; LS.set("bfcm_view_key", key); history.replaceState(null, "", location.pathname + location.search); document.getElementById("filters").classList.remove("hide"); load(true); });
 setInterval(function(){ if (!document.hidden) load(); }, 5 * 60000);
 document.addEventListener("visibilitychange", function(){ if (!document.hidden && state.data && Date.now() - Date.parse(state.data.generated_at) > 5 * 60000) load(); });
 load();
