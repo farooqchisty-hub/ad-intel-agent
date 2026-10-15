@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portal GTM Steps</title>
+<title>Portal Tracking Steps</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--forest:#006A43;--cream:#FAF5E3;--char:#1B1B1B;--mint:#C0FFA5;--peony:#EB427F;--sun:#DEB002;
@@ -49,79 +49,91 @@ pre{background:var(--card);border:1px solid var(--line);border-radius:12px;paddi
 <body>
 <header>
   <div class="wrap" style="padding-bottom:0">
-    <span class="chip">For PushOwl engineering</span><span class="chip">15 Oct 2026</span>
+    <span class="chip">For PushOwl engineering</span><span class="chip">Updated 15 Oct 2026, 5:30 PM</span>
     <h1>Google Ads tracking: what we need from engineering</h1>
-    <p>One code change on the portal. Marketing does the rest in Google Tag Manager.</p>
+    <p>Keep your server-side events. Add the visitor's GA IDs to them so Google can match each signup to the ad click. No Tag Manager needed.</p>
   </div>
 </header>
 <div class="wrap">
 
+<div class="note" style="margin-top:24px"><b>Change from the earlier version:</b> this page used to ask you to add Tag Manager (<code>GTM-W9BPQ9</code>) to the portal. Skip that. Your backend stream already does most of the work, so the fix is smaller.</div>
+
 <h2>Why</h2>
-<p>Our YouTube ads can't count signups or installs. The portal (<code>dashboard.pushowl.io</code>) doesn't load Google Tag Manager, so Google loses every visitor as soon as they reach the signup page. We checked the signup page in a real browser on 15 Oct: no Tag Manager, no Google tag, no <code>dataLayer</code>, no Google cookies.</p>
-<p>Once the portal loads Tag Manager, marketing can set up all the tracking without more code changes.</p>
+<p>You send the signup and install events server-side to <b>Pushowl Dashboard (Backend) - GA4</b> (stream <code>G-MESRBYCSCD</code>). That property is already linked to our Google Ads account, and <code>owl_portal_signup</code> is already a key event that Google Ads imports. Good.</p>
+<p>The problem: the events arrive without the visitor's GA IDs, so GA4 can't tell which visit (and which ad click) they belong to. In the last 90 days <b>all 446</b> <code>owl_portal_signup</code> events landed as <b>"Unassigned"</b>, so Google Ads gives credit to no ad and records 0 conversions.</p>
+<p>The ad click ID (<code>gclid</code>) already reaches the signup page: pushowl.com started forwarding it today, and we tested it. Once the tag is on that page and your events carry the visitor's IDs, GA4 can link it all together.</p>
 
 <div class="step">
   <span class="who">Engineering</span>
-  <h3>Step 1. Add Google Tag Manager to the portal <span class="pri p0">Required</span></h3>
+  <h3>Step 1. Load the dashboard Google tag on the signup page too <span class="pri p0">Required</span></h3>
   <ul>
-    <li>Container ID: <code>GTM-W9BPQ9</code> (the same one pushowl.com uses).</li>
-    <li>Load it on <b>every</b> portal page, including <code>https://dashboard.pushowl.io/onboarding-portal/sign-up</code>.</li>
-    <li>The portal is a Next.js app with a <code>pages</code> folder, so the simplest way is to add this to <code>pages/_app.js</code>:</li>
+    <li>The portal already loads <code>G-MESRBYCSCD</code>, but only <b>after login</b>. It's in the same block in <code>_app</code> as Segment, Intercom and the Meta pixel.</li>
+    <li>Load it on <b>every</b> portal page, including <code>https://dashboard.pushowl.io/onboarding-portal/sign-up</code>. That's where people arrive from the ads, with the <code>gclid</code> in the URL.</li>
   </ul>
-  <div class="codebox"><button onclick="cp(this)">Copy</button><pre>import { GoogleTagManager } from '@next/third-parties/google'
+</div>
 
-// inside the JSX that _app returns:
-&lt;GoogleTagManager gtmId="GTM-W9BPQ9" /&gt;</pre></div>
+<div class="step">
+  <span class="who">Engineering</span>
+  <h3>Step 2. At signup, read the visitor's GA IDs and save them <span class="pri p0">Required</span></h3>
+  <p>In the browser, before or during the signup request:</p>
+  <div class="codebox"><button onclick="cp(this)">Copy</button><pre>gtag('get', 'G-MESRBYCSCD', 'client_id',  (cid) =&gt; { /* send as ga_client_id */ });
+gtag('get', 'G-MESRBYCSCD', 'session_id', (sid) =&gt; { /* send as ga_session_id */ });</pre></div>
+  <ul>
+    <li>Send both values to the backend with the signup request and save them on the user or store record.</li>
+    <li>If they're missing (for example, an ad blocker is on), carry on as today.</li>
+  </ul>
+  <div class="links"><a href="https://developers.google.com/tag-platform/gtagjs/reference#get" target="_blank">gtag 'get' reference</a></div>
+</div>
+
+<div class="step">
+  <span class="who">Engineering</span>
+  <h3>Step 3. Add them to every server-side event <span class="pri p0">Required</span></h3>
+  <p>For <code>owl_portal_signup</code>, <code>owl_portal_store_select</code>, <code>owl_portal_connect_shopify</code> and <code>PushOwlAppInstall</code>:</p>
+  <div class="codebox"><button onclick="cp(this)">Copy</button><pre>{
+  "client_id": "&lt;saved ga_client_id&gt;",
+  "events": [{
+    "name": "owl_portal_signup",
+    "params": {
+      "session_id": "&lt;saved ga_session_id&gt;",
+      "engagement_time_msec": 1
+    }
+  }]
+}</pre></div>
+  <ul>
+    <li>Use the real <code>client_id</code> instead of a generated one. Without it, GA4 can't link the event to the visit.</li>
+    <li>For later events (like the Shopify connect), use the same <code>client_id</code>. If that request comes from the browser, send its current <code>session_id</code>.</li>
+  </ul>
   <div class="links">
-    <a href="https://nextjs.org/docs/pages/guides/third-party-libraries#google-tag-manager" target="_blank">Next.js guide: Google Tag Manager</a>
-    <a href="https://support.google.com/tagmanager/answer/14842164" target="_blank">Google's install guide</a>
+    <a href="https://developers.google.com/analytics/devguides/collection/protocol/ga4/sending-events" target="_blank">Measurement Protocol: sending events</a>
+    <a href="https://developers.google.com/analytics/devguides/collection/protocol/ga4/validating-events" target="_blank">Measurement Protocol: validating events</a>
   </div>
 </div>
 
 <div class="step">
   <span class="who">Engineering</span>
-  <h3>Step 2. Tell us two URLs <span class="pri p0">Required</span></h3>
-  <ol>
-    <li>What is the URL right after someone <b>finishes signing up</b>?</li>
-    <li>What is the URL right after someone <b>connects their Shopify store</b>?</li>
-  </ol>
-  <div class="done">If each of these has its own URL, you're done. We'll set up the tracking from those URLs ourselves.</div>
-</div>
-
-<div class="step">
-  <span class="who">Engineering</span>
-  <h3>Step 3. Only if the URL doesn't change at those moments <span class="pri p1">Maybe</span></h3>
-  <p>Add one line at each moment:</p>
-  <div class="codebox"><button onclick="cp(this)">Copy</button><pre>// right after signup succeeds
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({ event: 'owl_portal_signup' });
-
-// right after the Shopify store is connected
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({ event: 'owl_portal_connect_shopify' });</pre></div>
-  <div class="note">Don't put the user's email or other personal data in these lines.</div>
-  <div class="links"><a href="https://developers.google.com/tag-platform/tag-manager/datalayer" target="_blank">How dataLayer works</a></div>
-</div>
-
-<div class="step">
-  <span class="who">Engineering</span>
-  <h3>Step 4. Keep everything else as it is</h3>
-  <p>Leave the existing backend events and the current tags as they are. We'll stop relying on the backend events for Google Ads ourselves.</p>
+  <h3>Step 4. Check <code>owl_portal_connect_shopify</code> <span class="pri p1">Please check</span></h3>
+  <p>It's set up as a key event, but GA4 received <b>0</b> of them in the last 90 days. In the same period it got 446 <code>owl_portal_signup</code> and 79 <code>owl_portal_store_select</code>. Is it still being sent, or did the name change?</p>
 </div>
 
 <h2>How to check it works</h2>
 <ol>
-  <li>Open <a href="https://dashboard.pushowl.io/onboarding-portal/sign-up" target="_blank">the signup page</a>, open the browser console and type <code>dataLayer</code>. You should see entries that include <code>gtm.js</code>.</li>
-  <li>Or use <a href="https://tagassistant.google.com/" target="_blank">Google Tag Assistant</a>, connect it to the signup page and check that <code>GTM-W9BPQ9</code> shows up.</li>
+  <li>Open <a href="https://www.pushowl.com/lp/email-marketing?gclid=TEST123" target="_blank">the landing page with a test click ID</a>, click <b>Get started</b>, and sign up with a test store.</li>
+  <li>In GA4 (Pushowl Dashboard (Backend) - GA4), check <b>Admin → DebugView</b> or <b>Reports → Realtime</b>. <code>owl_portal_signup</code> should show up linked to that visitor.</li>
+  <li>A day later, <code>owl_portal_signup</code> in Reports should start showing channels other than "Unassigned".</li>
 </ol>
 
 <h2>What marketing does after that <small>No engineering work needed</small></h2>
 <ol>
-  <li>In Tag Manager, pass the ad click ID (<code>gclid</code>, <code>gbraid</code>, <code>wbraid</code>) and UTM tags from pushowl.com links to the portal.</li>
-  <li>In Tag Manager, add the GA4 and Google Ads tags to the portal.</li>
-  <li>Mark the signup and install events as key events in GA4 and import them into Google Ads.</li>
-  <li>Ask a GA4 admin to turn on cross-domain tracking.</li>
+  <li>Point the 4 YouTube campaigns back at the "OwlPortal SignUp" goal, and add the Shopify connect once it's firing.</li>
+  <li>Watch Google Ads for the first conversions linked to an ad, then let bidding optimise for them.</li>
 </ol>
+
+<h2>FYI: Tag Manager <small>Nothing to do</small></h2>
+<ul>
+  <li><code>GTM-W9BPQ9</code> (on pushowl.com) is an old container that only has Universal Analytics tags, which Google switched off in 2024. It does nothing useful today.</li>
+  <li><code>GTM-NNBGKXMQ</code> (in your PushOwl Tag Manager account) is empty and isn't installed anywhere.</li>
+  <li>This fix doesn't need either one.</li>
+</ul>
 
 <p style="margin-top:40px;color:var(--muted);font-size:13px">Background: <a href="google-ads-tracking-audit.html">Google Ads tracking audit (14 Oct)</a></p>
 </div>
