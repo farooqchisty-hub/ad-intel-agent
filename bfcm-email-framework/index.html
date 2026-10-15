@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BFCM Email Framework</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#1b1b1b;--muted:#5d6560;--line:#e3e6e4;--bg:#faf8f1;--card:#fff;--soft:#f1f4ef;--accent:#006a43;--mint:#e3f7d6;--mintink:#0d4d32;--warnbg:#fff3df;--warn:#7a4b00;--mail:#fdfdfb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#eef2ef;--muted:#a3aba6;--line:#2b302d;--bg:#0f1211;--card:#171b19;--soft:#1d2220;--accent:#5fd3a2;--mint:#173525;--mintink:#b8f3d2;--warnbg:#2e2610;--warn:#f2cf6b;--mail:#141816}}
+:root[data-theme="dark"]{--ink:#eef2ef;--muted:#a3aba6;--line:#2b302d;--bg:#0f1211;--card:#171b19;--soft:#1d2220;--accent:#5fd3a2;--mint:#173525;--mintink:#b8f3d2;--warnbg:#2e2610;--warn:#f2cf6b;--mail:#141816}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 90px}
+h1{font-size:28px;line-height:1.2;margin:0 0 6px}h2{font-size:21px;margin:40px 0 10px}h3{font-size:16px;margin:22px 0 6px}
+.sub{color:var(--muted);margin:0 0 18px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.key{border-left:4px solid var(--accent)}
+.warnbox{background:var(--warnbg);border-color:transparent;color:var(--ink)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}th{background:var(--soft);white-space:nowrap}
+ul,ol{padding-left:20px;margin:6px 0}li{margin:0 0 5px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.no li::marker{content:"✕  ";color:#b4232f}.yes li::marker{content:"✓  ";color:var(--accent)}
+.mail{background:var(--mail);border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden}
+.mail .hd{background:var(--soft);padding:10px 16px;font-size:13px;color:var(--muted)}
+.mail .hd b{color:var(--ink)}
+.mail .bd{padding:16px 18px;font:15px/1.65 -apple-system,"Helvetica Neue",Arial,sans-serif;white-space:normal}
+.mail .bd p{margin:0 0 12px}
+.mail .lnk{color:var(--accent);font-weight:600;text-decoration:underline}
+.mail .meta{border-top:1px dashed var(--line);padding:10px 18px;font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:600;border-radius:99px;padding:1px 9px;background:var(--mint);color:var(--mintink);margin-right:6px}
+code{font-size:13px}
+.small{font-size:13px;color:var(--muted)}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+
+<h1>BFCM 2026 emails: copy framework and drafts</h1>
+<p class="sub">15 Oct 2026 · for Farooq's review · Brevo account contact@pushowl.com · sender "Pranavi at Brevo PushOwl" · offer: 20% off annual plans until 4 Nov, then 30% off monthly or 20% off annual until 30 Nov 11:59 pm PT, plus the free extras shown on the page. Nothing is built in Brevo until you approve.</p>
+
+<div class="box key"><b>The idea in one line:</b> every email reads like a short note from Pranavi to one store owner who asked for the deal: it gets to the point in the first line, explains one thing in plain words, asks for one action, and uses only real deadlines. The emails pick up from the ad the person clicked, so the first email continues the conversation instead of starting a new one.</div>
+
+<h2>1. Who's reading</h2>
+<ul>
+<li>Store owners who clicked a Black Friday ad and typed their email to unlock the code. They already want the deal; the sequence's job is to get them installed and to the Plans page before 30 Nov.</li>
+<li>It's their busiest season, so they skim on their phones between other tasks. Short beats clever.</li>
+<li>Most of them don't know Pranavi yet. Trust comes from being specific and useful, not from enthusiasm.</li>
+</ul>
+
+<h2>2. Pranavi's voice</h2>
+<div class="cols">
+<div class="box"><b>She sounds like</b>
+<ul class="yes">
+<li>A teammate who helps new stores get set up, writing to one person</li>
+<li>"I" for herself, "we" only when the team does something (we'll move your lists)</li>
+<li>Calm and direct. She tells you the next step and why it's worth it</li>
+<li>Helpful even when you don't buy (a tip, an honest answer)</li>
+</ul></div>
+<div class="box"><b>She never sounds like</b>
+<ul class="no">
+<li>A promo blast ("Don't miss out!!!", "Huge savings inside")</li>
+<li>A corporate notice ("We are pleased to inform you")</li>
+<li>A salesperson pushing ("Act now before it's too late")</li>
+<li>An AI ("Unlock the power of seamless omnichannel engagement")</li>
+</ul></div>
+</div>
+
+<h2>3. Writing rules (every email is checked against these)</h2>
+<div class="tw"><table>
+<tr><th>Rule</th><th>What it means</th></tr>
+<tr><td>Point first</td><td>The first sentence says why she's writing. No "Hope you're well", no "I wanted to reach out".</td></tr>
+<tr><td>One job, one ask</td><td>One email does one thing and has one link (plus unsubscribe). No second CTA, no social links.</td></tr>
+<tr><td>Short</td><td>Offer and reminder emails: 45 to 110 words. The cart-rescue playbook email can be longer.</td></tr>
+<tr><td>Short sentences</td><td>Average under 15 words; at most one sentence over 25 words. Short paragraphs, 1 to 3 sentences.</td></tr>
+<tr><td>Contractions, always</td><td>It's, you're, don't, we'll. "I am" and "do not" read like a form letter.</td></tr>
+<tr><td>Specific over vague</td><td>Say the actual step ("open Plans, enter BFCM2026") and the actual deadline ("30 Nov, 11:59 pm PT").</td></tr>
+<tr><td>Real urgency only</td><td>Only two real dates exist: 5 Nov (monthly discount opens) and 30 Nov (code ends). No fake timers, no "only a few spots left".</td></tr>
+<tr><td>No hype words</td><td>Banned: unlock, supercharge, game-changer, elevate, seamless, skyrocket, revolutionary, ultimate, amazing, incredible, don't miss out, act now, exclusive (unless it is), limited time (without a date).</td></tr>
+<tr><td>No AI tells</td><td>No "it's not just X, it's Y", no lists of three by habit, no "crucial", "landscape", "delve", no em dashes, no "-ing" tails that add nothing.</td></tr>
+<tr><td>Plain language</td><td>A grade 5 to 7 reading level. If a sentence needs reading twice, rewrite it.</td></tr>
+<tr><td>Read-aloud test</td><td>Would Pranavi say it out loud to a store owner on a call? If not, rewrite.</td></tr>
+<tr><td>Names</td><td>No competitor names in emails ("your current email tool"). "Shopify App Store" only where the install step needs it.</td></tr>
+<tr><td>Human PS</td><td>The PS is the second most-read line. Use it for a genuine offer of help, not a repeat of the CTA.</td></tr>
+</table></div>
+
+<h2>4. Subject lines</h2>
+<h3>What the research says</h3>
+<ul>
+<li><b>Be specific about the offer.</b> In a study of 4.2 billion Black Friday and Cyber Monday emails, subject lines with a clear, specific discount did best; ALL CAPS did 15% worse than mixed case; multiple exclamation marks went with more spam complaints; and the fire and gift emojis went with 8% lower opens (<a href="https://bird.com/ko/resources/blog/black-friday-email-insights">Bird</a>).</li>
+<li><b>Keep it short, put the key words first.</b> Gmail on Android shows about 33 characters (<a href="https://www.simplelists.com/blog/choosing-a-subject-line/">Simplelists, citing EmailToolTester</a>); Klaviyo's 2025 data shows opens falling as lines get wordier (<a href="https://www.klaviyo.com/blog/subject-line-tests-with-emojis-and-personalization">Klaviyo</a>).</li>
+<li><b>Sentence case or lowercase, never Title Case.</b> Sentence case beat Title Case by about 6% once Apple's inflated opens were corrected for (<a href="https://visionary-marketing.co.uk/blog/email-subject-line-statistics-2026">Visionary Marketing</a>). B2B guidance favours short lines that read like a message from a colleague (<a href="https://instantly.ai/blog/best-cold-email-subject-lines-for-b2b-saas-25-high-converting-examples-with-open-rates/">Instantly</a>).</li>
+<li><b>Emojis: skip them.</b> In the same corrected data they lifted opens about 7% but cut clicks about 12% (<a href="https://visionary-marketing.co.uk/blog/email-subject-line-statistics-2026">Visionary Marketing</a>). We care about clicks.</li>
+<li><b>A person's name as sender tends to help.</b> In one test, "Name at Company" won on clicks in 8 of 10 sends (<a href="https://9clouds.com/blog/a-b-test-results-which-email-sender-name-is-better/">9clouds</a>). Hence "Pranavi at Brevo PushOwl".</li>
+<li><b>Plain-looking emails do better in B2B.</b> A widely cited HubSpot test on 100k+ B2B contacts found plain text earned higher opens, clicks and far more replies than designed templates (<a href="https://www.outerboxdesign.com/articles/email-marketing/how-to-improve-b2b-email-marketing-for-better-results/">Outerbox summary</a>, <a href="https://stripo.email/blog/plain-text-vs-html-email-statistics-benchmarks-and-what-the-data-shows/">Stripo</a>). Vendor data, so we test it rather than assume it.</li>
+<li><b>Judge tests on clicks, not opens.</b> Apple Mail Privacy Protection inflates opens (<a href="https://www.klaviyo.com/blog/subject-line-tests-with-emojis-and-personalization">Klaviyo</a>).</li>
+</ul>
+<h3>Our rules</h3>
+<ul>
+<li>25 to 45 characters, the important word in the first 30.</li>
+<li>Lowercase "note from a colleague" style, except the code and the numbers.</li>
+<li>No emojis, no exclamation marks, no ALL CAPS, no "FREE".</li>
+<li>Preview text adds a second reason to open; it never repeats the subject.</li>
+<li>Every email ships with two subjects: one plain "colleague" line and one specific offer line. Brevo splits the send where the workflow allows it; the winner is picked on clicks.</li>
+</ul>
+<h3>The five formulas we use</h3>
+<div class="tw"><table>
+<tr><th>Formula</th><th>When</th><th>Example</th></tr>
+<tr><td>The next step</td><td>Right after they leave their email</td><td><code>2 steps to claim your 20% off</code></td></tr>
+<tr><td>The thing they're thinking</td><td>Explaining the why</td><td><code>you're paying for people who never open</code></td></tr>
+<tr><td>The worry, said out loud</td><td>Handling the objection</td><td><code>worth switching before black friday?</code></td></tr>
+<tr><td>Real news</td><td>Only when something changes</td><td><code>monthly plans are 30% off now</code></td></tr>
+<tr><td>The real deadline</td><td>Last day only</td><td><code>BFCM2026 stops working tonight</code></td></tr>
+</table></div>
+
+<h2>5. How the sequence runs</h2>
+<div class="tw"><table>
+<tr><th>Who</th><th>Emails</th><th>Leaves when</th></tr>
+<tr><td>Clicked "Continue with Shopify", not installed</td><td>L1 (10 min) → L2 (day 2) → L3 (day 5), plus D1, D2, D3 on their dates</td><td>Installs → moves to the B emails</td></tr>
+<tr><td>Installed, code not applied (includes existing free users who used the page)</td><td>B1 (1 h after install, or right away for existing users) → B2 (day 2), plus D1, D2, D3</td><td>Applies BFCM2026 or upgrades</td></tr>
+<tr><td>Paid or applied the code</td><td>Nothing from Brevo; Pranavi's Intercom flows take over</td><td>Immediately (hourly Intercom check)</td></tr>
+<tr><td>Clicked "Continue for non-Shopify"</td><td>N1 (10 min) → N2 (day 3), linking to Brevo's ecommerce page</td><td>After N2</td></tr>
+</table></div>
+<ul>
+<li><b>Timing:</b> 10:00 in the person's own time zone (the page now records it). Nothing on Thanksgiving (26 Nov). D3 goes at 09:00 PT on 30 Nov so everyone gets it before the deadline.</li>
+<li><b>Frequency:</b> never two emails within 48 hours, except D3. If a date email lands within 48 hours of an L or B email, the L or B email is skipped.</li>
+<li><b>Offer line:</b> until 4 Nov it says "20% off annual plans". From 5 Nov it says "30% off monthly or 20% off annual". We don't mention the monthly discount before 5 Nov, so nobody waits for it.</li>
+<li><b>Message match:</b> L1's opening line follows the ad they clicked (the page passes which message it was).</li>
+<li><b>Format:</b> plain-looking emails: no banner, no images, one text link styled as a button. The B2 playbook email keeps its designed layout, as you asked for value emails.</li>
+<li><b>Replies:</b> the PS lines invite replies, so replies must reach a person. <span class="tag">To confirm</span> who reads replies to Pranavi's emails.</li>
+</ul>
+
+<h2>6. The drafts</h2>
+<p class="small">Word counts exclude the subject, preview and PS. [Link] shows where the one button goes.</p>
+
+<h3>L1 · 10 minutes after they leave their email</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> 2 steps to claim your 20% off &nbsp;·&nbsp; <b>B:</b> your BFCM2026 code is saved<br><b>Preview:</b> Add PushOwl to your store, then enter the code in Plans. It's free to install.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p><i>[Opening line matches the ad they clicked]</i><br>
+List tax ad: You don't have to keep paying for contacts who never open. Here's how to claim your deal.<br>
+Savings ad: Here's how to claim your deal and start paying less for email.<br>
+Done-for-you ad: Here's how to claim your deal. After that, we'll set up your Black Friday flows with you.<br>
+Ads ad: Here's how to claim your deal and get Black Friday ads made from your store.<br>
+Anything else: Here's how to claim your Black Friday deal.</p>
+<p>1. Add PushOwl from the Shopify App Store. It's free to install.<br>
+2. In the app, open Plans, pick an annual plan and enter BFCM2026 at checkout.</p>
+<p>That's 20% off, and the code works until 30 Nov, 11:59 pm PT. Once you're in, I'll send the details on your free migration, strategy session, Black Friday ads and $200 in ad credits.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span></p>
+<p>PS: Already have PushOwl? Skip step 1 and open Plans in your dashboard.</p>
+<p>Pranavi</p></div>
+<div class="meta">Job: get the install. Formula: the next step. About 80 words.</div></div>
+
+<h3>L2 · Day 2</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> you're paying for people who never open &nbsp;·&nbsp; <b>B:</b> why your email bill keeps growing<br><b>Preview:</b> With PushOwl, contacts are unlimited. You pay for the emails you send.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>A quick one about your email bill.</p>
+<p>Most email tools charge for every contact on your list, including people who haven't opened anything in months. So the bill grows every time your list does, and Black Friday signups make it jump right when you're busiest.</p>
+<p>PushOwl charges for the emails you send, and your contacts are unlimited. Web push and SMS are in the same app, with ready-made cart reminders.</p>
+<p>Your code still works: 20% off annual plans with BFCM2026.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span></p>
+<p>PS: Not sure it'd be cheaper for your list? Reply with your contact count and I'll tell you.</p>
+<p>Pranavi</p></div>
+<div class="meta">Job: give the reason. Formula: the thing they're thinking. About 85 words. The PS needs someone to answer replies.</div></div>
+
+<h3>L3 · Day 5</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> worth switching before black friday? &nbsp;·&nbsp; <b>B:</b> you don't have to switch everything<br><b>Preview:</b> Keep your current tool. Start with web push cart reminders.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>If the timing is what's holding you back, that's fair. Nobody wants to change tools in their biggest month.</p>
+<p>You don't have to. Add PushOwl, turn on cart reminders by web push, and keep your current email tool running. Web push doesn't need an email address, so it reaches shoppers who never gave you theirs.</p>
+<p>When you're ready to move your email over, we'll do the move for you, free.</p>
+<p>BFCM2026 still gets you 20% off annual plans until 30 Nov.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Job: remove the "not now" objection. Formula: the worry, said out loud. About 85 words.</div></div>
+
+<h3>D1 · Thursday 5 Nov</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> monthly plans are 30% off now &nbsp;·&nbsp; <b>B:</b> good news about your code<br><b>Preview:</b> From today: 30% off monthly or 20% off annual, until 30 Nov.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>Good news: from today, BFCM2026 works on monthly plans too. That's 30% off monthly, or 20% off annual if you'd rather pay for the year.</p>
+<p>Add PushOwl, open Plans, pick your plan and enter the code at checkout. It works until 30 Nov, 11:59 pm PT.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span> &nbsp;<span class="small">(B track: [Open Plans in my dashboard])</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Job: announce a real change. Formula: real news. About 50 words.</div></div>
+
+<h3>D2 · Monday 23 Nov</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> 4 days to black friday &nbsp;·&nbsp; <b>B:</b> are your cart reminders on?<br><b>Preview:</b> Turn them on today so they're running when the traffic arrives.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>Black Friday is this Friday. The stores that get the most out of it have their reminders running before the traffic arrives, not after.</p>
+<p>Add PushOwl today and you can turn on cart reminders by web push and email, plus SMS if you use it, before the weekend. Or book your free strategy session and we'll set them up with you.</p>
+<p>BFCM2026: 30% off monthly or 20% off annual, until 30 Nov.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Job: turn the deadline into a reason to set up now. Formula: the thing they're thinking. About 75 words.</div></div>
+
+<h3>D3 · Monday 30 Nov, 09:00 PT</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> BFCM2026 stops working tonight &nbsp;·&nbsp; <b>B:</b> last day for 30% off<br><b>Preview:</b> Enter it in Plans before 11:59 pm PT tonight.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>Quick one: BFCM2026 stops working tonight at 11:59 pm PT.</p>
+<p>If you still want it, add PushOwl, open Plans and enter the code at checkout: 30% off monthly or 20% off annual. After tonight, it's full price.</p>
+<p><span class="lnk">[Add PushOwl to my store]</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Job: the real deadline. Formula: the real deadline. About 45 words.</div></div>
+
+<h3>B1 · 1 hour after install (between 08:00 and 20:00 their time)</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> your code's waiting in Plans &nbsp;·&nbsp; <b>B:</b> welcome to PushOwl, {{store name}}<br><b>Preview:</b> Enter BFCM2026 in Plans. Then switch on one thing for Black Friday.</div>
+<div class="bd">
+<p>Hi {{first name}},</p>
+<p>Welcome to PushOwl. Your code is BFCM2026: open Plans, choose an annual plan and enter it at checkout for 20% off.</p>
+<p>One quick win while you're in there: switch on your opt-in prompt. Every visitor who taps yes is someone you can reach on Black Friday, no email address needed.</p>
+<p><span class="lnk">[Switch on my opt-in prompt]</span> (opens the app)</p>
+<p>PS: Stuck on anything? Reply and I'll help.</p>
+<p>Pranavi</p></div>
+<div class="meta">Job: code applied plus a first win. About 60 words. Name and store come from Intercom; falls back to "Hi there".</div></div>
+
+<h3>B2 · Day 2 after install</h3>
+<p>The cart-rescue playbook email from the v3 set, unchanged except the offer line: a 3-step reminder plan (within the hour, next day, day 2 or 3) and a checklist to do before Black Friday. The button opens cart reminders in the app. Designed layout, as you asked for value emails.</p>
+
+<h3>N1 · 10 minutes after "Continue for non-Shopify"</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> here's brevo for your store &nbsp;·&nbsp; <b>B:</b> the page you were looking for<br><b>Preview:</b> Email, SMS and WhatsApp for online stores, in one place.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>You found our Black Friday page, but your store isn't on Shopify, so PushOwl isn't the right fit. Brevo is: it's our team's email and SMS platform, and it works with WooCommerce and other store platforms.</p>
+<p>Here's where to start.</p>
+<p><span class="lnk">[See Brevo for ecommerce]</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Links to brevo.com/ecommerce with the ad tags. No BFCM2026 mention (it's a PushOwl code). About 50 words.</div></div>
+
+<h3>N2 · Day 3</h3>
+<div class="mail"><div class="hd"><b>Subject A:</b> one thing to set up before black friday &nbsp;·&nbsp; <b>B:</b> abandoned carts, sorted<br><b>Preview:</b> Brevo can send cart reminders by email and SMS for your store.</div>
+<div class="bd">
+<p>Hi there,</p>
+<p>If you only set up one thing before Black Friday, make it cart reminders. Plenty of shoppers add to cart and get distracted, and a reminder while they still remember wins some of those sales back.</p>
+<p>Brevo can send them by email and SMS for most store platforms.</p>
+<p><span class="lnk">[See Brevo for ecommerce]</span></p>
+<p>Pranavi</p></div>
+<div class="meta">Job: one useful tip plus the link. About 60 words.</div></div>
+
+<h2>7. Deliverability and compliance</h2>
+<ul>
+<li><b>Domain:</b> pushowl.com is verified in Brevo, signs with DKIM and has a DMARC record (p=none), which meets Gmail and Yahoo's sender basics. Brevo adds one-click unsubscribe.</li>
+<li><b>Fresh list:</b> these are new sign-ups who just asked for the deal, which is the best list you can send to. Low volume, low frequency.</li>
+<li><b>Consent:</b> everyone on the list asked for emails about the deal (the page says so). The new tick box covers other marketing. After 30 Nov, only people who ticked it get further marketing emails.</li>
+<li><b>Stop-loss:</b> if any email's unsubscribe rate goes over 1%, it's paused and rewritten.</li>
+</ul>
+
+<h2>8. What we measure</h2>
+<p>Per email: clicks, installs within 3 days (matched through Intercom), code applied, unsubscribes and replies. Subject tests are judged on clicks.</p>
+
+<h2>9. Open points for you</h2>
+<ol>
+<li>Who reads replies to Pranavi's emails? Three PS lines invite replies.</li>
+<li>OK to show the store name in B1's subject (from Intercom)?</li>
+<li>Any changes to tone, length or the drafts above.</li>
+</ol>
+
+<p class="small">Sources: <a href="https://bird.com/ko/resources/blog/black-friday-email-insights">Bird, Black Friday email insights</a> · <a href="https://www.klaviyo.com/blog/subject-line-tests-with-emojis-and-personalization">Klaviyo, subject line tests</a> · <a href="https://visionary-marketing.co.uk/blog/email-subject-line-statistics-2026">Visionary Marketing, subject line benchmark 2026</a> · <a href="https://www.simplelists.com/blog/choosing-a-subject-line/">Simplelists</a> · <a href="https://instantly.ai/blog/best-cold-email-subject-lines-for-b2b-saas-25-high-converting-examples-with-open-rates/">Instantly</a> · <a href="https://9clouds.com/blog/a-b-test-results-which-email-sender-name-is-better/">9clouds sender name test</a> · <a href="https://www.outerboxdesign.com/articles/email-marketing/how-to-improve-b2b-email-marketing-for-better-results/">Outerbox</a> · <a href="https://stripo.email/blog/plain-text-vs-html-email-statistics-benchmarks-and-what-the-data-shows/">Stripo</a></p>
+</div></body></html>
