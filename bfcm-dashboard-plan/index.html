@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BFCM Dashboard Plan</title>
+<meta name="description" content="Implementation plan for the live PushOwl BFCM 2026 performance dashboard: KPIs, sources, tracking, identity stitching, Cloudflare architecture and asks.">
+<style>
+:root{
+  --bg:#f7f7f5; --card:#ffffff; --fg:#17181a; --muted:#5d6168; --line:#e2e3e0; --soft:#f0f1ee;
+  --accent:#2f5bd3; --accent-soft:#e7edfb; --ok:#1f7a4d; --ok-soft:#e3f3ea; --warn:#9a6200; --warn-soft:#fbf0db;
+  --bad:#b3261e; --bad-soft:#fbe5e3; --code:#eef0f3;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121315; --card:#1a1c1f; --fg:#e8e9ea; --muted:#a3a7ad; --line:#2d3035; --soft:#202327;
+    --accent:#86a5ff; --accent-soft:#1f2a45; --ok:#6fd3a0; --ok-soft:#173326; --warn:#f0bf5c; --warn-soft:#3a2d12;
+    --bad:#ff8a80; --bad-soft:#3d1c1a; --code:#24272c;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121315; --card:#1a1c1f; --fg:#e8e9ea; --muted:#a3a7ad; --line:#2d3035; --soft:#202327;
+  --accent:#86a5ff; --accent-soft:#1f2a45; --ok:#6fd3a0; --ok-soft:#173326; --warn:#f0bf5c; --warn-soft:#3a2d12;
+  --bad:#ff8a80; --bad-soft:#3d1c1a; --code:#24272c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15.5px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 16px 80px}
+header{padding:8px 0 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+h1{font-size:28px;line-height:1.2;margin:6px 0 8px;letter-spacing:-.01em}
+h2{font-size:21px;margin:40px 0 10px;padding-top:6px;letter-spacing:-.005em}
+h3{font-size:16.5px;margin:22px 0 8px}
+p{margin:8px 0}
+.eyebrow{font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.lede{color:var(--muted);max-width:780px}
+a{color:var(--accent)}
+code,kbd{font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px;word-break:break-word}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow-x:auto;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:10px 0}
+pre code{background:none;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.tldr li{margin:6px 0}
+.toc{columns:2;column-gap:28px;font-size:14.5px;padding-left:18px}
+.toc li{break-inside:avoid;margin:2px 0}
+@media (max-width:640px){.toc{columns:1}}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:var(--card);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13.6px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{background:var(--soft);font-weight:600;position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:600;white-space:nowrap}
+.min{min-width:860px}
+.min2{min-width:720px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)}
+.warn{background:var(--warn-soft);color:var(--warn)}
+.bad{background:var(--bad-soft);color:var(--bad)}
+.info{background:var(--accent-soft);color:var(--accent)}
+.lead{background:var(--accent-soft);color:var(--accent)}
+.lag{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.note{border-left:3px solid var(--accent);padding:6px 12px;background:var(--card);border-radius:0 8px 8px 0;margin:12px 0}
+.note.warn{border-left-color:var(--warn);color:inherit;background:var(--card)}
+.grid3{display:grid;grid-template-columns:1fr 46px 1fr 46px 1fr;align-items:stretch;gap:0;margin:14px 0}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.8px}
+.box h4{margin:0 0 6px;font-size:14px}
+.box ul{margin:0;padding-left:16px}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:22px}
+@media (max-width:820px){.grid3{grid-template-columns:1fr}.arrow{transform:rotate(90deg);height:34px}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:10px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.tile b{display:block;font-size:14px;margin-bottom:2px}
+ol.steps li,ul.tight li{margin:4px 0}
+.ask{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.ask h4{margin:0 0 6px;font-size:15px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ask p{margin:4px 0}
+.ask ol{margin:6px 0 2px;padding-left:20px}
+.small{font-size:13px;color:var(--muted)}
+footer{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">PushOwl · BFCM 2026 · plan only, nothing built yet</div>
+  <h1>BFCM 2026 live dashboard: implementation plan</h1>
+  <p class="lede">Every touchpoint (Meta, Google, email, Intercom, creators, organic) tracked from spend to install, redemption, first paid charge and strategy call. Refreshed every 15 minutes, running on Cloudflare only. Access was verified with live read-only calls on 16 Oct 2026 (IST).</p>
+</header>
+
+<div class="card tldr">
+<h3 style="margin-top:0">The short version</h3>
+<ul>
+  <li><b>One new Worker, <code>bfcm-dash</code></b>, with a <code>*/15</code> cron and its own D1. It pulls Meta, Google Ads and GA4 through treg (all three verified today), Intercom, the <code>bfcm-leads</code> D1 (bound read only, no change to that Worker) and a new first-party LP beacon.</li>
+  <li><b>Dashboard = a static page on GitHub Pages</b> (<code>/bfcm-dashboard/</code>) that reads one aggregates-only endpoint with a view key. Emails and store domains never leave the Worker.</li>
+  <li><b>Installs are shown through three lenses, never added together:</b> what the ad platform claims, what GA4 sees on the App Store by UTM, and first-party identity (LP email matched to the installed store).</li>
+  <li><b>Phase 1 ships with access we already have:</b> spend to install, CPI vs $15 / $19, LP funnel, leads and opt-ins, App Store clicks, cohort sizes, paid status, uninstalls, alerts, freshness.</li>
+  <li><b>What blocks the rest:</b> a redemption event from engineering, a Shopify Partner API client, a Calendly token, and a 2-minute Apps Script on the creator sheet. Google Ads and GA4 need nothing from you.</li>
+</ul>
+</div>
+
+<ol class="toc">
+  <li><a href="#verified">What I verified today</a></li>
+  <li><a href="#arch">Architecture</a></li>
+  <li><a href="#kpis">KPI tree and definitions</a></li>
+  <li><a href="#lenses">Three install lenses</a></li>
+  <li><a href="#channels">Channel coverage</a></li>
+  <li><a href="#sources">Data source matrix</a></li>
+  <li><a href="#beacon">First-party LP beacon</a></li>
+  <li><a href="#identity">Identity stitching</a></li>
+  <li><a href="#eng">Engineering redemption event</a></li>
+  <li><a href="#cloud">Worker, cron, D1, API</a></li>
+  <li><a href="#layout">Dashboard layout, filters, alerts</a></li>
+  <li><a href="#needs">What I need from you and others</a></li>
+  <li><a href="#phases">Build phases</a></li>
+  <li><a href="#findings">Findings that change the numbers</a></li>
+</ol>
+
+<h2 id="verified">1. What I verified today</h2>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Source</th><th>Probe (read only)</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td class="k">Meta</td><td>treg <code>meta-ads</code>: campaign 120250862061510614, account insights</td><td><span class="pill ok">Works</span> 4 ad sets PAUSED, budgets $170 / $60 / $40 / $30 a day, 7 countries. Account time zone Asia/Kolkata. Zero BFCM spend yet.</td></tr>
+<tr><td class="k">Google Ads</td><td>treg <code>google-ads.query</code> GAQL on 846-525-4800</td><td><span class="pill ok">Works</span> Conversion actions 7847048606 "BFCM claim" and 6686119911 "App Install (GA4)" both ENABLED. No BFCM campaign created yet. Account time zone Asia/Calcutta.</td></tr>
+<tr><td class="k">GA4</td><td>treg <code>google-analytics</code> runReport + runRealtimeReport on 379010452 and 393519649</td><td><span class="pill ok">Works</span> 379010452 holds the LP page, the App Store listing (page_view, view_item, "Add App button") and <code>shopify_app_install</code> with session UTMs (126 since 14 Oct; 290 to 450 a week before). Property time zone Europe/Paris. No service account needed.</td></tr>
+<tr><td class="k">bfcm-leads</td><td><code>/admin/stats</code>, <code>/admin/list-stats</code>, <code>/admin/templates</code></td><td><span class="pill ok">Works</span> 0 leads, list 73 empty (campaign paused). Hourly cron healthy. Brevo calls from the Worker work; templates 326 to 335 exist, all inactive.</td></tr>
+<tr><td class="k">Brevo from the Mac</td><td>GET /v3/account</td><td><span class="pill warn">401</span> IP lock as expected, so every Brevo read runs inside a Worker.</td></tr>
+<tr><td class="k">Intercom</td><td>/me, /tags, contacts search, data attributes</td><td><span class="pill ok">Works</span> App ntcl5suv. "BFCM cohort: new since 14 Oct" 225, "existing free" 51,622, "BFCM page lead" 0. Engineering tags "BFCM2026 used" and "BFCM2026 $0 month" do not exist yet. 180 contacts with installed_at since 14 Oct, none carry a source or UTM. 237 of ~250 custom attributes used.</td></tr>
+<tr><td class="k">Calendly</td><td>Local token search, public event page</td><td><span class="pill bad">Missing</span> No token anywhere. Event is "Managed Services · Strategy call", 30 min.</td></tr>
+<tr><td class="k">Shopify Partner API</td><td>Local token search</td><td><span class="pill bad">Missing</span> No Partner API token anywhere.</td></tr>
+<tr><td class="k">Creator sheet</td><td>Drive export with our Google tokens</td><td><span class="pill bad">No access</span> Our Drive token gets 404 on sheet 17-3Cya...; our other Google tokens are Gmail and Calendar scope only.</td></tr>
+<tr><td class="k">Cloudflare</td><td>Account settings, cron triggers, D1 list</td><td><span class="pill ok">Workers Paid</span> 17+ cron triggers already in use, so cron CPU and D1 limits are not a constraint.</td></tr>
+<tr><td class="k">CPMA</td><td><code>/api/goals</code>, <code>/api/settings</code></td><td><span class="pill ok">Works</span> Meta target $15, ceiling $19; install = Purchase on pixel 816424380854185.</td></tr>
+</tbody></table></div>
+
+<h2 id="arch">2. Architecture</h2>
+<div class="grid3">
+  <div class="box"><h4>Sources</h4><ul>
+    <li>Meta, Google Ads, GA4 (via treg)</li>
+    <li>LP beacon (new, <code>POST /e</code>)</li>
+    <li>bfcm-leads D1 (read-only binding)</li>
+    <li>Intercom REST</li>
+    <li>Brevo (Worker egress)</li>
+    <li>Calendly, Shopify Partner API (phase 2)</li>
+    <li>Engineering events, creator sheet push (signed webhooks)</li>
+  </ul></div>
+  <div class="arrow" aria-hidden="true">&#8594;</div>
+  <div class="box"><h4>bfcm-dash Worker</h4><ul>
+    <li>Cron <code>*/15 * * * *</code>, per-source try/catch</li>
+    <li>D1 <code>bfcm-dash</code>: facts, identities, daily rollups, 15-min snapshots, source health, alerts</li>
+    <li>Nightly restatement pull (03:30 IST)</li>
+    <li>Alert rules after every rollup</li>
+  </ul></div>
+  <div class="arrow" aria-hidden="true">&#8594;</div>
+  <div class="box"><h4>Dashboard</h4><ul>
+    <li>GitHub Pages <code>ad-intel-agent/bfcm-dashboard/</code></li>
+    <li>Reads <code>GET /api/summary</code> (aggregates only, view key)</li>
+    <li>Polls every 5 min, shows per-source freshness</li>
+    <li>Optional Slack alert webhook</li>
+  </ul></div>
+</div>
+<ul class="tight">
+  <li><b>New Worker, not bfcm-leads.</b> bfcm-leads stays the lead-capture and Intercom-tagging Worker (another agent is editing it). bfcm-dash binds its D1 as <code>LEADS_DB</code> for <code>SELECT</code> only and reaches its <code>/admin/list-stats</code> through a service binding. Zero deploys to bfcm-leads.</li>
+  <li><b>Everything runs on Cloudflare.</b> No Mac crons, no scheduled tasks. The Mac only edits code and deploys.</li>
+  <li><b>Reporting day = IST.</b> Both ad accounts report in IST, so spend and pacing line up. GA4 379010452 runs on Paris time: the Worker pulls GA4 by hour and re-buckets to IST. The deadline countdown shows PT (30 Nov 11:59 pm PT).</li>
+  <li><b>Campaign scope is a registry, not a name match.</b> A D1 table lists BFCM campaign IDs per platform (Meta 120250862061510614 plus anything CPMA tags <code>program='bfcm26'</code>; Google IDs once created). The 4 evergreen YouTube "Owl Portal" campaigns stay out.</li>
+</ul>
+
+<h2 id="kpis">3. KPI tree and definitions</h2>
+<p><span class="pill lead">Leading</span> moves within the hour and is what we steer on. <span class="pill lag">Lagging</span> confirms value, arrives later and gets restated. Spend, CPI and counts are the charts; plan price, revenue and paid status are filters and tags only.</p>
+
+<div class="tbl"><table class="min">
+<thead><tr><th>KPI</th><th>Exact definition</th><th>Source of truth</th><th>Attribution key</th><th>Latency</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td colspan="6"><b>Media</b></td></tr>
+<tr><td class="k">Spend</td><td>Sum of spend on registry campaigns, IST day. Creator spend = committed fee on the post's live date.</td><td>Meta insights, Google Ads <code>cost_micros</code>, creator sheet</td><td>campaign / ad set / ad ID; creator handle</td><td>Meta ~15 to 30 min; Google up to ~3 h; sheet on edit</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Impressions, CPM</td><td>Platform impressions; CPM = spend / impressions x 1000</td><td>Meta, Google</td><td>ad ID</td><td>as spend</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Link clicks, CTR, CPC</td><td>Meta <code>inline_link_clicks</code>, Google <code>clicks</code>. CTR = link clicks / impressions. CPC = spend / link clicks.</td><td>Meta, Google</td><td>ad ID</td><td>as spend</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td colspan="6"><b>Landing page</b></td></tr>
+<tr><td class="k">LP sessions</td><td>Unique beacon <code>sid</code> with an <code>lp_view</code>, bots and datacenter networks excluded. GA4 LP sessions and Meta <code>landing_page_view</code> shown as cross-checks.</td><td>LP beacon (primary)</td><td>UTMs + click IDs on the page URL</td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Claim box views</td><td>Sessions where the claim box was at least 50% visible once</td><td>LP beacon</td><td>sid</td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">LP leads (opt-ins)</td><td>Unique valid emails submitted in the claim box (honeypot and junk dropped). Opt-in rate = leads / LP sessions.</td><td>bfcm-leads D1 <code>leads</code></td><td>email + first-touch UTMs + click IDs + sid</td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Marketing consent</td><td>Leads with the <code>claim-optin</code> box ticked. Consent rate = consents / leads.</td><td>bfcm-leads D1</td><td>email</td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">App Store clicks</td><td>Claim submits with destination Shopify plus manual "Continue" taps, unique per sid</td><td>LP beacon</td><td>sid, UTMs, <code>utm_id=lp-&lt;sid&gt;</code></td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Brevo clicks</td><td>Claim submits with destination non-Shopify (brevo.com/ecommerce)</td><td>LP beacon</td><td>sid, UTMs</td><td>seconds</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td colspan="6"><b>App Store and install</b></td></tr>
+<tr><td class="k">Listing views, Add App clicks</td><td>GA4 events on host apps.shopify.com (<code>page_view</code>, <code>Add App button</code>) in sessions whose campaign is BFCM</td><td>GA4 379010452</td><td>session source / medium / campaign / content / manual campaign ID</td><td>intraday, hours; nightly restatement</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Installs (3 lenses)</td><td>See section 4. Never summed across lenses.</td><td>Meta pixel, GA4, Intercom then Partner API</td><td>per lens</td><td>minutes to 24 h</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">CPI</td><td>Spend / installs, per lens. Meta CPI uses Meta-reported installs (what CPMA steers on, $15 target, $19 ceiling). Blended CPI = paid spend / GA4 BFCM installs from paid sources.</td><td>derived</td><td>channel</td><td>as inputs</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">New installs vs baseline</td><td>All new installs per week minus the 4-week pre-14-Oct average (suspected batch week excluded)</td><td>Partner API (Intercom until then)</td><td>shop domain</td><td>minutes</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td colspan="6"><b>Offer</b></td></tr>
+<tr><td class="k">Redemptions</td><td>Stores where BFCM2026 validated on the in-app pricing page and a subscription was accepted. Split by variant at redemption: new (installed 14 Oct to 30 Nov) vs existing free.</td><td>Engineering event (interim: Intercom tag "BFCM2026 used", time known to 15 min)</td><td>shop domain + owner email</td><td>seconds (event) / 15 min (tag)</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">$0 first-month starts</td><td>New-variant redemptions whose subscription started with the free month</td><td>Engineering event (interim: tag "BFCM2026 $0 month")</td><td>shop domain</td><td>as above</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">First paid charge</td><td>First non-zero charge for a redeemed store (for new stores, after the $0 month; for existing free, at once). Count is the KPI; amount is a filter.</td><td>Shopify Partner API transactions; engineering event as backup</td><td>shop domain</td><td>hours (Partner transactions)</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">Cost per redemption</td><td>Two views: blended = paid spend / all redemptions; attributed = channel spend / redemptions credited to that channel (identity join)</td><td>derived</td><td>channel</td><td>as inputs</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td colspan="6"><b>Extras and retention</b></td></tr>
+<tr><td class="k">Calls booked</td><td>Calendly invitees on the strategy-call event created since 14 Oct, status active. Also held, no-show, canceled, upcoming.</td><td>Calendly API v2</td><td>invitee email, store URL answer, link UTMs</td><td>15 min (poll) or seconds (webhook)</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">Migrations requested</td><td>Stores with an Intercom conversation tagged "BFCM migration" (or engineering event)</td><td>Intercom conversations</td><td>contact email then shop</td><td>15 min</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">Uninstalls</td><td>BFCM cohort stores (new since 14 Oct plus redeemers) that uninstalled; uninstall rate within 7 and 30 days</td><td>Partner API (Intercom <code>uninstalled_at</code> until then)</td><td>shop domain</td><td>minutes</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td colspan="6"><b>Owned channels and creators</b></td></tr>
+<tr><td class="k">Email engagement</td><td>Per template (L1 to L3, B1 to B2, N1 to N2) and broadcast (D1 to D3): sent, delivered, unique clicks, click rate, unsubscribes. Opens shown greyed (Apple privacy inflates them).</td><td>Brevo campaign stats; automation via Brevo webhook</td><td>Brevo contact email</td><td>minutes</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Email outcomes</td><td>Installs, redemptions, calls among recipients within 7 days of a click</td><td>identity join</td><td>email</td><td>as inputs</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td class="k">Intercom messages</td><td>Per BFCM message: receipts, opens, clicks, replies; plus redemptions among recipients</td><td>Intercom content data export</td><td>Intercom contact ID</td><td>every 6 h</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Creator reach</td><td>Per live post: views, likes, comments, shares; CPM = fee / views x 1000</td><td>Public post stats via treg ScrapeCreators; creator-reported fields from the sheet</td><td>live URL, handle</td><td>6 h</td><td><span class="pill lead">Leading</span></td></tr>
+<tr><td class="k">Creator outcomes</td><td>LP sessions, leads, App Store clicks, GA4 installs, redemptions where <code>utm_content</code> = handle; cost per install</td><td>beacon, bfcm-leads, GA4, identity</td><td>utm_source=creator + utm_content=handle</td><td>as inputs</td><td><span class="pill lag">Lagging</span></td></tr>
+<tr><td colspan="6"><b>Data quality</b></td></tr>
+<tr><td class="k">Match rates</td><td>Lead to install, redemption to lead, booking to store: matched / total</td><td>D1 identity tables</td><td>email, shop domain</td><td>15 min</td><td>Health</td></tr>
+</tbody></table></div>
+
+<h3>Pacing targets the dashboard draws</h3>
+<ul class="tight">
+  <li>Meta: $300 a day ($170 prospecting US/UK/CA, $60 FR/DE/IT/ES, $40 retargeting, $30 creative testing). CPI target $15, ceiling $19.</li>
+  <li>Google (planned, paused): YouTube Demand Gen $90, Demand Gen images $40, Display remarketing $20 a day. Bidding goal "BFCM claim", so the line shown is cost per claim; no target set yet (ask 7).</li>
+  <li>Window: 14 Oct to 30 Nov 11:59 pm PT. Spend to date vs plan, days left.</li>
+</ul>
+
+<h2 id="lenses">4. Three install lenses</h2>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Lens</th><th>What counts</th><th>Good for</th><th>Blind spot</th></tr></thead>
+<tbody>
+<tr><td class="k">Platform-reported</td><td>Meta Purchase on pixel 816424380854185 (App Store CAPI, 7-day click / 1-day view). Google "App Install (GA4)" and "BFCM claim" conversions.</td><td>Daily steering, CPI vs $15 / $19, ad-level decisions (same numbers CPMA acts on)</td><td>Each platform claims its own; view-through inflates; restated for up to 28 days</td></tr>
+<tr><td class="k">GA4 App Store by UTM</td><td><code>shopify_app_install</code> in sessions whose campaign is <code>bfcm26</code> or <code>bfcm2026</code>, split by source / medium / content / term</td><td>Neutral cross-channel split, creator and email installs, no identity needed</td><td>Session-scoped; cookie loss in app browsers; hours of lag</td></tr>
+<tr><td class="k">First-party identity</td><td>LP lead email (or redemption / booking email) matched to an installed store whose install came after the lead</td><td>Redemptions, paid conversion, calls, uninstalls per channel; the only lens that reaches revenue events</td><td>Misses people who install with a different email than they typed on the LP</td></tr>
+</tbody></table></div>
+<p class="small">The truth total (all new installs since 14 Oct, any source) comes from the Partner API, and from Intercom <code>installed_at</code> until that token exists. Today three install counts disagree (GA4 <code>shopify_app_install</code> 126, backend GA4 <code>PushOwlAppInstall</code> 226, Intercom 180 contacts since 14 Oct), which is why the Partner API matters.</p>
+
+<h2 id="channels">5. Channel coverage</h2>
+<div class="tbl"><table class="min">
+<thead><tr><th>Channel</th><th>How a visit is classified</th><th>Spend and reach</th><th>Traffic and leads</th><th>Installs</th><th>Redemptions, calls</th></tr></thead>
+<tbody>
+<tr><td class="k">Meta</td><td><code>utm_source</code> facebook / fb / ig / instagram / meta, or fbclid</td><td>Meta insights by ad, ad set, country <span class="pill ok">P1</span></td><td>Beacon, bfcm-leads <span class="pill ok">P1</span></td><td>All 3 lenses <span class="pill ok">P1</span></td><td>Identity <span class="pill warn">P2/P3</span></td></tr>
+<tr><td class="k">Google (YT DG, DG images, Display)</td><td><code>utm_source=google</code> or gclid / gbraid / wbraid</td><td>GAQL by campaign, ad group, ad <span class="pill ok">P1</span></td><td>Beacon, bfcm-leads <span class="pill ok">P1</span></td><td>GA4 + identity <span class="pill ok">P1</span></td><td>Identity <span class="pill warn">P2/P3</span></td></tr>
+<tr><td class="k">Email (Brevo)</td><td><code>utm_source=brevo</code>, <code>utm_medium=email</code>, <code>utm_content</code> = template</td><td>Broadcast stats <span class="pill ok">P1</span>; automation stats <span class="pill warn">P2</span></td><td>Links go straight to the App Store or app, so GA4 + identity</td><td>GA4 + identity <span class="pill ok">P1</span></td><td>Identity <span class="pill warn">P2/P3</span></td></tr>
+<tr><td class="k">Intercom</td><td><code>utm_source=intercom</code> on every BFCM message link (convention to set)</td><td>Content export <span class="pill warn">P2</span></td><td>GA4 + identity</td><td>Identity <span class="pill ok">P1</span></td><td>Recipients join <span class="pill warn">P2/P3</span></td></tr>
+<tr><td class="k">Creators</td><td><code>utm_source=creator</code>, <code>utm_content</code> = handle (creator kit rule)</td><td>Fees + post stats <span class="pill warn">P2</span></td><td>Beacon, bfcm-leads <span class="pill ok">P1</span></td><td>GA4 + identity <span class="pill ok">P1</span></td><td>Identity <span class="pill warn">P2/P3</span></td></tr>
+<tr><td class="k">Organic / direct</td><td>No UTM and no click ID; referral split by referrer host</td><td>n/a</td><td>Beacon, bfcm-leads <span class="pill ok">P1</span></td><td>GA4 + identity <span class="pill ok">P1</span></td><td>Identity <span class="pill warn">P2/P3</span></td></tr>
+</tbody></table></div>
+<p class="small">Channel credit for identity metrics: last non-direct LP touch before the install (from the lead rows). First touch is a toggle. Existing-free redeemers who never visited the LP are credited to the last BFCM email or Intercom message they clicked in the 7 days before redeeming, else "in-app / direct".</p>
+
+<h2 id="sources">6. Data source matrix</h2>
+<div class="tbl"><table class="min">
+<thead><tr><th>Source</th><th>What it gives</th><th>Access</th><th>Auth location (never the value)</th><th>15-min refresh</th><th>Limits and latency</th></tr></thead>
+<tbody>
+<tr><td class="k">Meta Marketing API</td><td>Spend, impressions, link clicks, LP views, Purchase (installs), Lead, by ad / ad set / country / day</td><td><span class="pill ok">Verified</span></td><td>treg team <code>pushowl</code> OAuth; Worker secret <code>TREG_TOKEN</code> (copy from <code>~/.treg/config.json</code>, same as CPMA)</td><td>Yes</td><td>Business-use-case rate limit; ~4 calls a run is trivial. Spend lags ~15 to 30 min; conversions restate up to 28 days.</td></tr>
+<tr><td class="k">Google Ads API</td><td>Cost, impressions, clicks, conversions by action, campaign / ad group / ad / day</td><td><span class="pill ok">Verified</span></td><td>treg (treg holds the developer token and OAuth); <code>TREG_TOKEN</code></td><td>Yes</td><td>Basic-access ops quota is far above ~300 queries a day. Metrics lag up to ~3 h; GA4-imported conversions up to ~24 h.</td></tr>
+<tr><td class="k">GA4 Data API</td><td>LP sessions by UTM, App Store listing views, Add App clicks, <code>shopify_app_install</code> by session UTM; realtime LP users</td><td><span class="pill ok">Verified</span></td><td>treg <code>google-analytics</code> (identity sheik.farooq@pushowl.com); <code>TREG_TOKEN</code></td><td>Yes</td><td>200k tokens a day per property, we need ~10k. Intraday data lags hours; realtime covers 30 min only and has no source dimension.</td></tr>
+<tr><td class="k">LP beacon (new)</td><td>LP view, claim box view, CTA click, email valid, submit, App Store click, Brevo click, chat, exit; UTMs, click IDs, country, device</td><td><span class="pill bad">To build</span></td><td>Origin allow-list + rate limit; no secret in the page</td><td>Real time</td><td>Unlimited for our volume; Workers Paid.</td></tr>
+<tr><td class="k">bfcm-leads D1</td><td>Leads, opt-ins, first-touch UTMs, click IDs, INSTALL_STATUS, OFFER_VARIANT, matched store</td><td><span class="pill ok">Verified</span></td><td>D1 binding by database ID (no secret); service binding for <code>/admin/list-stats</code> with <code>ADMIN_KEY</code> copied from <code>~/.bfcm_leads_admin_key</code></td><td>Yes</td><td>Lead rows in seconds; Intercom match runs hourly at :17.</td></tr>
+<tr><td class="k">Intercom REST</td><td>Installs (<code>installed_at</code>, <code>uninstalled_at</code>), plan price (paid flag), cohort and engineering tags, conversations tagged for migration</td><td><span class="pill ok">Verified</span></td><td>Worker secret <code>INTERCOM_TOKEN</code> from <code>~/.intercom_key</code></td><td>Yes</td><td>High per-minute app limit (shared with bfcm-leads). Index lags a few minutes behind writes.</td></tr>
+<tr><td class="k">Intercom content export</td><td>Per-message receipts, opens, clicks for BFCM Intercom messages</td><td><span class="pill warn">Exists, untested</span></td><td><code>INTERCOM_TOKEN</code></td><td>No, every 6 h</td><td>Async job, one at a time per workspace.</td></tr>
+<tr><td class="k">Brevo API</td><td>Broadcast stats (D1 to D3), list 73 counts by variant and status, contact attributes</td><td><span class="pill ok">Verified via Worker</span> (stats endpoint untested)</td><td>Worker secret <code>BREVO_API_KEY</code> from <code>~/.brevo_key</code> (IP lock blocks the Mac, not Workers)</td><td>Yes (hourly for stats)</td><td>No public API for automation workflow stats; needs a webhook.</td></tr>
+<tr><td class="k">Brevo webhook (new)</td><td>Delivered, click, unsubscribe, bounce events per email</td><td><span class="pill warn">Needs approval</span></td><td>Shared secret in the webhook URL path; <code>INGEST_SECRET</code></td><td>Real time</td><td>Whether automation sends fire marketing webhooks is verified with one test send.</td></tr>
+<tr><td class="k">Calendly API v2</td><td>Scheduled events and invitees for the strategy-call event: email, answers, UTMs, status, no-show</td><td><span class="pill bad">Missing</span></td><td>Worker secret <code>CALENDLY_PAT</code> (ask 3)</td><td>Yes (poll) or webhook</td><td>Webhooks need a paid Calendly plan; org-wide listing needs an Owner or Admin token.</td></tr>
+<tr><td class="k">Shopify Partner API</td><td>Install, uninstall, reactivation, subscription charge accepted / activated / canceled / frozen, transactions with amounts, per shop</td><td><span class="pill bad">Missing</span></td><td>Secrets <code>SHOPIFY_PARTNER_TOKEN</code>, vars <code>PARTNER_ORG_ID</code>, <code>PUSHOWL_APP_GID</code> (ask 2)</td><td>Yes</td><td>4 requests a second per client; events in minutes, transactions later.</td></tr>
+<tr><td class="k">Engineering events</td><td>Code applied, subscription started, $0 month, first charge, cancel, migration and credits, call link shown</td><td><span class="pill bad">Missing</span></td><td><code>INGEST_SECRET</code> (HMAC), shared with engineering out of band</td><td>Real time</td><td>Idempotent by <code>event_id</code>; retries safe.</td></tr>
+<tr><td class="k">Creator sheet</td><td>Live Links tab (handle, platform, live URL, date live, fee, tracked link, reported reach and clicks), Finalized Deals tab</td><td><span class="pill bad">No API access</span></td><td>Apps Script in the sheet pushes rows, signed with <code>INGEST_SECRET</code> (ask 4)</td><td>Yes (time trigger)</td><td>Runs in Google's cloud under the sheet owner; no new Google credential for us.</td></tr>
+<tr><td class="k">Creator post stats</td><td>Public views, likes, comments for each live URL</td><td><span class="pill ok">Available</span></td><td>treg ScrapeCreators endpoints (catalog, ~$0.002 a call)</td><td>No, every 6 h</td><td>~20 posts x 4 a day ≈ $0.16 a day.</td></tr>
+<tr><td class="k">Omni / nao / Metabase</td><td>Brevo signups for non-Shopify clicks (Omni); PushOwl raw tables (Metabase)</td><td><span class="pill warn">Not needed for P1</span></td><td>Omni REST key exists locally, untested from a Worker; nao fails to connect today; Metabase is browser-session only</td><td>No</td><td>Optional phase 3 for Brevo-side signups.</td></tr>
+</tbody></table></div>
+
+<h2 id="beacon">7. First-party LP beacon</h2>
+<p>Why: the GitHub Pages LP loads no GA4 or pixel of its own, and the claim events only reach the parent page's <code>dataLayer</code> (no GTM), so GA4 never sees <code>bfcm_claim_click</code> or <code>bfcm_claim_submit</code>. Any direct hit on the GitHub URL (creator links, previews) is invisible today. The beacon fixes both and needs no GA4 access. All events fire from inside the iframe, which already receives the ad's UTMs and click IDs from the Webflow embed, so <b>no Webflow change is required</b>.</p>
+
+<h3>Changes in <code>bfcm-lp/claim.py</code> (spec, not built)</h3>
+<ol class="steps">
+  <li><b>CONFIG:</b> add <code>beacon: "https://bfcm-dash.winningstatics.workers.dev/e"</code> next to <code>leadEndpoint</code>.</li>
+  <li><b>IDs:</b> <code>SID</code> = 16 random hex per page load; <code>VID</code> = random ID kept 30 days in <code>localStorage</code> (try/catch; Safari partitions storage in iframes, so it falls back to SID).</li>
+  <li><b>Sender:</b> <code>bx(ev, extra)</code> posts <code>text/plain</code> JSON via <code>navigator.sendBeacon</code>, with <code>fetch(..., {keepalive:true, mode:"no-cors"})</code> as fallback, same pattern as the lead post.</li>
+  <li><b>One hook for existing events:</b> wrap <code>dataLayer.push</code> in every context (today it is wrapped only when framed) and mirror <code>bfcm_claim_click</code> to <code>cta_click</code>, <code>bfcm_claim_submit</code> to <code>claim_submit</code>, <code>bfcm_chat_open</code> to <code>chat_open</code>.</li>
+  <li><b>New events:</b> <code>lp_view</code> once, after the <code>bfcm-params</code> event or 1.5 s (so parent UTMs are merged); <code>scroll_50</code>, <code>scroll_90</code>; <code>claim_box_view</code> via IntersectionObserver at 50% once; <code>email_valid</code> the first time <code>refresh()</code> turns valid (no email content); <code>appstore_click</code> or <code>brevo_click</code> inside <code>claim()</code> before <code>goTop()</code>, plus <code>appstore_click {manual:1}</code> on the "Continue" link; <code>terms_open</code>; <code>exit</code> on the first <code>visibilitychange</code> to hidden, with dwell ms.</li>
+  <li><b>Join to leads without touching bfcm-leads:</b> add <code>lp_sid: SID</code> into <code>lead.tracking</code> (stored in the existing <code>tracking_json</code> column) but not into the App Store URL builder.</li>
+  <li><b>Join to GA4 installs without identity:</b> when the URL has no <code>utm_id</code>, set <code>utm_id=lp-&lt;SID&gt;</code> on the App Store URL. GA4 then reports <code>shopify_app_install</code> by session manual campaign ID, linking an install to the exact LP session, ad and narrative. Verified with one test install before relying on it.</li>
+</ol>
+<pre><code>{ "v":1, "ev":"appstore_click", "sid":"9f1c...", "vid":"2ab0...", "ts":1792200000000,
+  "utm":{"source":"facebook","medium":"paid","campaign":"bfcm26","term":"n2","content":"p1c-early"},
+  "click":{"fbclid":"...","gclid":null}, "narrative":"n2", "position":"claim-box", "dest":"shopify",
+  "in_frame":true, "ref_host":"l.facebook.com", "vw":390, "lang":"en-US" }   // never an email</code></pre>
+
+<h3><code>POST /e</code> in bfcm-dash</h3>
+<ul class="tight">
+  <li>Accepts only origins <code>https://farooqchisty-hub.github.io</code>, <code>https://www.pushowl.com</code>, <code>https://pushowl.com</code>; 2 KB cap; 30 events per salted IP hash per minute; answers 204 at once, writes in <code>waitUntil</code>.</li>
+  <li>Adds <code>cf.country</code>, device class from UA, and a <code>dc</code> flag when the network is a cloud host (email scanners and link previewers) or the UA is a bot. Flagged traffic is kept but excluded from KPIs by default.</li>
+  <li>Raw events kept 60 days; KPIs live in rollups.</li>
+</ul>
+<p class="small">Optional, needs your Webflow sign-in: one line in the Webflow embed that sends <code>parent_view</code> on load and <code>iframe_ready</code> on the existing <code>bfcm-lp-ready</code> message. It measures people who leave before the iframe loads. Nice to have, not required.</p>
+
+<h2 id="identity">8. Identity stitching</h2>
+<div class="tbl"><table class="min">
+<thead><tr><th>Link</th><th>Join key</th><th>Rule</th><th>Expected quality</th></tr></thead>
+<tbody>
+<tr><td class="k">LP session to lead</td><td><code>lp_sid</code> in tracking_json</td><td>Exact</td><td>Every App Store click from the LP passes the email gate, so every LP-driven App Store click has a lead row.</td></tr>
+<tr><td class="k">LP session to GA4 install</td><td><code>utm_id=lp-&lt;sid&gt;</code></td><td>Exact, aggregate only</td><td>Depends on GA4 keeping the listing session; pending one test install.</td></tr>
+<tr><td class="k">Lead to installed store</td><td>Email (lower-cased) to Intercom contact (owner or store user) to shop domain</td><td>Install after lead first seen, within 30 days. Already run hourly by bfcm-leads (INSTALL_STATUS).</td><td>Unknown until live data. Misses a different email at the LP vs the Shopify account. Shown as a match-rate tile.</td></tr>
+<tr><td class="k">Store to redemption</td><td>Shop domain (and owner email) on the engineering event</td><td>Exact</td><td>Exact once the event exists. Interim tags give count and 15-min timing only.</td></tr>
+<tr><td class="k">Redemption to channel</td><td>Shop domain to lead email; else install UTMs if engineering captures them; else last BFCM email / Intercom click in 7 days</td><td>Priority order as listed</td><td>Unattributed share is shown, never hidden.</td></tr>
+<tr><td class="k">Booking to store</td><td>Calendly invitee email to Intercom; store URL answer; link UTMs</td><td>Shop domain answer wins, then email</td><td>Near exact once the booking link carries the shop domain (ask 3 and 5).</td></tr>
+<tr><td class="k">Store to first paid charge, uninstall</td><td>myshopify domain</td><td>Exact</td><td>Exact with the Partner API.</td></tr>
+</tbody></table></div>
+<p><b>What engineering must expose</b> (detail in section 9): the redemption event with shop domain, owner email, variant, plan, interval, discount, trial days, charge ID and timestamps; and an answer to one question: does an install that starts from <code>apps.shopify.com/pushowl?utm_...</code> fill <code>attempted_install.utm_*</code>? If yes, include those UTMs and click IDs on the event and the install-to-channel join becomes exact for every store, LP or not.</p>
+<p class="small">PII rule: emails and store domains live only in bfcm-dash D1 and are deleted 90 days after 30 Nov. The aggregates API returns counts only.</p>
+
+<h2 id="eng">9. Engineering redemption event (spec to forward)</h2>
+<p><code>POST https://bfcm-dash.winningstatics.workers.dev/ingest/pushowl</code>, header <code>x-signature: hex(HMAC-SHA256(raw body, INGEST_SECRET))</code>, body <code>{"events":[...]}</code>, up to 100 per call, idempotent by <code>event_id</code>, retry on non-2xx. Keep applying the Intercom tags "BFCM2026 used" and "BFCM2026 $0 month" too (bfcm-leads already reads them).</p>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="k">event_id</td><td>uuid</td><td>Unique per event</td></tr>
+<tr><td class="k">type</td><td>enum</td><td><code>code_applied</code>, <code>subscription_started</code>, <code>zero_month_started</code>, <code>first_charge</code>, <code>subscription_cancelled</code>, <code>call_link_shown</code>, <code>migration_requested</code>, <code>credits_granted</code></td></tr>
+<tr><td class="k">occurred_at</td><td>ISO 8601 UTC</td><td>When it happened, not when sent</td></tr>
+<tr><td class="k">shop_domain, shop_id</td><td>string</td><td>myshopify domain and numeric ID</td></tr>
+<tr><td class="k">owner_email, actor_email</td><td>string</td><td>Store owner; the user who applied the code if different</td></tr>
+<tr><td class="k">offer_variant</td><td>enum</td><td><code>new</code> or <code>existing_free</code>, as the app evaluated eligibility</td></tr>
+<tr><td class="k">installed_at, first_installed_at</td><td>ISO</td><td>Current and first install (reinstall check)</td></tr>
+<tr><td class="k">plan_sku, plan_name, interval</td><td>string</td><td>interval = <code>monthly</code> or <code>annual</code></td></tr>
+<tr><td class="k">list_price_usd, discount_pct, trial_days</td><td>number</td><td>Filters only on the dashboard, never headline tiles</td></tr>
+<tr><td class="k">shopify_charge_id, charge_status</td><td>string</td><td>AppSubscription GID; lets us cross-check with the Partner API</td></tr>
+<tr><td class="k">utm_source ... utm_term, fbclid, gclid</td><td>string</td><td>From <code>attempted_install</code> if captured at install; null otherwise</td></tr>
+<tr><td class="k">test</td><td>bool</td><td>True for dev and test stores</td></tr>
+</tbody></table></div>
+
+<h2 id="cloud">10. Worker, cron, D1, API</h2>
+<h3>Cron cadence inside <code>*/15</code></h3>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Job</th><th>Every</th><th>Window</th></tr></thead>
+<tbody>
+<tr><td class="k">Meta insights</td><td>15 min</td><td>Today + yesterday (IST), ad level, plus campaign by country. Nightly: last 7 days. Sunday: last 28 days.</td></tr>
+<tr><td class="k">Google Ads GAQL</td><td>15 min</td><td>Today + yesterday, campaign / ad group / ad, conversions by action. Nightly: last 14 days.</td></tr>
+<tr><td class="k">GA4</td><td>15 min</td><td>Today + yesterday by hour: LP sessions by UTM and country; listing views, Add App, installs by session campaign and manual campaign ID. Realtime LP users. Nightly: last 7 days.</td></tr>
+<tr><td class="k">bfcm-leads D1</td><td>15 min</td><td>Leads since watermark; contact statuses changed since watermark</td></tr>
+<tr><td class="k">Intercom</td><td>15 min</td><td>Contacts updated since last run with installed_at since 14 Oct, a cohort tag or an engineering tag; migration-tagged conversations. Nightly full recount.</td></tr>
+<tr><td class="k">Brevo</td><td>60 min</td><td>Broadcast stats, list 73 counts via service binding</td></tr>
+<tr><td class="k">Calendly, Partner API</td><td>15 min</td><td>Updated since watermark (phase 2)</td></tr>
+<tr><td class="k">Intercom export, creator post stats</td><td>6 h</td><td>BFCM-named messages; live creator URLs</td></tr>
+<tr><td class="k">Rollup, snapshot, alerts</td><td>15 min</td><td>Recompute today + yesterday rollups, append headline snapshot, evaluate rules</td></tr>
+</tbody></table></div>
+
+<h3>D1 tables (<code>bfcm-dash</code>)</h3>
+<ul class="tight">
+  <li><code>registry</code>: platform, object ID, level, channel, label, budget, active window.</li>
+  <li><code>fact_ads</code>: platform, date_ist, campaign / ad set / ad IDs, country, spend, impressions, link_clicks, lp_views, platform_installs, platform_leads, pulled_at. Upsert key: platform + date + ad + country.</li>
+  <li><code>fact_ga4</code>: date_ist, hour, host, event, source, medium, campaign, content, term, manual_id, country, events, sessions.</li>
+  <li><code>lp_events</code>: raw beacon rows (60 days).</li>
+  <li><code>stores</code>: shop_domain, emails (JSON), installed_at, uninstalled_at, cohort, variant, paid flag, plan interval, first lead ID, channel credit.</li>
+  <li><code>offer_events</code>: engineering events and Partner API events, one row per event.</li>
+  <li><code>bookings</code>: Calendly invitee URI, created_at, start_time, status, no_show, email, store answer, UTMs, matched shop.</li>
+  <li><code>email_stats</code>, <code>email_events</code>: per message per day; per recipient click events (Brevo webhook, Intercom export).</li>
+  <li><code>creators</code>: handle, platform, live URL, date live, fee, post stats, stats_as_of.</li>
+  <li><code>rollup_daily</code>: date_ist x channel x campaign x country x cohort x metric.</li>
+  <li><code>snapshot_15m</code>: timestamp, metric, value (intraday sparklines, last 48 h kept at 15 min).</li>
+  <li><code>source_health</code>: source, last_ok_at, data_as_of, rows, error, duration. <code>alerts</code>: kind, key, state, first_seen, last_seen.</li>
+</ul>
+
+<h3>Endpoints</h3>
+<ul class="tight">
+  <li><code>POST /e</code> beacon (public, origin-locked).</li>
+  <li><code>POST /ingest/pushowl</code>, <code>/ingest/creators</code>, <code>/hooks/brevo/&lt;secret&gt;</code>, <code>/hooks/calendly</code> (signed).</li>
+  <li><code>GET /api/summary?from&amp;to&amp;channel&amp;country&amp;cohort&amp;lens&amp;campaign</code>: aggregates only, header <code>x-view-key</code>, CORS for farooqchisty-hub.github.io only.</li>
+  <li><code>GET /api/health</code>: per-source freshness. <code>POST /admin/run?only=meta,ga4</code>: manual run (admin key).</li>
+</ul>
+
+<h3>Where the UI lives</h3>
+<p>GitHub Pages, per your rule: <code>farooqchisty-hub.github.io/ad-intel-agent/bfcm-dashboard/</code>. The page is public but holds no data; it fetches <code>/api/summary</code> with a view key taken from the link's <code>#k=</code> fragment (fragments never reach servers or logs) and kept in the browser. Rotating the key revokes old links. Store-level lists (who redeemed, who booked) are not on the page; it links to the matching Intercom tag filter instead. The alternative, Cloudflare Pages behind Access with @brevo.com one-time PIN like CPMA, is stronger but not forwardable to people outside Brevo.</p>
+
+<h2 id="layout">11. Dashboard layout, filters, alerts</h2>
+<h3>Header</h3>
+<p>Phase badge (annual only until 4 Nov, monthly from 5 Nov), countdown to 30 Nov 11:59 pm PT, last refresh, one freshness pill per source (green under 2 cadences, amber under 6 h, red beyond), lens switch (platform / GA4 / first-party).</p>
+
+<h3>Sections and tiles</h3>
+<div class="tiles">
+  <div class="tile"><b>1. Headline strip</b>Spend, LP sessions, leads, App Store clicks, installs (lens), CPI vs $15 / $19, redemptions (new / existing free), $0-month starts, first paid charges, calls booked. Each with 48 h sparkline and vs-yesterday.</div>
+  <div class="tile"><b>2. Funnel</b>Impressions, clicks, LP sessions, claim box views, leads, App Store clicks, listing views, Add App, installs, redemptions, first paid charge, calls. Step rates; filter-aware.</div>
+  <div class="tile"><b>3. Pacing</b>Daily spend vs $300 Meta and $150 Google plans, cumulative vs plan, hourly pace today; CPI trend with $15 and $19 bands.</div>
+  <div class="tile"><b>4. Meta</b>Campaign, ad set, ad table: spend, CTR, CPC, LP views, installs (Meta), CPI, frequency, CPMA verdict; creative thumbnail and narrative (n1 to n4).</div>
+  <div class="tile"><b>5. Google</b>YouTube DG, DG images, Display: spend, views, clicks, BFCM claims, cost per claim, GA4 installs.</div>
+  <div class="tile"><b>6. Email and Intercom</b>Per template and broadcast: sent, clicks, click rate, unsubscribes; installs and redemptions among clickers.</div>
+  <div class="tile"><b>7. Creators</b>Per creator: live date, platform, views, engagement, LP sessions, leads, GA4 installs, redemptions, CPM, cost per install.</div>
+  <div class="tile"><b>8. Cohorts</b>New vs existing free: eligible base, redemption rate, $0-month starts, paid conversion, uninstall rate at 7 and 30 days.</div>
+  <div class="tile"><b>9. Calls and extras</b>Booked, upcoming, held, no-show, canceled by cohort and channel; migrations requested; credits granted.</div>
+  <div class="tile"><b>10. Geo and device</b>US, UK, CA, FR, DE, IT, ES and other: sessions, lead rate, installs, CPI. Mobile vs desktop.</div>
+  <div class="tile"><b>11. Data health</b>Source freshness, row counts, last error, match rates, datacenter traffic share.</div>
+</div>
+
+<h3>Filters</h3>
+<p>Date range (today, yesterday, last 7 days, since 14 Oct, custom; IST days), channel, country, cohort (new, existing free, unknown), campaign then ad set then creative, narrative (n1 to n4), device, lens. Paid status, plan interval and plan are filter chips only.</p>
+
+<h3>Alerts (banner, plus Slack if a webhook is given)</h3>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Rule</th><th>Trigger</th><th>Level</th></tr></thead>
+<tbody>
+<tr><td class="k">CPI over ceiling</td><td>Meta ad set 3-day CPI above $19 with spend at least $38, or today's campaign CPI above $19 after $60 spend</td><td><span class="pill bad">Red</span></td></tr>
+<tr><td class="k">Zero-conversion ad set</td><td>Spend at least 2 x $15 = $30 with 0 installs since its last change</td><td><span class="pill warn">Amber</span></td></tr>
+<tr><td class="k">Spend pacing</td><td>Today's spend outside 75% to 125% of the hour-prorated budget; to-date spend more than 15% off plan</td><td><span class="pill warn">Amber</span></td></tr>
+<tr><td class="k">LP broken</td><td>Meta or Google spend in the last hour but 0 beacon <code>lp_view</code>; or claim submits with 0 App Store clicks</td><td><span class="pill bad">Red</span></td></tr>
+<tr><td class="k">Lead pipeline</td><td>bfcm-leads Brevo errors above 0, or its hourly cron missing for 2 hours</td><td><span class="pill bad">Red</span></td></tr>
+<tr><td class="k">Source stale</td><td>Any source past 2 cadences (amber) or 6 h (red)</td><td><span class="pill warn">Amber</span> / <span class="pill bad">Red</span></td></tr>
+<tr><td class="k">Redemption feed silent</td><td>No redemption event or tag change for 24 h after go-live</td><td><span class="pill warn">Amber</span></td></tr>
+<tr><td class="k">Eligibility leak</td><td>A call booked by a store that is not on a paid plan</td><td><span class="pill warn">Amber</span></td></tr>
+<tr><td class="k">Uninstall spike</td><td>BFCM-cohort uninstalls today above 2 x the trailing 7-day average</td><td><span class="pill warn">Amber</span></td></tr>
+</tbody></table></div>
+
+<h2 id="needs">12. What I need from you and others</h2>
+<p>Only things I cannot do myself. Everything else (Worker, D1, beacon, page, secrets from local files, deploys) I do. Google Ads developer token and a GA4 service account are <b>not</b> needed: treg already covers both.</p>
+
+<div class="ask"><h4>1. Engineering: redemption event <span class="pill bad">Blocks redemptions, $0 month, cost per redemption</span></h4>
+<p>Why: no API exposes code usage; Intercom tags give a count but no plan, interval, variant or exact time.</p>
+<ol><li>Forward section 9 to Anoj (or whoever owns billing).</li><li>Ask them to also answer: does an App Store install that started from a UTM-tagged listing URL fill <code>attempted_install.utm_*</code>?</li><li>I send the HMAC secret to them directly once they confirm the endpoint.</li></ol></div>
+
+<div class="ask"><h4>2. Shopify Partner API client <span class="pill bad">Blocks truth installs, first paid charge, uninstalls</span></h4>
+<p>Why: the only exact source for installs, uninstalls and charges per store. Today three install counts disagree. Needs a Partner org Owner or staff allowed to manage API clients.</p>
+<ol><li>partners.shopify.com, open the PushOwl organization.</li><li>Settings, then Partner API clients, then Manage Partner API clients, then Create API client.</li><li>Name <code>bfcm-dash</code>; tick only <b>View financials</b> and <b>Manage apps</b>; Save.</li><li>Copy the access token into <code>~/.shopify_partner_token</code> on the Mac. Also note the org ID (the number in the URL after partners.shopify.com/) and the PushOwl app ID (Apps, PushOwl, number in the URL).</li></ol>
+<p class="small">I only run read queries. Nothing is written to Shopify.</p></div>
+
+<div class="ask"><h4>3. Calendly token from the event owner <span class="pill bad">Blocks call bookings</span></h4>
+<p>Why: no token exists. Must come from the account that owns "Managed Services · Strategy call"; an Owner or Admin token is better because it can list bookings for every host.</p>
+<ol><li>Calendly, Integrations &amp; apps, API and webhooks.</li><li>Personal access tokens, Generate new token, name <code>bfcm-dash</code>, copy into <code>~/.calendly_pat</code>.</li><li>On the event type, Booking form, add a required question "Your Shopify store URL".</li><li>Tell me the Calendly plan. Standard or above lets me use webhooks; otherwise 15-min polling works fine.</li></ol></div>
+
+<div class="ask"><h4>4. Creator sheet push <span class="pill bad">Blocks creator spend, CPM, cost per install</span></h4>
+<p>Why: none of our Google tokens can read the sheet, and publishing it to the web would expose fees. An Apps Script inside the sheet pushes the two tabs to the Worker every 15 min from Google's cloud.</p>
+<ol><li>I write the script (about 40 lines) and send it.</li><li>You or Bharat: open the sheet, Extensions, Apps Script, paste, Run once, click Allow (or sign in and I paste; you click Allow).</li><li>Bharat keeps BFCM creator rows on the Live Links tab with <code>utm_source=creator</code> and <code>utm_content</code> = handle, pointing at the pushowl.com deal page.</li></ol></div>
+
+<div class="ask"><h4>5. Engineering: Calendly link with the store <span class="pill warn">Nice to have</span></h4>
+<p>Why: makes booking-to-store matching exact. When the app reveals the link after payment, append <code>?a1=&lt;shop domain&gt;&amp;utm_source=pushowl_app&amp;utm_campaign=bfcm2026&amp;utm_content=&lt;shop domain&gt;</code> (store domain only, no email in the URL).</p></div>
+
+<div class="ask"><h4>6. Your OK: one Brevo webhook <span class="pill warn">Nice to have</span></h4>
+<p>Why: Brevo has no API for automation email stats. I create one marketing webhook on contact@pushowl (delivered, click, unsubscribe, bounce) pointing at bfcm-dash. It is a standing account setting, so I need your yes. Without it, automation stats stay in the Brevo UI and the dashboard still shows installs and redemptions from email via UTMs.</p></div>
+
+<div class="ask"><h4>7. Targets and alert channel <span class="pill warn">Nice to have</span></h4>
+<ol><li>Google BFCM target: cost per claim (and CPI if you want one).</li><li>Campaign goals for pacing lines: installs, redemptions, calls by 30 Nov.</li><li>Slack channel for alerts: a new incoming webhook URL saved to <code>~/.bfcm_alerts_webhook</code>, or tell me to reuse CPMA's alert channel.</li></ol></div>
+
+<div class="ask"><h4>8. Process asks for the team <span class="pill warn">Nice to have</span></h4>
+<ol><li>CX: tag every BFCM migration request conversation in Intercom "BFCM migration".</li><li>Whoever builds Intercom messages: name them <code>BFCM26 · ...</code> and tag links <code>utm_source=intercom&amp;utm_medium=message&amp;utm_campaign=bfcm2026&amp;utm_content=&lt;message&gt;</code>.</li><li>Optional: sign in to Webflow so I can add the 1-line parent beacon.</li></ol></div>
+
+<h2 id="phases">13. Build phases</h2>
+<div class="tbl"><table class="min2">
+<thead><tr><th>Phase</th><th>Ships</th><th>Depends on</th></tr></thead>
+<tbody>
+<tr><td class="k">1. Now</td><td>bfcm-dash Worker + D1 + <code>*/15</code> cron; Meta, Google Ads, GA4 via treg; bfcm-leads binding; Intercom installs, cohorts, paid flag, uninstalls; Brevo broadcast and list stats; LP beacon in claim.py with <code>lp_sid</code> and <code>utm_id</code>; campaign registry; rollups, snapshots, freshness; alerts on the page; dashboard page sections 1 to 6, 8, 10, 11 with creator traffic by UTM. Interim redemption counts from Intercom tags as soon as engineering applies them.</td><td>Nothing. Runs on access verified today.</td></tr>
+<tr><td class="k">2. As credentials land</td><td>Partner API truth installs, charges, uninstalls; Calendly bookings section; creator sheet push + post stats; Brevo webhook; Intercom content export; Slack alerts.</td><td>Asks 2, 3, 4, 6, 7</td></tr>
+<tr><td class="k">3. With engineering</td><td>Redemption timeline, $0 month to first paid charge, cost per redemption by channel, install UTMs for non-LP stores, exact booking match, migrations and credits.</td><td>Asks 1, 5, 8</td></tr>
+</tbody></table></div>
+
+<h2 id="findings">14. Findings that change the numbers</h2>
+<ul>
+  <li><b>Two campaign spellings.</b> Meta BFCM ads use <code>utm_campaign=bfcm26</code> (CPMA campaign.js); the LP default, creator kit and most emails use <code>bfcm2026</code> (28 email links use <code>bfcm26</code>). The dashboard treats both as BFCM; worth aligning before go-live.</li>
+  <li><b>Creator kit links point at the GitHub preview LP</b> and still describe the old portal CTA. Hits there carry no GA4 or pixel. They should move to the pushowl.com deal page; the beacon covers both meanwhile.</li>
+  <li><b>Claim events never reach GA4.</b> They go to the parent <code>dataLayer</code> without GTM; only <code>generate_lead</code> and the Google Ads conversion fire on submit.</li>
+  <li><b>Install counts disagree today</b> (GA4 126, backend GA4 226, Intercom 180 contacts since 14 Oct). Partner API settles it.</li>
+  <li><b>Intercom has no install source.</b> All 180 recent installs have empty source and UTM fields, and the workspace is at 237 of ~250 custom attributes, so engineering data should arrive by webhook, not new attributes.</li>
+  <li><b>Intercom already has "Call booked" and "Call Offered" date attributes</b> (created Nov 2025). With your OK later, bfcm-dash can write bookings back there for CX.</li>
+  <li><b>GA4 already sees the deal page:</b> 114 sessions with source facebook since 13 Oct while BFCM Meta spend is $0. The beacon's datacenter flag will separate link previews and scanners from people.</li>
+  <li><b>Time zones:</b> both ad accounts IST, GA4 379010452 Paris, backend GA4 IST, deadline PT. The plan normalises to IST days.</li>
+  <li><b>4 evergreen YouTube "Owl Portal" campaigns</b> spent about $320 in the last 7 days with 0 conversions. They stay out of BFCM numbers via the registry.</li>
+</ul>
+
+<footer>
+  Plan prepared 16 Oct 2026. Read-only checks only: no deploys, no cron changes, no writes to Meta, Google, Brevo, Intercom or Webflow. Secrets are referenced by location, never by value.
+</footer>
+</div>
+</body>
+</html>
