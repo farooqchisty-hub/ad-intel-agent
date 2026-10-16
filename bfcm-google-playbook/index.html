@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BFCM 2026 Playbook: Google + Optimization Cycle</title>
+<meta name="description" content="PushOwl BFCM 2026: what works on Google (with sources), our Google plan and budget calendar, and how CPMA optimizes Meta and Google under the twice-a-day rule, through to the 30 Nov hard stop.">
+<style>
+:root{
+  --bg:#f7f7f5; --card:#ffffff; --fg:#17181a; --muted:#5d6168; --line:#e2e3e0; --soft:#f0f1ee;
+  --accent:#2f5bd3; --accent-soft:#e7edfb; --ok:#1f7a4d; --ok-soft:#e3f3ea; --warn:#9a6200; --warn-soft:#fbf0db;
+  --bad:#b3261e; --bad-soft:#fbe5e3; --code:#eef0f3;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121315; --card:#1a1c1f; --fg:#e8e9ea; --muted:#a3a7ad; --line:#2d3035; --soft:#202327;
+    --accent:#86a5ff; --accent-soft:#1f2a45; --ok:#6fd3a0; --ok-soft:#173326; --warn:#f0bf5c; --warn-soft:#3a2d12;
+    --bad:#ff8a80; --bad-soft:#3d1c1a; --code:#24272c;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121315; --card:#1a1c1f; --fg:#e8e9ea; --muted:#a3a7ad; --line:#2d3035; --soft:#202327;
+  --accent:#86a5ff; --accent-soft:#1f2a45; --ok:#6fd3a0; --ok-soft:#173326; --warn:#f0bf5c; --warn-soft:#3a2d12;
+  --bad:#ff8a80; --bad-soft:#3d1c1a; --code:#24272c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15.5px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 16px 80px}
+header{padding:8px 0 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+h1{font-size:28px;line-height:1.2;margin:6px 0 8px;letter-spacing:-.01em}
+h2{font-size:22px;margin:44px 0 10px;padding-top:6px;letter-spacing:-.005em}
+h3{font-size:16.5px;margin:24px 0 8px}
+p{margin:8px 0}
+.eyebrow{font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.lede{color:var(--muted);max-width:800px}
+a{color:var(--accent);overflow-wrap:anywhere}
+code{font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px;word-break:break-word}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.summary ol{margin:4px 0 0;padding-left:22px}
+.summary li{margin:6px 0}
+.toc{columns:2;column-gap:28px;font-size:14.5px;padding-left:18px}
+.toc li{break-inside:avoid;margin:2px 0}
+@media (max-width:640px){.toc{columns:1}}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:var(--card);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13.6px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{background:var(--soft);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.tot td{font-weight:700;background:var(--soft)}
+.min{min-width:900px}
+.min2{min-width:720px}
+.min3{min-width:560px}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:999px;white-space:nowrap;letter-spacing:.02em}
+.ok{background:var(--ok-soft);color:var(--ok)}
+.warn{background:var(--warn-soft);color:var(--warn)}
+.bad{background:var(--bad-soft);color:var(--bad)}
+.info{background:var(--accent-soft);color:var(--accent)}
+.note{border-left:3px solid var(--accent);padding:8px 12px;background:var(--card);border-radius:0 8px 8px 0;margin:12px 0}
+.note.rule{border-left-color:var(--bad)}
+.note.warn{border-left-color:var(--warn);color:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin:12px 0}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ev h4{margin:0 0 6px;font-size:15px}
+.ev ul{margin:0;padding-left:18px;font-size:14px}
+.ev li{margin:6px 0}
+.src{font-size:12.5px;color:var(--muted)}
+ul.tight li,ol.tight li{margin:4px 0}
+.dec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+.dec h4{margin:0 0 4px;font-size:15.5px}
+.dec p{margin:4px 0;font-size:14.5px}
+.dec .def{color:var(--muted);font-size:13.5px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0}
+details summary{cursor:pointer;font-weight:600}
+.small{font-size:13px;color:var(--muted)}
+footer{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">PushOwl by Brevo · BFCM 2026 · 16 Oct to 30 Nov, ends 11:59 pm PT</div>
+  <h1>BFCM 2026 Playbook: Google + Optimization Cycle</h1>
+  <p class="lede">One page from two working docs: the Google research and playbook, and the design for how CPMA optimizes the campaign across Meta and Google. Updated 16 Oct 2026 with two calls from Farooq: the twice-a-day rule for Meta and Google calls, and the Google structure now being built. Research only: no ad account was touched to write this.</p>
+</header>
+
+<div class="card summary">
+<h3 style="margin-top:0">Summary</h3>
+<ol>
+  <li><b>Google is 3 campaigns at $150/day:</b> Demand Gen $100 (video and image ad groups), Search $30 (rebuilt keywords plus brand), Remarketing $20, all on Maximize conversions for "BFCM claim" to the end.</li>
+  <li><b>Merchants decide and install before about 13 Nov</b>, so Google money peaks 26 Oct to 15 Nov and the last 4 days go to warm audiences and brand search ($6,805 base plan).</li>
+  <li><b>Meta and Google are called only at 09:00 and 17:00 IST</b>; every optimization write waits for one of those windows. Exceptions: Go live, the deadline hard stop, the manual kill.</li>
+  <li><b>A 15-minute guard watches first-party data only</b> (landing page, leads, Intercom, Calendly, GA4) and pages you; it never calls Meta or Google.</li>
+  <li><b>CPMA runs a BFCM rulebook, not its evergreen one:</b> faster verdicts, raises inside an envelope you approve, step-downs instead of self-pauses, stitched cost per install as the cross-channel currency.</li>
+  <li><b>Spend stops at 30 Nov 11:59 pm PT on four layers:</b> Meta end time, a Google pause rule at 11:30 pm PT plus end date, the CPMA stop job, and your manual kill. <a href="#decisions">10 decisions</a> wait on you.</li>
+</ol>
+</div>
+
+<ol class="toc">
+  <li><a href="#works">What works (evidence)</a></li>
+  <li><a href="#plan">Our Google plan</a></li>
+  <li><a href="#calendar">Google budget calendar</a></li>
+  <li><a href="#cycle">The optimization cycle</a></li>
+  <li><a href="#cadence">Cadence under the twice-a-day rule</a></li>
+  <li><a href="#phases">Phase calendar</a></li>
+  <li><a href="#rules">Rules: general vs BFCM</a></li>
+  <li><a href="#stop">Hard stop</a></li>
+  <li><a href="#feedback">Feedback loop</a></li>
+  <li><a href="#guardrails">Guardrails and approvals</a></li>
+  <li><a href="#decisions">Decisions for Farooq</a></li>
+</ol>
+
+<p class="small">Labels: <span class="pill ok">VERIFIED</span> Google's or a platform's own docs, or our own data. <span class="pill warn">VENDOR</span> agency or tool claim. <span class="pill info">INFERENCE</span> our reasoning, a hypothesis. <span class="pill bad">GAP</span> no usable data found.</p>
+
+<!-- ============================================================ -->
+<h2 id="works">1. What works (evidence)</h2>
+
+<div class="grid">
+
+<div class="ev">
+<h4>Timing: merchants install before mid-November</h4>
+<ul>
+  <li>Agency freeze calendar for 2026: app install window closes <b>Fri 30 Oct</b>, configuration locked 13 Nov, code freeze 20 Nov. <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://craftshift.com/shopify-code-freeze-black-friday/">craftshift.com</a></span></li>
+  <li>Other agencies put the app cutoff between about 1 and 13 Nov; Shopify's own checklist has no freeze date. <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://athoscommerce.com/blog/bfcm-code-freeze-and-publishing-pause/">athoscommerce.com</a>, <a href="https://weltpixel.com/blogs/news/black-friday-conversion-tracking-freeze-what-to-lock-and-when-2026">weltpixel.com</a></span></li>
+  <li>Klaviyo tells switchers to move mid-Aug to mid-Sep; a new sending domain needs 30+ days of warm-up. So from late October "switch your email" is weak, while web push, SMS and WhatsApp can still go live this BFCM. <span class="pill ok">VERIFIED</span> <span class="pill info">INFERENCE</span><br><span class="src"><a href="https://www.klaviyo.com/blog/migrate-to-klaviyo-before-bfcm">Klaviyo blog</a>, <a href="https://help.klaviyo.com/hc/en-us/articles/20413890435355">Klaviyo help</a></span></li>
+  <li>Omnisend stopped every US BFCM image and video ad on <b>15 Nov 2025</b>, 13 days before Black Friday. <span class="pill ok">VERIFIED</span><br><span class="src">Our Google ad library pull, 16 Oct 2026</span></li>
+  <li>No public data on app installs by month. Our Partner dashboard (installs by week, Oct to Dec 2025) would settle it. <span class="pill bad">GAP</span></li>
+</ul>
+</div>
+
+<div class="ev">
+<h4>Competitors: "discount plus we do the switch"</h4>
+<ul>
+  <li>Omnisend, both years: 30% off plus free migration on a dedicated BFCM page; some image ads go straight to its App Store listing. Live since 22 Sep 2026: "We migrate you in 5 days, for free." <span class="pill ok">VERIFIED</span></li>
+  <li>Klaviyo, live since 2 to 3 Oct 2026: "$1 First Month Email Plan" and $19 off the first month, to 30 Nov. Same shape as ours, so our copy must say "$0 first bill, then 30% off" plainly. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://www.klaviyo.com/legal/$19-off-promotion">Klaviyo promotion terms</a></span></li>
+  <li>Competitor merchant BFCM videos run 15 to 43 s. Hooks name the timing ("before the busiest weekend") or the bill ("Smaller bill"). <span class="pill ok">VERIFIED</span></li>
+  <li>Colder audiences get a lead magnet (Privy playbook, Yotpo report), not just a discount. <span class="pill ok">VERIFIED</span></li>
+  <li>No PushOwl BFCM offer ran on Google in 2025, so there is no internal baseline. <span class="pill ok">VERIFIED</span></li>
+</ul>
+<p class="src">Source: ScrapeCreators Google ad library via treg, 18 domains, about 350 creatives, Oct to Dec 2025 and Sep to Oct 2026. 2024 ads are not retrievable.</p>
+</div>
+
+<div class="ev">
+<h4>Search demand: small, cheap themes beat the planned phrases</h4>
+<ul>
+  <li>3 of the 5 planned themes have almost no searches ("abandoned cart app": 10 a month in the US). <span class="pill ok">VERIFIED</span></li>
+  <li>Real volume at sane CPCs: web push ($2.60 to $5.80), abandoned cart email and recovery ($1.40 to $7), push notification app, WhatsApp marketing ($4.30 to $7), Black Friday marketing, email and SMS (no bid data, so cheap). <span class="pill ok">VERIFIED</span></li>
+  <li>Avoid the generic heads: "email marketing software" $61, "email marketing platform" $28, "sms marketing platform" $22.50. Two clicks would eat the day. <span class="pill ok">VERIFIED</span></li>
+  <li>Brand "pushowl": 210 searches a month in the US at a $6.91 CPC, so someone bids on our name. <span class="pill ok">VERIFIED</span></li>
+</ul>
+<p class="src">Source: SE Ranking via treg, Oct 2026 values, US, UK, CA, DE, FR.</p>
+</div>
+
+<div class="ev">
+<h4>Demand Gen: $100 floor, 50 conversions, slow changes</h4>
+<ul>
+  <li>Set $100/day or more on Maximize strategies; a Google PM called $100/day the "bare minimum" (1 Oct 2026). <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/14693848">Google 14693848</a>, <a href="https://ppc.land/google-pm-calls-100-a-day-the-floor-for-a-demand-gen-campaign/">ppc.land</a></span></li>
+  <li>Do not judge or change before 50 conversions; move to target CPA only after 50. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/12563349">Google 12563349</a>, <a href="https://support.google.com/google-ads/answer/14509385">Google 14509385</a></span></li>
+  <li>Flex bids and budgets 5 to 10% a week, never over 15%; any setting change relearns. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/14693848">Google 14693848</a></span></li>
+  <li>Image ads added to video gave 20% more conversions at the same cost per action (Google's claim). <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/15110871">Google 15110871</a></span></li>
+  <li>Give assets 14 days before pausing; add new before removing old; don't restrict channels. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/14693848">Google 14693848</a></span></li>
+  <li>Our account: when one ad mixed a 16:9 film with verticals, Demand Gen put 77% of video spend on the 16:9 film (6 to 7% view rate vs 24 to 41%). One concept per ad. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="../pushowl-yt-teardown/">PushOwl YouTube teardown</a></span></li>
+</ul>
+</div>
+
+<div class="ev">
+<h4>YouTube creative that converts</h4>
+<ul>
+  <li>Logo in the first 5 s, human voiceover, and a 16:9, 9:16 and 1:1 video per ad group. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/13812351">Google 13812351</a></span></li>
+  <li>For action, use 10 to 30 s vertical video; sound lifts conversions by over 20%. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/16041697">Google 16041697</a></span></li>
+  <li>ABCD ads (Attention, Branding, Connection, Direction) showed a 30% lift in short-term sales likelihood. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://business.google.com/us/think/future-of-marketing/youtube-video-ad-creative/">Think with Google</a></span></li>
+  <li>Our best hooks: "paying for ghost subscribers" (41% view rate) and "Abandoned carts are costing you thousands" (best CTR, 4.2%). The 2025 BFCM video was the weakest (17.9%) and still says "14-day free trial". <span class="pill ok">VERIFIED</span></li>
+</ul>
+</div>
+
+<div class="ev">
+<h4>Search and bidding in BFCM</h4>
+<ul>
+  <li>Seasonality adjustments only work with target CPA or ROAS and suit 1 to 7 day events; accounts using them saw about double the CPC inflation (+32 to 37% vs +16 to 17%). Skip them. <span class="pill ok">VERIFIED</span> <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/10369906">Google 10369906</a>, <a href="https://www.optmyzr.com/blog/bfcm-seasonality-adjustments-study/">Optmyzr</a></span></li>
+  <li>Broad match and AI Max need budget ("won't be effective if campaigns are limited by budget"). At $30/day: phrase and exact. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/10195720">Google 10195720</a>, <a href="https://support.google.com/google-ads/answer/15910366">Google 15910366</a></span></li>
+  <li>Shopify partners may not bid on Shopify trademarks and must add "Shopify" as a negative keyword. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://help.shopify.com/en/partners/partner-program/shopify-branding">Shopify partner branding</a></span></li>
+  <li>End dates stop at 11:59 pm in the account's time zone; an exact hour needs an automated rule. Google may spend up to 2x a daily budget on one day. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/2404203">Google 2404203</a>, <a href="https://support.google.com/google-ads/answer/2497710">Google 2497710</a>, <a href="https://support.google.com/google-ads/answer/2375423">Google 2375423</a></span></li>
+  <li>Countdown customizers work in 2026, but Google's two docs disagree on which one follows which clock: use GLOBAL_COUNTDOWN and test in Ad Preview. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/6193743">Google 6193743</a></span></li>
+</ul>
+</div>
+
+<div class="ev">
+<h4>Measurement: claims now, installs to steer</h4>
+<ul>
+  <li>Create an import conversion action <b>before</b> the clicks you want to credit, then wait 4 to 6 h before the first upload. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/7012522">Google 7012522</a></span></li>
+  <li>Upload at least daily; click IDs work up to 90 days after the click. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/10029210">Google 10029210</a></span></li>
+  <li>Enhanced conversions for leads send the hashed email at claim time, so imports match without a click ID (median +10% conversions). <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/15713840">Google 15713840</a>, <a href="https://support.google.com/google-ads/answer/14274408">Google 14274408</a></span></li>
+  <li>Google's goal-swap playbook needs the longer of 3 conversion cycles or 4 weeks, longer than our peak. That is why the claim stays the goal. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://support.google.com/google-ads/answer/15479791">Google 15479791</a></span></li>
+  <li>API uploads must now go through the Data Manager API; iOS clicks can arrive as gbraid or wbraid, so the LP stores all three click IDs. <span class="pill ok">VERIFIED</span><br><span class="src"><a href="https://developers.google.com/google-ads/api/docs/conversions/upload-clicks">Google Ads API</a></span></li>
+</ul>
+</div>
+
+<div class="ev">
+<h4>Benchmarks</h4>
+<ul>
+  <li>YouTube CPM $5 to $10 for most advertisers; Cyber Week peak $6.93. <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://www.storegrowers.com/youtube-ads-benchmarks/">storegrowers.com</a></span></li>
+  <li>Search, US business services: CPC $5.87, conversion rate 4.85%, $93.69 per lead. At $30/day that is about 5 clicks. <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://megadigital.ai/en/blog/google-ads-benchmarks/">WordStream/LocaliQ via megadigital.ai</a></span></li>
+  <li>BFCM CPC inflation +16 to 30% in retail samples. Our terms compete with app vendors, so Search should rise mildly; Demand Gen and YouTube share retail inventory and rise most from about 20 Nov. <span class="pill warn">VENDOR</span> <span class="pill info">INFERENCE</span><br><span class="src"><a href="https://www.optmyzr.com/bfcm-google-ads-2025-budget-automation-guide/">Optmyzr</a>, <a href="https://smarter-ecommerce.com/en/smec-market-observer/2025/black-friday-2025-recap">Smarter Ecommerce</a></span></li>
+  <li>Meta CPM in 2025: +3% for 1 to 15 Nov, +11% for 16 to 30 Nov. <span class="pill warn">VENDOR</span><br><span class="src"><a href="https://geistm.com/blog/meta-rate-trends-q4-2025/">geistm.com</a></span></li>
+</ul>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<h2 id="plan">2. Our Google plan</h2>
+
+<h3>Structure (as being built)</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Campaign</th><th class="n">Budget</th><th>Bidding</th><th>Ad groups</th><th>Targeting</th></tr>
+<tr><td class="k">BFCM26 · Demand Gen</td><td class="n">$100/day</td><td>Maximize conversions, goal = BFCM claim only (campaign goal, not account default)</td><td>Video (one ad per concept), Image (up to 4 ads)</td><td>7 countries (US, CA, UK, DE, FR, IT, ES), English. All channels on except Maps; Display reviewed on install data in the 26 Oct window</td></tr>
+<tr><td class="k">BFCM26 · Search</td><td class="n">$30/day</td><td>Maximize conversions, BFCM claim only</td><td>Web push, Cart recovery, BFCM planning, Ecommerce channels, Brand</td><td>7 countries, all languages (keywords are English), "people in" only. Phrase and exact; AI Max, Search Partners and Display expansion off</td></tr>
+<tr><td class="k">BFCM26 · Remarketing</td><td class="n">$20/day</td><td>Maximize conversions, BFCM claim only</td><td>One ad group, video and image ads</td><td>BFCM LP visitors 30 d (Meta traffic included), pushowl.com visitors 30 d, viewers of our BFCM videos 30 d</td></tr>
+</table></div>
+
+<ul class="tight">
+  <li><b>Never during BFCM:</b> target CPA, a goal change, seasonality adjustments, broad match, AI Max. Every change relearns, and a relearn in the 5 to 15 Nov push is the worst timing.</li>
+  <li><b>Housekeeping:</b> auto-apply recommendations off, auto-tagging on, label <code>BFCM26</code>, names start <code>BFCM26 · </code>. Final URLs carry utm_source=google, utm_medium=cpc (Search) or paid_video / paid_display (Demand Gen), utm_campaign, utm_content={adgroupid}, utm_term={keyword}, so the dashboard stitch sees Google's own IDs.</li>
+  <li><b>Exclusions everywhere:</b> existing paid customers (they never get BFCM2026), existing installed stores (they get the offer by email and Intercom), BFCM claimers (30 days).</li>
+</ul>
+
+<h3>Assets</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Where</th><th>What goes in</th></tr>
+<tr><td class="k">Demand Gen: Video</td><td>One ad per concept, never two concepts in one ad. Each ad holds the 9:16 master (30 to 45 s), its 15 to 20 s cutdown, and 1:1 and 16:9 versions when they exist (5 videos max). Cutdowns go in as one batch by the 26 Oct window. First 5 s: offer or pain plus the PushOwl logo; human voiceover, sound on; product in use before 15 s. 5 headlines (40 characters), 5 descriptions (90), CTA "Sign up" or "Get started", 4 sitelinks: How to claim, Plans and pricing, Book a strategy call, Migration help.</td></tr>
+<tr><td class="k">Demand Gen: Image</td><td>At least one ad with 3 each of 1:1, 1.91:1 and 4:5 (20 images max per ad); the 16 statics grouped by narrative, 4 ads max. Add 9:16 versions of the best 3 if fast (opens Shorts).</td></tr>
+<tr><td class="k">Remarketing</td><td>Cutdowns first plus the 6 strongest statics, deadline headlines. Planned adds: 5 Nov 09:00 IST window (monthly plans join), 19 Nov ("ends 30 Nov"), 26 Nov ("final days"). New ads go in beside the old; no edits.</td></tr>
+<tr><td class="k">Search RSAs</td><td>One per ad group, 15 headlines, 4 descriptions, plus a promotion asset (30% off, code BFCM2026) and the 4 sitelinks. Headlines that pass our rules: Your First Bill Is On Us · Then 30% Off Annual Plans (becomes "30% Off Monthly Or Annual" in the 5 Nov 09:00 IST window) · Web Push, Email, SMS, WhatsApp · Recover Abandoned Carts · Set Up Before Black Friday · Plans From $19/Month · Migration Done For You · Strategy Call Included · Use Code BFCM2026 In The App · BFCM Deal Ends Nov 30 · Deal Ends In <code>{GLOBAL_COUNTDOWN(2026-12-01 13:29:00,7)}</code>, with at least 3 headlines that have no countdown. Never "Shopify", "Klaviyo", "50%", "free month", "free trial", "try free".</td></tr>
+</table></div>
+<p class="small">The countdown string assumes the account clock is Asia/Calcutta (CPMA's read of the account says it is). Deadline 30 Nov 11:59 pm PT = 1 Dec 07:59 UTC = 1 Dec 13:29 IST. Check it in Ad Preview before launch.</p>
+
+<h3>Audience signals (Demand Gen)</h3>
+<ul class="tight">
+  <li>Narrow lookalike seeded from a Customer Match list of installed PushOwl store owners.</li>
+  <li>Custom segment, people who searched: abandoned cart email, web push notifications, push notification app, sms or whatsapp marketing for ecommerce, ecommerce email marketing, black friday email templates, black friday marketing ideas, klaviyo pricing, klaviyo alternative, omnisend pricing, privy pricing, mailchimp alternative. No "shopify" terms anywhere.</li>
+  <li>Custom segment, people who browse sites like: klaviyo.com, omnisend.com, privy.com, attentive.com, postscript.io, mailchimp.com, yotpo.com, gorgias.com, judge.me, loox.io.</li>
+</ul>
+
+<h3>Search keywords (phrase and exact)</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Ad group</th><th>Keywords</th><th class="n">Expected CPC</th></tr>
+<tr><td class="k">Web push</td><td>web push notifications, web push notification, browser push notifications, website push notifications, push notifications for website, push notification app, web push notification service, push notifications for online store</td><td class="n">$2 to $6</td></tr>
+<tr><td class="k">Cart recovery</td><td>abandoned cart email, abandoned cart emails, abandoned cart recovery, abandoned cart sms, cart abandonment software, cart recovery app, recover abandoned carts</td><td class="n">$1.40 to $12</td></tr>
+<tr><td class="k">BFCM planning</td><td>black friday marketing, black friday email marketing, black friday email templates, black friday email campaign, black friday sms, black friday marketing ideas, bfcm marketing, cyber monday email</td><td class="n">low</td></tr>
+<tr><td class="k">Ecommerce channels</td><td>ecommerce email marketing, email marketing for ecommerce, ecommerce marketing automation, sms marketing for ecommerce, sms marketing app, [whatsapp marketing] exact only, whatsapp marketing for ecommerce, email marketing for online store</td><td class="n">$4 to $20</td></tr>
+<tr><td class="k">Brand</td><td>[pushowl], [push owl], pushowl pricing, pushowl black friday, brevo pushowl</td><td class="n">$4 to $7</td></tr>
+<tr><td class="k">Competitor (only if you approve, own $10/day campaign)</td><td>klaviyo alternative(s), omnisend alternative, mailchimp alternative, klaviyo pricing. Names in keywords only, never in ad text.</td><td class="n">$11 to $21</td></tr>
+</table></div>
+<p><b>Do not bid on:</b> email marketing software ($61), email marketing platform ($28), sms marketing platform ($22.50), ecommerce email marketing software ($49), plain "sms marketing" (mostly local businesses).</p>
+
+<details>
+<summary>Shared negative list "BFCM26 negatives" (Shopify variants also at account level)</summary>
+<ul class="tight">
+  <li><b>Partner rule:</b> shopify, shopfy, shoppify, shopifiy, sh0pify, myshopify, shopify's</li>
+  <li><b>Platforms outside this offer:</b> woocommerce, wordpress, wix, squarespace, bigcommerce, magento, etsy, amazon, ebay, hubspot, salesforce</li>
+  <li><b>People stopping notifications:</b> disable, block, stop, turn off, remove, unsubscribe, allow, settings, chrome, safari, firefox, iphone, android, spam, virus, malware, scam, pop up blocker</li>
+  <li><b>Developers:</b> api, sdk, firebase, fcm, apns, github, javascript, react, flutter, node, npm, code, service worker, vapid, open source, self hosted, php, laravel</li>
+  <li><b>Jobs and courses:</b> job, jobs, career, salary, hiring, course, certification, training, internship, freelance</li>
+  <li><b>Non-ecommerce SMS buyers:</b> church, restaurant, real estate, realtor, dental, salon, gym, school, political, nonprofit, bank, insurance, clinic</li>
+  <li><b>Free-only and support queries:</b> free bulk sms, free sms, receive sms, login, log in, sign in, customer service number, cancel</li>
+  <li>Never "free" on its own: a $0 first bill is our offer.</li>
+</ul>
+</details>
+
+<h3 id="calendar">Google budget calendar (base plan)</h3>
+<p>Same $150/day envelope, reshaped to the install window. Each change goes in at the 09:00 IST window on the date shown, which is the evening before in PT.</p>
+<div class="tbl"><table class="min">
+<tr><th>Phase</th><th>Dates</th><th class="n">Demand Gen</th><th class="n">Remarketing</th><th class="n">Search</th><th class="n">Per day</th><th>What happens</th></tr>
+<tr><td class="k">1 Learn</td><td>16 to 25 Oct (10 d)</td><td class="n">$100</td><td class="n">$20</td><td class="n">$30</td><td class="n">$150</td><td>Launch the day the build passes QA: every day lost is a day of the install window. No edits for 7 days except negatives, disapprovals and broken tags. Sanity check day 3, first read day 7.</td></tr>
+<tr><td class="k">2 Build</td><td>26 Oct to 4 Nov (10 d)</td><td class="n">$100</td><td class="n">$20</td><td class="n">$30</td><td class="n">$150</td><td>Monday windows 26 Oct and 2 Nov: Display decision, country exclusions, asset adds. Monthly-offer ads and new Search headlines go in at the 5 Nov 09:00 IST window (4 Nov 7:30 pm PT).</td></tr>
+<tr><td class="k">3 Main push</td><td>5 to 15 Nov (11 d)</td><td class="n">$100</td><td class="n">$25</td><td class="n">$30</td><td class="n">$155</td><td>Monthly plans join the offer 5 Nov 00:00 PT. Merchants lock configuration around 13 Nov. No bidding or goal changes.</td></tr>
+<tr><td class="k">4 Hold</td><td>16 to 26 Nov (11 d)</td><td class="n">$100, then $85 from 20 Nov</td><td class="n">$25</td><td class="n">$30</td><td class="n">$155, then $140</td><td>Merchants in code freeze from about 20 Nov while retail pushes video CPMs up. The 15% cut is Google's weekly limit. Deadline ads 19 Nov; the countdown shows from about 23 Nov.</td></tr>
+<tr><td class="k">5 Final days</td><td>27 to 30 Nov (4 d)</td><td class="n">$50</td><td class="n">$40</td><td class="n">$35</td><td class="n">$125</td><td>Warm audiences and brand search carry the deadline; "final days" ads go in 26 Nov. Stop at 30 Nov 11:59 pm PT.</td></tr>
+<tr class="tot"><td>Total</td><td>46 days</td><td class="n">$4,295</td><td class="n">$1,110</td><td class="n">$1,400</td><td class="n">$6,805</td><td>A flat $150/day would be $6,900.</td></tr>
+</table></div>
+
+<ul class="tight">
+  <li><b>Optional scale path, +$610 max</b> (total about $7,415; <a href="#decisions">decision 3</a>): only if on 2 Nov Demand Gen has 50+ claims, claim CPA at or under target and the install rate holding. Then Demand Gen $115 from 2 Nov, $130 from 9 Nov, $110 from 20 Nov, $50 from 27 Nov. Every step is 15% or less a week.</li>
+  <li><b>Search</b> scales only when "limited by budget" with claim CPA at or under target, 20% max per change.</li>
+  <li><b>Hard ceiling:</b> the Google envelope by phase ($150 / $172 / $200 / $210 a day) and $150/day per campaign. The scale path fits inside it.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="cycle">3. The optimization cycle</h2>
+
+<p>BFCM does not run on CPMA's general rules. Those are built for an evergreen account (monthly pacing, 2-week fatigue baselines, weekly test batches, 7-day settled windows), and CPMA does not optimize Google at all today: its Google rules are an unused Search-on-installs program, held by <code>google_hold</code>. A 45-day window with a fixed creative set (c1), CPMs rising into November and a hard deadline needs its own rulebook. CPMA keeps its safety layer, the Bayesian verdicts and the $15 / $19 targets, and adds a guard, a hard stop, a Google BFCM loop, cross-channel moves and a conversion feedback loop.</p>
+
+<div class="note rule"><b>Hard rule (Farooq, 16 Oct).</b> Meta and Google Ads are called only twice a day: the 09:00 and 17:00 IST syncs; the dashboard pulls at 09:15 and 17:15 IST. All optimization writes are batched into those windows. Only Go live, the deadline hard stop and the manual kill may call Meta or Google outside them. The 15-minute guard uses first-party data only and never calls Meta or Google.</div>
+
+<h3 id="cadence">Cadence</h3>
+<div class="tbl"><table class="min">
+<tr><th>When (IST)</th><th>UTC and PT</th><th>Job</th><th>Reads</th><th>Writes on its own</th><th>Cards for Farooq</th></tr>
+<tr><td class="k">Every 15 min</td><td>all day</td><td><code>bfcm_guard</code></td><td>First-party only: LP and its iframe page (HTTP 200 plus marker), bfcm-leads claims, Intercom installs, Calendly bookings, GA4 sessions and installs by utm_source, dashboard health. <b>No Meta or Google call.</b></td><td>Nothing on the ad accounts. Sets freeze flags for the next window; queues the deadline stop.</td><td>P0 plus Slack on a trip, with the manual kill one step away</td></tr>
+<tr><td class="k">09:00 daily, morning window</td><td>03:30 UTC; 8:30 pm PDT (7:30 pm PST from 1 Nov) the evening before</td><td>sync → recommend → engine → <code>bfcm_engine</code> → <code>bfcm_google</code> → <code>bfcm_budget</code>; digest about 09:40</td><td>Meta ads and ad sets; Google BFCM campaigns with claims and installs; platform tripwires (spend vs budgets, outside budget edits, disapprovals, install tracking, claim tag)</td><td>Ad loser pauses, reactivations, step-downs, raises inside the envelope, tripwire stops, and every card approved since the last window</td><td>Raises above the envelope; daily digest to Slack</td></tr>
+<tr><td class="k">09:15 daily</td><td>03:45 UTC</td><td>bfcm-dash pulls Meta and Google</td><td>Spend and platform conversions for the dashboard</td><td>None</td><td></td></tr>
+<tr><td class="k">17:00 daily, evening window</td><td>11:30 UTC; 4:30 am PDT (3:30 am PST)</td><td>sync → recommend → engine → <code>bfcm_engine</code> → <code>bfcm_google</code></td><td>Same as the morning window</td><td>Same as the morning, except raises (mornings only)</td><td>Pause cards</td></tr>
+<tr><td class="k">17:15 daily</td><td>11:45 UTC</td><td>bfcm-dash pulls Meta and Google</td><td></td><td>None</td><td></td></tr>
+<tr><td class="k">Tue and Fri, 09:00</td><td>03:30 UTC</td><td><code>bfcm_sweep</code> (results only), <code>bfcm_rotate</code></td><td>Trait table, testing spend shares, frequency and CTR per ad</td><td>None (anything going live needs a click)</td><td>One batch card: graduations, rotations, testing prune. Approved items run at the next window</td></tr>
+<tr><td class="k">Mon, 09:00</td><td>03:30 UTC, cross-channel about 09:30 after the dashboard pull</td><td><code>bfcm_xchannel</code>, <code>bfcm_google_weekly</code></td><td>7 settled days on the GA4 and first-party lenses; search terms; channel, country and asset reports</td><td>Shift between Google campaigns (20% step; Demand Gen gets at most +15% a week)</td><td>Meta vs Google shift; next phase envelope; Google weekly card (negatives, channels, countries, assets)</td></tr>
+</table></div>
+
+<h4>What the twice-a-day rule changed in the original design</h4>
+<ol class="tight">
+  <li><b>The guard lost its ad account reads.</b> The Google GAQL read and the Meta ad set status and budget reads are gone; it reads only the LP, leads, Intercom, Calendly and GA4.</li>
+  <li><b>Platform tripwires moved into the windows:</b> spend runaway, outside budget edits, disapprovals, Meta install tracking and the Google claim tag. Between windows the platforms' own limits hold (Google up to 2x a daily budget on one day, Meta up to 1.75x).</li>
+  <li><b>A guard trip no longer pauses ads.</b> It pages you (P0 plus Slack) with the manual kill one step away; if the trip still holds at the next window, that window runs the stop path.</li>
+  <li><b>Approved cards wait for the next window</b> instead of running on click. Go live and the manual kill still run at once.</li>
+  <li><b>Stop verification</b> is first-party within minutes and platform-side at the 1 Dec 17:00 IST window. The stop-readiness check moves to the 1 Dec 09:00 IST window (30 Nov 7:30 pm PT).</li>
+  <li><b>Feedback feeds respect it too:</b> Meta CAPI redemption events go out in the window batches (Meta accepts events up to 7 days old); Google fetches the offline CSV from us on its own schedule.</li>
+  <li><b>A window gate in the safety layer</b> refuses any call to our Meta or Google ad accounts outside 09:00 to 09:59 and 17:00 to 17:59 IST, except the three exceptions (new build item G10).</li>
+</ol>
+
+<h3 id="phases">Phase calendar</h3>
+<div class="tbl"><table class="min">
+<tr><th>Phase</th><th>Dates (PT)</th><th>Envelope per day, Meta / Google</th><th>What CPMA does</th><th>Farooq</th></tr>
+<tr><td class="k">Pre-flight</td><td>Fri 16 Oct to go-live (D0)</td><td></td><td>Pre-launch build ships; Google campaigns built PAUSED and registered; settings seeded</td><td>Approve Go live</td></tr>
+<tr><td class="k">Learn</td><td>D0 to D0+4 (Meta), D0 to D0+7 (Google)</td><td>$300 / $150, no raises</td><td>Guard on; ad verdicts from day 3; no budget moves; digest each morning</td><td>Only P0s</td></tr>
+<tr><td class="k">Optimize</td><td>D0+4 to Wed 4 Nov</td><td>$345 / $172</td><td>Full rules; testing prune at D0+7; graduations Tue and Fri; first cross-channel shift Mon 2 Nov</td><td>Optimize envelope card; Tue and Fri batch cards</td></tr>
+<tr><td class="k">Scale</td><td>Thu 5 Nov 00:00 (08:00 UTC) to Mon 23 Nov</td><td>$420 / $200</td><td>30% off monthly opens: raises inside the envelope; last graduation Tue 17 Nov; structure freeze Fri 20 Nov 00:00</td><td>Scale envelope card, Mon 2 Nov</td></tr>
+<tr><td class="k">Peak</td><td>Tue 24 to Fri 27 Nov (Thanksgiving 26, Black Friday 27)</td><td>$450 / $210, retargeting up to $80 inside Meta's</td><td>No structural changes; raises only on strong fresh data; cuts by step-down; cooldown 48 h; no CPI-based cuts from 27 Nov 00:00</td><td>Peak envelope card, Mon 23 Nov</td></tr>
+<tr><td class="k">Final 72 h</td><td>Sat 28 Nov 00:00 to Mon 30 Nov 11:59 pm (Cyber Monday)</td><td>Same</td><td>Retargeting to $80; prospecting raises only at P ≥ 80%; stop-readiness check in the 1 Dec 09:00 IST window (30 Nov 7:30 pm PT)</td><td>On call Cyber Monday</td></tr>
+<tr><td class="k">Hard stop</td><td>Mon 30 Nov 11:59 pm PT = 1 Dec 07:59 UTC = 1 Dec 13:29 IST</td><td></td><td>Everything BFCM stops (<a href="#stop">below</a>)</td><td>Nothing to do</td></tr>
+<tr><td class="k">Wind-down</td><td>1 Dec to 5 Jan</td><td></td><td>Zero delivery confirmed in the 1 Dec 17:00 IST window; warm pools offered to evergreen; reports 8 Dec (media) and 5 Jan (redemptions and first charges)</td><td>Approve the evergreen handoff</td></tr>
+</table></div>
+<p class="small">At the maximum envelope the window spends about $23,400, inside the $24,000 window cap. The plan is $450/day, $20,250 over 45 days.</p>
+
+<h3 id="rules">Rules: general vs BFCM-specific</h3>
+<div class="tbl"><table class="min">
+<tr><th>Area</th><th>CPMA general rule</th><th>BFCM rule</th><th>Why</th></tr>
+<tr><td class="k">Separation</td><td>BFCM Meta objects tagged <code>bfcm26</code>; evergreen rules skip them</td><td><b>Keep</b> and extend to Google campaigns named <code>BFCM26 · </code></td><td>No evergreen rule ever judges BFCM</td></tr>
+<tr><td class="k">Install targets</td><td>$15 target, $19 ceiling (Meta)</td><td><b>Keep</b></td><td>Farooq's numbers; rising CPMs are handled by step-downs, not by moving the target</td></tr>
+<tr><td class="k">Google targets</td><td>$20 / $25 on installs, Search only</td><td><b>Override:</b> judged on cost per stitched install at $15 / $19; day to day on cost per claim vs a claim target = $15 x claim-to-install rate (starts $6 at 40%, refreshed weekly after 50 claims; ceiling $19 x rate)</td><td>Google bids on claims; we buy installs</td></tr>
+<tr><td class="k">Verdict gate</td><td>3 days and $15 before judging an ad</td><td><b>Keep</b></td><td>Short enough for 6 weeks</td></tr>
+<tr><td class="k">Ad loser</td><td>No install after $38, or 3+ installs and P(CPI &lt; $19) &lt; 10%: auto-pause</td><td><b>Keep</b></td><td>Cheap, ad level, no ad set reset</td></tr>
+<tr><td class="k">Ad set over ceiling</td><td>Over $19 for 3 settled days with $60+: auto-pause</td><td><b>Override (prospecting):</b> step down 20%; pause only by P0 card if still over $19 after 72 h at the lower budget with P(CPI &lt; $19) &lt; 10%. Testing and retargeting keep the auto-pause</td><td>One noisy window must not switch off prospect_en, 57% of Meta</td></tr>
+<tr><td class="k">Winner</td><td>10+ installs and P(beats $15) &gt; 80%</td><td><b>Override (testing):</b> 5+ installs and P ≥ 70%, batched Tue and Fri, last batch 17 Nov</td><td>$30/day over 13 ads cannot reach 10 installs per ad in time</td></tr>
+<tr><td class="k">Data freshness</td><td>Settled data only (2-day lag)</td><td><b>Override:</b> cuts use settled data, raises may use fresh data; no CPI-based cuts from 27 Nov 00:00 PT</td><td>Late installs only lower CPI; data after 27 Nov cannot settle in time</td></tr>
+<tr><td class="k">Late reactivation</td><td>Evergreen only</td><td><b>Add:</b> 3+ installs and P ≥ 40% within 7 days of an agent pause: reactivate</td><td>The App Store pixel lags</td></tr>
+<tr><td class="k">Budget raises</td><td>+15% card at 0.8x target with 30+ installs over 7 settled days; never auto</td><td><b>Override:</b> +20% automatic inside the approved envelope when P(CPI &lt; $15) ≥ 80% over 5 days with 10+ installs; card above it. Demand Gen +15% a week max</td><td>The old rule allows a raise every other week; the window has six</td></tr>
+<tr><td class="k">Budget guardrails</td><td>20% step, 72 h cooldown, 5 budget changes and 10 pauses a day, +50% a week</td><td><b>Keep</b>, plus a 96 h learning lock after go-live and a 48 h cooldown from 24 Nov</td><td>Fewer days left; a reset costs less than a missed day</td></tr>
+<tr><td class="k">Pacing</td><td>Monthly against $10k / $20k</td><td><b>Override:</b> window pacing against $20,250, cap $24,000 (no raises at 90% projected, stop at 100%)</td><td>The window spans two months</td></tr>
+<tr><td class="k">Fatigue</td><td>Frequency &gt; 3, or CPI +30% vs the ad's first 2 weeks</td><td><b>Override:</b> 7-day frequency &gt; 2.5 (prospecting) or &gt; 5 (retargeting), or CTR -30% vs the first 5 days with CPI +25%: rotate in a benched c1 creative</td><td>Two weeks is a third of the window</td></tr>
+<tr><td class="k">Alarms</td><td>Spend, CPI-spike and disapproval alarms, evergreen only</td><td><b>Add</b> for the program; platform checks run in the windows, first-party checks in the guard</td><td>A disapproved launch ad silently removes delivery</td></tr>
+<tr><td class="k">Write caps</td><td>20 changes and 40 creates a day, shared</td><td><b>Add:</b> BFCM gets its own 20 changes and 10 creates; stop-path writes uncounted; go-live day cap 45</td><td>A busy evergreen day cannot block BFCM</td></tr>
+<tr><td class="k">Kill switch</td><td>Blocks every write, pauses included</td><td><b>Override:</b> stop-path writes pass (they only reduce spend); the account lock always applies</td><td>The stop must never be blocked</td></tr>
+<tr><td class="k">google_hold</td><td>On since 4 Oct, blocks all Google writes</td><td><b>Override:</b> stays on for evergreen; BFCM budget writes on registered campaigns pass</td><td>BFCM needs Google budget moves and the $1 floor</td></tr>
+<tr><td class="k">Evergreen Google checks</td><td>google_cut card; security watch alerts on unknown campaigns</td><td><b>Override:</b> skip BFCM campaigns; register <code>BFCM26 · </code> campaigns as known</td><td>No false cuts or critical alerts</td></tr>
+<tr><td class="k">Creative production</td><td>LLM variant proposals Tue and Fri</td><td><b>Off</b> (c1 runs unchanged to 30 Nov); keep results and the competitor offer watch</td><td>Fixed creative set</td></tr>
+<tr><td class="k">Cadence</td><td>Decisions at 03:30 and 11:30 UTC</td><td><b>Keep</b> as the only Meta and Google windows (09:00 and 17:00 IST); add the first-party guard every 15 min</td><td>Farooq's rule, 16 Oct; 15-minute data is too noisy to optimize on anyway</td></tr>
+<tr><td class="k">Phase dates</td><td>Computed in UTC</td><td><b>Fix:</b> computed in PT</td><td>UTC flips 8 h early (the 5 Nov flip would land at 4 Nov 4 pm PT)</td></tr>
+</table></div>
+
+<h3>Meta scale and cut rules</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Rule</th><th>Condition</th><th>Action</th><th>Who</th></tr>
+<tr><td class="k">Raise</td><td>Out of learning lock; P(CPI &lt; $15) ≥ 80% over the last 5 days, 10+ installs; new budget inside the envelope</td><td>+20%</td><td>CPMA, morning window; card above the envelope</td></tr>
+<tr><td class="k">Cut, prospecting</td><td>Settled 3-day CPI &gt; $19 with $60+ spent</td><td>-20%</td><td>CPMA</td></tr>
+<tr><td class="k">Pause, prospecting</td><td>Still &gt; $19 after 72 h at the lower budget, P(CPI &lt; $19) &lt; 10%</td><td>Pause ad set</td><td>P0 card</td></tr>
+<tr><td class="k">Pause, testing or retargeting</td><td>Settled 3-day CPI &gt; $19 with $60+ spent</td><td>Pause ad set</td><td>CPMA</td></tr>
+<tr><td class="k">Retargeting saturation</td><td>7-day frequency &gt; 6</td><td>-20%</td><td>CPMA</td></tr>
+<tr><td class="k">Ad loser</td><td>No install after $38, or 3+ installs and P(CPI &lt; $19) &lt; 10%</td><td>Pause ad</td><td>CPMA</td></tr>
+<tr><td class="k">Late reactivation</td><td>Agent-paused in the last 7 days, now 3+ installs and P(CPI &lt; $15) ≥ 40%</td><td>Reactivate</td><td>CPMA</td></tr>
+<tr><td class="k">Testing prune</td><td>D0+7: testing ads under 5% of the ad set's spend</td><td>Pause the starved ones, keep the 6 with most delivery</td><td>Card</td></tr>
+<tr><td class="k">Graduation</td><td>Testing ad with 5+ installs and P(beats $15) ≥ 70%</td><td>Add to both prospecting ad sets, pause its testing ad</td><td>Card, Tue and Fri, last 17 Nov</td></tr>
+<tr><td class="k">Peak freeze</td><td>From 27 Nov 00:00 PT</td><td>No CPI-based cuts; tripwires and disapprovals only</td><td></td></tr>
+</table></div>
+<p><b>Learning protection.</b> No budget change on an ad set for 96 h after go-live, or for 72 h (48 h from 24 Nov) after a significant change: a budget step, an ad added, an ad paused that held over 30% of spend, a targeting change. Graduations and rotations batch on Tue and Fri, so a prospecting ad set resets at most twice a week. No new ads or targeting changes on Meta from Fri 20 Nov 00:00 PT. Learning Limited is expected for prospect_eu and testing.</p>
+<p><b>Rotation inside c1.</b> All 19 c1 creatives already exist as Meta creatives, so rotation never needs production. A tired ad gets a "swap A for B" card from the bench (c1 creatives not running in that ad set, ranked by testing verdict). Rested ads may return to retargeting after 10 days off. If the bench is empty and over 60% of the live set is tired before 20 Nov, one card says the set is exhausted; new creative is your call.</p>
+
+<h3>Google rules</h3>
+<p>Bidding goal: BFCM claim, Maximize conversions, unchanged to 30 Nov. Every Google move lands in a window; changes other than budgets (negatives, exclusions, asset swaps, pauses) are UI steps the main session makes after your approval, also inside a window.</p>
+<div class="tbl"><table class="min">
+<tr><th>Rule</th><th>Condition</th><th>Action</th><th>Who</th></tr>
+<tr><td class="k">Learning lock</td><td>First 7 days after a campaign is enabled. Demand Gen: no performance judgment before 50 claims</td><td>Only breakage fixes and Search negatives</td><td></td></tr>
+<tr><td class="k">Broken claim tag</td><td>50+ Google LP sessions in a day and 0 claims (the guard sees the first-party side; the window confirms)</td><td>Fix the same day; on Search add a data exclusion for the outage. Re-test a claim after every LP push (the LP is on GitHub Pages, so every push goes live)</td><td>P0, main session</td></tr>
+<tr><td class="k">Trademark disapproval</td><td>Any disapproval for "Shopify" or a competitor name</td><td>Fix the copy at the next window; never appeal with the term kept</td><td>Main session</td></tr>
+<tr><td class="k">Search negatives</td><td>A search term with $15+ spend, 0 claims and off-topic</td><td>Negative it</td><td>Daily card with Editor rows</td></tr>
+<tr><td class="k">Step-down, Search and Remarketing</td><td>After the lock: cost per claim over 2x the claim target over 5 days with $100+ spent</td><td>-20%</td><td>CPMA</td></tr>
+<tr><td class="k">Step-down, Demand Gen</td><td>After 50 claims: claim CPA over 1.3x the claim ceiling over 14 days with 30+ claims, or stitched CPI over $30 with 15+ installs</td><td>-15% (Google's weekly limit), money to the best Google campaign</td><td>CPMA, Monday window</td></tr>
+<tr><td class="k">Raise</td><td>Claim CPA at or under target over 7 days, 25+ claims, stitched CPI at or under $19, install rate at or above baseline</td><td>Demand Gen +15% a week max; Search and Remarketing +20%; never past the envelope</td><td>CPMA inside the envelope</td></tr>
+<tr><td class="k">Pause</td><td>Stitched CPI over $28.50 over 7 settled days with $300+ spent, or 0 stitched installs after $500</td><td>Pause the campaign (UI)</td><td>P0 card</td></tr>
+<tr><td class="k">Search scope</td><td>Search install rate under half of Demand Gen's after $400 spent</td><td>Keep only Brand, Web push and Cart recovery</td><td>Card</td></tr>
+<tr><td class="k">Channel</td><td>A Demand Gen channel with 20+ claims and an install rate under half the campaign average</td><td>Exclude it from the Image ad group (Display is the first suspect)</td><td>Monday card</td></tr>
+<tr><td class="k">Country</td><td>$150+ spent and claim CPA over 2x the campaign average</td><td>Exclude the country</td><td>Monday card</td></tr>
+<tr><td class="k">Creative</td><td>Asset at least 14 days old: vertical view rate under 15% after 5,000 impressions, or 2x the ad group's claim CPA with $100+ spent</td><td>Pause it, after its replacement is in. No removals from 20 Nov; deadline ads are added 19 and 26 Nov</td><td>Monday card</td></tr>
+<tr><td class="k">Between Google campaigns</td><td>Both install lenses agree one campaign is weaker</td><td>Move 20% of its budget to the stronger one</td><td>CPMA, Monday window</td></tr>
+</table></div>
+<p class="small">Daily review after the 09:15 IST dashboard pull: spend vs budget, CTR, claims, claim rate per session, cost per claim, stitched installs, CPI, search terms, channel and asset reports, tag health, learning status, "limited by budget".</p>
+
+<h3>Cross-channel moves (Meta vs Google)</h3>
+<ul class="tight">
+  <li><b>Currency:</b> stitched cost per install per channel. GA4 lens (app installs in sessions with utm_campaign bfcm2026, split by utm_source), checked against the first-party lens (LP email matched to a store that installed after the claim). Platform numbers are never compared across channels.</li>
+  <li><b>Rule, Mondays from 2 Nov, 7 settled days:</b> shift when both lenses agree one channel is at least 25% cheaper per install and each has 15+ GA4-lens installs, or when Google has under 5 stitched installs on $700+ spent.</li>
+  <li><b>Size:</b> 10% of the weaker channel's daily budget (20% in the second case). Floors: Meta $150/day, Google $75/day. A shift never grows the combined envelope.</li>
+  <li><b>Later:</b> at 30+ attributed redemptions in 14 days, the currency becomes cost per redemption.</li>
+  <li><b>Approval:</b> a card; CPMA executes both legs in the window after you approve.</li>
+</ul>
+
+<h3>Caps</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Cap</th><th>Value</th><th>Enforcement</th></tr>
+<tr><td class="k">Phase envelope, per day</td><td>Learn $300 / $150 (no raises); Optimize $345 / $172; Scale $420 / $200; Peak and final $450 / $210</td><td>You approve each envelope once on a card; inside it CPMA raises alone</td></tr>
+<tr><td class="k">Window cap</td><td>$24,000 combined (plan $20,250)</td><td>90% projected: no raises. 100% actual: stop path at the next window</td></tr>
+<tr><td class="k">Per object</td><td>Google campaign ≤ $150/day; Meta ad set +50% a week max</td><td>Existing code</td></tr>
+<tr><td class="k">Spend runaway</td><td>Meta 1.9x of live budgets, Google 2.1x</td><td>Checked each window: stop that object plus P0</td></tr>
+<tr><td class="k">Outside budget edit</td><td>Platform budget differs from CPMA's record</td><td>Checked each window: P0; stop the object if above the envelope</td></tr>
+<tr><td class="k">Writes</td><td>BFCM 20 changes, 10 creates a day; 10 pauses; 5 Meta and 4 Google budget changes</td><td>Safety layer; stop-path writes exempt</td></tr>
+</table></div>
+
+<h3 id="stop">Hard stop: 30 Nov 11:59 pm PT</h3>
+<p>30 Nov 11:59 pm PT = 1 Dec 07:59 UTC = 1 Dec 13:29 IST. Four independent layers; any one of them is enough.</p>
+<ol class="tight">
+  <li><b>Meta, platform side.</b> <code>end_time = 2026-12-01T07:59:00Z</code> on all 4 ad sets, written inside the Go live call (no extra writes) and read back in the same action. Meta stops them even if CPMA, treg or Cloudflare are down.</li>
+  <li><b>Google, platform side.</b> A Google Ads automated rule, frequency Once, at 30 Nov 11:30 pm PT (1 Dec 13:00 IST in account time), action Pause, on label <code>BFCM26</code>: 29 minutes early by design. Backstop: each campaign's end date of 1 Dec, which ends at 23:59 account time.</li>
+  <li><b>CPMA stop job</b> (an allowed exception). The 07:45 UTC guard tick queues <code>bfcm_stop</code> to fire at 07:59:00 UTC. It pauses the Meta campaign and floors every BFCM Google budget to $1, past the kill switch and write caps, then marks the campaign ended.</li>
+  <li><b>You.</b> The 1 Dec 09:00 IST window (30 Nov 7:30 pm PT) posts each layer's state to Slack. Manual kill at any time: <code>POST /api/bfcm/stop {"confirm":"STOP BFCM26"}</code>.</li>
+</ol>
+<p><b>Verification without extra calls:</b> from 08:15 UTC the guard checks that paid-UTM LP sessions and claims have stopped (first-party). Paid traffic still arriving pages you for the manual kill. The 1 Dec 17:00 IST window confirms zero platform spend since 07:59 UTC. At the deadline the LP claim box switches to an "offer ended" state.</p>
+<p><b>After 30 Nov.</b> Retargeting stops with everything (its ads carry a dead code). From 1 Dec a card offers the warm pools (LP visitors, listing viewers, install clickers) to evergreen with non-offer creative, installers and redeemers excluded. Objects stay paused 14 days, then are archived on a card, never deleted. Install and redemption uploads continue to at least 31 Dec.</p>
+
+<h3 id="feedback">Feedback loop</h3>
+<p><b>Today:</b> Meta optimizes Purchase on the PushOwl New Pixel, which the App Store listing sends, so Meta already learns from installs. Google optimizes BFCM claim (fired at email submit on the LP). Missing: redemptions on both, and a Google signal tying claimers to installs. All senders live in bfcm-dash, which holds the stitch; CPMA never holds personal data.</p>
+<div class="tbl"><table class="min2">
+<tr><th>Feed</th><th>What</th><th>How</th><th>Needs</th></tr>
+<tr><td class="k">A. Google stitched installs</td><td>Conversion actions "BFCM install (stitched)" and "BFCM redeem (stitched)": import, count One, <b>secondary</b>. Both created before launch, since imports only credit clicks made after the action exists</td><td>bfcm-dash serves a daily CSV (click ID, conversion name and time, consented email) behind basic auth; Google fetches it on a schedule. No call from us, no developer token</td><td>Actions and schedule in the Google UI</td></tr>
+<tr><td class="k">B. Enhanced conversions for leads</td><td>The claim tag sends the hashed email at claim time, so uploads match without a click ID (iOS, cross-device)</td><td>The LP frame bridge hands the parent page a trimmed, lower-case SHA-256 of the email; the Webflow embed sets <code>user_data</code> before the conversion event. LP also stores gclid, gbraid and wbraid</td><td>Customer data terms accepted by an account admin</td></tr>
+<tr><td class="k">C. Meta redemptions</td><td>Custom events BFCMRedeem and BFCMFirstCharge to the LP pixel dataset (never the New Pixel, so Purchase stays = install)</td><td>Conversions API from bfcm-dash, batched into the 09:00 and 17:00 IST windows</td><td>Dataset token; the engineering redemption event</td></tr>
+</table></div>
+<ul class="tight">
+  <li><b>Goals stay put.</b> Google bids on BFCM claim and Meta on Purchase for the whole window. Stitched installs and redemptions steer money (the cut, raise, channel and cross-channel rules), not bidding. Installs become the Google goal for evergreen from December.</li>
+  <li><b>Consent.</b> US and CA rows send under a privacy-notice line; UK and EEA rows (DE, FR, IT, ES) only with recorded consent. Everything else counts in aggregate only.</li>
+  <li><b>Dedupe.</b> Google's Conversions column will also credit claims that Meta started. The dashboard's last-click UTM stitch is the source of truth for channel CPI.</li>
+</ul>
+
+<details>
+<summary>Build list for engineering (updated for the twice-a-day rule)</summary>
+<p class="small">G = before go-live. F = after go-live, before the date shown. All code runs on Cloudflare.</p>
+<div class="tbl"><table class="min2">
+<tr><th>ID</th><th>What</th><th>Needed by</th></tr>
+<tr><td class="k">G1</td><td>15-minute guard cron with its own branch first in <code>scheduled()</code> (otherwise it runs a full sync 96 times a day). Reads first-party sources only; writes a heartbeat each tick</td><td>Go-live</td></tr>
+<tr><td class="k">G2</td><td>Hard stop: Meta <code>end_time</code> in the Go live targeting refresh; <code>stopAll</code> (pause Meta campaign, floor Google to $1) past the kill switch and caps; guard queues it at 07:45 UTC</td><td>Go-live</td></tr>
+<tr><td class="k">G3</td><td>Google program plumbing: BFCM registry, budget writes (step, floor, restore) on registered campaigns, <code>google_hold</code> exception for bfcm26, evergreen checks skip BFCM, security watch knows <code>BFCM26 · </code></td><td>Go-live</td></tr>
+<tr><td class="k">G4</td><td>Tripwires split: LP, traffic, dashboard and redemption checks in the guard; runaway, outside edit, disapproval and tracking checks in the window chain</td><td>Go-live</td></tr>
+<tr><td class="k">G5</td><td>Phase dates in PT</td><td>Go-live</td></tr>
+<tr><td class="k">G6</td><td>Prospecting ceiling response = 20% step-down, pause only by P0 card</td><td>Go-live</td></tr>
+<tr><td class="k">G7</td><td>Sweep LLM proposals off</td><td>Tue 20 Oct 03:55 UTC</td></tr>
+<tr><td class="k">G8</td><td>Go-live wiring, <code>GET /api/bfcm/ops</code>, manual kill endpoint</td><td>Go-live</td></tr>
+<tr><td class="k">G9</td><td>Tests, including: the 15-minute cron sends only the guard; the guard makes no Meta or Google call; the stop fires at 07:59 UTC with the kill switch on</td><td>Go-live</td></tr>
+<tr><td class="k">G10</td><td><b>New:</b> window gate in the safety layer (ad account calls only 09:00 to 09:59 and 17:00 to 17:59 IST, or flagged go-live, stop or manual kill); approved cards queue to the next window; audit every cron and job, evergreen included (for example the Monday 06:00 UTC cron), and move any ad account call into a window</td><td>Go-live</td></tr>
+<tr><td class="k">F1</td><td>Budget ladder, learning lock, envelope cards (morning window only)</td><td>D0+4</td></tr>
+<tr><td class="k">F2</td><td>Late reactivation, fatigue rotation, testing prune, relaxed graduation</td><td>D0+7</td></tr>
+<tr><td class="k">F3</td><td>Google BFCM loop: claims and stitched installs into perf data; step-downs, raises, pause cards, negatives, weekly cards; Demand Gen 15% a week cap; no goal-stage card</td><td>D0+7</td></tr>
+<tr><td class="k">F4</td><td>Daily digest and window pacing</td><td>D0+1</td></tr>
+<tr><td class="k">F5</td><td>Separate BFCM write budget</td><td>Mon 2 Nov</td></tr>
+<tr><td class="k">F6</td><td>Cross-channel reallocation card</td><td>Mon 2 Nov</td></tr>
+<tr><td class="k">F7</td><td>Feedback feeds A, B, C (CAPI batched into the windows)</td><td>Google part before launch for the actions, CSV by Mon 26 Oct; Meta part when engineering ships the redemption event</td></tr>
+<tr><td class="k">F8</td><td>Redemption lens</td><td>After F7 and the engineering event</td></tr>
+<tr><td class="k">F9</td><td>Wind-down job (verification in the 1 Dec 17:00 IST window, handoff, archive and report cards)</td><td>Wed 25 Nov</td></tr>
+</table></div>
+<p><b>Go-live runbook.</b> 1) Deploy G1 to G10, set the dashboard view key, confirm the Slack alert webhook. 2) Seed settings. 3) Watch 4 guard heartbeats and confirm no ad account calls between windows. 4) Build the 3 Google campaigns PAUSED (names <code>BFCM26 · </code>, label BFCM26, goal BFCM claim, end date 1 Dec, budgets 100 / 30 / 20), create the pause rule and both stitched actions, register them. 5) Set the go-live write cap to 45. 6) You approve Go live card <code>0543dcf8-1ce</code>. 7) Enable the 3 Google campaigns. 8) The next window confirms delivery, end times and the Google rule.</p>
+</details>
+
+<!-- ============================================================ -->
+<h2 id="guardrails">4. Guardrails and approvals</h2>
+
+<h3>Approval matrix</h3>
+<div class="tbl"><table class="min2">
+<tr><th>Action</th><th>CPMA alone</th><th>Needs you</th><th>Runs</th></tr>
+<tr><td class="k">Deadline stop</td><td>Yes, past the kill switch and caps</td><td></td><td>1 Dec 07:59 UTC exactly (exception)</td></tr>
+<tr><td class="k">Manual kill</td><td></td><td>You trigger it</td><td>At once (exception)</td></tr>
+<tr><td class="k">Go live (Meta card, Google switch-on)</td><td></td><td>Yes</td><td>At once (exception)</td></tr>
+<tr><td class="k">Stop path on a tripwire (LP down, runaway, window cap)</td><td>Yes</td><td>Restore needs a card</td><td>Next window; the guard pages you first</td></tr>
+<tr><td class="k">Ad loser pause, late reactivation</td><td>Yes</td><td></td><td>Window</td></tr>
+<tr><td class="k">Testing or retargeting ad set pause; prospecting -20%; Google step-downs</td><td>Yes</td><td></td><td>Window</td></tr>
+<tr><td class="k">Prospecting ad set pause; Google campaign pause</td><td></td><td>P0 card</td><td>Window after approval</td></tr>
+<tr><td class="k">Raises inside the envelope</td><td>Yes</td><td></td><td>Morning window</td></tr>
+<tr><td class="k">Raises above the envelope; each phase envelope</td><td></td><td>Card</td><td>Morning window after approval</td></tr>
+<tr><td class="k">Graduation, rotation, testing prune</td><td></td><td>Tue and Fri card</td><td>Window after approval</td></tr>
+<tr><td class="k">Cross-channel shift</td><td></td><td>Monday card</td><td>Window after approval</td></tr>
+<tr><td class="k">Google negatives, channel and country exclusions, asset swaps (UI)</td><td></td><td>Card</td><td>Window after approval</td></tr>
+<tr><td class="k">Evergreen handoff and archive after 30 Nov</td><td></td><td>Card</td><td>Window after approval</td></tr>
+</table></div>
+
+<h3>Alerting</h3>
+<ul class="tight">
+  <li><b>Critical (Slack plus board P0):</b> stop path ran or is queued, LP down, budget edited outside CPMA, a stop layer missing, disapproval of a launch ad, writes blocked (treg or Meta connection), CPMA guard silent.</li>
+  <li><b>Warn (Slack):</b> tracking silent, dashboard stale, paid traffic spike, ceiling step-downs, pacing over 110% or under 80%, feedback upload failing.</li>
+  <li><b>Info (board):</b> routine actions, each with its reason.</li>
+  <li><b>Daily digest (about 09:40 IST, Slack):</b> spend vs plan, installs on three lenses, CPI, claims, redemptions, actions taken, cards waiting.</li>
+  <li><b>One system acts.</b> The dashboard shows alerts; CPMA is the only system that acts. bfcm-dash alerts if the guard heartbeat goes quiet for 45 min.</li>
+</ul>
+
+<h3>Failure modes</h3>
+<div class="tbl"><table class="min">
+<tr><th>Failure</th><th>Detected by</th><th>Automatic response</th><th>You</th></tr>
+<tr><td class="k">LP down or claim box broken</td><td>Guard: LP or iframe page not 200 or marker missing for 2 ticks (30 min)</td><td>P0 page with the manual kill; if still down at the next window, the window pauses Meta and floors Google. No auto-restore</td><td>Kill now or let the window stop it; restore card once the check passes</td></tr>
+<tr><td class="k">Meta install tracking breaks</td><td>Window: 0 platform installs since the last window with $75+ spent while GA4 or Intercom show installs</td><td>Freeze CPI-based pauses and raises, keep delivery, until installs return</td><td>Warn; check the App Store pixel</td></tr>
+<tr><td class="k">Google claim tag breaks</td><td>Guard sees Google-sourced submits on the LP; the window sees 0 claims in Google</td><td>Freeze Google budget moves</td><td>Warn; main session checks the Webflow embed</td></tr>
+<tr><td class="k">Code BFCM2026 rejected in the app</td><td>Guard: no redemption 24 h after 30+ BFCM installs, or an engineering <code>code_error</code> event</td><td>With <code>code_error</code>: stop path at the next window. Otherwise a P0 "pause all?" card</td><td>Decide; manual kill if urgent</td></tr>
+<tr><td class="k">Spend runaway or outside budget edit</td><td>Window (platform data); the guard's paid-traffic spike is the early warning</td><td>Stop the object if above the envelope</td><td>P0</td></tr>
+<tr><td class="k">Disapproval</td><td>Window</td><td>Ad stays off; no unchanged resubmission</td><td>P0 card</td></tr>
+<tr><td class="k">Dashboard stale</td><td>Guard: last good refresh over 45 min (warn), over 3 h</td><td>After 3 h, freeze cross-channel and redemption decisions; platform rules keep running on CPMA's own sync</td><td>Warn</td></tr>
+<tr><td class="k">treg or Meta connection lost</td><td>Connection check at each window</td><td>Writes blocked; Meta end time and the Google rule still stop on time</td><td>Critical; reconnect treg</td></tr>
+<tr><td class="k">CPMA cron stops</td><td>bfcm-dash: no guard heartbeat for 45 min</td><td>Platform-side stops still hold</td><td>Critical</td></tr>
+<tr><td class="k">Window cap reached</td><td>Morning pacing</td><td>No raises at 90% projected; stop path at 100%</td><td>Raise the cap or accept</td></tr>
+</table></div>
+
+<div class="note warn"><b>What the twice-a-day rule costs.</b> An outside budget edit or a runaway now shows up at the next window, up to 16 h later (17:00 to 09:00 IST), instead of within 15 minutes. Platform limits bound the damage per day (Google 2x a daily budget, Meta 1.75x), but an outside edit that raises a budget raises that bound too, and a hijacked ad that points elsewhere sends no traffic to our LP for the guard to see. Decision 7 covers platform-side caps that close this without any API calls.</div>
+
+<!-- ============================================================ -->
+<h2 id="decisions">5. Decisions for Farooq</h2>
+
+<div class="dec"><h4>1. Go live</h4>
+<p>Approve the Meta Go live card (<code>0543dcf8-1ce</code>) and the switch-on of the 3 Google campaigns once the pre-launch build passes.</p>
+<p class="def">If you say nothing: nothing goes live.</p></div>
+
+<div class="dec"><h4>2. Old YouTube campaigns</h4>
+<p>Remove the 2025 BFCM video (sJj-H--7F88, still says "14-day free trial") from the live YouTube campaigns, and exclude the 7 BFCM countries from "YT ROW" until 30 Nov so it does not bid against BFCM. Exclusions, not pauses.</p>
+<p class="def">If you say nothing: untouched (you asked not to pause campaigns).</p></div>
+
+<div class="dec"><h4>3. Google raise room</h4>
+<p>Approve the optional Demand Gen scale path (+$610 max: $115 from 2 Nov, $130 from 9 Nov, $110 from 20 Nov), triggered only by the 2 Nov numbers, and the Google envelope ($150 / $172 / $200 / $210 a day by phase).</p>
+<p class="def">If you say nothing: base calendar only, $6,805, no raises above it.</p></div>
+
+<div class="dec"><h4>4. Meta envelopes and window cap</h4>
+<p>Approve the Meta phase envelopes ($300 / $345 / $420 / $450 a day) and the $24,000 combined window cap. Each envelope reaches you as a card (Optimize at D0+4, Scale on Mon 2 Nov, Peak on Mon 23 Nov).</p>
+<p class="def">If you say nothing: Meta holds at $300/day.</p></div>
+
+<div class="dec"><h4>5. Competitor keywords</h4>
+<p>A separate $10/day Search campaign on klaviyo alternative, omnisend alternative, mailchimp alternative and klaviyo pricing ($11 to $21 CPC). Names in keywords only, never in ad text.</p>
+<p class="def">If you say nothing: no competitor keywords.</p></div>
+
+<div class="dec"><h4>6. Data terms and consent</h4>
+<p>Accept Google's customer data terms for enhanced conversions for leads (an account admin must), and OK the consent gating for uploads: US and CA under one privacy-notice line, UK and EEA only with recorded consent.</p>
+<p class="def">If you say nothing: no email-matched uploads; Google steering relies on click IDs only.</p></div>
+
+<div class="dec"><h4>7. Protection between windows</h4>
+<p>Add platform-side caps that need no API calls from us: a Meta account spending limit, and a Google Ads automated rule that pauses any <code>BFCM26</code> campaign whose cost today passes a set amount.</p>
+<p class="def">If you say nothing: only the platforms' own daily limits, plus the next-window check.</p></div>
+
+<div class="dec"><h4>8. LP down</h4>
+<p>The guard can no longer pause ads on its own. Keep it as a page to you with the manual kill, with the next window stopping spend if the LP is still down; or make "LP down for 30 min" a fourth exception to the twice-a-day rule.</p>
+<p class="def">If you say nothing: page plus manual kill; worst case the LP is down until the next window.</p></div>
+
+<div class="dec"><h4>9. Meta overrides</h4>
+<p>OK the two BFCM changes to CPMA's Meta rules: prospecting steps down 20% instead of pausing itself on a bad 3-day window, and testing ads graduate at 5 installs and 70%.</p>
+<p class="def">If you say nothing: both ship as designed.</p></div>
+
+<div class="dec"><h4>10. Install-timing data</h4>
+<p>Pull Shopify Partner installs by week for Oct to Dec 2025 (or name who can). It is the only data that confirms the install-timing curve behind the budget shape.</p>
+<p class="def">If you say nothing: the calendar stays on agency and competitor evidence.</p></div>
+
+<p class="small"><b>Checks before launch (no decision needed):</b> confirm the Google account time zone is Asia/Calcutta (the pause rule time and countdown string assume it) and test the countdown in Ad Preview; create both stitched conversion actions before the first click; confirm the Slack alert webhook exists.</p>
+
+<footer>
+  Sources: <a href="research.md">research.md</a> (Google research and playbook) and <a href="optimization-cycle.md">optimization-cycle.md</a> (CPMA optimization design), both 16 Oct 2026, reconciled with Farooq's twice-a-day rule and the Google structure being built. Data spend for the research: about $1.30 on treg. Nothing here changed an ad account.
+</footer>
+
+</div>
+</body>
+</html>
