@@ -366,7 +366,12 @@ function render(d){
   // 1. headline strip
   var lensInstalls = L.installs, lensCpi = L.cpi;
   var cpiTxt = lensCpi == null ? "n/a" : fmtMoney(lensCpi);
-  var cpiNote = lensCpi == null ? "no installs or no spend yet" : (lensCpi <= d.targets.cpi_target ? '<span class="up">within the $15 target</span>' : lensCpi <= d.targets.cpi_ceiling ? "above $15, under the $19 ceiling" : '<span class="down">above the $19 ceiling</span>');
+  var cpiNote = lensCpi == null ? "no installs or no spend yet" : (lensCpi <= d.targets.cpi_target ? '<span class="up">within the $' + d.targets.cpi_target + ' target</span>' : lensCpi <= d.targets.cpi_ceiling ? "above $" + d.targets.cpi_target + ", under the $" + d.targets.cpi_ceiling + " ceiling" : '<span class="down">above the $' + d.targets.cpi_ceiling + ' ceiling</span>');
+  // Cost per landing-page claim (paid spend / claims), against the $5 target on every channel.
+  var claimT = d.targets.claim_target || 5, paidSpend = (h.meta_spend || 0) + (h.google_spend || 0);
+  var paidLeads = (d.channels || []).filter(function(c){ return c.channel === "meta" || c.channel === "google"; }).reduce(function(a, c){ return a + (c.leads || 0); }, 0);
+  var cpcl = paidLeads ? paidSpend / paidLeads : null;
+  var cpclNote = cpcl == null ? "no claims or no spend yet" : (cpcl <= claimT ? '<span class="up">within the $' + claimT + ' target</span>' : '<span class="down">above the $' + claimT + ' target</span>');
   out.push('<section class="block"><h2>Headline</h2><p class="sub">' + esc(rangeText(d.range)) + '. Change is today against yesterday (IST). Sparklines are the last 48 hours, hourly.</p><div class="tiles">' +
     tile("Spend", fmtMoney(h.spend), "Meta " + fmtMoney(h.meta_spend) + " · Google " + fmtMoney(h.google_spend) + " · Creators " + fmtMoney(h.creator_spend), sparkline(sp.spend, sp.hours, fmtMoney), delta(vs.today.spend, vs.yesterday.spend, fmtMoney)) +
     tile("LP sessions", fmtInt(h.lp_sessions), "First-party beacon. GA4 sees " + fmtInt(h.ga4_lp_sessions), sparkline(sp.lp_sessions, sp.hours), delta(vs.today.lp_sessions, vs.yesterday.lp_sessions)) +
@@ -374,6 +379,7 @@ function render(d){
     tile("App Store clicks", fmtInt(h.appstore_clicks), fmtInt(h.brevo_clicks) + " went to Brevo instead", sparkline(sp.appstore_clicks, sp.hours), delta(vs.today.appstore_clicks, vs.yesterday.appstore_clicks)) +
     tile("Installs", lensInstalls == null ? "n/a" : fmtInt(lensInstalls), "Lens: " + LENS_LABEL[state.lens] + (state.lens === "intercom" ? " · " + fmtInt(L.new_stores) + " new stores" : ""), state.lens === "intercom" ? sparkline(sp.intercom_installs, sp.hours) : state.lens === "ga4" ? sparkline(sp.ga4_installs, sp.hours) : "", state.lens === "intercom" ? delta(vs.today.intercom_installs, vs.yesterday.intercom_installs) : state.lens === "ga4" ? delta(vs.today.ga4_installs, vs.yesterday.ga4_installs) : state.lens === "platform" ? delta(vs.today.meta_installs, vs.yesterday.meta_installs) : "") +
     tile("Cost per install", cpiTxt, cpiNote + " · " + LENS_LABEL[state.lens], "", "") +
+    tile("Cost per claim", cpcl == null ? "n/a" : fmtMoney(cpcl), cpclNote + " · Meta + Google spend / their claims", "", "") +
     waitTile("Redemptions", d.redemptions.total, d.redemptions.state, d.redemptions.state === "live" ? "New " + fmtInt(d.redemptions.new) + " · Existing free " + fmtInt(d.redemptions.existing_free) : (d.redemptions.state === "tags" ? d.redemptions.source : "Counts stores that apply BFCM2026 and start a plan")) +
     waitTile("$0 first-month starts", d.redemptions.zero_month, d.redemptions.state, "New stores starting on the $0 first month") +
     waitTile("First paid charges", d.redemptions.first_charge, d.redemptions.state === "live" ? "live" : "waiting", "First non-zero charge after redeeming") +
@@ -408,7 +414,7 @@ function render(d){
     '</div><div class="card pad"><b style="font-size:13px">Meta cost per install per day</b>' +
     chart("c_cpi", { type:"line", label:"Meta CPI per day", yfmt:fmtMoney, x:d.daily.map(function(r){ return r.d; }), series:[
       { name:"Meta CPI", color:css("--s1"), values:d.daily.map(function(r){ return r.meta_installs ? r.meta_spend / r.meta_installs : null; }) } ],
-      refs:[{ y:d.targets.cpi_target, label:"Target $15" }, { y:d.targets.cpi_ceiling, label:"Ceiling $19" }] }) +
+      refs:[{ y:d.targets.cpi_target, label:"Target $" + d.targets.cpi_target }, { y:d.targets.cpi_ceiling, label:"Ceiling $" + d.targets.cpi_ceiling }] }) +
     '</div></div></section>');
 
   // 5. traffic per day
@@ -427,7 +433,7 @@ function render(d){
 
   // 7. meta
   var M = d.meta;
-  out.push('<section class="block"><h2>Meta</h2><p class="sub">BFCM campaigns only (registry). Installs are Purchase on the App Store pixel, 7-day click and 1-day view, so they restate for up to 28 days. Verdicts use the $15 target and $19 ceiling.</p>' +
+  out.push('<section class="block"><h2>Meta</h2><p class="sub">BFCM campaigns only (registry). Installs are Purchase on the App Store pixel, 7-day click and 1-day view, so they restate for up to 28 days. Verdicts use the $' + d.targets.cpi_target + ' target and $' + d.targets.cpi_ceiling + ' ceiling.</p>' +
     '<div class="card tbl"><table><thead><tr><th>Ad set</th><th class="l">Status</th><th>Budget a day</th><th>Spend</th><th>CTR</th><th>CPC</th><th>LP views</th><th>Installs</th><th>CPI</th><th>Frequency</th><th class="l">Verdict</th></tr></thead><tbody>' +
     (M.adsets.length ? M.adsets.map(function(s){ return '<tr><td>' + esc(s.name) + '</td><td class="l">' + status(s.status) + '</td><td>' + fmtMoney(s.daily_budget) + '</td><td>' + fmtMoney(s.spend) + '</td><td>' + (s.ctr == null ? "" : fmtPct(s.ctr)) + '</td><td>' + (s.cpc == null ? "" : fmtMoney(s.cpc)) + '</td><td>' + fmtInt(s.lp_views) + '</td><td>' + fmtInt(s.installs) + '</td><td>' + (s.cpi == null ? "" : fmtMoney(s.cpi)) + '</td><td>' + (s.frequency == null ? "" : s.frequency.toFixed(2)) + '</td><td class="l">' + esc(s.verdict) + '</td></tr>'; }).join("") : '<tr><td colspan="11">No BFCM ad sets yet.</td></tr>') +
     '</tbody></table></div>' +
