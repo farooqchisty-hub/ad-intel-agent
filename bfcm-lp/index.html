@@ -776,7 +776,7 @@ h3{font-size:19px}
         <p class="cb-hint" id="claim-hint">Enter your email to continue.</p>
       </form>
       <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> <span id="claim-done-msg">Opening PushOwl on the Shopify App Store. After you install, open Plans in the app and apply the code at checkout.</span> <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
-      <p class="cb-fine">Free to install, no card needed. For new and free-plan accounts. <a href="terms.html">Deal terms</a></p>
+      <p class="cb-fine">Free to install, no card needed. For new and free-plan accounts. <a href="https://www.pushowl.com/black-friday-2026-deal-terms">Deal terms</a></p>
     </div>
     <div class="trust">
       <span><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Unlimited contacts</span>
@@ -790,10 +790,10 @@ h3{font-size:19px}
 <footer><div class="wrap"><div class="cdown" aria-live="off">
   <p>Black Friday pricing ends in</p>
   <div class="cd-row"><div class="cd-cell"><b id="cd-d">00</b><span>days</span></div><div class="cd-cell"><b id="cd-h">00</b><span>hours</span></div><div class="cd-cell"><b id="cd-m">00</b><span>mins</span></div><div class="cd-cell"><b id="cd-s">00</b><span>secs</span></div></div>
-  <span class="fine">30 November 2026, 11:59 pm PT. <a href="terms.html" style="color:inherit">Deal terms</a></span>
+  <span class="fine">30 November 2026, 11:59 pm PT. <a href="https://www.pushowl.com/black-friday-2026-deal-terms" style="color:inherit">Deal terms</a></span>
 </div></div><div class="wrap">
   <img src="assets/po/logo.webp" alt="Brevo PushOwl" width="122" height="32">
-  <span>© 2026 Brevo. <a href="terms.html" id="terms">Deal terms</a> · <a href="https://www.pushowl.com/privacy-policy">Privacy</a></span>
+  <span>© 2026 Brevo. <a href="https://www.pushowl.com/black-friday-2026-deal-terms" id="terms">Deal terms</a> · <a href="https://www.pushowl.com/privacy-policy">Privacy</a></span>
 </div></footer>
 
 <div class="sticky" id="sticky"><div class="t"><span id="sticky-off">20% off</span> with <span>BFCM2026</span></div><a class="btn btn-lime cta" data-pos="sticky" href="#">Claim <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a></div>
@@ -883,7 +883,7 @@ if (nKey && HERO[nKey]) {
   set("faq-who", "New stores get their first month at $0, then 30% off. Stores already on our free plan get 30% off. Paid plans aren't included.");
   set("faq-how", PHASE2 ? "Install PushOwl, open Plans, pick a plan and enter BFCM2026 at checkout."
                         : "Install PushOwl, open Plans, pick an annual plan and enter BFCM2026 at checkout. From 5 November it works on monthly plans too.");
-  document.querySelectorAll('a[href="terms.html"]').forEach(function(a){ a.setAttribute("href", "terms-c.html"); });
+  document.querySelectorAll('a[href="terms.html"]').forEach(function(a){ a.setAttribute("href", "https://www.pushowl.com/black-friday-2026-deal-terms"); });
   // extras: new stores that start a paid plan with BFCM2026 only (Farooq, 16 Oct)
   txt("get-lede", "Included when a new store starts a paid plan with BFCM2026: everything you need to switch and win Black Friday.");
   set("faq-mig", "Yes, for new stores that start a paid plan with BFCM2026. You book a call and our team moves your lists, flows and templates for you.");
@@ -1037,7 +1037,7 @@ function goTop(url){
   var c = document.getElementById("chat"); if (c) { c.style.display = "none"; c.addEventListener("click", chat, true); }
   document.querySelectorAll(".chatlink").forEach(function(b){ b.addEventListener("click", chat, true); });
   // links that must leave the frame
-  document.querySelectorAll('a[href*="terms.html"]').forEach(function(a){ a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll('a[href*="terms.html"],a[href*="deal-terms"]').forEach(function(a){ a.target = "_blank"; a.rel = "noopener"; });
   // UTMs and click ids from the parent URL (backup for when the parent did not pass them in the iframe src)
   window.addEventListener("message", function(e){
     if (!PARENT_OK.test(e.origin) || !e.data || e.data.type !== "bfcm-params" || !e.data.search) return;
