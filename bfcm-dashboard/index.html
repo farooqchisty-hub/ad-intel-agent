@@ -188,11 +188,13 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
 "use strict";
 var API = "https://bfcm-dash.winningstatics.workers.dev";
 var LS = { get:function(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }, set:function(k,v){ try { localStorage.setItem(k,v); } catch(_){} } };
+// Inside a sandboxed frame (the Omni app wrapper) the page has no origin: storage and history writes can throw.
+function dropHash(){ try { history.replaceState(null, "", location.pathname + location.search); } catch(_){} }
 var state = { range:"all", from:null, to:null, channel:"all", lens:LS.get("bfcm_lens") || "ga4", creators:"bfcm", data:null };
 
 // ---------- view key: #k=... in the link (never sent to any server except as a header), kept in this browser
 var key = (location.hash.match(/[#&]k=([^&]+)/) || [])[1] || LS.get("bfcm_view_key");
-if (key) { LS.set("bfcm_view_key", key); if (/[#&]k=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search); }
+if (key) { LS.set("bfcm_view_key", key); if (/[#&]k=/.test(location.hash)) dropHash(); }
 
 // ---------- theme
 var root = document.documentElement;
@@ -574,7 +576,7 @@ document.getElementById("channel").addEventListener("change", function(e){ state
 document.getElementById("lensSeg").addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) setLens(b.getAttribute("data-l")); });
 document.querySelectorAll("#lensSeg button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-l") === state.lens); });
 document.getElementById("refresh").addEventListener("click", function(){ load(true); });
-window.addEventListener("hashchange", function(){ var m = location.hash.match(/[#&]k=([^&]+)/); if (!m) return; key = m[1]; LS.set("bfcm_view_key", key); history.replaceState(null, "", location.pathname + location.search); document.getElementById("filters").classList.remove("hide"); load(true); });
+window.addEventListener("hashchange", function(){ var m = location.hash.match(/[#&]k=([^&]+)/); if (!m) return; key = m[1]; LS.set("bfcm_view_key", key); dropHash(); document.getElementById("filters").classList.remove("hide"); load(true); });
 setInterval(function(){ if (!document.hidden) load(); }, 5 * 60000);
 document.addEventListener("visibilitychange", function(){ if (!document.hidden && state.data && Date.now() - Date.parse(state.data.generated_at) > 5 * 60000) load(); });
 load();
