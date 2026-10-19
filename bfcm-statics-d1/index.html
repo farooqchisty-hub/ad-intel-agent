@@ -1,0 +1,219 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BFCM Statics d1</title><meta name="robots" content="noindex">
+<style>
+:root{--bg:#f6f6f4;--fg:#16181d;--mut:#5b6170;--card:#fff;--line:#e3e3df;--ok:#0b7a43;--warn:#a5520b}
+@media (prefers-color-scheme:dark){:root{--bg:#121316;--fg:#ececec;--mut:#a3a8b3;--card:#1b1d22;--line:#2b2e35;--ok:#5fd59a;--warn:#f0a35e}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 64px}h1{font-size:26px;margin:0 0 6px}p.lede{color:var(--mut);margin:0 0 20px}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:18px 0}
+.slot h2{font-size:18px;margin:0 0 12px;display:flex;gap:10px;align-items:center}
+.qa{font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid}.qa.pass{color:var(--ok)}.qa.flag{color:var(--warn)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}figure{margin:0}img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}
+figcaption{font-size:13px;color:var(--mut);margin-top:6px}.disp{display:grid;grid-template-columns:1.91fr .8fr 1fr;gap:10px;margin-top:12px;align-items:start}
+dl.copy{display:grid;grid-template-columns:120px 1fr;gap:4px 12px;margin:14px 0 0;font-size:14px}dt{color:var(--mut)}dd{margin:0}
+ul.flags{color:var(--warn);font-size:13px;margin:10px 0 0}table{border-collapse:collapse;width:100%;font-size:13px;background:var(--card)}
+td,th{border:1px solid var(--line);padding:6px 8px;vertical-align:top}tr.pick{outline:2px solid var(--ok)}.wrap{overflow-x:auto}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}nav a{color:var(--fg);font-size:13px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;text-decoration:none}
+@media (max-width:700px){.pair,.disp{grid-template-columns:1fr}dl.copy{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>BFCM statics d1: 40% off annual, 30% off monthly</h1>
+<p class="lede">Offer D (16 Oct, final): code BFCM2026, 40% off annual plans, 30% off monthly plans, until 30 Nov 11:59 pm PT, new and free-plan stores.
+Base = the 16 approved p1b designs; only the voucher (and the N2 numbers, the N3-c receipt total and the N4-c scoreboard row) were edited, every other pixel is the approved art.
+Left: c1, live on Meta now. Right: d1. Google display sizes below each pair (1200x628, 1080x1350, 1200x1200). For review, nothing is live.</p>
+<nav><a href="#N1-a">N1-a</a><a href="#N1-b">N1-b</a><a href="#N1-c">N1-c</a><a href="#N1-d">N1-d</a><a href="#N2-a">N2-a</a><a href="#N2-b">N2-b</a><a href="#N2-c">N2-c</a><a href="#N2-d">N2-d</a><a href="#N3-a">N3-a</a><a href="#N3-b">N3-b</a><a href="#N3-c">N3-c</a><a href="#N3-d">N3-d</a><a href="#N4-a">N4-a</a><a href="#N4-b">N4-b</a><a href="#N4-c">N4-c</a><a href="#N4-d">N4-d</a><a href="contact.jpg">contact sheet</a></nav>
+<h2>Framework</h2><ol><li>Same approved art, edited not redrawn: the p1b ads were approved with their narrative headlines; only the offer words change, and only the changed blocks are pasted back. Illustration, lockup, palette and headline stay pixel-identical.</li><li>The offer is the voucher, readable in under a second at feed size: big &quot;40% off annual&quot; (the bigger number leads), then one small line that carries the rest of the deal and the urgency: &quot;30% off monthly · Code BFCM2026 · Ends 30 Nov&quot;.</li><li>Proof stays true to the cent: every savings multiple and price is recomputed for 40% annual (monthly x 0.54), rounded down, and ships only with its scenario footnote (docs/savings_multiples_40.json).</li><li>No leftovers from the retired offer: no &quot;$0&quot;, &quot;first month&quot;, &quot;first bill&quot;, &quot;on us&quot; anywhere on the image; the two places the approved art said $0 (N3-c receipt total, N4-c scoreboard) are rewritten to true, offer-led words.</li><li>Extras stay where the approved narrative put them; the Meta copy carries the condition (they come with a paid plan).</li><li>Feed legibility is tested, not assumed: the whole voucher must OCR at 25% size (512 px).</li></ol>
+<h2>Ideas, scored</h2><div class="wrap"><table><tr><th>Idea</th><th></th><th>Relevance</th><th>Stop</th><th>Virality</th><th>Creativity</th><th>Catchy</th><th>Unique</th><th>Total</th></tr><tr class=pick><td>A</td><td>Voucher swap: approved narrative ad unchanged, the voucher reads &quot;40% off annual&quot; big and &quot;30% off monthly · Code BFCM2026 · Ends 30 Nov&quot; small; N2 numbers recomputed.</td><td>9</td><td>7</td><td>6</td><td>6</td><td>8</td><td>6</td><td><b>42</b></td></tr><tr><td>B</td><td>Headline swap: &quot;40% off annual. 30% off monthly.&quot; replaces the narrative headline (the c1 move), narrative demoted to a setup line.</td><td>8</td><td>7</td><td>5</td><td>4</td><td>6</td><td>4</td><td><b>34</b></td></tr><tr><td>C</td><td>Sticker: keep everything, add a big &quot;40% OFF&quot; burst on the hero art.</td><td>7</td><td>8</td><td>5</td><td>5</td><td>6</td><td>5</td><td><b>36</b></td></tr><tr><td>D</td><td>Split coupon: two equal tickets side by side, &quot;40% annual&quot; | &quot;30% monthly&quot;, above Claim now.</td><td>8</td><td>6</td><td>5</td><td>6</td><td>6</td><td>6</td><td><b>37</b></td></tr><tr><td>E</td><td>Up-to kicker: &quot;Black Friday: up to 40% off&quot; line above the voucher + voucher swap.</td><td>8</td><td>7</td><td>5</td><td>5</td><td>7</td><td>5</td><td><b>37</b></td></tr></table></div>
+<section class="slot" id="N1-a">
+  <h2>N1-a<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N1-a_c1_1080.jpg" alt="N1-a c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N1-a_d1.jpg"><img src="img/N1-a_d1_1080.jpg" alt="N1-a d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N1-a_1200x628.jpg"><img src="display/N1-a_1200x628.jpg" alt="N1-a 1200x628" loading="lazy"></a>
+    <a href="display/N1-a_1080x1350.jpg"><img src="display/N1-a_1080x1350.jpg" alt="N1-a 1080x1350" loading="lazy"></a>
+    <a href="display/N1-a_1200x1200.jpg"><img src="display/N1-a_1200x1200.jpg" alt="N1-a 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Ghost subscribers? Get 40% off annual</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Your email bill counts every subscriber, even the ones who never open. Brevo PushOwl charges for the emails you send, not the people on your list. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N1-b">
+  <h2>N1-b<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N1-b_c1_1080.jpg" alt="N1-b c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N1-b_d1.jpg"><img src="img/N1-b_d1_1080.jpg" alt="N1-b d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N1-b_1200x628.jpg"><img src="display/N1-b_1200x628.jpg" alt="N1-b 1200x628" loading="lazy"></a>
+    <a href="display/N1-b_1080x1350.jpg"><img src="display/N1-b_1080x1350.jpg" alt="N1-b 1080x1350" loading="lazy"></a>
+    <a href="display/N1-b_1200x1200.jpg"><img src="display/N1-b_1200x1200.jpg" alt="N1-b 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Grow your list, not your bill</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Every Black Friday signup can push you into a pricier email tier. On Brevo PushOwl you pay for emails sent, so a bigger list doesn&#x27;t mean a bigger bill. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N1-c">
+  <h2>N1-c<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N1-c_c1_1080.jpg" alt="N1-c c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N1-c_d1.jpg"><img src="img/N1-c_d1_1080.jpg" alt="N1-c d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N1-c_1200x628.jpg"><img src="display/N1-c_1200x628.jpg" alt="N1-c 1200x628" loading="lazy"></a>
+    <a href="display/N1-c_1080x1350.jpg"><img src="display/N1-c_1080x1350.jpg" alt="N1-c 1080x1350" loading="lazy"></a>
+    <a href="display/N1-c_1200x1200.jpg"><img src="display/N1-c_1200x1200.jpg" alt="N1-c 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Keep every subscriber. Up to 40% off</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Delete quiet subscribers, or keep paying for them every month? There&#x27;s a third option: pay only for the emails you send. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N1-d">
+  <h2>N1-d<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N1-d_c1_1080.jpg" alt="N1-d c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N1-d_d1.jpg"><img src="img/N1-d_d1_1080.jpg" alt="N1-d d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N1-d_1200x628.jpg"><img src="display/N1-d_1200x628.jpg" alt="N1-d 1200x628" loading="lazy"></a>
+    <a href="display/N1-d_1080x1350.jpg"><img src="display/N1-d_1080x1350.jpg" alt="N1-d 1080x1350" loading="lazy"></a>
+    <a href="display/N1-d_1200x1200.jpg"><img src="display/N1-d_1200x1200.jpg" alt="N1-d 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Pay for sends, not contacts. 40% off</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Inactive subscribers still cost you every month on per-contact pricing. Brevo PushOwl bills for sends, not contacts. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N2-a">
+  <h2>N2-a<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N2-a_c1_1080.jpg" alt="N2-a c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N2-a_d1.jpg"><img src="img/N2-a_d1_1080.jpg" alt="N2-a d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N2-a_1200x628.jpg"><img src="display/N2-a_1200x628.jpg" alt="N2-a 1200x628" loading="lazy"></a>
+    <a href="display/N2-a_1080x1350.jpg"><img src="display/N2-a_1080x1350.jpg" alt="N2-a 1080x1350" loading="lazy"></a>
+    <a href="display/N2-a_1200x1200.jpg"><img src="display/N2-a_1200x1200.jpg" alt="N2-a 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Pay 8x less. 40% off annual</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. That&#x27;s 8x less than per-contact pricing for the same emails.* Same emails, a fraction of the bill. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.<br><br>*Example: 25,000 contacts, 2 emails per contact a month. Per-contact pricing: $400/mo. Brevo PushOwl annual plan with code BFCM2026: $40.50/mo, billed yearly.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>8x cap: the true rounded-down multiple is 9x (9.88), shown as 8x, so the approved &#x27;Pay 8x less&#x27; headline is unchanged; only the price became $40.50/mo</li></ul>
+</section><section class="slot" id="N2-b">
+  <h2>N2-b<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N2-b_c1_1080.jpg" alt="N2-b c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N2-b_d1.jpg"><img src="img/N2-b_d1_1080.jpg" alt="N2-b d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N2-b_1200x628.jpg"><img src="display/N2-b_1200x628.jpg" alt="N2-b 1200x628" loading="lazy"></a>
+    <a href="display/N2-b_1080x1350.jpg"><img src="display/N2-b_1080x1350.jpg" alt="N2-b 1080x1350" loading="lazy"></a>
+    <a href="display/N2-b_1200x1200.jpg"><img src="display/N2-b_1200x1200.jpg" alt="N2-b 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>20,000 contacts? Pay 8x less</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. 20,000 contacts? Pay 8x less for email.* Your list stays, your bill shrinks. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.<br><br>*Example: 20,000 contacts, 2 emails per contact a month. Per-contact pricing: $375/mo. Brevo PushOwl annual plan with code BFCM2026: $40.50/mo, billed yearly.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>8x cap: true multiple 9x (9.26), shown as 8x (&#x27;Pay 7x&#x27; became &#x27;Pay 8x&#x27;)</li></ul>
+</section><section class="slot" id="N2-c">
+  <h2>N2-c<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N2-c_c1_1080.jpg" alt="N2-c c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N2-c_d1.jpg"><img src="img/N2-c_d1_1080.jpg" alt="N2-c d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N2-c_1200x628.jpg"><img src="display/N2-c_1200x628.jpg" alt="N2-c 1200x628" loading="lazy"></a>
+    <a href="display/N2-c_1080x1350.jpg"><img src="display/N2-c_1080x1350.jpg" alt="N2-c 1080x1350" loading="lazy"></a>
+    <a href="display/N2-c_1200x1200.jpg"><img src="display/N2-c_1200x1200.jpg" alt="N2-c 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Same contacts. 8x smaller bill.</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Same 15,000 contacts. 8x smaller email bill.* Pay for the emails you send, not the people on your list. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.<br><br>*Example: 15,000 contacts, 2 emails per contact a month. Per-contact pricing: $350/mo. Brevo PushOwl annual plan with code BFCM2026: $40.50/mo, billed yearly.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N2-d">
+  <h2>N2-d<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N2-d_c1_1080.jpg" alt="N2-d c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N2-d_d1.jpg"><img src="img/N2-d_d1_1080.jpg" alt="N2-d d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N2-d_1200x628.jpg"><img src="display/N2-d_1200x628.jpg" alt="N2-d 1200x628" loading="lazy"></a>
+    <a href="display/N2-d_1080x1350.jpg"><img src="display/N2-d_1080x1350.jpg" alt="N2-d 1080x1350" loading="lazy"></a>
+    <a href="display/N2-d_1200x1200.jpg"><img src="display/N2-d_1200x1200.jpg" alt="N2-d 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Email more. Still pay 7x less.</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Sending 3 emails a month? Still 7x less.* Pay per email, not per contact. Paid plans also come with migration, a $300 strategy session, Black Friday ads and $200 in ad credits.<br><br>*Example: 20,000 contacts, 3 emails per contact a month. Per-contact pricing: $375/mo. Brevo PushOwl annual plan with code BFCM2026: $50.76/mo, billed yearly.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>First edit passed OCR but failed by eye (voucher line 2 ran under Claim now); replaced by edit3. In the replacement the Claim now pill sits inside the voucher instead of overlapping its bottom edge</li></ul>
+</section><section class="slot" id="N3-a">
+  <h2>N3-a<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N3-a_c1_1080.jpg" alt="N3-a c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N3-a_d1.jpg"><img src="img/N3-a_d1_1080.jpg" alt="N3-a d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N3-a_1200x628.jpg"><img src="display/N3-a_1200x628.jpg" alt="N3-a 1200x628" loading="lazy"></a>
+    <a href="display/N3-a_1080x1350.jpg"><img src="display/N3-a_1080x1350.jpg" alt="N3-a 1080x1350" loading="lazy"></a>
+    <a href="display/N3-a_1200x1200.jpg"><img src="display/N3-a_1200x1200.jpg" alt="N3-a 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Up to 40% off, and we move you over</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Switching email tools before Black Friday? We move you over, and a strategist sets up your Black Friday with you. It&#x27;s a $300 session, included with your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Approved art calls an extra free (&#x27;We move everything for free.&#x27;, &#x27;$300 strategy session: free&#x27;); kept, the Meta copy says included with your paid plan</li></ul>
+</section><section class="slot" id="N3-b">
+  <h2>N3-b<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N3-b_c1_1080.jpg" alt="N3-b c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N3-b_d1.jpg"><img src="img/N3-b_d1_1080.jpg" alt="N3-b d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N3-b_1200x628.jpg"><img src="display/N3-b_1200x628.jpg" alt="N3-b 1200x628" loading="lazy"></a>
+    <a href="display/N3-b_1080x1350.jpg"><img src="display/N3-b_1080x1350.jpg" alt="N3-b 1080x1350" loading="lazy"></a>
+    <a href="display/N3-b_1200x1200.jpg"><img src="display/N3-b_1200x1200.jpg" alt="N3-b 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Switch before Black Friday. 40% off</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Too busy to switch tools in November? Our team moves you over and sets up your Black Friday with you. It&#x27;s all included with your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Approved art calls an extra free (chat bubble &#x27;Yes, for free. Want a free $300 strategy session too?&#x27;); kept</li></ul>
+</section><section class="slot" id="N3-c">
+  <h2>N3-c<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N3-c_c1_1080.jpg" alt="N3-c c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N3-c_d1.jpg"><img src="img/N3-c_d1_1080.jpg" alt="N3-c d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N3-c_1200x628.jpg"><img src="display/N3-c_1200x628.jpg" alt="N3-c 1200x628" loading="lazy"></a>
+    <a href="display/N3-c_1080x1350.jpg"><img src="display/N3-c_1080x1350.jpg" alt="N3-c 1080x1350" loading="lazy"></a>
+    <a href="display/N3-c_1200x1200.jpg"><img src="display/N3-c_1200x1200.jpg" alt="N3-c 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Up to 40% off, plus $300 of setup</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. A $300 strategy session. Your migration. Black Friday ads for your store. All included with your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Receipt total &#x27;Your setup cost: $0&#x27; rewritten to &#x27;Included with your plan&#x27; ($0 is banned anywhere); headline &#x27;for free&#x27; and FREE pills kept from the approved art</li></ul>
+</section><section class="slot" id="N3-d">
+  <h2>N3-d<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N3-d_c1_1080.jpg" alt="N3-d c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N3-d_d1.jpg"><img src="img/N3-d_d1_1080.jpg" alt="N3-d d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N3-d_1200x628.jpg"><img src="display/N3-d_1200x628.jpg" alt="N3-d 1200x628" loading="lazy"></a>
+    <a href="display/N3-d_1080x1350.jpg"><img src="display/N3-d_1080x1350.jpg" alt="N3-d 1080x1350" loading="lazy"></a>
+    <a href="display/N3-d_1200x1200.jpg"><img src="display/N3-d_1200x1200.jpg" alt="N3-d 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Get set up before Black Friday</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Black Friday is on 27 Nov. Get your email and push set up before then. Migration and a $300 strategy session come with your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Approved art calls an extra free (sticky note &#x27;Get your email set up free before then&#x27;); kept</li></ul>
+</section><section class="slot" id="N4-a">
+  <h2>N4-a<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N4-a_c1_1080.jpg" alt="N4-a c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N4-a_d1.jpg"><img src="img/N4-a_d1_1080.jpg" alt="N4-a d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N4-a_1200x628.jpg"><img src="display/N4-a_1200x628.jpg" alt="N4-a 1200x628" loading="lazy"></a>
+    <a href="display/N4-a_1080x1350.jpg"><img src="display/N4-a_1080x1350.jpg" alt="N4-a 1080x1350" loading="lazy"></a>
+    <a href="display/N4-a_1200x1200.jpg"><img src="display/N4-a_1200x1200.jpg" alt="N4-a 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Up to 40% off, plus ads from your store</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Paste your store link and get Black Friday ads made from your own products. Your paid plan includes $200 in ad credits.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Approved art calls an extra free (pill &#x27;$200 in ad credits: free&#x27;); kept. Example ads carry their own &#x27;40% off&#x27; and &#x27;Free US shipping&#x27; small print (approved)</li></ul>
+</section><section class="slot" id="N4-b">
+  <h2>N4-b<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N4-b_c1_1080.jpg" alt="N4-b c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N4-b_d1.jpg"><img src="img/N4-b_d1_1080.jpg" alt="N4-b d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N4-b_1200x628.jpg"><img src="display/N4-b_1200x628.jpg" alt="N4-b 1200x628" loading="lazy"></a>
+    <a href="display/N4-b_1080x1350.jpg"><img src="display/N4-b_1080x1350.jpg" alt="N4-b 1080x1350" loading="lazy"></a>
+    <a href="display/N4-b_1200x1200.jpg"><img src="display/N4-b_1200x1200.jpg" alt="N4-b 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Get your Black Friday ads live</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Your competitors&#x27; Black Friday ads are already live. Get yours made from your store in one click, with $200 in ad credits on your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  
+</section><section class="slot" id="N4-c">
+  <h2>N4-c<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N4-c_c1_1080.jpg" alt="N4-c c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N4-c_d1.jpg"><img src="img/N4-c_d1_1080.jpg" alt="N4-c d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N4-c_1200x628.jpg"><img src="display/N4-c_1200x628.jpg" alt="N4-c 1200x628" loading="lazy"></a>
+    <a href="display/N4-c_1080x1350.jpg"><img src="display/N4-c_1080x1350.jpg" alt="N4-c 1080x1350" loading="lazy"></a>
+    <a href="display/N4-c_1200x1200.jpg"><img src="display/N4-c_1200x1200.jpg" alt="N4-c 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Up to 40% off, plus $200 in ad credits</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. Get $200 in ad credits for Black Friday ads made from your store in one click. They come with your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Scoreboard middle row &#x27;YOU PAY $0&#x27; rewritten to &#x27;ANNUAL 40% OFF&#x27; ($0 is banned anywhere); headline &#x27;$200 in free ad credits&#x27; kept</li></ul>
+</section><section class="slot" id="N4-d">
+  <h2>N4-d<span class="qa pass">QA pass</span></h2>
+  <div class="pair">
+    <figure><img src="img/N4-d_c1_1080.jpg" alt="N4-d c1 (live now)" loading="lazy"><figcaption>c1, live now: "Your first bill is on us."</figcaption></figure>
+    <figure><a href="img/N4-d_d1.jpg"><img src="img/N4-d_d1_1080.jpg" alt="N4-d d1" loading="lazy"></a><figcaption>d1, new: 40% off annual, 30% off monthly</figcaption></figure>
+  </div>
+  <div class="disp"><a href="display/N4-d_1200x628.jpg"><img src="display/N4-d_1200x628.jpg" alt="N4-d 1200x628" loading="lazy"></a>
+    <a href="display/N4-d_1080x1350.jpg"><img src="display/N4-d_1080x1350.jpg" alt="N4-d 1080x1350" loading="lazy"></a>
+    <a href="display/N4-d_1200x1200.jpg"><img src="display/N4-d_1200x1200.jpg" alt="N4-d 1200x1200" loading="lazy"></a></div>
+  <dl class="copy"><dt>Headline</dt><dd>Your product photo, now an ad</dd><dt>Primary text</dt><dd>40% off annual plans or 30% off monthly with code BFCM2026, until 30 Nov. One product photo in, Black Friday ads out. Brevo PushOwl turns your store into ready-to-run ads, with $200 in ad credits on your paid plan.</dd>
+  <dt>Description</dt><dd>New and free-plan stores. Ends 30 Nov.</dd></dl>
+  <ul class="flags"><li>Example ads carry their own &#x27;40% off&#x27; / &#x27;$40 $24&#x27; small print (approved art)</li></ul>
+</section>
+</main></body></html>
