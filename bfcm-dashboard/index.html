@@ -381,7 +381,6 @@ function render(d){
     tile("Cost per install", cpiTxt, cpiNote + " · " + LENS_LABEL[state.lens], "", "") +
     tile("Cost per claim", cpcl == null ? "n/a" : fmtMoney(cpcl), cpclNote + " · Meta + Google spend / their claims", "", "") +
     waitTile("Redemptions", d.redemptions.total, d.redemptions.state, d.redemptions.state === "live" ? "New " + fmtInt(d.redemptions.new) + " · Existing free " + fmtInt(d.redemptions.existing_free) : (d.redemptions.state === "tags" ? d.redemptions.source : "Counts stores that apply BFCM2026 and start a plan")) +
-    waitTile("$0 first-month starts", d.redemptions.zero_month, d.redemptions.state, "New stores starting on the $0 first month") +
     waitTile("First paid charges", d.redemptions.first_charge, d.redemptions.state === "live" ? "live" : "waiting", "First non-zero charge after redeeming") +
     tile("Calls booked", fmtInt(h.calls_booked), "Strategy call (Calendly) · " + fmtInt(d.calls.upcoming) + " upcoming", "", "") +
     '</div></section>');
@@ -459,9 +458,9 @@ function render(d){
     (E.campaigns.length ? '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Broadcast</th><th>Sent</th><th>Delivered</th><th>Unique clicks</th><th>Click rate</th><th>Unsubscribes</th></tr></thead><tbody>' + E.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td>' + fmtInt(c.sent) + '</td><td>' + fmtInt(c.delivered) + '</td><td>' + fmtInt(c.unique_clicks) + '</td><td>' + fmtPct(c.click_rate) + '</td><td>' + fmtInt(c.unsubscriptions) + '</td></tr>'; }).join("") + '</tbody></table></div>' : '<p class="sub" style="margin-top:10px">No BFCM broadcast has been sent yet (D1 to D3 show here with sent, delivered, clicks and unsubscribes once they go out).</p>') +
     '</div><div class="card pad"><b style="font-size:13px">Intercom cohorts (contacts)</b><div class="kv" style="margin-top:8px">' +
     '<div><b>' + fmtInt(ic.existing_free) + '</b><span>Existing free</span></div><div><b>' + fmtInt(ic.new_since_14oct) + '</b><span>New since 14 Oct</span></div><div><b>' + fmtInt(ic.page_lead) + '</b><span>BFCM page lead</span></div>' +
-    '<div><b>' + (ic.used == null ? "not yet" : fmtInt(ic.used)) + '</b><span>Tag "BFCM2026 used"</span></div><div><b>' + (ic.zero_month == null ? "not yet" : fmtInt(ic.zero_month)) + '</b><span>Tag "BFCM2026 $0 month"</span></div>' +
+    '<div><b>' + (ic.used == null ? "not yet" : fmtInt(ic.used)) + '</b><span>Tag "BFCM2026 used"</span></div>' +
     '<div><b>' + (d.redemptions.migrations == null ? "not yet" : fmtInt(d.redemptions.migrations)) + '</b><span>Migration requests</span></div></div>' +
-    '<p class="sub" style="margin-top:10px">The two BFCM2026 tags and the "BFCM migration" conversation tag don\'t exist yet. They count here as soon as engineering and CX start using them. Per-message Intercom stats are not pulled yet.</p></div></div></section>');
+    '<p class="sub" style="margin-top:10px">The BFCM2026 tag and the "BFCM migration" conversation tag don\'t exist yet. They count here as soon as engineering and CX start using them. Per-message Intercom stats are not pulled yet.</p></div></div></section>');
 
   // 10. creators
   var C = d.creators, ct = C.totals[state.creators];
