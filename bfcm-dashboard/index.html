@@ -10,7 +10,7 @@
 :root{
   color-scheme: light;
   --bg:#f6f5f2; --surface:#fcfcfb; --surface-2:#f0efec; --line:#e2e0da; --line-2:#cfccc4;
-  --text:#121211; --text-2:#52514e; --muted:#7a7873;
+  --text:#121211; --text-2:#52514e; --muted:#6b6964;
   --accent:#006a43; --accent-soft:#e3f1ea;
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s7:#4a3aa7;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
@@ -105,6 +105,10 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
 .funnel .track{background:var(--surface-2);border-radius:0 4px 4px 0;height:14px}
 .funnel .n{text-align:right;font-weight:600}
 .funnel .r{text-align:right;color:var(--text-2);font-size:12px}
+.funnel .r.over{color:var(--muted);font-style:italic}
+.legend i.band{background:var(--surface-2);border:1px solid var(--line-2)}
+.info{font-size:12.5px;color:var(--text-2);border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;margin-top:14px}
+.info b{color:var(--text)}
 .funnel .src{font-size:11px;color:var(--muted)}
 .lens{padding:14px;display:flex;flex-direction:column;gap:4px}
 .lens.active{outline:2px solid var(--text);outline-offset:-1px}
@@ -132,6 +136,12 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
 .toggle-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .hide{display:none!important}
 @media (max-width:640px){
+  header.top{position:static}
+  #range{display:grid;grid-template-columns:repeat(3,1fr);width:100%}
+  #range button{border-bottom:1px solid var(--line);padding:8px 6px}
+  #range button:nth-child(3n){border-right:0}
+  #range button:nth-last-child(-n+3){border-bottom:0}
+  .pills{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px}
   .tile .v{font-size:22px}
   .funnel .row{grid-template-columns:110px 1fr 70px 52px;gap:6px}
   .top h1{font-size:15px}
@@ -162,7 +172,8 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
       <button type="button" data-r="today">Today</button>
       <button type="button" data-r="yesterday">Yesterday</button>
       <button type="button" data-r="7d">Last 7 days</button>
-      <button type="button" data-r="all" aria-pressed="true">Since 14 Oct</button>
+      <button type="button" data-r="relaunch" aria-pressed="true" title="Fresh start: counts from the relaunch on 20 Oct, 19:07 IST">Since relaunch, 20 Oct</button>
+      <button type="button" data-r="all" title="Includes the 16 Oct launch and the pause before the relaunch">Since 14 Oct</button>
       <button type="button" data-r="custom">Custom</button>
     </div>
     <span id="custom" class="hide"><input type="date" id="from" aria-label="From"> <input type="date" id="to" aria-label="To"></span>
@@ -180,6 +191,7 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
     </div>
   </div>
   <div class="alerts" id="alerts"></div>
+  <div id="context"></div>
   <div id="content"><p class="sub" style="margin-top:30px">Loading the numbers.</p></div>
 </main>
 
@@ -190,7 +202,9 @@ var API = "https://bfcm-dash.winningstatics.workers.dev";
 var LS = { get:function(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }, set:function(k,v){ try { localStorage.setItem(k,v); } catch(_){} } };
 // Inside a sandboxed frame (the Omni app wrapper) the page has no origin: storage and history writes can throw.
 function dropHash(){ try { history.replaceState(null, "", location.pathname + location.search); } catch(_){} }
-var state = { range:"all", from:null, to:null, channel:"all", lens:LS.get("bfcm_lens") || "ga4", creators:"bfcm", data:null };
+// Fresh start (Farooq, 20 Oct): the default range counts from the relaunch on 20 Oct 2026, 19:07 IST.
+var RELAUNCH_DAY = "2026-10-20";
+var state = { range:"relaunch", from:null, to:null, channel:"all", lens:LS.get("bfcm_lens") || "ga4", creators:"bfcm", data:null };
 
 // ---------- view key: #k=... in the link (never sent to any server except as a header), kept in this browser
 var key = (location.hash.match(/[#&]k=([^&]+)/) || [])[1] || LS.get("bfcm_view_key");
@@ -253,7 +267,8 @@ var charts = {};
 function chart(id, opt){
   charts[id] = opt;
   return '<div class="legend">' + opt.series.map(function(s){ return '<span><i class="' + (opt.type === "line" ? "line" : "") + '" style="background:' + s.color + '"></i>' + esc(s.name) + '</span>'; }).join("") +
-    (opt.refs || []).map(function(r){ return '<span><i class="dash"></i>' + esc(r.label) + '</span>'; }).join("") + '</div><div class="chart" id="' + id + '"></div>';
+    (opt.refs || []).map(function(r){ return '<span><i class="dash"></i>' + esc(r.label) + '</span>'; }).join("") +
+    ((opt.bands || []).some(Boolean) ? '<span><i class="band"></i>Ads paused</span>' : '') + '</div><div class="chart" id="' + id + '"></div>';
 }
 function drawCharts(){
   Object.keys(charts).forEach(function(id){
@@ -263,10 +278,12 @@ function drawCharts(){
     var totals = x.map(function(_, i){ return o.type === "stack" ? o.series.reduce(function(a, s){ return a + (n(s.values[i]) || 0); }, 0) : Math.max.apply(null, o.series.map(function(s){ return n(s.values[i]) || 0; })); });
     var max = Math.max.apply(null, totals.concat((o.refs || []).map(function(r){ return r.y; }))) || 1;
     max = niceMax(max);
+    if (!o.yfmt && max < 4) max = 4; // whole-number axes: keep the four gridlines on integers
     var Y = function(v){ return padT + ih - (v / max) * ih; };
     var bw = iw / nX, X = function(i){ return padL + bw * i + bw / 2; };
     var g = [];
     var grid = css("--line"), muted = css("--muted"), surface = css("--surface");
+    (o.bands || []).forEach(function(b, i){ if (b) g.push('<rect x="' + (padL + bw * i) + '" y="' + padT + '" width="' + bw + '" height="' + ih + '" fill="' + css("--surface-2") + '"/>'); });
     for (var k = 0; k <= 4; k++) { var v = max * k / 4, yy = Y(v); g.push('<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="' + grid + '" stroke-width="1"/>'); g.push('<text x="' + (padL - 8) + '" y="' + (yy + 4) + '" text-anchor="end" font-size="11" fill="' + muted + '">' + (o.yfmt || fmtInt)(v) + '</text>'); }
     var every = Math.ceil(nX / Math.max(2, Math.floor(iw / 64)));
     x.forEach(function(d, i){ if (i % every === 0 || i === nX - 1) g.push('<text x="' + X(i) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="11" fill="' + muted + '">' + fmtDay(d) + '</text>'); });
@@ -320,6 +337,7 @@ function params(){
   else if (state.range === "yesterday") from = to = istDay(-1);
   else if (state.range === "7d") { from = istDay(-6); to = today; }
   else if (state.range === "custom") { from = state.from || "2026-10-14"; to = state.to || today; }
+  else if (state.range === "relaunch") { from = RELAUNCH_DAY < today ? RELAUNCH_DAY : today; to = today; return "from=" + from + "&to=" + to + "&since=relaunch&channel=" + state.channel; }
   else { from = "2026-10-14"; to = today; }
   return "from=" + from + "&to=" + to + "&channel=" + state.channel;
 }
@@ -355,7 +373,8 @@ var CH_LABEL = { meta:"Meta", google:"Google", email:"Email", intercom:"Intercom
 function render(d){
   charts = {}; sparkData = {};
   document.getElementById("filters").classList.remove("hide");
-  document.getElementById("phase").textContent = d.phase.label;
+  var ph = document.getElementById("phase"); ph.textContent = d.phase.label; ph.title = d.phase.eligibility ? "Eligible: " + clean(d.phase.eligibility) : "";
+  context(d);
   document.getElementById("updated").textContent = "Updated " + ago(d.generated_at) + " · IST days";
   countdown(d.phase.deadline);
   pills(d.health);
@@ -374,19 +393,19 @@ function render(d){
   var cpclNote = cpcl == null ? "no claims or no spend yet" : (cpcl <= claimT ? '<span class="up">within the $' + claimT + ' target</span>' : '<span class="down">above the $' + claimT + ' target</span>');
   out.push('<section class="block"><h2>Headline</h2><p class="sub">' + esc(rangeText(d.range)) + '. Change is today against yesterday (IST). Sparklines are the last 48 hours, hourly.</p><div class="tiles">' +
     tile("Spend", fmtMoney(h.spend), "Meta " + fmtMoney(h.meta_spend) + " · Google " + fmtMoney(h.google_spend) + " · Creators " + fmtMoney(h.creator_spend), sparkline(sp.spend, sp.hours, fmtMoney), delta(vs.today.spend, vs.yesterday.spend, fmtMoney)) +
-    tile("LP sessions", fmtInt(h.lp_sessions), "First-party beacon. GA4 sees " + fmtInt(h.ga4_lp_sessions), sparkline(sp.lp_sessions, sp.hours), delta(vs.today.lp_sessions, vs.yesterday.lp_sessions)) +
+    tile("LP sessions", fmtInt(h.lp_sessions), "First-party beacon, people only. GA4 sees " + fmtInt(h.ga4_lp_sessions) + " (ad-review crawlers included)", sparkline(sp.lp_sessions, sp.hours), delta(vs.today.lp_sessions, vs.yesterday.lp_sessions)) +
     tile("Leads", h.leads == null ? "n/a" : fmtInt(h.leads), "Emails in the claim box · " + fmtInt(h.consent) + " opted in", sparkline(sp.leads, sp.hours), delta(vs.today.leads, vs.yesterday.leads)) +
     tile("App Store clicks", fmtInt(h.appstore_clicks), fmtInt(h.brevo_clicks) + " went to Brevo instead", sparkline(sp.appstore_clicks, sp.hours), delta(vs.today.appstore_clicks, vs.yesterday.appstore_clicks)) +
-    tile("Installs", lensInstalls == null ? "n/a" : fmtInt(lensInstalls), "Lens: " + LENS_LABEL[state.lens] + (state.lens === "intercom" ? " · " + fmtInt(L.new_stores) + " new stores" : ""), state.lens === "intercom" ? sparkline(sp.intercom_installs, sp.hours) : state.lens === "ga4" ? sparkline(sp.ga4_installs, sp.hours) : "", state.lens === "intercom" ? delta(vs.today.intercom_installs, vs.yesterday.intercom_installs) : state.lens === "ga4" ? delta(vs.today.ga4_installs, vs.yesterday.ga4_installs) : state.lens === "platform" ? delta(vs.today.meta_installs, vs.yesterday.meta_installs) : "") +
+    tile("Installs", lensInstalls == null ? "n/a" : fmtInt(lensInstalls), "Lens: " + LENS_LABEL[state.lens] + (state.lens === "intercom" ? " · " + fmtInt(L.new_stores) + " new stores" : "") + (state.lens === "ga4" && d.ga4.data_through && d.ga4.data_through.store ? " · GA4 data through " + esc(d.ga4.data_through.store) : ""), state.lens === "intercom" ? sparkline(sp.intercom_installs, sp.hours) : state.lens === "ga4" ? sparkline(sp.ga4_installs, sp.hours) : "", state.lens === "intercom" ? delta(vs.today.intercom_installs, vs.yesterday.intercom_installs) : state.lens === "ga4" ? delta(vs.today.ga4_installs, vs.yesterday.ga4_installs) : state.lens === "platform" ? delta(vs.today.meta_installs, vs.yesterday.meta_installs) : "") +
     tile("Cost per install", cpiTxt, cpiNote + " · " + LENS_LABEL[state.lens], "", "") +
     tile("Cost per claim", cpcl == null ? "n/a" : fmtMoney(cpcl), cpclNote + " · Meta + Google spend / their claims", "", "") +
     waitTile("Redemptions", d.redemptions.total, d.redemptions.state, d.redemptions.state === "live" ? "New " + fmtInt(d.redemptions.new) + " · Existing free " + fmtInt(d.redemptions.existing_free) : (d.redemptions.state === "tags" ? d.redemptions.source : "Counts stores that apply BFCM2026 and start a plan")) +
-    waitTile("First paid charges", d.redemptions.first_charge, d.redemptions.state === "live" ? "live" : "waiting", "First non-zero charge after redeeming") +
+    waitTile("First paid charges", d.redemptions.first_charge, d.redemptions.state === "live" ? "live" : "waiting", "First charge at the BFCM price after redeeming") +
     tile("Calls booked", fmtInt(h.calls_booked), "Strategy call (Calendly) · " + fmtInt(d.calls.upcoming) + " upcoming", "", "") +
     '</div></section>');
 
   // 2. funnel
-  out.push('<section class="block"><h2>Funnel</h2><p class="sub">Each bar is scaled within its group. The rate is against the step above it. LP numbers come from the first-party beacon (people only: bots, link previewers and test hits are left out).</p><div class="card pad funnel">' + funnel(d.funnel) + '</div></section>');
+  out.push('<section class="block"><h2>Funnel</h2><p class="sub">Each bar is scaled within its group. Each rate is against the step named under it. LP numbers come from the first-party beacon (people only: bots, ad-review crawlers, link previewers and test hits are left out). A rate in italics is above 100%: the two steps count different things, so read it as a ratio, not a conversion.</p><div class="card pad funnel">' + funnel(d.funnel) + '</div></section>');
 
   // 3. installs, three lenses (never added together)
   out.push('<section class="block"><h2>Installs, side by side</h2><p class="sub">Four ways of counting installs. They measure different things and are never added together. Click one to make it the lens for the headline and cost per install.</p><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))">' +
@@ -403,22 +422,29 @@ function render(d){
     '<div class="note"><b>Why the counts differ.</b> Intercom counts every store with an install date in range, from any source. GA4 only sees installs whose App Store session kept its tracking, so it runs lower. The app backend event counts install events, including reinstalls. Use GA4 by UTM to compare channels, Intercom for the total.</div></div></section>');
 
   // 4. pacing
-  var pc = d.pacing;
-  out.push('<section class="block"><h2>Spend and pacing</h2><p class="sub">Daily spend against the Meta plan of ' + fmtMoney(pc.meta_daily_plan) + ' a day (ad set budgets) and Google ' + fmtMoney(pc.google_daily_plan) + '. Today so far: Meta ' + fmtMoney(pc.meta_today) + ' of ' + fmtMoney(pc.meta_expected_now) + ' expected by now, Google ' + fmtMoney(pc.google_today) + '. Live Meta budgets right now: ' + fmtMoney(pc.meta_active_budget) + ' a day. ' + pc.days_left + ' days to the deadline.</p><div class="grid2"><div class="card pad"><b style="font-size:13px">Spend per day</b>' +
-    chart("c_spend", { type:"stack", label:"Spend per day", yfmt:fmtMoney, x:d.daily.map(function(r){ return r.d; }), series:[
+  var pc = d.pacing, pauseIdx = pausedDays(d);
+  var pullAt = pc.meta_as_of ? istTime(pc.meta_as_of) : "n/a";
+  var metaLine = pc.meta_live
+    ? "Meta is live on " + fmtMoney(pc.meta_active_budget) + " a day of ad set budgets (at the " + pullAt + " pull). Today by that pull: " + fmtMoney(pc.meta_today) + (pc.meta_expected_at_pull != null ? " of " + fmtMoney(pc.meta_expected_at_pull) + " expected for the hours it was live" : "") + "."
+    : "Meta was not delivering at the " + pullAt + " pull" + (d.relaunch && pc.meta_as_of && Date.parse(pc.meta_as_of) < Date.parse(d.relaunch.at) ? " (that pull was before the relaunch; the next one is " + nextPull() + ")" : "") + ".";
+  var planLine = pc.to_date_plan ? " Plan to date " + fmtMoney(pc.to_date_plan) + " (" + fmtMoney(pc.meta_daily_plan) + " a day over " + (Math.round(pc.live_hours * 10) / 10) + " live hours, prorated from " + (d.range.since ? "the relaunch" : "the 16 Oct launch") + ", pauses left out) against Meta spend " + fmtMoney(pc.to_date_meta) + (pc.to_date_pct != null ? " (" + fmtPct(pc.to_date_pct) + ")" : "") + "." : " No live Meta hours in this range up to the last pull, so there is no plan to compare yet.";
+  var googleLine = pc.google_live ? " Google BFCM26 is live (plan " + fmtMoney(pc.google_daily_plan) + " a day)." : " Google BFCM26 campaigns are paused (last pull); they restart when enabled in Google Ads.";
+  var planRef = pc.meta_daily_plan + (pc.google_live ? pc.google_daily_plan : 0);
+  out.push('<section class="block"><h2>Spend and pacing</h2><p class="sub">' + esc(metaLine + planLine + googleLine) + (pc.paused_days && pc.paused_days.length ? " " + esc("No Meta spend on " + pc.paused_days.map(fmtDay).join(", ") + " (paused): those days are shaded and left out of the plan.") : "") + " " + pc.days_left + ' days to the deadline.</p><div class="grid2"><div class="card pad"><b style="font-size:13px">Spend per day</b>' +
+    chart("c_spend", { type:"stack", label:"Spend per day", yfmt:fmtMoney, bands:pauseIdx, x:d.daily.map(function(r){ return r.d; }), series:[
       { name:"Meta", color:css("--s1"), values:d.daily.map(function(r){ return r.meta_spend; }) },
       { name:"Google", color:css("--s2"), values:d.daily.map(function(r){ return r.google_spend; }) },
       { name:"Creators (on live date)", color:css("--s3"), values:d.daily.map(function(r){ return r.creator_spend; }) } ],
-      refs:[{ y:pc.meta_daily_plan + pc.google_daily_plan, label:"Plan " + fmtMoney(pc.meta_daily_plan + pc.google_daily_plan) + " a day" }] }) +
+      refs:[{ y:planRef, label:(pc.google_live ? "Meta + Google plan " : "Meta plan ") + fmtMoney(planRef) + " a day" }] }) +
     '</div><div class="card pad"><b style="font-size:13px">Meta cost per install per day</b>' +
-    chart("c_cpi", { type:"line", label:"Meta CPI per day", yfmt:fmtMoney, x:d.daily.map(function(r){ return r.d; }), series:[
+    chart("c_cpi", { type:"line", label:"Meta CPI per day", yfmt:fmtMoney, bands:pauseIdx, x:d.daily.map(function(r){ return r.d; }), series:[
       { name:"Meta CPI", color:css("--s1"), values:d.daily.map(function(r){ return r.meta_installs ? r.meta_spend / r.meta_installs : null; }) } ],
       refs:[{ y:d.targets.cpi_target, label:"Target $" + d.targets.cpi_target }, { y:d.targets.cpi_ceiling, label:"Ceiling $" + d.targets.cpi_ceiling }] }) +
     '</div></div></section>');
 
   // 5. traffic per day
   out.push('<section class="block"><h2>Traffic and leads per day</h2><div class="card pad">' +
-    chart("c_traffic", { type:"line", label:"Traffic per day", x:d.daily.map(function(r){ return r.d; }), series:[
+    chart("c_traffic", { type:"line", label:"Traffic per day", bands:pauseIdx, x:d.daily.map(function(r){ return r.d; }), series:[
       { name:"LP sessions (beacon)", color:css("--s1"), values:d.daily.map(function(r){ return r.lp_sessions; }) },
       { name:"LP sessions (GA4)", color:css("--s2"), values:d.daily.map(function(r){ return r.ga4_lp_sessions; }) },
       { name:"Leads", color:css("--s3"), values:d.daily.map(function(r){ return r.leads; }) },
@@ -432,7 +458,7 @@ function render(d){
 
   // 7. meta
   var M = d.meta;
-  out.push('<section class="block"><h2>Meta</h2><p class="sub">BFCM campaigns only (registry). Installs are Purchase on the App Store pixel, 7-day click and 1-day view, so they restate for up to 28 days. Verdicts use the $' + d.targets.cpi_target + ' target and $' + d.targets.cpi_ceiling + ' ceiling.</p>' +
+  out.push('<section class="block"><h2>Meta</h2><p class="sub">BFCM campaigns only (registry). Installs are Purchase on the App Store pixel, 7-day click and 1-day view, so they restate for up to 28 days. Verdicts use the $' + d.targets.cpi_target + ' target and $' + d.targets.cpi_ceiling + ' ceiling. Statuses and numbers as of the ' + esc(M.as_of ? istTime(M.as_of) : "last") + ' pull; archived ads with no spend in this range are hidden.</p>' +
     '<div class="card tbl"><table><thead><tr><th>Ad set</th><th class="l">Status</th><th>Budget a day</th><th>Spend</th><th>CTR</th><th>CPC</th><th>LP views</th><th>Installs</th><th>CPI</th><th>Frequency</th><th class="l">Verdict</th></tr></thead><tbody>' +
     (M.adsets.length ? M.adsets.map(function(s){ return '<tr><td>' + esc(s.name) + '</td><td class="l">' + status(s.status) + '</td><td>' + fmtMoney(s.daily_budget) + '</td><td>' + fmtMoney(s.spend) + '</td><td>' + (s.ctr == null ? "" : fmtPct(s.ctr)) + '</td><td>' + (s.cpc == null ? "" : fmtMoney(s.cpc)) + '</td><td>' + fmtInt(s.lp_views) + '</td><td>' + fmtInt(s.installs) + '</td><td>' + (s.cpi == null ? "" : fmtMoney(s.cpi)) + '</td><td>' + (s.frequency == null ? "" : s.frequency.toFixed(2)) + '</td><td class="l">' + esc(s.verdict) + '</td></tr>'; }).join("") : '<tr><td colspan="11">No BFCM ad sets yet.</td></tr>') +
     '</tbody></table></div>' +
@@ -442,8 +468,8 @@ function render(d){
 
   // 8. google
   var G = d.google;
-  out.push('<section class="block"><h2>Google</h2><p class="sub">BFCM campaigns (YouTube Demand Gen, Demand Gen images, Display remarketing) appear here once they exist and have a BFCM name. Bidding goal is "BFCM claim", so the headline number is cost per claim.</p><div class="card tbl"><table><thead><tr><th>Campaign</th><th class="l">Status</th><th>Spend</th><th>Impressions</th><th>Views</th><th>Clicks</th><th>BFCM claims</th><th>Cost per claim</th><th>Installs (GA4 import)</th></tr></thead><tbody>' +
-    (G.campaigns.length ? G.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td class="l">' + status(c.status) + '</td><td>' + fmtMoney(c.spend) + '</td><td>' + fmtInt(c.impressions) + '</td><td>' + fmtInt(c.views) + '</td><td>' + fmtInt(c.clicks) + '</td><td>' + fmtInt(c.claims) + '</td><td>' + (c.cost_per_claim == null ? "" : fmtMoney(c.cost_per_claim)) + '</td><td>' + fmtInt(c.installs) + '</td></tr>'; }).join("") : '<tr><td colspan="9">No BFCM Google campaign has been created yet.</td></tr>') +
+  out.push('<section class="block"><h2>Google</h2><p class="sub">BFCM campaigns (name contains BFCM). Google bids on "BFCM claim", so the number to watch is cost per claim (target $' + (d.targets.claim_target || 5) + '). Statuses and numbers as of the ' + esc(G.as_of ? istTime(G.as_of) : "last") + ' pull.</p><div class="card tbl"><table><thead><tr><th>Campaign</th><th class="l">Status</th><th>Spend</th><th>Impressions</th><th>Views</th><th>Clicks</th><th>BFCM claims</th><th>Cost per claim</th><th>Installs (GA4 import)</th></tr></thead><tbody>' +
+    (G.campaigns.length ? G.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td class="l">' + status(c.status) + '</td><td>' + fmtMoney(c.spend) + '</td><td>' + fmtInt(c.impressions) + '</td><td>' + fmtInt(c.views) + '</td><td>' + fmtInt(c.clicks) + '</td><td>' + fmtInt(c.claims) + '</td><td' + (c.cost_per_claim != null && c.cost_per_claim > (d.targets.claim_target || 5) ? ' class="down"' : '') + '>' + (c.cost_per_claim == null ? "" : fmtMoney(c.cost_per_claim)) + '</td><td>' + fmtInt(c.installs) + '</td></tr>'; }).join("") : '<tr><td colspan="9">No BFCM Google campaign has been created yet.</td></tr>') +
     '</tbody></table></div>' +
     (G.excluded_evergreen.spend ? '<div class="note"><b>Left out of BFCM numbers:</b> ' + fmtMoney(G.excluded_evergreen.spend) + ' on evergreen campaigns in this range (' + G.excluded_evergreen.campaigns.map(function(c){ return esc(c.name) + " " + fmtMoney(c.spend); }).join(", ") + ').</div>' : '') + '</section>');
 
@@ -452,8 +478,8 @@ function render(d){
   out.push('<section class="block"><h2>Email and Intercom</h2><div class="grid2"><div class="card pad"><b style="font-size:13px">Brevo lists and automations</b><div class="kv" style="margin-top:8px">' +
     E.lists.map(function(l){ return '<div><b>' + fmtInt(l.size) + '</b><span>' + esc(l.name) + '</span></div>'; }).join("") +
     '<div><b>' + fmtInt(E.channel.leads) + '</b><span>Leads from email links</span></div><div><b>' + fmtInt(E.channel.ga4_installs) + '</b><span>GA4 installs from email links</span></div></div>' +
-    '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Automation email</th><th class="l">Subject</th><th class="l">State</th></tr></thead><tbody>' +
-    E.templates.map(function(t){ return '<tr><td>' + esc(t.name) + '</td><td class="l">' + esc(t.subject) + '</td><td class="l">' + (t.active ? '<span class="tag">active</span>' : '<span class="tag wait">inactive</span>') + '</td></tr>'; }).join("") +
+    '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Email template</th><th class="l">Subject</th><th class="l">State</th></tr></thead><tbody>' +
+    E.templates.map(function(t){ return '<tr><td' + (t.truncated ? ' title="Brevo cut this template name"' : '') + '>' + esc(t.name) + (t.truncated ? "..." : "") + '</td><td class="l">' + esc(t.subject) + '</td><td class="l">' + (t.active ? '<span class="tag">active</span>' : '<span class="tag wait">inactive</span>') + '</td></tr>'; }).join("") +
     '</tbody></table></div><div class="note">' + esc(E.gap) + '</div>' +
     (E.campaigns.length ? '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Broadcast</th><th>Sent</th><th>Delivered</th><th>Unique clicks</th><th>Click rate</th><th>Unsubscribes</th></tr></thead><tbody>' + E.campaigns.map(function(c){ return '<tr><td>' + esc(c.name) + '</td><td>' + fmtInt(c.sent) + '</td><td>' + fmtInt(c.delivered) + '</td><td>' + fmtInt(c.unique_clicks) + '</td><td>' + fmtPct(c.click_rate) + '</td><td>' + fmtInt(c.unsubscriptions) + '</td></tr>'; }).join("") + '</tbody></table></div>' : '<p class="sub" style="margin-top:10px">No BFCM broadcast has been sent yet (D1 to D3 show here with sent, delivered, clicks and unsubscribes once they go out).</p>') +
     '</div><div class="card pad"><b style="font-size:13px">Intercom cohorts (contacts)</b><div class="kv" style="margin-top:8px">' +
@@ -474,7 +500,7 @@ function render(d){
 
   // 11. cohorts
   var I = d.cohorts.installs;
-  out.push('<section class="block"><h2>Cohorts</h2><p class="sub">Stores that installed in this range (Intercom, test stores left out). Paid means the store\'s plan price is above $0 now.</p><div class="kv">' +
+  out.push('<section class="block"><h2>Cohorts</h2><p class="sub">Stores that installed in this range (Intercom, test stores left out). Paid means the store is on a paid plan now.</p><div class="kv">' +
     '<div><b>' + fmtInt(I.new_stores) + '</b><span>New stores installed</span></div><div><b>' + fmtInt(I.reinstalls) + '</b><span>Older stores reinstalled</span></div>' +
     '<div><b>' + fmtInt(I.new_paid) + '</b><span>New stores now paid (' + fmtPct(I.paid_rate_new) + ')</span></div><div><b>' + fmtInt(I.paid_now) + '</b><span>All installs now paid</span></div>' +
     '<div><b>' + fmtInt(I.uninstalled) + '</b><span>Uninstalled since (' + fmtPct(I.uninstall_rate) + ')</span></div><div><b>' + fmtInt(I.uninstalled_7d) + '</b><span>Uninstalled within 7 days</span></div>' +
@@ -504,7 +530,7 @@ function render(d){
     '<div><b>' + rate(mr.lead_to_store) + '</b><span>Leads matched to a store</span></div><div><b>' + rate(mr.lead_to_install_after_lead) + '</b><span>Leads that installed after the lead</span></div>' +
     '<div><b>' + rate(mr.booking_to_store) + '</b><span>Bookings matched to a store</span></div><div><b>' + rate(mr.beacon_to_lead) + '</b><span>LP clicks with a lead row</span></div>' +
     '<div><b>' + (mr.datacenter_share == null ? "n/a" : fmtPct(mr.datacenter_share)) + '</b><span>LP sessions from bots and datacenters (left out)</span></div></div>' +
-    '<div class="note"><b>Notes.</b> Installs come from Intercom, GA4 and the lead match, not the Shopify Partner API, so there is no exact per-store install, uninstall or charge feed. Redemptions and first paid charges wait for the engineering redemption event (the endpoint is ready). Brevo automation emails have no per-email stats in the API. Meta and Google Ads refresh twice a day (09:15 and 17:15 IST) to keep calls to the ad accounts low; everything else refreshes every 15 minutes.</div>' +
+    '<div class="note"><b>Notes.</b> Installs come from Intercom, GA4 and the lead match, not the Shopify Partner API, so there is no exact per-store install, uninstall or charge feed. Redemptions and first paid charges wait for the engineering redemption event (the endpoint is ready). Brevo automation emails have no per-email stats in the API. Meta and Google Ads refresh twice a day (09:15 and 17:15 IST) to keep calls to the ad accounts low; everything else refreshes every 15 minutes. GA4 reports land a few hours late (its row says how far they reach), so GA4 numbers for today are partial.</div>' +
     '<p class="foot">Range ' + esc(d.range.from) + ' to ' + esc(d.range.to) + ' (IST). Generated ' + esc(new Date(d.generated_at).toLocaleString("en-GB", {timeZone:"Asia/Kolkata"})) + ' IST. Counts only: no emails, store domains or merchant names are sent to this page.</p></section>');
 
   document.getElementById("content").innerHTML = out.join("");
@@ -513,7 +539,29 @@ function render(d){
   var cs = document.getElementById("crSeg"); if (cs) cs.addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; state.creators = b.getAttribute("data-c"); render(state.data); });
 }
 
-function rangeText(r){ var ch = r.channel === "all" ? "all channels" : (CH_LABEL[r.channel] || r.channel); return (r.from === r.to ? fmtDay(r.from) : fmtDay(r.from) + " to " + fmtDay(r.to)) + ", " + ch; }
+function rangeText(r){ var ch = r.channel === "all" ? "all channels" : (CH_LABEL[r.channel] || r.channel); return (r.label ? r.label : (r.from === r.to ? fmtDay(r.from) : fmtDay(r.from) + " to " + fmtDay(r.to))) + ", " + ch; }
+function istTime(iso){ var t = new Date(Date.parse(iso) + 330 * 60000); return fmtDay(t.toISOString().slice(0, 10)) + " " + t.toISOString().slice(11, 16) + " IST"; }
+function nextPull(){ var t = new Date(Date.now() + 330 * 60000), m = t.getUTCHours() * 60 + t.getUTCMinutes(); return m < 555 ? "09:15 IST today" : m < 1035 ? "17:15 IST today" : "09:15 IST tomorrow"; }
+// Days in the daily series with no ads at all: fully inside a known pause, or a past day with no Meta spend.
+function pausedDays(d){
+  var pz = d.ad_pauses || [], pd = (d.pacing && d.pacing.paused_days) || [];
+  return d.daily.map(function(r){
+    var s = Date.parse(r.d + "T00:00:00Z") - 330 * 60000, e = s + 864e5;
+    return pd.indexOf(r.d) >= 0 || pz.some(function(p){ return Date.parse(p.from) <= s && (!p.to || Date.parse(p.to) >= e); });
+  });
+}
+// One line of context above the numbers: the fresh start, a pause inside the range, ad numbers older than the relaunch.
+function context(d){
+  var el = document.getElementById("context"), parts = [], pc = d.pacing || {}, rel = d.relaunch || {};
+  if (d.range.since) parts.push("<b>Fresh start.</b> Every number counts from the relaunch on 20 Oct, 19:07 IST (Meta on 31 new d1 ads, offer D). Pick Since 14 Oct to see the 16 Oct launch and the pause before the relaunch.");
+  else (d.ad_pauses || []).forEach(function(p){
+    var a = new Date(Date.parse(p.from) + 330 * 60000).toISOString().slice(0, 10), b = p.to ? new Date(Date.parse(p.to) + 330 * 60000).toISOString().slice(0, 10) : d.range.to;
+    if (a <= d.range.to && b >= d.range.from) parts.push("<b>Pause in this range.</b> " + esc(p.note) + " Paused " + esc(istTime(p.from)) + " to " + esc(p.to ? istTime(p.to) : "now") + "; shaded days in the charts had no ads running.");
+  });
+  if (rel.at && pc.meta_as_of && Date.parse(pc.meta_as_of) < Date.parse(rel.at)) parts.push("Meta and Google spend, clicks and statuses still come from the " + esc(istTime(pc.meta_as_of)) + " pull, before the relaunch; the first numbers after it land at the " + nextPull() + " pull.");
+  else if (!pc.google_live) parts.push("Google BFCM26 campaigns are paused (last pull) until they are enabled in Google Ads.");
+  el.innerHTML = parts.length ? '<div class="info" role="note">' + parts.join(" ") + '</div>' : "";
+}
 function tile(k, v, sub, spark, dlt){ return '<div class="card tile"><div class="k">' + esc(k) + '</div><div class="v">' + v + '</div><div class="d">' + sub + (dlt ? "<br>" + dlt : "") + '</div>' + (spark || "") + '</div>'; }
 function waitTile(k, v, st, sub){
   if (st === "waiting" || v == null) return '<div class="card tile waiting"><div class="k">' + esc(k) + ' <span class="tag wait">waiting</span></div><div class="v">Waiting for engineering</div><div class="d">' + esc(sub) + '. The endpoint is ready.</div></div>';
@@ -531,7 +579,8 @@ function funnel(steps){
     var max = Math.max.apply(null, rows.map(function(r){ return n(r.value) || 0; }).concat([1]));
     return '<div class="grp">' + g[0] + '</div>' + rows.map(function(r){
       var w = !n(r.value) ? 0 : Math.max(0.6, 100 * n(r.value) / max);
-      return '<div class="row"><div>' + esc(r.step) + '<div class="src">' + esc(r.source) + (r.alt ? " · " + esc(r.alt.label) + " " + fmtInt(r.alt.value) : "") + '</div></div><div class="track">' + (r.waiting ? "" : '<div class="bar" style="width:' + w + '%"></div>') + '</div><div class="n">' + (r.waiting ? '<span class="tag wait">waiting</span>' : fmtInt(r.value)) + '</div><div class="r">' + (r.rate == null ? "" : fmtPct(r.rate)) + '</div></div>';
+      var base = r.rate_label ? r.rate_label : (r.base ? "rate vs " + r.base.toLowerCase() : "");
+      return '<div class="row"><div>' + esc(r.step) + '<div class="src">' + esc(r.source) + (r.alt ? " · " + esc(r.alt.label) + " " + fmtInt(r.alt.value) : "") + (base && r.rate != null ? " · " + esc(base) : "") + '</div></div><div class="track">' + (r.waiting ? "" : '<div class="bar" style="width:' + w + '%"></div>') + '</div><div class="n">' + (r.waiting ? '<span class="tag wait">waiting</span>' : fmtInt(r.value)) + '</div><div class="r' + (r.rate_over ? ' over' : '') + '"' + (r.rate_over ? ' title="Above 100%: these two steps count different things"' : '') + '>' + (r.rate == null ? "" : fmtPct(r.rate)) + '</div></div>';
     }).join("");
   }).join("");
 }
