@@ -20,13 +20,17 @@ function pullInstalls() {
   var code = res.getResponseCode();
   if (code !== 200) throw new Error('export answered ' + code + ': ' + res.getContentText().slice(0, 200));
   var rows = Utilities.parseCsv(res.getContentText());
+  // Data Manager reads headers from row 1: drop the file-upload "Parameters:TimeZone" line and put the zone in each time.
+  if (rows.length && /^Parameters:/.test(rows[0][0])) rows.shift();
+  var ti = rows.length ? rows[0].indexOf('Conversion Time') : -1;
+  for (var i = 1; i < rows.length; i++) if (ti >= 0 && rows[i][ti] && !/[+-]\d\d:?\d\d$/.test(rows[i][ti])) rows[i][ti] += '+00:00';
   var width = rows.reduce(function (m, r) { return Math.max(m, r.length); }, 1);
   rows = rows.map(function (r) { while (r.length < width) r.push(''); return r; });
   var sh = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   sh.clearContents();
   sh.getRange(1, 1, rows.length, width).setNumberFormat('@').setValues(rows);
-  Logger.log(JSON.stringify({ ok: true, conversions: Math.max(0, rows.length - 2) }));
-  return rows.length - 2;
+  Logger.log(JSON.stringify({ ok: true, conversions: Math.max(0, rows.length - 1) }));
+  return rows.length - 1;
 }
 
 function installTrigger() {
