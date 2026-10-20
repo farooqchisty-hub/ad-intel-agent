@@ -763,7 +763,8 @@ h3{font-size:19px}
       <form id="claim-form" novalidate>
         <label for="claim-email">Your email</label>
         <input id="claim-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="name@yourstore.com" required>
+        <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="name@yourstore.com" aria-describedby="claim-email-store" required>
+        <p class="cb-help cb-store" id="claim-email-store">Use your Shopify store's email so we can link your deal to your store.</p>
         <p class="cb-help">We'll email you about your code, your $200 ad credits, free strategy session, free migration and BFCM ads.</p>
         <label class="cb-optin"><input id="claim-optin" type="checkbox"> Also send me PushOwl tips and offers. Unsubscribe anytime.</label>
         <label for="claim-code">Discount code</label>
