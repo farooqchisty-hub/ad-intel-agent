@@ -482,6 +482,41 @@ h3{font-size:19px}
 @media (max-width:760px){ .claimbox{margin:24px 0 30px;padding:20px 18px 16px} .cd-cell{min-width:64px} .cd-cell b{font-size:28px}
   .hero .grid{gap:20px} .hero .claimbox{max-width:none;justify-self:stretch;margin:0;padding:16px 16px 14px}
   .hero .claimbox h3,.hero .cb-owl,#h-fine{display:none} .hero .cb-go{margin-top:12px} }
+
+/* ---------------- hero, option C (approved 20 Oct): centered headline + one tear-off coupon (40% card | claim form) ---------------- */
+.hero .claimbox label[for=claim-code],.hero .claimbox .cb-code{display:none}
+
+.hv-c .grid{display:block}
+.hv-c .hv-head{text-align:center;max-width:900px;margin:0 auto}
+.hv-c .hv-head .lede{max-width:700px;margin-left:auto;margin-right:auto}
+.hv-c #h-fine{text-align:center}
+.hv-c .coupon{display:grid;grid-template-columns:.92fr 1.08fr;max-width:1000px;margin:36px auto 0;position:relative;border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.hv-c .c-offer{position:relative;background:var(--lime);color:var(--ink);border-radius:28px 0 0 28px;padding:34px 34px 30px;border-right:3px dashed rgba(27,36,39,.4);display:flex;flex-direction:column;justify-content:center}
+.hv-c .coupon::before,.hv-c .coupon::after{content:"";position:absolute;left:calc(46% - 18px);width:36px;height:36px;border-radius:50%;background:var(--ink-2);z-index:3}
+.hv-c .coupon::before{top:-18px}.hv-c .coupon::after{bottom:-18px}
+.hv-c .c-offer .k{font:700 14px/1 var(--display);letter-spacing:.12em;text-transform:uppercase}
+.hv-c .c-offer .big{font:900 clamp(76px,8vw,112px)/.86 var(--display);letter-spacing:-.03em;margin:16px 0 4px}
+.hv-c .c-offer .sub{font:600 21px/1.2 var(--display)}
+.hv-c .c-offer .perf{border-top:3px dashed rgba(27,36,39,.4);margin:22px 0 18px}
+.hv-c .c-offer .row{display:flex;justify-content:space-between;align-items:baseline;font:600 19px/1.2 var(--display)}
+.hv-c .c-offer .row b{font:900 36px/1 var(--display)}
+.hv-c .c-offer .ticket-owl{display:none}
+.hv-c .claimbox{margin:0;max-width:none;box-shadow:none;border-radius:0 28px 28px 0;padding:28px 30px 20px;justify-self:stretch}
+.hv-c .cb-owl{display:none}
+@media (max-width:760px){
+  .hv-c .hv-head{text-align:left}.hv-c #h-fine{display:none}
+  .hv-c .coupon{grid-template-columns:1fr;margin-top:22px;border-radius:22px}
+  .hv-c .c-offer{border-radius:22px 22px 0 0;border-right:0;border-bottom:3px dashed rgba(27,36,39,.4);padding:16px 18px 14px;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center}
+  .hv-c .coupon::before,.hv-c .coupon::after{display:none}
+  .hv-c .c-offer .k{display:none}
+  .hv-c .c-offer .big{font-size:50px;margin:0;grid-row:1}
+  .hv-c .c-offer .sub{grid-row:1;font-size:16px;line-height:1.25}
+  .hv-c .c-offer .perf,.hv-c .c-offer .codebox,.hv-c .c-offer .ticket-owl{display:none}
+  .hv-c .c-offer .row{grid-column:1/-1;font-size:15px;margin-top:6px}.hv-c .c-offer .row b{font-size:22px}
+  .hv-c .claimbox{border-radius:0 0 22px 22px;padding:16px 16px 14px}
+  .hv-c .claimbox h3{display:none}
+}
+.hv-c .coupon{scroll-margin-top:90px}
 </style>
 </head>
 <body>
@@ -494,14 +529,23 @@ h3{font-size:19px}
 </div></nav>
 
 <!-- ============ HERO ============ -->
-<header class="hero"><div class="wrap">
+<header class="hero hv-c"><div class="wrap">
   <div class="grid">
-    <div>
+    <div class="hv-head">
       <span class="tag" id="h-tag">Black Friday 2026</span>
       <h1 id="h-title">This Black Friday, get <span class="hl" id="h-off">up to 40% off</span> email marketing.</h1>
       <p class="lede" id="h-sub">40% off annual plans or 30% off monthly. Plus free Klaviyo migration, a free strategy session and Black Friday ads for your store, on us.</p>
-      <p class="fine" id="h-fine">For any store on our free plan that has never paid. Enter the code in the app.</p>
     </div>
+    <div class="coupon">
+      <div class="c-offer" role="img" aria-label="Coupon: 40% off annual plans or 30% off monthly plans, code BFCM2026">
+        <img class="ticket-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true">
+        <div class="k">Black Friday · Cyber Monday</div>
+        <div class="big">40% off</div>
+        <div class="sub">annual plans</div>
+        <div class="perf"></div>
+        <div class="row" id="ticket-row"><span>Monthly plans</span><b>30% off</b></div>
+        <div class="codebox"><span>BFCM2026</span><button type="button" class="copy">Copy code</button></div>
+      </div>
     <div class="claimbox" id="claim">
       <img class="cb-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true" width="72" height="72">
       <h3>Claim your Black Friday deal</h3>
@@ -525,6 +569,8 @@ h3{font-size:19px}
       <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> <span id="claim-done-msg">Opening PushOwl on the Shopify App Store. After you install, open Plans in the app and apply the code at checkout.</span> <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
       <p class="cb-fine">Free to install, no card needed. For any store on our free plan that has never paid; new stores qualify. <a href="https://www.pushowl.com/black-friday-2026-deal-terms">Deal terms</a></p>
     </div>
+    </div>
+    <p class="fine" id="h-fine">For any store on our free plan that has never paid. Enter the code in the app.</p>
   </div>
 </div></header>
 
@@ -1167,7 +1213,7 @@ function sendLead(lead, cb){
     a.href = "#claim"; a.removeAttribute("target");
     a.addEventListener("click", function(e){
       e.preventDefault(); e.stopImmediatePropagation(); pos = a.dataset.pos || "cta"; tsLoad();
-      box.scrollIntoView({behavior:"smooth", block:"center"});
+      (box.closest(".coupon") || box).scrollIntoView({behavior:"smooth", block: box.closest(".coupon") ? "start" : "center"});
       box.classList.remove("flash"); void box.offsetWidth; box.classList.add("flash");
       setTimeout(function(){ email.focus({preventScroll:true}); }, 600);
       dataLayer.push({event:"bfcm_claim_click", position:pos, narrative:nKey || "default"});
