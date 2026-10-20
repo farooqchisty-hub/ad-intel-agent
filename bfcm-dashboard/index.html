@@ -475,7 +475,7 @@ function render(d){
 
   // 9. email and intercom
   var E = d.email, ic = d.cohorts.tag_counts;
-  out.push('<section class="block"><h2>Email and Intercom</h2><div class="grid2"><div class="card pad"><b style="font-size:13px">Brevo lists and automations</b><div class="kv" style="margin-top:8px">' +
+  out.push('<section class="block"><h2>Email and Intercom</h2>' + autoEmails(E) + '<div class="grid2"><div class="card pad"><b style="font-size:13px">Brevo lists and automations</b><div class="kv" style="margin-top:8px">' +
     E.lists.map(function(l){ return '<div><b>' + fmtInt(l.size) + '</b><span>' + esc(l.name) + '</span></div>'; }).join("") +
     '<div><b>' + fmtInt(E.channel.leads) + '</b><span>Leads from email links</span></div><div><b>' + fmtInt(E.channel.ga4_installs) + '</b><span>GA4 installs from email links</span></div></div>' +
     '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Email template</th><th class="l">Subject</th><th class="l">State</th></tr></thead><tbody>' +
@@ -530,7 +530,7 @@ function render(d){
     '<div><b>' + rate(mr.lead_to_store) + '</b><span>Leads matched to a store</span></div><div><b>' + rate(mr.lead_to_install_after_lead) + '</b><span>Leads that installed after the lead</span></div>' +
     '<div><b>' + rate(mr.booking_to_store) + '</b><span>Bookings matched to a store</span></div><div><b>' + rate(mr.beacon_to_lead) + '</b><span>LP clicks with a lead row</span></div>' +
     '<div><b>' + (mr.datacenter_share == null ? "n/a" : fmtPct(mr.datacenter_share)) + '</b><span>LP sessions from bots and datacenters (left out)</span></div></div>' +
-    '<div class="note"><b>Notes.</b> Installs come from Intercom, GA4 and the lead match, not the Shopify Partner API, so there is no exact per-store install, uninstall or charge feed. Redemptions and first paid charges wait for the engineering redemption event (the endpoint is ready). Brevo automation emails have no per-email stats in the API. Meta and Google Ads refresh twice a day (09:15 and 17:15 IST) to keep calls to the ad accounts low; everything else refreshes every 15 minutes. GA4 reports land a few hours late (its row says how far they reach), so GA4 numbers for today are partial.</div>' +
+    '<div class="note"><b>Notes.</b> Installs come from Intercom, GA4 and the lead match, not the Shopify Partner API, so there is no exact per-store install, uninstall or charge feed. Redemptions and first paid charges wait for the engineering redemption event (the endpoint is ready). Brevo automation status and contact counts are not in the Brevo API, so they are read from the Brevo UI (time shown); per-email automation numbers are live from the Brevo email log. Meta and Google Ads refresh twice a day (09:15 and 17:15 IST) to keep calls to the ad accounts low; everything else refreshes every 15 minutes. GA4 reports land a few hours late (its row says how far they reach), so GA4 numbers for today are partial.</div>' +
     '<p class="foot">Range ' + esc(d.range.from) + ' to ' + esc(d.range.to) + ' (IST). Generated ' + esc(new Date(d.generated_at).toLocaleString("en-GB", {timeZone:"Asia/Kolkata"})) + ' IST. Counts only: no emails, store domains or merchant names are sent to this page.</p></section>');
 
   document.getElementById("content").innerHTML = out.join("");
@@ -540,6 +540,36 @@ function render(d){
 }
 
 function rangeText(r){ var ch = r.channel === "all" ? "all channels" : (CH_LABEL[r.channel] || r.channel); return (r.label ? r.label : (r.from === r.to ? fmtDay(r.from) : fmtDay(r.from) + " to " + fmtDay(r.to))) + ", " + ch; }
+// Automated emails (Brevo automations #54 and #55): per-email stats for emails sent in the range, status from the Brevo UI.
+function autoEmails(E){
+  var A = E.automations || [], T = E.automated_totals;
+  if (!A.length || !T) return "";
+  var stTag = function(s){ return s === "active" ? '<span class="tag">active</span>' : s ? '<span class="tag wait">' + esc(s) + '</span>' : '<span class="tag wait">unknown</span>'; };
+  var rate = function(v, del){ return del ? fmtPct(v) : "n/a"; };
+  var rows = A.map(function(a){
+    var c = a.contacts, bits = ["#" + a.id];
+    if (c) bits.push(fmtInt(c.started) + " started, " + fmtInt(c.active) + " active now, " + fmtInt(c.finished) + " finished");
+    if (a.status_as_of) bits.push("Brevo UI " + istTime(a.status_as_of));
+    bits.push("first emails sent in range " + fmtInt(a.first_emails_sent));
+    if (a.id === 54 && E.page_leads_in_range != null) bits.push("page leads in range " + fmtInt(E.page_leads_in_range));
+    bits.push("last send " + (a.last_sent ? istTime(a.last_sent) : "never"));
+    var head = '<tr><td colspan="6" class="l" style="background:var(--surface-2);white-space:normal"><b>' + esc(a.name) + '</b> ' + stTag(a.status) + '<br><span class="sub" style="font-size:12px">' + esc(bits.join(" · ")) + '</span></td></tr>';
+    return head + a.steps.map(function(s){
+      var tip = (s.subject || "") + " | template " + s.template + " | delivered " + fmtInt(s.delivered) + ", unique opens " + fmtInt(s.unique_opens) + ", unique clicks " + fmtInt(s.unique_clicks) + ", bounces " + fmtInt(s.bounces) + " | sent since 14 Oct " + fmtInt(s.sent_all_time);
+      return '<tr><td title="' + esc(tip) + '" style="white-space:normal;min-width:190px"><b>' + esc(s.label) + '</b> ' + esc(s.subject || "") + '</td><td class="l">' + stTag(a.status) + '</td><td>' + fmtInt(s.sent) + '</td><td>' + rate(s.open_rate, s.delivered) + '</td><td>' + rate(s.click_rate, s.delivered) + '</td><td>' + fmtInt(s.unsubscribes) + '</td></tr>';
+    }).join("");
+  }).join("");
+  var tot = '<tr><td><b>Total</b></td><td class="l"></td><td><b>' + fmtInt(T.sent) + '</b></td><td><b>' + rate(T.open_rate, T.delivered) + '</b></td><td><b>' + rate(T.click_rate, T.delivered) + '</b></td><td><b>' + fmtInt(T.unsubscribes) + '</b></td></tr>';
+  var paused = A.filter(function(a){ return a.status && a.status !== "active"; });
+  var warn = paused.length ? '<div class="note"><b>' + esc(paused.map(function(a){ return "#" + a.id; }).join(" and ")) + (paused.length > 1 ? " are " : " is ") + 'not active in Brevo</b> (as of ' + esc(istTime(paused[0].status_as_of)) + '), so new contacts on lists ' + esc(paused.map(function(a){ return a.trigger_list; }).join(" and ")) + ' get no automated email until ' + (paused.length > 1 ? "they are" : "it is") + ' activated.</div>' : "";
+  var extra = (E.template_sends || []).length ? '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Lead template sent one by one</th><th>Sent</th><th>Open rate</th><th>Click rate</th><th>Unsubscribes</th></tr></thead><tbody>' + E.template_sends.map(function(t){ return '<tr><td>' + esc(t.name) + '</td><td>' + fmtInt(t.sent) + '</td><td>' + rate(t.open_rate, t.delivered) + '</td><td>' + rate(t.click_rate, t.delivered) + '</td><td>' + fmtInt(t.unsubscribes) + '</td></tr>'; }).join("") + '</tbody></table></div>' : "";
+  return '<div class="card pad" style="margin-bottom:12px"><b style="font-size:13px">Automated emails</b>' +
+    '<div class="kv" style="margin-top:8px"><div><b>' + fmtInt(T.sent) + '</b><span>Sent</span></div><div><b>' + fmtInt(T.delivered) + '</b><span>Delivered</span></div>' +
+    '<div><b>' + fmtInt(T.unique_opens) + '</b><span>Unique opens (' + rate(T.open_rate, T.delivered) + ')</span></div><div><b>' + fmtInt(T.unique_clicks) + '</b><span>Unique clicks (' + rate(T.click_rate, T.delivered) + ')</span></div>' +
+    '<div><b>' + fmtInt(T.unsubscribes) + '</b><span>Unsubscribes</span></div><div><b>' + fmtInt(T.bounces) + '</b><span>Bounces</span></div></div>' + warn +
+    '<div class="tbl" style="margin-top:10px"><table><thead><tr><th>Email</th><th class="l">Status</th><th>Sent</th><th>Open rate</th><th>Click rate</th><th>Unsubscribes</th></tr></thead><tbody>' + rows + tot + '</tbody></table></div>' +
+    extra + '<p class="sub" style="margin:8px 0 0">' + esc(E.stats_note || "") + '</p></div>';
+}
 function istTime(iso){ var t = new Date(Date.parse(iso) + 330 * 60000); return fmtDay(t.toISOString().slice(0, 10)) + " " + t.toISOString().slice(11, 16) + " IST"; }
 function nextPull(){ var t = new Date(Date.now() + 330 * 60000), m = t.getUTCHours() * 60 + t.getUTCMinutes(); return m < 555 ? "09:15 IST today" : m < 1035 ? "17:15 IST today" : "09:15 IST tomorrow"; }
 // Days in the daily series with no ads at all: fully inside a known pause, or a past day with no Meta spend.
