@@ -1,0 +1,39 @@
+/**
+ * bfcm-dash: Google Ads offline install import. No key in this file.
+ *
+ * Lives in the "BFCM install import (Google Ads)" sheet owned by sheik.farooq@pushowl.com (the Google Ads login).
+ * Every day it pulls the matched-install rows from the bfcm-dash Worker (/export/google-offline.csv) and writes them
+ * to the first tab in Google's click-conversion template. Google Ads > Goals > Uploads > Schedules reads this sheet
+ * daily into the conversion action "BFCM install (import)".
+ * Auth: a Google-signed identity token for this account (ScriptApp.getIdentityToken()), checked by the Worker against
+ * Google's keys, an email allowlist and this project's OAuth client (pinned on the first pull).
+ *
+ * Install: run installTrigger() once; it also does the first pull.
+ */
+var EXPORT_URL = 'https://bfcm-dash.winningstatics.workers.dev/export/google-offline.csv';
+
+function pullInstalls() {
+  var res = UrlFetchApp.fetch(EXPORT_URL, {
+    headers: { Authorization: 'Bearer ' + ScriptApp.getIdentityToken() },
+    muteHttpExceptions: true
+  });
+  var code = res.getResponseCode();
+  if (code !== 200) throw new Error('export answered ' + code + ': ' + res.getContentText().slice(0, 200));
+  var rows = Utilities.parseCsv(res.getContentText());
+  var width = rows.reduce(function (m, r) { return Math.max(m, r.length); }, 1);
+  rows = rows.map(function (r) { while (r.length < width) r.push(''); return r; });
+  var sh = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  sh.clearContents();
+  sh.getRange(1, 1, rows.length, width).setNumberFormat('@').setValues(rows);
+  Logger.log(JSON.stringify({ ok: true, conversions: Math.max(0, rows.length - 2) }));
+  return rows.length - 2;
+}
+
+function installTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'pullInstalls') ScriptApp.deleteTrigger(t);
+  });
+  // 07:00 IST daily, before the Google Ads schedule (09:00 account time) reads the sheet.
+  ScriptApp.newTrigger('pullInstalls').timeBased().everyDays(1).atHour(7).create();
+  return pullInstalls();
+}
