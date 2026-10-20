@@ -772,6 +772,7 @@ h3{font-size:19px}
         <p class="cb-how">How to claim</p>
         <ol class="cb-steps"><li>Install PushOwl from the Shopify App Store. It's free.</li><li id="cb-step2">In the app, open Plans and pick a plan.</li><li id="cb-step3">Apply <b>BFCM2026</b> at checkout: 40% off annual or 30% off monthly. Ends 30 Nov.</li></ol>
         <p class="cb-note" id="cb-note" hidden>Already on our free plan? BFCM2026 gets you 30% off.</p>
+        <div id="claim-ts" aria-hidden="true"></div>
         <button class="cb-go" id="claim-go" type="submit" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</button>
         <button class="cb-go cb-alt" id="claim-go-brevo" type="button" disabled>Continue for non-Shopify</button>
         <p class="cb-hint" id="claim-hint">Enter your email to continue.</p>
@@ -809,7 +810,8 @@ var CONFIG = {
   intercomAppId: "ntcl5suv",                   // live PushOwl Intercom workspace
   offer: "D",                                  // D = 40% off annual or 30% off monthly, 14 Oct to 30 Nov (16 Oct). A and C are retired
   loadIntercom: false,                         // false on the preview; true when live on pushowl.com
-  leadEndpoint: "https://bfcm-leads.winningstatics.workers.dev/lead",  // claim emails -> Brevo list 73 (bfcm-leads Worker)
+  leadEndpoint: "https://bfcm-leads.winningstatics.workers.dev/lead",  // claim emails -> Brevo list 73 (bfcm-leads Worker; junk is flagged, never listed)
+  turnstileSiteKey: "0x4AAAAAAFd5znRj3blshGe6",                 // Cloudflare Turnstile, invisible (widget "PushOwl BFCM LP claim box")
   beacon: "https://bfcm-dash.winningstatics.workers.dev/e"             // page events -> bfcm-dash (session id, UTMs, click ids; never an email)
 };
 var KLAVIYO = [[500,20],[1000,30],[1500,45],[2500,60],[3000,70],[3500,80],[5000,100],[5500,110],[6000,130],[6500,140],[10000,150],[10500,175],[11000,200],[11500,225],[12000,250],[12500,275],[13000,300],[13500,325],[15000,350],[20000,375],[25000,400],[26000,425],[27000,450],[28000,475],[30000,500],[35000,550],[40000,600],[45000,650],[50000,720],[55000,790],[60000,860],[65000,930],[70000,1000],[75000,1070],[80000,1140],[85000,1205],[90000,1265],[95000,1325],[100000,1380],[105000,1440],[110000,1495],[115000,1555],[120000,1610],[125000,1670],[130000,1725],[135000,1785],[140000,1840],[145000,1900],[150000,1955]];
@@ -1053,6 +1055,48 @@ function bx(ev, extra){
   window.addEventListener("pagehide", bye);
 })();
 
+/* ---------------- Turnstile (20 Oct): invisible bot check, its token rides along with the claim. Loaded on the first touch of
+   the claim box. A missing token (blocked, slow, failed) never blocks a visitor and never makes a lead junk on its own. ---------------- */
+var TS = {state: "idle", token: "", at: 0, waits: []};
+function tsFlush(){ var w = TS.waits; TS.waits = []; w.forEach(function(f){ f(); }); }
+function tsLoad(){
+  if (TS.state !== "idle" || !CONFIG.turnstileSiteKey || !document.getElementById("claim-ts")) return;
+  TS.state = "loading";
+  window.__bfcmTs = function(){
+    try {
+      turnstile.render("#claim-ts", {sitekey: CONFIG.turnstileSiteKey, action: "claim", "refresh-expired": "auto",
+        callback: function(t){ TS.token = t; TS.at = Date.now(); TS.state = "ready"; tsFlush(); },
+        "expired-callback": function(){ TS.token = ""; },
+        "error-callback": function(){ if (TS.state !== "ready") TS.state = "failed"; tsFlush(); return true; }});
+    } catch(_) { TS.state = "failed"; tsFlush(); }
+  };
+  var s = document.createElement("script");
+  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__bfcmTs"; s.async = true; s.defer = true;
+  s.onerror = function(){ TS.state = "failed"; tsFlush(); };
+  document.head.appendChild(s);
+}
+// a fresh token now, or within ms while the widget is still working, else ""
+function tsToken(ms, cb){
+  function fresh(){ return TS.token && Date.now() - TS.at < 280000 ? TS.token : ""; }
+  if (fresh() || TS.state === "idle" || TS.state === "failed") return cb(fresh());
+  var done = false; function fin(){ if (!done) { done = true; cb(fresh()); } }
+  TS.waits.push(fin); setTimeout(fin, ms);
+}
+// POST the lead and read the Worker's verdict: cb(true) only for {ok:true, accepted:true}. Any error, timeout or junk: false.
+function sendLead(lead, cb){
+  var done = false; function fin(ok){ if (!done) { done = true; cb(ok); } }
+  if (!CONFIG.leadEndpoint) return fin(false);
+  var body = JSON.stringify(lead);
+  try {
+    fetch(CONFIG.leadEndpoint, {method:"POST", body:body, keepalive:true, mode:"cors", credentials:"omit", headers:{"content-type":"text/plain"}})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ fin(!!(j && j.ok === true && j.accepted === true)); }, function(){ fin(false); });
+  } catch(_) {
+    try { if (navigator.sendBeacon) navigator.sendBeacon(CONFIG.leadEndpoint, new Blob([body], {type:"text/plain"})); } catch(__){}
+    fin(false);
+  }
+}
+
 /* ---------------- claim box: email unlocks Continue with Shopify; all CTAs scroll here ---------------- */
 (function(){
   var APP = "https://apps.shopify.com/pushowl";
@@ -1093,6 +1137,7 @@ function bx(ev, extra){
     hint.className = "cb-hint"; hint.textContent = ok ? "Shopify store? Continue with Shopify. Anything else? Continue for non-Shopify. We'll copy the code for you." : "Enter your email to continue.";
   }
   email.addEventListener("input", refresh); code.addEventListener("input", refresh); code.addEventListener("change", refresh);
+  email.addEventListener("focus", tsLoad); email.addEventListener("input", tsLoad);
 
   function claim(dest){
     refresh(); if (go.disabled){ hint.className = "cb-hint err"; hint.textContent = "Enter a valid email to continue."; email.focus(); return; }
@@ -1102,15 +1147,21 @@ function bx(ev, extra){
       tracking: Object.assign(Object.fromEntries(tracking(pos)), {lp_sid: SID}), page: location.href.split("#")[0], at: new Date().toISOString(),
       marketing_optin: !!(document.getElementById("claim-optin") || {}).checked, website: (document.getElementById("claim-website") || {}).value || "",
       tz: (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(_) { return ""; } })()};
-    if (CONFIG.leadEndpoint){
-      try { var b = new Blob([JSON.stringify(lead)], {type:"text/plain"});
-        if (!(navigator.sendBeacon && navigator.sendBeacon(CONFIG.leadEndpoint, b))) fetch(CONFIG.leadEndpoint, {method:"POST", body:JSON.stringify(lead), keepalive:true, mode:"no-cors", headers:{"content-type":"text/plain"}}); } catch(_){}
-    }
-    dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026", destination: dest});
+    var t0 = Date.now(), left = false;
+    function leave(){ if (!left) { left = true; goTop(url); } }
+    // 20 Oct: the claim conversion (parent page: Meta Lead + Google "BFCM claim"; beacon: claim_submit) fires only after the
+    // bfcm-leads Worker accepts the lead as real. Junk sees the same success screen, with no conversion.
+    tsToken(1500, function(tok){
+      if (tok) lead.ts = tok;
+      sendLead(lead, function(real){
+        if (real) dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026", destination: dest});
+        setTimeout(leave, Math.max(real ? 600 : 0, 900 - (Date.now() - t0)));
+      });
+    });
     if (dest === "brevo") doneMsg.textContent = "Opening Brevo for ecommerce stores.";
     form.hidden = true; done.hidden = false; cont.href = url; lastDest = dest;
     bx(dest === "brevo" ? "brevo_click" : "appstore_click", {position: pos, dest: dest});
-    setTimeout(function(){ goTop(url); }, 900);
+    setTimeout(leave, 3000); // cap: never hold the visitor longer (and stay inside the click's user-activation window)
   }
   cont.addEventListener("click", function(){ bx(lastDest === "brevo" ? "brevo_click" : "appstore_click", {position: pos, dest: lastDest, manual: 1}); });
   form.addEventListener("submit", function(e){ e.preventDefault(); claim("shopify"); });
@@ -1120,7 +1171,7 @@ function bx(ev, extra){
   document.querySelectorAll(".cta").forEach(function(a){
     a.href = "#claim"; a.removeAttribute("target");
     a.addEventListener("click", function(e){
-      e.preventDefault(); e.stopImmediatePropagation(); pos = a.dataset.pos || "cta";
+      e.preventDefault(); e.stopImmediatePropagation(); pos = a.dataset.pos || "cta"; tsLoad();
       box.scrollIntoView({behavior:"smooth", block:"center"});
       box.classList.remove("flash"); void box.offsetWidth; box.classList.add("flash");
       setTimeout(function(){ email.focus({preventScroll:true}); }, 600);
