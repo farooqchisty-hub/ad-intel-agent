@@ -1057,7 +1057,7 @@ function bx(ev, extra){
 
 /* ---------------- Turnstile (20 Oct): invisible bot check, its token rides along with the claim. Loaded on the first touch of
    the claim box. A missing token (blocked, slow, failed) never blocks a visitor and never makes a lead junk on its own. ---------------- */
-var TS = {state: "idle", token: "", at: 0, waits: []};
+var TS = {state: "idle", token: "", at: 0, err: "", waits: []};
 function tsFlush(){ var w = TS.waits; TS.waits = []; w.forEach(function(f){ f(); }); }
 function tsLoad(){
   if (TS.state !== "idle" || !CONFIG.turnstileSiteKey || !document.getElementById("claim-ts")) return;
@@ -1065,9 +1065,9 @@ function tsLoad(){
   window.__bfcmTs = function(){
     try {
       turnstile.render("#claim-ts", {sitekey: CONFIG.turnstileSiteKey, action: "claim", "refresh-expired": "auto",
-        callback: function(t){ TS.token = t; TS.at = Date.now(); TS.state = "ready"; tsFlush(); },
+        callback: function(t){ TS.token = t; TS.at = Date.now(); TS.state = "ready"; TS.err = ""; tsFlush(); },
         "expired-callback": function(){ TS.token = ""; },
-        "error-callback": function(){ if (TS.state !== "ready") TS.state = "failed"; tsFlush(); return true; }});
+        "error-callback": function(c){ TS.err = String(c || "error").slice(0, 12); if (TS.state !== "ready") TS.state = "failed"; tsFlush(); return true; }});
     } catch(_) { TS.state = "failed"; tsFlush(); }
   };
   var s = document.createElement("script");
@@ -1152,7 +1152,7 @@ function sendLead(lead, cb){
     // 20 Oct: the claim conversion (parent page: Meta Lead + Google "BFCM claim"; beacon: claim_submit) fires only after the
     // bfcm-leads Worker accepts the lead as real. Junk sees the same success screen, with no conversion.
     tsToken(1500, function(tok){
-      if (tok) lead.ts = tok;
+      if (tok) lead.ts = tok; else if (TS.err) lead.ts_err = TS.err; // 600xxx = the invisible challenge failed (bot-like)
       sendLead(lead, function(real){
         if (real) dataLayer.push({event:"bfcm_claim_submit", position:pos, narrative:nKey || "default", code:"BFCM2026", destination: dest});
         setTimeout(leave, Math.max(real ? 600 : 0, 900 - (Date.now() - t0)));
