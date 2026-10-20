@@ -465,6 +465,12 @@ h3{font-size:19px}
 .cb-note{margin:8px 0 12px;font:500 12.5px/1.45 var(--body);color:#4a5257}
 .cb-fine{margin:14px 0 0;padding-top:12px;border-top:1px solid #eceeef;font-size:12px;line-height:1.5;color:#6b7378}
 .cb-fine a{color:#0a58ca}
+/* 20 Oct: the box lives in the hero (right column on desktop, under the headline on a phone) */
+.hero .claimbox{margin:0;width:100%;max-width:460px;justify-self:end;scroll-margin-top:90px}
+.claimbox .cb-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}   /* the placeholder says it; kept for screen readers */
+.cb-altrow{margin:10px 0 2px;font-size:13.5px;line-height:1.4;color:#4a5257;text-align:center}
+.cb-link{background:none;border:0;padding:0;font:600 13.5px/1.4 var(--body);color:#1b2427;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.cb-hint:empty{display:none}
 
 .cdown{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px 0 22px;border-top:1px solid var(--line)}
 .cdown p{margin:0;font:600 15px/1.2 var(--display);color:var(--white)}
@@ -473,7 +479,9 @@ h3{font-size:19px}
 .cd-cell b{display:block;font:900 34px/1 var(--display);color:var(--lime);font-variant-numeric:tabular-nums}
 .cd-cell span{display:block;margin-top:4px;font:500 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .cdown .fine{color:var(--muted-2)}
-@media (max-width:760px){ .claimbox{margin:24px 0 30px;padding:20px 18px 16px} .cd-cell{min-width:64px} .cd-cell b{font-size:28px} }
+@media (max-width:760px){ .claimbox{margin:24px 0 30px;padding:20px 18px 16px} .cd-cell{min-width:64px} .cd-cell b{font-size:28px}
+  .hero .grid{gap:20px} .hero .claimbox{max-width:none;justify-self:stretch;margin:0;padding:16px 16px 14px}
+  .hero .claimbox h3,.hero .cb-owl,#h-fine{display:none} .hero .cb-go{margin-top:12px} }
 </style>
 </head>
 <body>
@@ -492,23 +500,30 @@ h3{font-size:19px}
       <span class="tag" id="h-tag">Black Friday 2026</span>
       <h1 id="h-title">This Black Friday, get <span class="hl" id="h-off">up to 40% off</span> email marketing.</h1>
       <p class="lede" id="h-sub">40% off annual plans or 30% off monthly. Plus free Klaviyo migration, a free strategy session and Black Friday ads for your store, on us.</p>
-      <div class="actions">
-        <a class="btn btn-lime btn-lg cta" data-pos="hero" href="#">Claim my deal <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a>
-        <a class="btn btn-ghost btn-lg" href="#calculator">See what I'd save</a>
-      </div>
       <p class="fine" id="h-fine">For any store on our free plan that has never paid. Enter the code in the app.</p>
     </div>
-    <div class="ticket-wrap">
-      <img class="spark" src="assets/po/sparkle.webp" alt="" aria-hidden="true">
-      <div class="ticket" role="img" aria-label="Coupon: 40% off annual plans or 30% off monthly plans, code BFCM2026" id="ticket">
-        <img class="ticket-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true">
-        <div class="k">Black Friday · Cyber Monday</div>
-        <div class="big">40% off</div>
-        <div class="sub">annual plans</div>
-        <div class="perf"></div>
-        <div class="row" id="ticket-row"><span>Monthly plans</span><b>30% off</b></div>
-        <div class="codebox"><span>BFCM2026</span><button type="button" class="copy">Copy code</button></div>
-      </div>
+    <div class="claimbox" id="claim">
+      <img class="cb-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true" width="72" height="72">
+      <h3>Claim your Black Friday deal</h3>
+      <form id="claim-form" novalidate>
+        <label for="claim-email" class="cb-lbl">Your store email</label>
+        <input id="claim-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="Your store email" aria-describedby="claim-email-store" required>
+        <p class="cb-help cb-store" id="claim-email-store">Use your Shopify store's email so we can link your deal to your store.</p>
+        <div id="claim-ts" aria-hidden="true"></div>
+        <button class="cb-go" id="claim-go" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</button>
+        <p class="cb-hint" id="claim-hint" aria-live="polite"></p>
+        <p class="cb-altrow">Not on Shopify? <button class="cb-link" id="claim-go-brevo" type="button">Continue for non-Shopify</button></p>
+        <label for="claim-code">Your discount code</label>
+        <div class="cb-code"><input id="claim-code" type="text" value="BFCM2026" autocomplete="off" spellcheck="false"><span class="cb-applied" id="claim-code-help" aria-live="polite">&#10003; Applied</span></div>
+        <label class="cb-optin"><input id="claim-optin" type="checkbox"> Also send me PushOwl tips and offers. Unsubscribe anytime.</label>
+        <p class="cb-help">We'll email you about your code, your $200 ad credits, free strategy session, free migration and BFCM ads.</p>
+        <p class="cb-how">How to claim</p>
+        <ol class="cb-steps"><li>Install PushOwl from the Shopify App Store. It's free.</li><li id="cb-step2">In the app, open Plans and pick a plan.</li><li id="cb-step3">Apply <b>BFCM2026</b> at checkout: 40% off annual or 30% off monthly. Ends 30 Nov.</li></ol>
+        <p class="cb-note" id="cb-note" hidden>Already on our free plan? BFCM2026 gets you 30% off.</p>
+      </form>
+      <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> <span id="claim-done-msg">Opening PushOwl on the Shopify App Store. After you install, open Plans in the app and apply the code at checkout.</span> <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
+      <p class="cb-fine">Free to install, no card needed. For any store on our free plan that has never paid; new stores qualify. <a href="https://www.pushowl.com/black-friday-2026-deal-terms">Deal terms</a></p>
     </div>
   </div>
 </div></header>
@@ -755,31 +770,10 @@ h3{font-size:19px}
   <div class="gcard">
     <div class="body">
       <h2>Black Friday <span class="hl">won't wait.</span></h2>
-      <p class="lede" style="margin-top:16px" id="final-lede">Get 40% off annual or 30% off monthly, move over for free and launch your Black Friday ads this week. Enter your email, then continue with Shopify to install PushOwl. After you install, apply the code at checkout inside the app.</p>
+      <p class="lede" style="margin-top:16px" id="final-lede">Get 40% off annual or 30% off monthly, move over for free and launch your Black Friday ads this week.</p>
+      <div class="cta-row"><a class="btn btn-lime btn-lg cta" data-pos="final" href="#">Claim my deal <svg viewBox="0 0 14 14"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></a><span class="fine">Code <b class="lime">BFCM2026</b> · New and free-plan accounts</span></div>
     </div>
-    <div class="claimbox" id="claim">
-      <img class="cb-owl" src="assets/po/owl-laptop.webp" alt="" aria-hidden="true" width="72" height="72">
-      <h3>Claim your Black Friday deal</h3>
-      <form id="claim-form" novalidate>
-        <label for="claim-email">Your email</label>
-        <input id="claim-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="name@yourstore.com" aria-describedby="claim-email-store" required>
-        <p class="cb-help cb-store" id="claim-email-store">Use your Shopify store's email so we can link your deal to your store.</p>
-        <p class="cb-help">We'll email you about your code, your $200 ad credits, free strategy session, free migration and BFCM ads.</p>
-        <label class="cb-optin"><input id="claim-optin" type="checkbox"> Also send me PushOwl tips and offers. Unsubscribe anytime.</label>
-        <label for="claim-code">Discount code</label>
-        <div class="cb-code"><input id="claim-code" type="text" value="BFCM2026" autocomplete="off" spellcheck="false"><span class="cb-applied" id="claim-code-help" aria-live="polite">&#10003; Applied</span></div>
-        <p class="cb-how">How to claim</p>
-        <ol class="cb-steps"><li>Install PushOwl from the Shopify App Store. It's free.</li><li id="cb-step2">In the app, open Plans and pick a plan.</li><li id="cb-step3">Apply <b>BFCM2026</b> at checkout: 40% off annual or 30% off monthly. Ends 30 Nov.</li></ol>
-        <p class="cb-note" id="cb-note" hidden>Already on our free plan? BFCM2026 gets you 30% off.</p>
-        <div id="claim-ts" aria-hidden="true"></div>
-        <button class="cb-go" id="claim-go" type="submit" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.3 3.1c-.1 0-.3.1-.4.1l-.6 1.9c-.4-1.1-1-2-2.1-2h-.1C11.8 2.6 11.4 2.4 11 2.4 8.4 2.4 7.2 5.7 6.8 7.3l-1.8.6c-.6.2-.6.2-.6.7L3 20l11.3 2.1 6.1-1.3L16.1 3c-.3 0-.6 0-.8.1zm-2.6.8-1 3.1-2.2.7c.4-1.6 1.2-3.1 2.4-3.6.3.1.6.2.8-.2z"/></svg>Continue with Shopify</button>
-        <button class="cb-go cb-alt" id="claim-go-brevo" type="button" disabled>Continue for non-Shopify</button>
-        <p class="cb-hint" id="claim-hint">Enter your email to continue.</p>
-      </form>
-      <div class="cb-done" id="claim-done" hidden><span>&#10003;</span><b>Code BFCM2026 copied.</b> <span id="claim-done-msg">Opening PushOwl on the Shopify App Store. After you install, open Plans in the app and apply the code at checkout.</span> <a id="claim-continue" href="https://apps.shopify.com/pushowl">Go now &rarr;</a></div>
-      <p class="cb-fine">Free to install, no card needed. For new and free-plan accounts. <a href="https://www.pushowl.com/black-friday-2026-deal-terms">Deal terms</a></p>
-    </div>
+    <img src="assets/po/owl-book.webp" alt="" aria-hidden="true" width="301" height="325" style="max-width:260px;align-self:end">
     <div class="trust">
       <span><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Unlimited contacts</span>
       <span><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Free migration</span>
@@ -1123,7 +1117,7 @@ function sendLead(lead, cb){
   if (IN_FRAME) cont.target = "_top";
 
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  var emailOk = false, lastDest = "shopify";
+  var emailOk = false, valid = false, lastDest = "shopify";
   function codeOk(){
     var v = (code.value || "").trim().toUpperCase(); code.value = v;
     var ok = v === "BFCM2026";
@@ -1132,15 +1126,16 @@ function sendLead(lead, cb){
   }
   function refresh(){
     var ok = EMAIL.test(email.value.trim()) && codeOk();
-    go.disabled = !ok; goB.disabled = !ok;
+    valid = ok; go.classList.toggle("ready", ok);
     if (ok && !emailOk) { emailOk = true; bx("email_valid", {position: pos}); }
-    hint.className = "cb-hint"; hint.textContent = ok ? "Shopify store? Continue with Shopify. Anything else? Continue for non-Shopify. We'll copy the code for you." : "Enter your email to continue.";
+    hint.className = "cb-hint"; hint.textContent = ok ? "We'll copy the code for you." : "";
   }
   email.addEventListener("input", refresh); code.addEventListener("input", refresh); code.addEventListener("change", refresh);
   email.addEventListener("focus", tsLoad); email.addEventListener("input", tsLoad);
+  var focused = false; email.addEventListener("focus", function(){ if (!focused) { focused = true; bx("email_focus", {position: pos}); } });
 
   function claim(dest){
-    refresh(); if (go.disabled){ hint.className = "cb-hint err"; hint.textContent = "Enter a valid email to continue."; email.focus(); return; }
+    refresh(); if (!valid){ hint.className = "cb-hint err"; hint.textContent = codeOk() ? "Enter your store email to continue." : "Use the code BFCM2026."; bx("claim_blocked", {position: pos, dest: dest}); email.focus(); return; }
     try { if (navigator.clipboard) navigator.clipboard.writeText("BFCM2026"); } catch(_){}
     var url = dest === "brevo" ? brevoUrl(pos) : appUrl(pos);
     var lead = {email: email.value.trim(), code: "BFCM2026", destination: dest, position: pos, narrative: nKey || "default",
