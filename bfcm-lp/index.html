@@ -551,7 +551,7 @@ h3{font-size:19px}
       <h3>Claim your Black Friday deal</h3>
       <form id="claim-form" novalidate>
         <label for="claim-email" class="cb-lbl">Your store email</label>
-        <input id="claim-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <input id="claim-hp" name="cb_hp_ref" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <input id="claim-email" type="email" inputmode="email" autocomplete="email" placeholder="Your store email" aria-describedby="claim-email-store" required>
         <p class="cb-help cb-store" id="claim-email-store">Use your Shopify store's email so we can link your deal to your store.</p>
         <div id="claim-ts" aria-hidden="true"></div>
@@ -1186,7 +1186,7 @@ function sendLead(lead, cb){
     var url = dest === "brevo" ? brevoUrl(pos) : appUrl(pos);
     var lead = {email: email.value.trim(), code: "BFCM2026", destination: dest, position: pos, narrative: nKey || "default",
       tracking: Object.assign(Object.fromEntries(tracking(pos)), {lp_sid: SID}), page: location.href.split("#")[0], at: new Date().toISOString(),
-      marketing_optin: !!(document.getElementById("claim-optin") || {}).checked, website: (document.getElementById("claim-website") || {}).value || "",
+      marketing_optin: !!(document.getElementById("claim-optin") || {}).checked, website: (document.getElementById("claim-hp") || {}).value || "",   // honeypot; 21 Oct: renamed from "website" (browsers autofilled it)
       tz: (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(_) { return ""; } })()};
     var t0 = Date.now(), left = false;
     function leave(){ if (!left) { left = true; goTop(url); } }
