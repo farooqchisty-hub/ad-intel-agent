@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop buying a CRM: v2 storyboard</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1B1B1B;--mute:#5b5b5b;--line:#DCE5D8;--bg:#F7FCF3;--card:#fff;--forest:#006A43;--deep:#004227;--lime:#C0FFA5;--pink:#E8457A;--pinkbg:#FDE7EE}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:40px;line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}
+h2{font-size:26px;margin:56px 0 14px;letter-spacing:-.01em}
+h3{font-size:19px;margin:0 0 6px}
+p{margin:0 0 12px}
+.lede{font-size:18px;color:var(--mute);max-width:820px}
+.pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:13px;font-weight:600;background:var(--lime);color:var(--deep);margin-right:6px}
+.pill.pk{background:var(--pinkbg);color:#B8285A}
+.pill.gr{background:#EEF2EC;color:#444}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card img{width:100%;border-radius:12px;display:block;margin-bottom:12px}
+.big img{width:100%;border-radius:14px;display:block}
+.cap{font-size:14px;color:var(--mute);margin-top:8px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{background:#EEF6EA;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:#3c4a3f}
+td.t{white-space:nowrap;font-weight:600;color:var(--deep)}
+td .vo{font-style:italic;color:#333}
+.num{font-size:34px;font-weight:700;color:var(--deep);line-height:1}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:860px){.kv{grid-template-columns:repeat(2,1fr)}}
+ul{margin:6px 0 12px;padding-left:20px}li{margin:4px 0}
+.prompt{font-size:13.5px;color:#444;background:#F5F8F3;border-radius:10px;padding:10px 12px;margin-top:8px}
+.scroll{overflow-x:auto}
+.foot{margin-top:50px;font-size:14px;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<span class="pill">Draft for approval</span><span class="pill gr">29 Oct 2026</span>
+<h1>Stop buying a CRM. Start buying retention.<br>v2 plan and storyboard</h1>
+<p class="lede">Will's outbound film, rebuilt in three ways: a voice-first mix, motion graphics pushed several notches with a dry, tongue-in-cheek streak, and six AI live-action shots woven in as full-bleed plates and split screens. The voice track, script and 77.5 s length stay exactly as in v1.</p>
+
+<div class="kv" style="margin-top:26px">
+ <div class="card"><div class="num">77.5 s</div><p class="cap">Same voice take and timing</p></div>
+ <div class="card"><div class="num">6</div><p class="cap">AI shots, about 35 s on screen (45%)</p></div>
+ <div class="card"><div class="num">-14 dB</div><p class="cap">Music under the voice while it talks (v1: -1.7 dB)</p></div>
+ <div class="card"><div class="num">~$20</div><p class="cap">Generation cost, Seedance 2.5 at 1080p</p></div>
+</div>
+
+<h2>1. The sound fix</h2>
+<p>I measured v1: while the narrator talks, the music sits only <b>1.7 dB</b> below the voice, and 12 moments have an effect within 6 dB of it. That is why it felt like it was fighting him. The fix:</p>
+<div class="grid g2">
+ <div class="card"><h3>Music</h3><ul>
+  <li><b>14 dB under the voice</b> while it speaks, rising to 8 dB under in the gaps between lines, so it breathes with him.</li>
+  <li>Smooth dips on every spoken phrase (0.25 s in, 0.5 s out), never a hard duck.</li>
+  <li>Same quirky pizzicato and marimba track (it suits the tone), re-edited on its bar grid so the hits land on story beats: the drop out on "So stop buying a CRM", the groove back exactly on "<b>Brevo</b>" (v1 was 0.6 s late), and the track's real ending under the logo.</li>
+  <li>Two comic one-beat music stops, used as punchlines: after "everyone blames someone else" and after "nineteen times".</li>
+ </ul></div>
+ <div class="card"><h3>Sound effects</h3><ul>
+  <li><b>77 cues down to about 22</b>, one per meaningful event only.</li>
+  <li>Every cue at least 10 dB under the voice (levels 0.08 to 0.18), soft and short. No impacts, risers or whooshes on every cut.</li>
+  <li>Each cue is placed on the frame where its visual lands, which is itself placed on the word, so sound, picture and voice hit together.</li>
+  <li>AI clips play muted. QA checks the voice-to-music gap on every line before I send it.</li>
+ </ul></div>
+</div>
+
+<h2>2. The look: motion that shows off, with a wink</h2>
+<p>v1 was clean cards on a mint stage. v2 keeps the Brevo palette, type and real UI, but every scene gets a signature move, and the film carries a running deadpan joke: Jordan, head of ecommerce at Fernhill Home, literally wearing eight hats.</p>
+<div class="grid g3">
+ <div class="card"><h3>Camera, not slides</h3><p>Transitions are camera moves with meaning: a zoom through the "o" of "who" into live action, an iris that shrinks Jordan's footage into the avatar, a pink hat thrown out of a graphic and caught in real footage.</p></div>
+ <div class="card"><h3>Graphics glued to footage</h3><p>AI shots are filmed locked off, so tags, leader lines and cards stay pinned to real objects (each hat, the folders, the phone) while the camera moves happen in the edit.</p></div>
+ <div class="card"><h3>Real depth</h3><p>3D card flips with a light sweep, UI panels fanning out in space, a bar that shoots out of the top of frame with the camera tilting up after it, paper that drops with weight and shadow.</p></div>
+ <div class="card"><h3>Kinetic type as a character</h3><p>"Stop buying a CRM." lands word by word on the beat, CRM gets a hand-drawn strike, and the pink Retention hat drops onto the word "retention" like it is wearing it.</p></div>
+ <div class="card"><h3>The wink</h3><p>Small deadpan asides, one at a time and never over a face: "Retention (part-time, Fridays, maybe)", a Blame-o-meter, "Tutorial 14 of 30", "The other 51%: very nice hangers", "(Yes, nineteen.)".</p></div>
+ <div class="card"><h3>Footage rules</h3><p>Natural daylight grade, <b>no green glare or tint</b> on any footage. Brand green lives only in graphics. No logos or readable text in the AI shots. All Brevo screens are HTML rebuilds of the real UI, never AI.</p></div>
+</div>
+
+<h2>3. Style frames</h2>
+<p>Real keyframes with the v2 graphics laid over them (stills; in the film everything moves).</p>
+<div class="grid" style="gap:22px">
+ <div class="big"><img src="img/sf1.jpg" alt="Jordan wearing eight hats with a tag on each"><p class="cap">Scene 2, "Retention gets whatever hours are left." Each hat is tagged as the narrator names it; the pink one gets the joke.</p></div>
+ <div class="grid g2">
+  <div class="big"><img src="img/sf2.jpg" alt="49% beside a treadmill used as a clothes rack"><p class="cap">Scene 7, "about half of what their tools can do": split screen.</p></div>
+  <div class="big"><img src="img/sf3.jpg" alt="Jordan relaxed, one hat, approval card"><p class="cap">Scene 10, "nothing sends without your approval": one hat left, Jordan taps Approve in the footage, the card answers.</p></div>
+ </div>
+</div>
+
+<h2>4. The six AI shots</h2>
+<p>Ideas I considered and dropped: an empty software box unboxing, a wall clock being wound back, a caravan at sunset behind the 19x (it would read as Everything Caravans' own footage). The six below scored highest on fit with the line, comedy, readability and how reliably the model can do them. These are the actual first frames; each shot animates from its still.</p>
+<div class="grid g2">
+ <div class="card"><img src="img/c1-hats.jpg" alt=""><span class="pill">C1</span><span class="pill gr">12 s</span><span class="pill gr">4.2 to 15.35</span><h3>Eight hats</h3><p>Full-bleed plate for scene 2. Jordan stares at camera; the phone buzzes, eyes flick to it, then the laptop; the tower sways and the pink hat slides; Jordan steadies it without looking, then a tired polite smile right on "whatever hours are left".</p><div class="prompt">Locked-off, real time, one weighted action per beat, tower lags and settles with each head turn, natural daylight, no tint.</div></div>
+ <div class="card"><img src="img/c2-blame.jpg" alt=""><span class="pill">C2</span><span class="pill gr">8 s</span><span class="pill gr">24.5 to 31.7</span><h3>The blame game</h3><p>Scene 5 plate. The agency man slides two folders over on "two contracts". On "blames", he points at the vendor on the screen while she points straight back out of the TV at him. Jordan's eyes go left, right, left, like a tennis match.</p><div class="prompt">Graphics: contract and bill tags, ping-pong blame arrows, a Blame-o-meter, then "Owner: nobody" stamped (now held 1.2 s).</div></div>
+ <div class="card"><img src="img/c3-hire.jpg" alt=""><span class="pill">C3</span><span class="pill gr">5 s</span><span class="pill gr">31.7 to 36.3</span><h3>The new hire</h3><p>Split screen for scene 6. The binder lands on "hire" with a thud and a puff of paper dust; he pushes his glasses up and opens page one. Beside him, a "Learning the tool" bar sticks at 50% with a spinner.</p><div class="prompt">One drop, one settle, desk wobble, laptop jiggle. Hands mid-frame.</div></div>
+ <div class="card"><img src="img/c4-treadmill.jpg" alt=""><span class="pill">C4</span><span class="pill gr">5 s</span><span class="pill gr">40.2 to 44.1</span><h3>The treadmill wardrobe</h3><p>Split screen for the Gartner beat. She hooks one more shirt on the handlebar, fixes the scarf, steps back and gives her "wardrobe" a satisfied nod. The 49% counts up beside it.</p><div class="prompt">Paid for, half used. The visual joke does the explaining.</div></div>
+ <div class="card"><img src="img/c5-catch.jpg" alt=""><span class="pill">C5</span><span class="pill gr">6 s</span><span class="pill gr">51.2 to 56.1</span><h3>The catch</h3><p>Scene 9. The pink Retention hat is thrown out of the graphic on "our own team"; a real hat flies into this shot and he catches it, pulls it on, nods to camera and turns to his desk. Real Brevo app panels fan out beside him on "flows", "campaigns", "deliverability".</p><div class="prompt">Match cut graphic to live action on the hat's arc. No logos on clothes or walls.</div></div>
+ <div class="card"><img src="img/c6-approve.jpg" alt=""><span class="pill">C6</span><span class="pill gr">6 s</span><span class="pill gr">60.2 to 64.2</span><h3>Feet up</h3><p>Scene 10. One hat left, feet on the desk, coffee in a Fernhill mug. The phone buzzes, Jordan glances and taps once with a thumb on "approval"; the graphic card ticks to "Scheduled". Leans back, content.</p><div class="prompt">The thumb tap in the footage drives the timing of the card.</div></div>
+</div>
+<div class="card" style="margin-top:18px"><img src="img/cast.jpg" alt="" style="max-width:420px"><h3>Cast: Jordan</h3><p>Every Jordan shot is generated from this one reference, so it is the same person throughout. Jordan's avatar on the side card becomes a crop of this face instead of initials.</p></div>
+
+<h2>5. Storyboard, scene by scene</h2>
+<p>Times are film seconds. The voice is unchanged, so every beat below is placed on its word.</p>
+<div class="scroll"><table>
+<tr><th>Time</th><th>Voice</th><th>Picture</th><th>Signature move and wink</th><th>Sound</th></tr>
+<tr><td class="t">0.0 to 4.2</td><td><span class="vo">"Quick question: who runs retention at your brand?"</span></td><td>Graphics. The Fernhill store from film 1 floats in 3D; a spotlight sweeps across it looking for someone. The question builds word by word.</td><td>On "brand?" the camera dives through the "o" of "who" straight into live action.</td><td>Music starts. One soft tick on "Quick", one swell into the dive.</td></tr>
+<tr><td class="t">4.2 to 15.35</td><td><span class="vo">"At most online brands, it's one marketer wearing eight hats, from paid ads and SEO to social, marketplaces, the website, offers and the brand. Retention gets whatever hours are left."</span></td><td><b>C1 full bleed.</b> Starts punched in on Jordan's face, pulls back to reveal the tower on "eight hats".</td><td>A leader line draws to each hat as it is named. Pink hat: "Retention (part-time, Fridays, maybe)". Jordan's week bar slides in: 40 hours, retention gets the last sliver. Ends with an iris closing on Jordan's face, which becomes the avatar on the side card.</td><td>One soft pop per hat tag (7, very quiet). Nothing on the iris.</td></tr>
+<tr><td class="t">15.35 to 19.6</td><td><span class="vo">"When results don't come, most brands try one of three fixes."</span></td><td>Graphics. A retention line chart sags; three fix cards deal out like playing cards in 3D.</td><td>The chart line droops and literally sighs (a little deflate). Cards fan with perspective.</td><td>One card-deal sound.</td></tr>
+<tr><td class="t">19.6 to 24.5</td><td><span class="vo">"A new tool is the same problem with a new logo, because software doesn't add hours."</span></td><td>Graphics. A tool card flips in 3D from "Mailstack" to "Retainly" with a light sweep across the glass.</td><td>Under it, Jordan's 40-hour week bar does not move. Aside: "New logo. Same 40 hours."</td><td>One flip sound on "logo".</td></tr>
+<tr><td class="t">24.5 to 31.7</td><td><span class="vo">"An agency on top means two contracts, two bills, and when results slip, everyone blames someone else."</span></td><td><b>C2 full bleed</b>, slow push in done in the edit.</td><td>Folders get "Contract 1" and "Contract 2" tags; two bills drop onto the table with weight. On "blames", arrows ping-pong between the two pointers and a Blame-o-meter needle swings. "Owner: nobody" stamps on, held 1.2 s.</td><td>Paper drop. Music stops for one beat after "else", stamp lands in the silence.</td></tr>
+<tr><td class="t">31.7 to 36.3</td><td><span class="vo">"And an in-house hire spends half their time just learning the tool."</span></td><td><b>Split screen</b>: C3 left, graphics right.</td><td>Diagonal wipe. "Learning the tool" bar fills to exactly half and sticks, spinner turning. "Tutorial 14 of 30" ticks up once.</td><td>The binder thud (from the edit, quiet). One tick.</td></tr>
+<tr><td class="t">36.3 to 44.1</td><td><span class="vo">"In every case, the software and the people running it are separate, while marketers use only about half of what their tools can do."</span></td><td>Graphics first, then <b>split screen</b> with C4 from "while marketers".</td><td>"Software" and "People" sit on two 3D islands that drift apart as a gap opens. Then 49% counts up next to the treadmill; sticky note: "The other 51%: very nice hangers." Source: Gartner, 2025.</td><td>One soft count tick. Island drift is silent.</td></tr>
+<tr><td class="t">44.1 to 49.15</td><td><span class="vo">"So stop buying a CRM, and start buying retention."</span></td><td>Graphics only, the calmest frame in the film.</td><td>Kinetic type on the beat. "CRM" gets a lime hand-drawn strike. "Start buying retention." lands, then the pink hat drops onto the word "retention" and wobbles. Held still for half a second.</td><td>Music drops out to its breakdown; one soft chime on "retention".</td></tr>
+<tr><td class="t">49.15 to 56.1</td><td><span class="vo">"Brevo built the platform, and our own team runs it for you: your flows, your campaigns, and your deliverability."</span></td><td>Graphics, then <b>C5</b> from "our own team".</td><td>Jordan's card grows; the pink hat lifts off the tower and is thrown out of frame right. <b>Match cut</b>: it flies into C5 and he catches it. Real Brevo screens (automation flow, campaigns, sender and domain settings) fan out in 3D beside him, one per word.</td><td>Groove returns exactly on "Brevo". One catch sound. Soft UI clicks on the three panels.</td></tr>
+<tr><td class="t">56.1 to 64.2</td><td><span class="vo">"That's one team, one fee, and one owner of the result. You keep the strategy, and nothing sends without your approval."</span></td><td>Graphics, then <b>C6 full bleed</b> from "You keep the strategy".</td><td>"One team", "One fee", "One owner" orbit and merge into a single "Brevo Managed Services" card. Whip to C6: tag on the one remaining hat, "Strategy: yours". The thumb tap in the footage triggers Approve; card flips to "Scheduled, Friday 9:00", held 1.2 s.</td><td>One merge chime. One tap, one soft ping.</td></tr>
+<tr><td class="t">64.2 to 69.0</td><td><span class="vo">"For Everything Caravans, that returned nineteen times what they paid us."</span></td><td>Graphics.</td><td>Two 3D bars: Fees is tiny; Return shoots up out of the top of frame and the camera tilts up after it to find "19x". Aside: "(Yes, nineteen.)"</td><td>Count ticks on the rise. Music stops one beat after "nineteen".</td></tr>
+<tr><td class="t">69.0 to 77.5</td><td><span class="vo">"Reply to this email, and we'll show you three retention gaps on your store, for free."</span></td><td>Graphics.</td><td>A reply types "Yes, show me." and sends; three gap cards land; "Free" stamps in lime. Lockup: Brevo logo builds, headline, "Reply to this email: 3 retention gaps on your store, free."</td><td>Typing, send, one pluck on the logo on the track's real ending.</td></tr>
+</table></div>
+
+<h2>6. How it gets made</h2>
+<div class="grid g2">
+ <div class="card"><h3>Generation</h3><ul>
+  <li>Seedance 2.5 (face model, through treg) at 1080p, each shot animated from the keyframe above, prompts written for capture: lens, light, one weighted action, real-time speed.</li>
+  <li>Total 42 s of footage, about <b>$19.40</b>. Keyframes so far: about $1.10.</li>
+  <li>One take each. A second take only for a real failure (broken hands or face, wrong physics, a logo appearing), then I finish the cut and flag anything minor for you.</li>
+ </ul></div>
+ <div class="card"><h3>Build and checks</h3><ul>
+  <li>Same HyperFrames project and voice; scenes rebuilt in parallel, then one render at 1080p 60 fps.</li>
+  <li>Checks before you see it: no snaps or dead air, every readable label held at least 1.2 s, voice at least 12 dB over the music on every line, -16 LUFS, no tint on any footage.</li>
+  <li>Still flagged from v1: the 19x claim is spoken and shown, and Will's brief says Everything Caravans' sign-off is pending.</li>
+ </ul></div>
+</div>
+
+<h2>7. What I need from you</h2>
+<div class="card"><ul>
+ <li>Approve the storyboard as is, or note any scene, shot or joke to change.</li>
+ <li>Approve Jordan's casting (one reference drives every Jordan shot).</li>
+ <li>On your go, I generate the six shots, build, and send v2 here.</li>
+</ul></div>
+
+<p class="foot">Built for William Hearn's outbound sequence. Fictional brand (Fernhill Home), fictional people; the only real client named is Everything Caravans.</p>
+</div>
+</body>
+</html>
