@@ -125,7 +125,7 @@ a{{color:var(--accent)}}
 <p class="muted">Brevo Ad Studio (ads.brevo.com, formerly MagicFit) · Meta · prepared 3 Nov 2026 · built on CPMA</p>
 <h1>Ad Studio Meta launch: plan, blockers and copy</h1>
 <p class="lede">One campaign at $100 a day across the US, Canada, the UK, Germany, France, Italy and Spain, on the PushOwl ad account. Four ad sets, one per core promise, eight approved films, optimised to the Ad Studio sign-up. Everything is built in CPMA's new Ad Studio silo and is created paused. Two things block the launch today; both are listed first.</p>
-<nav class="toc"><a href="#status">Status</a><a href="#blockers">Blockers</a><a href="#history">MagicFit history</a><a href="#tracking">Tracking audit</a><a href="#setup">Campaign settings</a><a href="#copy">Ad sets and copy</a><a href="#films">Film review</a><a href="#languages">Languages and dubbing</a><a href="#cpma">CPMA and dashboard</a><a href="#optimise">Optimisation</a><a href="#decisions">Your decisions</a></nav>
+<nav class="toc"><a href="#status">Status</a><a href="#blockers">Blockers</a><a href="#history">MagicFit history</a><a href="#tracking">Tracking audit</a><a href="#setup">Campaign settings</a><a href="#copy">Ad sets and copy</a><a href="#films">Film review</a><a href="#languages">Languages</a><a href="#cpma">CPMA and dashboard</a><a href="#optimise">Optimisation</a><a href="#decisions">Your decisions</a></nav>
 
 <h2 id="status">Status</h2>
 <div class="grid">
