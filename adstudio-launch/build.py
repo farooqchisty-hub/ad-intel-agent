@@ -139,6 +139,7 @@ a{{color:var(--accent)}}
 <li>Watched all 9 films and 5 alternates frame by frame (OCR, transcripts, loudness, safe zones): 8 cleared for launch, 3 held.</li>
 <li>Wrote the copy for 4 ad sets and 8 ads in English, German, French, Italian and Spanish.</li>
 <li>Added ads.brevo.com to the pixel's traffic permissions allow list; Meta now receives browser events from the site.</li>
+<li>Built the campaign on Meta, paused: 1 campaign, 4 ad sets, 8 ads, the sign-up exclusion audience. Go live card on the board.</li>
 <li>Built and deployed the Ad Studio silo on CPMA: its own database, storage and queues on the shared PushOwl account, with the 8 films in its Library, the plan saved and a dry-run check that names exactly what still blocks it.</li>
 </ul></div>
 
@@ -146,9 +147,9 @@ a{{color:var(--accent)}}
 <div class="card okc"><h4>1. Fixed 3 Nov: ads.brevo.com is on the pixel's allow list</h4>
 <p>The site loads the same pixel MagicFit used (<code>569439912209998</code>, "PushOwl Pixel"), but its traffic permissions left out ads.brevo.com, so Meta dropped every browser event there. With your OK I added <code>ads.brevo.com and subdomains</code> to the allow list (Events Manager, PushOwl Pixel, Settings, Traffic permissions). Meta now serves the domain the full pixel config (446 KB, the same as pushowl.com, instead of the 46 KB blocked one), and a test visit fired <code>MagicfitPageView</code> to Meta. PageViews, the click ID cookie and the retargeting pool now build from today.</p>
 <p class="owner">CPMA re-checks this before every build and refuses if it ever regresses.</p></div>
-<div class="card blk"><h4>2. CPMA's Meta write hold on the Ad Studio silo (by design)</h4>
-<p>The new silo reads Meta in the two daily windows but can't write. Releasing it is your go-ahead to build the paused campaign; the Go live card on the board is the separate approval to spend.</p>
-<p class="owner">Owner: Farooq. Release: <code>POST /api/meta/hold {{"on":false}}</code> with the Ad Studio silo selected, or tell me to.</p></div>
+<div class="card okc"><h4>2. Built 3 Nov, all paused: waiting for your Go live</h4>
+<p>You released the hold and asked for the build at once, so it ran outside the call windows under a one-off, logged exception (47 Meta calls, 30 writes, all succeeded). On Meta: campaign <code>120251179707980614</code> (PAUSED, $100/day campaign budget, lowest cost), 4 ad sets optimising to <code>MagicfitSignUp</code> with the 7 countries, open audience, Facebook and Instagram, existing sign-ups excluded (audience <code>120251179656850614</code>), and 8 ads with every Advantage+ creative enhancement off and UTMs on. Meta is reviewing the ads now.</p>
+<p class="owner">Next: check the previews in Ads Manager, then approve the Go live card on the board (Ad Studio brand). Nothing spends before that.</p></div>
 <div class="card wrn"><h4>3. The live site contradicts the free allowance</h4>
 <p>ads.brevo.com says "3 Free generations, one-time" and, elsewhere on the same page, "You get 2 free generations to try out Ad Studio". Every film and every ad promises 3. Fix the "2" line before traffic arrives.</p><p class="owner">Owner: Ad Studio web team.</p></div>
 <div class="card wrn"><h4>4. Confirm a UGC video counts as one of the 3 free ads</h4>
@@ -230,7 +231,7 @@ a{{color:var(--accent)}}
 
 <h2 id="decisions">Your decisions</h2>
 <ol>
-<li>Release the Meta write hold on the Ad Studio silo so the paused build runs in the next window.</li>
+<li>Check the ad previews in Ads Manager, then approve the Go live card on the board.</li>
 <li>c18 Mirror Hallway: allowed for the European countries (it breaks the US-only creative rule on purpose)?</li>
 <li>Start the dubbing pilot (c17 in German) in its own session.</li>
 </ol>
