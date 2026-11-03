@@ -58,14 +58,14 @@ a{color:var(--accent)}
 <li>Audited the pixel, the site's events, PostHog and 16 months of MagicFit campaigns (one-off Meta read, 10 read-only calls, no writes).</li>
 <li>Watched all 9 films and 5 alternates frame by frame (OCR, transcripts, loudness, safe zones): 8 cleared for launch, 3 held.</li>
 <li>Wrote the copy for 4 ad sets and 8 ads in English, German, French, Italian and Spanish.</li>
+<li>Added ads.brevo.com to the pixel's traffic permissions allow list; Meta now receives browser events from the site.</li>
 <li>Built and deployed the Ad Studio silo on CPMA: its own database, storage and queues on the shared PushOwl account, with the 8 films in its Library, the plan saved and a dry-run check that names exactly what still blocks it.</li>
 </ul></div>
 
 <h2 id="blockers">Blockers</h2>
-<div class="card blk"><h4>1. Meta drops every browser event on ads.brevo.com (critical)</h4>
-<p>The site loads the same pixel MagicFit used (<code>569439912209998</code>, "PushOwl Pixel"), but its traffic permissions don't include ads.brevo.com. Meta serves the domain a stripped 46 KB "prohibited pixel" config instead of the full 448 KB one magicfit.pushowl.com gets, and the browser console says: "569439912209998 is unavailable on this website due to it's traffic permission settings." No PageView, no click ID cookie, no retargeting pool, and Meta can't attribute sign-ups to ad clicks except by email.</p>
-<p><b>Fix:</b> Events Manager → Data sources → PushOwl Pixel (569439912209998) → Settings → Traffic permissions → Allow list: add <code>ads.brevo.com</code> (and <code>brevo.com</code> if it is a block list). CPMA re-checks this before building and refuses while it stands.</p>
-<p class="owner">Owner: the PushOwl Business Manager admin (Farooq). A settings change, so it needs your hand or your explicit OK for me to do it in your browser.</p></div>
+<div class="card okc"><h4>1. Fixed 3 Nov: ads.brevo.com is on the pixel's allow list</h4>
+<p>The site loads the same pixel MagicFit used (<code>569439912209998</code>, "PushOwl Pixel"), but its traffic permissions left out ads.brevo.com, so Meta dropped every browser event there. With your OK I added <code>ads.brevo.com and subdomains</code> to the allow list (Events Manager, PushOwl Pixel, Settings, Traffic permissions). Meta now serves the domain the full pixel config (446 KB, the same as pushowl.com, instead of the 46 KB blocked one), and a test visit fired <code>MagicfitPageView</code> to Meta. PageViews, the click ID cookie and the retargeting pool now build from today.</p>
+<p class="owner">CPMA re-checks this before every build and refuses if it ever regresses.</p></div>
 <div class="card blk"><h4>2. CPMA's Meta write hold on the Ad Studio silo (by design)</h4>
 <p>The new silo reads Meta in the two daily windows but can't write. Releasing it is your go-ahead to build the paused campaign; the Go live card on the board is the separate approval to spend.</p>
 <p class="owner">Owner: Farooq. Release: <code>POST /api/meta/hold {"on":false}</code> with the Ad Studio silo selected, or tell me to.</p></div>
@@ -74,7 +74,7 @@ a{color:var(--accent)}
 <div class="card wrn"><h4>4. Confirm a UGC video counts as one of the 3 free ads</h4>
 <p>Ad set 3 promises "your first UGC creator free". PostHog shows Free-plan users whose first generation was a <code>VIDEO_AD</code> (65 to 75 credits), which supports it, but the plan's exact rule (3 generations or a credit amount) should be confirmed.</p><p class="owner">Owner: Ad Studio product.</p></div>
 <div class="card wrn"><h4>5. Server-side sign-up event: confirm it carries click IDs</h4>
-<p><code>MagicfitSignUp</code> reaches the pixel server-side (1:1 with PostHog <code>SignUp</code>: 15 and 15 since 20 Oct). For Meta to credit the right ad it needs <code>fbc</code>/<code>fbp</code>, hashed email, IP, user agent, <code>event_id</code> and <code>event_source_url</code>. The click ID cookie only exists once blocker 1 is fixed.</p><p class="owner">Owner: Ad Studio engineering.</p></div>
+<p><code>MagicfitSignUp</code> reaches the pixel server-side (1:1 with PostHog <code>SignUp</code>: 15 and 15 since 20 Oct). For Meta to credit the right ad it needs <code>fbc</code>/<code>fbp</code>, hashed email, IP, user agent, <code>event_id</code> and <code>event_source_url</code>. The browser click ID cookie (<code>_fbc</code>) is set on ads.brevo.com since the 3 Nov fix, so the server event can pass it on.</p><p class="owner">Owner: Ad Studio engineering.</p></div>
 <div class="card wrn"><h4>6. Page name</h4>
 <p>MagicFit ads ran from Page <code>1211654965361602</code> and Instagram <code>17841480099076355</code>. The plan uses them; the Page name shows on every ad, so it should read Brevo Ad Studio (or Ad Studio by Brevo).</p><p class="owner">Owner: Farooq.</p></div>
 <div class="card wrn"><h4>7. Safe zones (not a launch blocker)</h4>
@@ -90,7 +90,7 @@ a{color:var(--accent)}
 <tr><td><code>MagicfitSignUp</code></td><td>Server-side, one per new self-serve account (matches PostHog <code>SignUp</code> 1:1)</td><td>15</td><td><b>Optimise to this</b></td></tr>
 <tr><td><code>MagicfitEnhancedSignUp</code></td><td>Server-side after onboarding plus a first generation; includes accounts created through the Brevo and PushOwl integrations</td><td>98</td><td>Report as activation</td></tr>
 <tr><td><code>MagicfitPayment</code></td><td>Server-side, paid plan</td><td>3</td><td>Report as paid</td></tr>
-<tr><td><code>MagicfitPageView</code></td><td>Browser, every route change (sent with <code>track</code> instead of <code>trackCustom</code>; Meta warns but records it)</td><td>9,309 (none from ads.brevo.com)</td><td>Retargeting pool, once blocker 1 is fixed</td></tr>
+<tr><td><code>MagicfitPageView</code></td><td>Browser, every route change (sent with <code>track</code> instead of <code>trackCustom</code>; Meta warns but records it)</td><td>9,309 (none from ads.brevo.com before the 3 Nov fix)</td><td>Retargeting pool, building since 3 Nov</td></tr>
 <tr><td>PageView</td><td>Not fired by the site's own code</td><td>n/a</td><td>Optional: add it to the base snippet</td></tr>
 </tbody></table></div>
 <p class="muted">Also on the site: GA4 <code>G-4YSSQVK9D4</code>, PostHog, Axon (sign_up and purchase), Tolt. The server stores the first-touch UTMs in a <code>__utm</code> cookie and on the PostHog <code>SignUp</code>, so every ad carries UTMs. The home page already runs the three-way landing test (winners, agent, current) by cookie, and the old test pages on pages.dev have no pixel at all, so the ads go to ads.brevo.com.</p>
@@ -421,7 +421,6 @@ a{color:var(--accent)}
 
 <h2 id="decisions">Your decisions</h2>
 <ol>
-<li>Fix the pixel allowlist yourself, or OK me to do it in your logged-in browser.</li>
 <li>Release the Meta write hold on the Ad Studio silo so the paused build runs in the next window.</li>
 <li>c18 Mirror Hallway: allowed for the European countries (it breaks the US-only creative rule on purpose)?</li>
 <li>Start the dubbing pilot (c17 in German) in its own session.</li>
