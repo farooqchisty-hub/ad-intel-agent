@@ -172,8 +172,8 @@ td .thumb{width:32px;height:32px;border-radius:6px;object-fit:cover;vertical-ali
       <button type="button" data-r="today">Today</button>
       <button type="button" data-r="yesterday">Yesterday</button>
       <button type="button" data-r="7d">Last 7 days</button>
-      <button type="button" data-r="relaunch" aria-pressed="true" title="Fresh start: counts from the relaunch on 20 Oct, 19:07 IST">Since relaunch, 20 Oct</button>
-      <button type="button" data-r="all" title="Includes the 16 Oct launch and the pause before the relaunch">Since 14 Oct</button>
+      <button type="button" data-r="relaunch" aria-pressed="true" title="Fresh start: counts from the relaunch on 3 Nov, 18:01 IST (after the App Store relisting)">Since relaunch, 3 Nov</button>
+      <button type="button" data-r="all" title="Includes the 16 Oct launch, the 20 Oct relaunch and both pauses">Since 14 Oct</button>
       <button type="button" data-r="custom">Custom</button>
     </div>
     <span id="custom" class="hide"><input type="date" id="from" aria-label="From"> <input type="date" id="to" aria-label="To"></span>
@@ -202,7 +202,7 @@ var API = "https://bfcm-dash.winningstatics.workers.dev";
 var LS = { get:function(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }, set:function(k,v){ try { localStorage.setItem(k,v); } catch(_){} } };
 // Inside a sandboxed frame (the Omni app wrapper) the page has no origin: storage and history writes can throw.
 function dropHash(){ try { history.replaceState(null, "", location.pathname + location.search); } catch(_){} }
-// Fresh start (Farooq, 20 Oct): the default range counts from the relaunch on 20 Oct 2026, 19:07 IST.
+// Fresh start (Farooq): the default range counts from the relaunch on 3 Nov 2026, 18:01 IST (after the App Store relisting).
 var RELAUNCH_DAY = "2026-10-20";
 var state = { range:"relaunch", from:null, to:null, channel:"all", lens:LS.get("bfcm_lens") || "ga4", creators:"bfcm", data:null };
 
@@ -583,7 +583,7 @@ function pausedDays(d){
 // One line of context above the numbers: the fresh start, a pause inside the range, ad numbers older than the relaunch.
 function context(d){
   var el = document.getElementById("context"), parts = [], pc = d.pacing || {}, rel = d.relaunch || {};
-  if (d.range.since) parts.push("<b>Fresh start.</b> Every number counts from the relaunch on 20 Oct, 19:07 IST (Meta on 31 new d1 ads, offer D). Pick Since 14 Oct to see the 16 Oct launch and the pause before the relaunch.");
+  if (d.range.since) parts.push("<b>Fresh start.</b> Every number counts from the relaunch on 3 Nov, 18:01 IST, after the App Store relisting (Meta on the same 31 d1 ads, offer D). Pick Since 14 Oct to see the earlier launches and pauses.");
   else (d.ad_pauses || []).forEach(function(p){
     var a = new Date(Date.parse(p.from) + 330 * 60000).toISOString().slice(0, 10), b = p.to ? new Date(Date.parse(p.to) + 330 * 60000).toISOString().slice(0, 10) : d.range.to;
     if (a <= d.range.to && b >= d.range.from) parts.push("<b>Pause in this range.</b> " + esc(p.note) + " Paused " + esc(istTime(p.from)) + " to " + esc(p.to ? istTime(p.to) : "now") + "; shaded days in the charts had no ads running.");
