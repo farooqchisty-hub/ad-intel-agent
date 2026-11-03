@@ -21,9 +21,9 @@ FILMS = {
     "c08a": ("Same Ad, Your Product (alt cut)", "59.3 s", "alt", "Ready with caveat", "Same story as c08 with a better first frame (the blank ad card)."),
 }
 HELD = [
-    ("c04", "The Three Week Wait", "Not ready", "A product picker shows an unrelated catalog item with a rupee price (₹4,000/month) and em dashes at 39 to 41 s; UK-style dates (THU 28 AUG); captions at 93 to 99% of the frame. Re-cut, then add to AS2 or AS4."),
-    ("c05", "Nine Ads Before Lunch", "Not ready", "Says nine ads but shows 5 + 3. The alternate cut says four winners (adds up) but may carry a stray voice tag in its last 1.5 s. Fix, then add to AS2."),
-    ("c18", "Mirror Hallway", "Your call", "Multilingual presenters (ES, FR, DE, PT, EN) in European settings. Off-brief for the US-only creative rule, on-brief for this campaign's EU markets. One spoken line says \"Ad Studio by Brevo\". Candidate for AS3 in DE, FR, ES."),
+    ("c04", "The Three Week Wait", "Not ready", "A product picker shows an unrelated catalog item with a rupee price (₹4,000/month) and em dashes at 39 to 41 s; UK-style dates (THU 28 AUG); captions at 93 to 99% of the frame. Stays out: no re-edits (your call, 3 Nov)."),
+    ("c05", "Nine Ads Before Lunch", "Not ready", "Says nine ads but shows 5 + 3. The alternate cut says four winners (adds up) but may carry a stray voice tag in its last 1.5 s. Stays out: no re-edits (your call, 3 Nov)."),
+    ("c18", "Mirror Hallway", "Your call", "Multilingual presenters (ES, FR, DE, PT, EN) in European settings. Off-brief for the US-only creative rule, on-brief for this campaign's EU markets. One spoken line says \"Ad Studio by Brevo\". Not in the launch; adding it would be a new ad, so only if you ask."),
 ]
 LANGS = [("en", "English"), ("de", "Deutsch"), ("fr", "Français"), ("it", "Italiano"), ("es", "Español")]
 
@@ -159,7 +159,7 @@ a{{color:var(--accent)}}
 <div class="card wrn"><h4>6. Page name</h4>
 <p>MagicFit ads ran from Page <code>1211654965361602</code> and Instagram <code>17841480099076355</code>. The plan uses them; the Page name shows on every ad, so it should read Brevo Ad Studio (or Ad Studio by Brevo).</p><p class="owner">Owner: Farooq.</p></div>
 <div class="card wrn"><h4>7. Safe zones (not a launch blocker)</h4>
-<p>Most films put captions or stickers in the bottom 20% or top 14% of the frame, which the Reels interface covers and a 4:5 feed crop cuts. All films are 9:16 only. They launch as approved; the fix (captions raised to about 70%) folds into the dubbing re-renders, so each film is re-rendered once.</p></div>
+<p>Most films put captions or stickers in the bottom 20% or top 14% of the frame, which the Reels interface covers and a 4:5 feed crop cuts. All films are 9:16 only. They run as approved: no re-renders (your call, 3 Nov). If a film underdelivers on Reels, this is the likely reason.</p></div>
 
 <h2 id="history">MagicFit history (Jul 2025 to Jul 2026)</h2>
 <p>MagicFit spent about $36.5k on this account across 45 campaigns. The sign-up ad sets ran open (Advantage+ audience, no interests) in the same countries, optimised to the custom pixel event <code>MagicfitSignUp</code>, with 7-day click, 1-day view and 1-day engaged-view attribution. Cost per sign-up in the seven launch countries:</p>
@@ -193,7 +193,7 @@ a{{color:var(--accent)}}
 </tbody></table></div>
 
 <h2 id="copy">Ad sets and copy</h2>
-<p>Each ad set carries one promise, and its copy leads with it. The films all close on "Start for free. Your first 3 ads are free", so the copy adds the angle the film doesn't say out loud. Every claim is on the live site: 40,000+ brands, plans from $19 a month, no credit card required, 3 free generations, Ad Radar, cloning around your product, brand and offer, AI presenters with captions. No em dashes, no "Shopify". The language tabs hold the translations for the dubbed versions; until those are approved, English runs everywhere.</p>
+<p>Each ad set carries one promise, and its copy leads with it. The films all close on "Start for free. Your first 3 ads are free", so the copy adds the angle the film doesn't say out loud. Every claim is on the live site: 40,000+ brands, plans from $19 a month, no credit card required, 3 free generations, Ad Radar, cloning around your product, brand and offer, AI presenters with captions. No em dashes, no "Shopify". English runs in all 7 countries (your call, 3 Nov). The language tabs keep the translations for reference only; no ad uses them.</p>
 {adsets}
 
 <h2 id="films">Film review</h2>
@@ -201,13 +201,9 @@ a{{color:var(--accent)}}
 <div class="tw"><table><thead><tr><th></th><th>Film</th><th>Status</th><th>Why</th></tr></thead><tbody>{held_rows}</tbody></table></div>
 <p class="muted">Claims in the films worth a product check (not blocking): "launch it in seconds" and the 3-second LIVE timer (c01, c08); "anything live past 60 days is a proven seller" (c01, c05, c08); "any voice, in any language" (the UI lists about 12 languages); "no creator fee" while generation costs credits (c03); c21 says "TikTok" on a Meta ad.</p>
 
-<h2 id="languages">Languages and dubbing</h2>
-<p>You asked for translated text and dubbed audio in Germany, France, Italy and Spain. The copy is translated (tabs above). For the audio:</p>
-<ol>
-<li><b>Launch English everywhere first.</b> MagicFit's English ads got its cheapest sign-ups in exactly those four countries, so nothing waits on the dubs.</li>
-<li><b>Dub one hero film per ad set</b> (c01, c21, c17, c08a), one film and one language at a time for your approval: translated script, the same presenter's voice cloned in the target language, lip-sync on the on-camera takes, captions re-rendered in the language and raised out of the Reels zone. Pilot: c17 in German.</li>
-<li><b>Add them as language versions of the same ads</b> (Meta's language customisation: English by default, German, French, Italian and Spanish served by the viewer's language), so the ads keep their history and the campaign stays one campaign.</li>
-</ol>
+<h2 id="languages">Languages</h2>
+<p><b>English everywhere, no dubbing (your call, 3 Nov).</b> The films are never regenerated or re-edited, and no ad is redone. MagicFit's English ads got its cheapest sign-ups in Germany, France, Italy and Spain ($5.70), so English is a sound default there too.</p>
+<p class="muted">Meta does offer an AI "Translate voiceover" enhancement (tested English to Spanish in 2025, wider AI dubbing announced March 2026). It is set per creative, so turning it on would mean new creatives on all 8 ads, which resets their review and learning. Not applied.</p>
 
 <h2 id="cpma">CPMA and the dashboard</h2>
 <ul>
@@ -224,15 +220,14 @@ a{{color:var(--accent)}}
 <div class="tw"><table><thead><tr><th>When</th><th>What CPMA does</th></tr></thead><tbody>
 <tr><td>Days 1 to 3</td><td>Learning: no changes. Syncs at 09:00 and 17:00 IST; flags delivery, CPM by country and early hook rates.</td></tr>
 <tr><td>Day 3 on</td><td>The Ad Studio loop judges every ad in each window with CPMA's usual maths. It pauses an ad after about $16 with no sign-up (2.5x the target), or once it has 3+ sign-ups and under a 10% chance of beating $6.50. Pauses are automatic within the guardrails (10 a day, kill switch), never the last live ad in an ad set; those become cards.</td></tr>
-<tr><td>Day 7</td><td>Review by promise: keep the best two or three ad sets, move the winning films into them, add c04 and c05 once re-cut and the first dubbed versions.</td></tr>
+<tr><td>Day 7</td><td>Review by promise: the loop's pauses and your budget cards move spend toward the best promises. No new or re-made ads.</td></tr>
 <tr><td>Scaling</td><td>An ad with 10+ sign-ups and an 80% chance of beating $6.50 raises a card to lift the campaign budget 20% (72 hours apart). Only you approve raises.</td></tr>
 <tr><td>Also tracked</td><td>Activation rate (MagicfitEnhancedSignUp per sign-up), paid plans (MagicfitPayment), hook rate, CTR, and CPM per country. BFCM week (20 Nov to 1 Dec) will lift CPMs; the $10 ceiling covers it.</td></tr>
 </tbody></table></div>
 
 <h2 id="decisions">Your decisions</h2>
 <ol>
-<li>c18 Mirror Hallway: allowed for the European countries (it breaks the US-only creative rule on purpose)?</li>
-<li>Start the dubbing pilot (c17 in German) in its own session.</li>
+<li>Nothing waiting on you for the launch. Open items for other teams are under Blockers (3 to 6).</li>
 </ol>
 <p class="muted">Sources: Meta Graph API (act_1068538947813085, pixel 569439912209998), PostHog project 195917, the live ads.brevo.com pages and Meta's pixel config, the film audit in ads-brevo-meta-launch/creatives/REVIEW.md, and the CPMA repo (branch cpma-adstudio-silo).</p>
 </main>
