@@ -74,10 +74,12 @@ a{color:var(--accent)}
 <p>ads.brevo.com says "3 Free generations, one-time" and, elsewhere on the same page, "You get 2 free generations to try out Ad Studio". Every film and every ad promises 3. Fix the "2" line before traffic arrives.</p><p class="owner">Owner: Ad Studio web team.</p></div>
 <div class="card wrn"><h4>4. Confirm a UGC video counts as one of the 3 free ads</h4>
 <p>Ad set 3 promises "your first UGC creator free". PostHog shows Free-plan users whose first generation was a <code>VIDEO_AD</code> (65 to 75 credits), which supports it, but the plan's exact rule (3 generations or a credit amount) should be confirmed.</p><p class="owner">Owner: Ad Studio product.</p></div>
-<div class="card wrn"><h4>5. Server-side sign-up event: confirm it carries click IDs</h4>
-<p><code>MagicfitSignUp</code> reaches the pixel server-side (1:1 with PostHog <code>SignUp</code>: 15 and 15 since 20 Oct). For Meta to credit the right ad it needs <code>fbc</code>/<code>fbp</code>, hashed email, IP, user agent, <code>event_id</code> and <code>event_source_url</code>. The browser click ID cookie (<code>_fbc</code>) is set on ads.brevo.com since the 3 Nov fix, so the server event can pass it on.</p><p class="owner">Owner: Ad Studio engineering.</p></div>
-<div class="card wrn"><h4>6. Page name</h4>
-<p>MagicFit ads ran from Page <code>1211654965361602</code> and Instagram <code>17841480099076355</code>. The plan uses them; the Page name shows on every ad, so it should read Brevo Ad Studio (or Ad Studio by Brevo).</p><p class="owner">Owner: Farooq.</p></div>
+<div class="card wrn"><h4>5. The sign-up event carries no Meta click ID (checked 3 Nov)</h4>
+<p><code>MagicfitSignUp</code> reaches Meta only server-side, through Segment's Conversions API connection. Events Manager (PushOwl Pixel, MagicfitSignUp, View details, Event match quality) shows it sends hashed email, IP, user agent and external ID on 100% of events, but no Click ID (<code>fbc</code>) and no Browser ID (<code>fbp</code>). Match quality is 6.2/10; Meta estimates the click ID alone would lift it by up to 22% and the browser ID by 18%. Without them Meta credits sign-ups to ads by email match only, so it under-reports and optimises on less.</p>
+<p><b>Fix:</b> at sign-up, read the <code>_fbc</code> and <code>_fbp</code> cookies (the pixel sets them on ads.brevo.com since the 3 Nov allow-list fix; <code>_fbc</code> only for visitors who arrived from an ad), send them with the Segment sign-up event, and map them to <code>fbc</code> and <code>fbp</code> in the Segment Facebook Conversions API destination. Also send <code>event_source_url</code> and an <code>event_id</code>. <b>Check:</b> the same Event match quality view then lists Click ID (fbc) under "Customer information" with its coverage; or send a test sign-up with a test event code (Test events tab) and read its parameters.</p>
+<p class="owner">Owner: Ad Studio engineering.</p></div>
+<div class="card okc"><h4>6. Fixed 3 Nov: the ads run from the Brevo PushOwl Page</h4>
+<p>At your request the 8 ads moved from the MagicFit Page to the Brevo PushOwl Page (<code>485637907956703</code>) and its Instagram account (<code>17841470064475542</code>). Same ad IDs, films, copy and UTMs; Meta reviews them again before they deliver.</p></div>
 <div class="card wrn"><h4>7. Safe zones (not a launch blocker)</h4>
 <p>Most films put captions or stickers in the bottom 20% or top 14% of the frame, which the Reels interface covers and a 4:5 feed crop cuts. All films are 9:16 only. They run as approved: no re-renders (your call, 3 Nov). If a film underdelivers on Reels, this is the likely reason.</p></div>
 
@@ -106,7 +108,7 @@ a{color:var(--accent)}
 <tr><th>Audience</th><td>Open: Advantage+ audience, no interests · US, CA, GB, DE, FR, IT, ES · people living in or recently in · 18 to 65+ · all genders · all languages</td></tr>
 <tr><th>Exclusion</th><td>New audience "AGENT · Ad Studio sign-ups · MagicfitSignUp · 180d", created at build and confirmed in CPMA before Go live</td></tr>
 <tr><th>Placements</th><td>Facebook and Instagram only (feeds, Stories, Reels, Explore); no Audience Network, Messenger or Threads</td></tr>
-<tr><th>Identity</th><td>Page <code>1211654965361602</code> · Instagram <code>17841480099076355</code> (the MagicFit accounts; see blocker 6)</td></tr>
+<tr><th>Identity</th><td>Brevo PushOwl Page <code>485637907956703</code> · Instagram <code>17841470064475542</code> (moved from the MagicFit accounts on 3 Nov)</td></tr>
 <tr><th>Ads</th><td>Single video, 1080x1920, our own poster frame as thumbnail (covers c03's black first frame) · button: Sign up · link <code>https://ads.brevo.com/</code></td></tr>
 <tr><th>URL parameters</th><td><code>utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=adstudio_launch_nov26&amp;utm_term={{adset.name}}&amp;utm_content={{ad.name}}</code></td></tr>
 <tr><th>Before Go live</th><td>In Ads Manager, open each ad's preview: switch off Advantage+ creative enhancements that alter a finished film (music, visual touch-ups, text overlays, auto-cropping); keep relevant comments. Turn off multi-advertiser ads.</td></tr>
