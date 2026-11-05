@@ -1180,8 +1180,31 @@ function sendLead(lead, cb){
   email.addEventListener("focus", tsLoad); email.addEventListener("input", tsLoad);
   var focused = false; email.addEventListener("focus", function(){ if (!focused) { focused = true; bx("email_focus", {position: pos}); } });
 
+  // 5 Nov 2026 (Farooq: "fix the page"): Meta visitors get a one-tap path. Since the 3 Nov relaunch 458 Meta sessions
+  // gave 2 email focuses and 0 claims, while Google visitors on the same page claimed at about 11%. Meta optimises on the
+  // install (Purchase on the App Store pixel), not on our lead, so the email gate stood between its click and its own
+  // conversion. From Meta the email is optional: an empty field goes straight to the App Store with the code copied
+  // (beacon appstore_click, no lead, no claim conversion); a typed email still runs the normal claim.
+  function fromMeta(){ var s = (qs.get("utm_source") || "").toLowerCase(); return /^(facebook|fb|instagram|ig|meta)$/.test(s) || !!qs.get("fbclid"); }
+  var storeHelp = document.getElementById("claim-email-store");
+  function metaUi(){
+    if (!fromMeta()) return;
+    email.required = false; email.placeholder = "Your store email (optional)";
+    if (storeHelp) storeHelp.textContent = "Optional. Add it and we'll email your code and the free extras.";
+  }
+  metaUi(); document.addEventListener("bfcm-params", metaUi);
+  function quick(){
+    try { if (navigator.clipboard) navigator.clipboard.writeText("BFCM2026"); } catch(_){}
+    var url = appUrl(pos);
+    form.hidden = true; done.hidden = false; cont.href = url; lastDest = "shopify";
+    bx("appstore_click", {position: pos, dest: "shopify"});
+    setTimeout(function(){ goTop(url); }, 400);
+  }
+
   function claim(dest){
-    refresh(); if (!valid){ hint.className = "cb-hint err"; hint.textContent = codeOk() ? "Enter your store email to continue." : "Use the code BFCM2026."; bx("claim_blocked", {position: pos, dest: dest}); email.focus(); return; }
+    refresh();
+    if (!valid && dest === "shopify" && !email.value.trim() && codeOk() && fromMeta()) { quick(); return; }
+    if (!valid){ hint.className = "cb-hint err"; hint.textContent = codeOk() ? "Enter your store email to continue." : "Use the code BFCM2026."; bx("claim_blocked", {position: pos, dest: dest}); email.focus(); return; }
     try { if (navigator.clipboard) navigator.clipboard.writeText("BFCM2026"); } catch(_){}
     var url = dest === "brevo" ? brevoUrl(pos) : appUrl(pos);
     var lead = {email: email.value.trim(), code: "BFCM2026", destination: dest, position: pos, narrative: nKey || "default",
