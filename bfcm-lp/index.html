@@ -1051,6 +1051,8 @@ function bx(ev, extra){
     var o = {v:1, ev:ev, sid:SID, vid:VID, ts:Date.now(), narrative:nKey || "default", offer:OFFER_ID, phase:PHASE2 ? "2" : "1", in_frame:IN_FRAME,
       utm:{source:cut(qs.get("utm_source")), medium:cut(qs.get("utm_medium")), campaign:cut(qs.get("utm_campaign")), term:cut(qs.get("utm_term")), content:cut(qs.get("utm_content")), id:cut(qs.get("utm_id"))},
       click:{}, page_host:location.host, vw:window.innerWidth, lang:(navigator.language || "").slice(0, 12)};
+    // 5 Nov 2026: Meta fills utm_placement={{placement}} (creative url_tags) so dwell and taps can be split by placement.
+    if (qs.get("utm_placement")) o.pl = cut(qs.get("utm_placement"));
     try { o.ref_host = document.referrer ? new URL(document.referrer).host : null; } catch(_){}
     ["fbclid","gclid","gbraid","wbraid","msclkid","ttclid","li_fat_id"].forEach(function(k){ var v = qs.get(k); if (v) o.click[k] = String(v).slice(0, 200); });
     if (extra) for (var k in extra) o[k] = extra[k];
