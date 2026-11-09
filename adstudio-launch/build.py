@@ -125,7 +125,33 @@ a{{color:var(--accent)}}
 <p class="muted">Brevo Ad Studio (ads.brevo.com, formerly MagicFit) · Meta · prepared 3 Nov 2026 · built on CPMA</p>
 <h1>Ad Studio Meta launch: plan, blockers and copy</h1>
 <p class="lede">One campaign at $100 a day across the US, Canada, the UK, Germany, France, Italy and Spain, on the PushOwl ad account. Four ad sets, one per core promise, eight approved films, optimised to the Ad Studio sign-up. Everything is built in CPMA's new Ad Studio silo and is created paused. Two things block the launch today; both are listed first.</p>
-<nav class="toc"><a href="#status">Status</a><a href="#blockers">Blockers</a><a href="#history">MagicFit history</a><a href="#tracking">Tracking audit</a><a href="#setup">Campaign settings</a><a href="#copy">Ad sets and copy</a><a href="#films">Film review</a><a href="#languages">Languages</a><a href="#cpma">CPMA and dashboard</a><a href="#optimise">Optimisation</a><a href="#decisions">Your decisions</a></nav>
+<nav class="toc"><a href="#abo">Switch to ad set budgets</a><a href="#status">Status</a><a href="#blockers">Blockers</a><a href="#history">MagicFit history</a><a href="#tracking">Tracking audit</a><a href="#setup">Campaign settings</a><a href="#copy">Ad sets and copy</a><a href="#films">Film review</a><a href="#languages">Languages</a><a href="#cpma">CPMA and dashboard</a><a href="#optimise">Optimisation</a><a href="#decisions">Your decisions</a></nav>
+
+<h2 id="abo">9 Nov: switch to ad set budgets (plan)</h2>
+<div class="card blk"><h4>Why: the campaign budget starved most of the test</h4>
+<p>4 days, $399, 18 sign-ups ($22 each). Meta's campaign budget put 81% of the money into one ad set (First UGC creator free: $323, 12 sign-ups, $27 each) and left the rest almost untested: First 3 ads free got $41 for 5 sign-ups ($8 each; c21 alone $5.47), Clone any winning ad $26, Ad Radar winners $8. CPMs run near $60 (BFCM season), so every ad set needs real money to show what it can do.</p></div>
+<div class="tw"><table><thead><tr><th>New ad set (own budget)</th><th>Ads (2 each)</th><th>Daily budget</th><th>So far under CBO</th></tr></thead><tbody>
+<tr><td>AS1 · Clone any winning ad</td><td>c01, c08</td><td>$30</td><td>$26, 0 sign-ups</td></tr>
+<tr><td>AS2 · First 3 ads free</td><td>c21, c19</td><td>$30</td><td>$41, 5 sign-ups</td></tr>
+<tr><td>AS3 · First UGC creator free</td><td>c03, c17</td><td>$30</td><td>$323, 12 sign-ups</td></tr>
+<tr><td>AS4 · Ad Radar winners</td><td>c01a, c08a</td><td>$30</td><td>$8, 1 sign-up</td></tr>
+<tr><th>Total</th><td>8 ads</td><td><b>$120/day</b></td><td>$399, 18 sign-ups</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>New campaign</b> "AGENT · Ad Studio (MF) · Prospecting · Sign-ups · ABO · Nov 2026": no campaign budget, ad set budget sharing switched off (each ad set spends its own $30), lowest-cost bidding per ad set.</li>
+<li><b>Unchanged:</b> Sales objective optimising to MagicfitSignUp, 7-day click / 1-day view / 1-day engaged view, the 7 countries, open audience 18 to 65, Facebook and Instagram, existing sign-ups excluded, the Brevo PushOwl Page and Instagram, English copy, UTMs.</li>
+<li><b>Same ads, not redone:</b> the new ads reuse the existing creatives, so nothing is regenerated and each ad keeps its post (likes and comments carry over). c03 and c01, which CPMA paused against the $6.50 target, go back in for a fair test at equal budget.</li>
+<li><b>Switch-over:</b> the new campaign is built paused; one Go live action switches it on and pauses the current campaign in the same step, so there is no gap and no overlap. The old campaign is paused, never deleted; its history stays on the dashboard.</li>
+<li><b>Learning restarts</b> in the new campaign (expected with any restructure).</li>
+<li><b>Budget:</b> $120/day is $20 more than today, about $3,650 a month; CPMA's monthly budget moves from $3,100 to $3,650.</li>
+</ul>
+<h4>CPMA changes</h4>
+<ul>
+<li>A second Ad Studio program (<code>as_launch2</code>) with its own plan; the builder learns ad set budgets (campaign without a budget, budget sharing off, $30 per ad set) and reusing existing creatives.</li>
+<li>Go live learns to pause the old campaign as it switches the new one on.</li>
+<li>The loop follows the live program; budget cards act per ad set ($30 to $36, on your approval); a losing last ad becomes a "pause this ad set" card.</li>
+<li>For the first 7 days pauses need your approval (cards), so no ad set is cut before it has spent; after that, automatic pauses return. Fix: the loop stops repeating the same card (c17 was raised five times).</li>
+</ul>
 
 <h2 id="status">Status</h2>
 <div class="grid">
