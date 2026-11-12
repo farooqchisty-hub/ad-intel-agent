@@ -81,7 +81,7 @@ def main():
     refs.sort(key=lambda r: -(r.get("days_running") or 0) if isinstance(r.get("days_running"), int) else 0)
     counts = {k: sum(1 for r in refs if r["_group"] == k) for k, _ in GROUPS}
     ref_html = "".join(ref_card(r) for r in refs)
-    framework = (HERE / "framework.html").read_text()
+    framework = (HERE / "framework.html").read_text() + ((HERE / "framework_b2.html").read_text() if (HERE / "framework_b2.html").exists() else "")
     findings = (HERE / "findings.html").read_text() if (HERE / "findings.html").exists() else ""
     by_id = {str(r.get("ad_archive_id")): r for r in refs}
 
@@ -156,7 +156,7 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}th,td{{text-align:lef
 <span class="status">All 20 ads made, 12 Nov 2026. Nothing uploaded to Meta.</span>
 <h1>Brevo Ad Studio: 20 static Meta ads</h1>
 <p class="lead">The 20 finished ads first, then the research on what AI products run as statics, the rulebook built on Ogilvy and the other legends, and the scored concept behind each ad.</p>
-<nav><a href="#ads">The 20 ads</a><a href="#research">1. Research</a><a href="#framework">2. Framework</a><a href="#concepts">3. The 20 concepts</a><a href="#ranked">4. Ranked</a><a href="#next">5. Next</a></nav>
+<nav><a href="batch2.html"><b>Batch 2: 20 provocative ads</b></a><a href="#ads">The 20 ads</a><a href="#research">1. Research</a><a href="#framework">2. Framework</a><a href="#concepts">3. The 20 concepts</a><a href="#ranked">4. Ranked</a><a href="#next">5. Next</a></nav>
 
 <h2 id="ads">The 20 ads</h2>
 <p class="lead">4:5, 1080 x 1350, ready for the Meta feed. Click an ad for its concept, score and feed copy. <a href="ads/brevo-ad-studio-statics-20.zip">Download all 20 (zip, 5.5 MB)</a>.</p>
