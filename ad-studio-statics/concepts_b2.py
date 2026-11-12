@@ -22,11 +22,11 @@ EVIDENCE = {
 }
 
 CLONES = {
-    "a1": dict(label="Glowday SPF clone of the Norse \"Moms!\" ad", url="https://media.powlcdn.com/magicfit/1794522682917-ad-1794522682485.png"),
-    "a2": dict(label="drift gummies clone of the GHOST \"Recovery. Every day.\" ad: \"Sleep. Every night.\"", url="https://media.powlcdn.com/magicfit/1794522781438-ad-1794522781083.png"),
-    "a3": dict(label="drift gummies clone of the Cymbiotika ingredient ad: \"What helps you drift?\" (bottom strip cropped: the clone printed a stray font name there)", url="https://media.powlcdn.com/magicfit/1794522845479-ad-1794522845242.png"),
-    "a4": dict(label="Glowday SPF clone of the Jaxxon Black Friday ad: \"Black Friday, mineral glow\"", url="https://media.powlcdn.com/magicfit/1794522908981-ad-1794522908783.png"),
-    "a5": dict(label="Glowday SPF clone of the Norse \"Save your teen\" ad: \"Save your skin from white cast\"", url="https://media.powlcdn.com/magicfit/1794522953690-ad-1794522953469.png"),
+    "a1": dict(label="Glowday SPF clone of the Norse \"Moms!\" ad: \"Mineral SPF that leaves zero white cast!\" on a sticky note", url="https://media.powlcdn.com/magicfit/1794525935227-ad-1794525934618.png"),
+    "a2": dict(label="drift gummies clone of the GHOST \"Recovery. Every day.\" ad: \"Sleep. Every night.\"", url="https://media.powlcdn.com/magicfit/1794525976021-ad-1794525975782.png"),
+    "a3": dict(label="drift gummies clone of the Cymbiotika ingredient ad: \"Sleep, without the fog.\" with the real doses", url="https://media.powlcdn.com/magicfit/1794525994408-ad-1794525994183.png"),
+    "a4": dict(label="Glowday SPF clone of the Jaxxon Black Friday ad: \"Zero cast. Pure mineral.\"", url="https://media.powlcdn.com/magicfit/1794525908864-ad-1794525908691.png"),
+    "a5": dict(label="Glowday SPF clone of the Norse \"Save your teen\" ad: \"Save your skin from white cast\"", url="https://media.powlcdn.com/magicfit/1794525844783-ad-1794525844533.png"),
 }
 
 ADS = [

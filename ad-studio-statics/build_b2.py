@@ -81,7 +81,7 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}th,td{{text-align:lef
 </style></head><body><main>
 <span class="status">Batch 2: 20 ads made, 13 Nov 2026. Nothing uploaded to Meta.</span>
 <h1>Brevo Ad Studio statics, batch 2: clone 3 winning ads, free</h1>
-<p class="lead">Ads 21 to 40. Edgier and copy-led: quiet layouts, provocative headlines, one offer. Every "before" is a real long-running ad from Ad Radar (brand blurred) and every "after" is a real Clone run in Ad Studio. Each ad comes in 4:5 and 1:1.</p>
+<p class="lead">Ads 21 to 40. Edgier and copy-led: quiet layouts, provocative headlines, one offer. Every "before" is a real long-running ad from Ad Radar (brand blurred) and every "after" is a real Clone run in Ad Studio for our redesigned demo brands, <a href="https://glowday.pages.dev/products/tinted-mineral-spf-50">glowday</a> and <a href="https://driftsleep.pages.dev/products/magnesium-sleep-gummies">drift</a>. Each ad comes in 4:5 and 1:1.</p>
 <nav><a href="#ads">The 20 ads</a><a href="#top5">Top 5</a><a href="#detail">Each ad</a><a href="#bank">Headline bank</a><a href="#framework">Framework appendix</a><a href="#research">Research</a><a href="./">Batch 1</a><a href="ads-b2/brevo-ad-studio-statics-b2.zip">Download all (zip)</a></nav>
 <h2 id="ads">The 20 ads</h2><div class="gal">{gallery}</div>
 <h2 id="top5">Top 5</h2><div class="box"><ol>{top}</ol></div>
