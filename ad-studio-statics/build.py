@@ -46,7 +46,14 @@ def ref_card(r):
             f'<br><a class="lib" href="{E(lib)}" target="_blank" rel="noopener">{E(str(r.get("ad_archive_id","")))}</a></figcaption></figure>')
 
 
+def ad_file(n):
+    f = sorted((HERE / "ads").glob(f"adstudio-static-{n:02d}-*.jpg"))
+    return f"ads/{f[0].name}" if f else ""
+
+
 def concept_card(c):
+    img = ad_file(c["n"])
+    adimg = f'<a href="{img}" target="_blank"><img class="adimg" src="{img}" loading="lazy" alt="Ad {c["n"]:02d}"></a>' if img else ""
     bars = "".join(
         f'<div class="bar"><span>{lab}</span><i style="--w:{c["s"][k]/mx*100:.0f}%"></i><em>{c["s"][k]}/{mx}</em></div>'
         for k, lab, mx in SCORE_KEYS)
@@ -66,7 +73,7 @@ def concept_card(c):
 <p><b>Why it stops the scroll.</b> {E(c["why"])}</p>
 <p><b>Legends applied.</b> {E(c["legends"])}</p>
 <p class="feed"><b>Feed copy.</b> Primary text: "{E(c["primary"])}" <br>Headline field: "{E(c["meta_headline"])}" · Button: Sign up · On-image CTA: Start for free</p>
-{note}</div><div class="bars">{bars}</div></div></article>'''
+{note}</div><div class="bars">{adimg}{bars}</div></div></article>'''
 
 
 def main():
@@ -99,7 +106,10 @@ def main():
     pill_btns = "".join(f'<button data-f="{k}">{E(v.split(" (")[0])}</button>' for k, v in PILLARS.items())
     grp_btns = "".join(f'<button data-f="{k}">{E(v)} ({counts.get(k,0)})</button>' for k, v in GROUPS)
 
-    page = TEMPLATE.format(
+    gallery = "".join(
+        f'<a class="gi" href="#c{c["n"]:02d}"><img src="{ad_file(c["n"])}" loading="lazy" alt=""><span>{c["n"]:02d} {E(c["title"])}</span></a>'
+        for c in CONCEPTS if ad_file(c["n"]))
+    page = TEMPLATE.format(gallery=gallery, 
         n_refs=len(refs), ref_html=ref_html, grp_btns=grp_btns, framework=framework, findings=findings,
         concepts_html=concepts_html, rows=rows, pill_btns=pill_btns)
     (HERE / "index.html").write_text(page)
@@ -136,17 +146,21 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}th,td{{text-align:lef
 .pick{{font-size:12px;font-weight:700;background:var(--forest);color:#fff;border-radius:999px;padding:2px 9px}}
 .score{{font:800 26px/1 Inter;color:#fff;background:var(--forest);border-radius:12px;padding:10px 12px;min-width:58px;text-align:center}}
 .hl{{font:800 clamp(22px,3.2vw,30px)/1.15 Inter;letter-spacing:-.015em;margin:16px 0 4px;color:var(--hl)}}.sl{{color:var(--mut);font-size:16px;margin-bottom:10px}}
-.cgrid{{display:grid;grid-template-columns:1fr 230px;gap:18px}}.cgrid p{{margin:6px 0}}.feed{{background:var(--soft);border-radius:10px;padding:8px 10px;font-size:14px}}.note{{font-size:14px;color:var(--mut)}}
+.cgrid{{display:grid;grid-template-columns:1fr 300px;gap:18px}}.adimg{{width:100%;display:block;border-radius:10px;border:1px solid var(--line);margin-bottom:10px}}.gal{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}.gi{{display:block;text-decoration:none;color:var(--fg);font-size:13px;font-weight:600}}.gi img{{width:100%;display:block;border-radius:10px;border:1px solid var(--line);margin-bottom:6px}}.cgrid p{{margin:6px 0}}.feed{{background:var(--soft);border-radius:10px;padding:8px 10px;font-size:14px}}.note{{font-size:14px;color:var(--mut)}}
 .bars{{font-size:12px;color:var(--mut)}}.bar{{display:grid;grid-template-columns:62px 1fr 40px;gap:6px;align-items:center;margin:5px 0}}.bar i{{display:block;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--green) var(--w),var(--line) var(--w))}}.bar em{{font-style:normal;text-align:right}}
 .ev{{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}}.ev a{{display:block;width:96px;text-decoration:none;font-size:11px;color:var(--mut)}}.ev img{{width:96px;height:120px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}}
 .legend td:first-child{{font-weight:700;white-space:nowrap}}.kpi{{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}}.kpi div{{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}}.kpi b{{display:block;font:800 26px Inter;color:var(--forest)}}
 .anat{{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}}.frame{{aspect-ratio:4/5;border:2px solid var(--fg);border-radius:6px;position:relative;font-size:11px;font-weight:700;color:var(--mut)}}.frame div{{position:absolute;left:6%;right:6%;border:1px dashed var(--mut);border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center}}
 @media (max-width:760px){{.cgrid,.anat{{grid-template-columns:1fr}}.frame{{max-width:220px}}}}
 </style></head><body><main>
-<span class="status">Planning only. No images generated. Waiting for your picks.</span>
+<span class="status">All 20 ads made, 12 Nov 2026. Nothing uploaded to Meta.</span>
 <h1>Brevo Ad Studio: 20 static Meta ads</h1>
-<p class="lead">Research on what AI products run as statics right now, a rulebook built on Ogilvy and the other legends, and 20 scored concepts across the four things Ad Studio sells. Pick the ones you want and I'll write the prompts and render them.</p>
-<nav><a href="#research">1. Research</a><a href="#framework">2. Framework</a><a href="#concepts">3. The 20 concepts</a><a href="#ranked">4. Ranked</a><a href="#next">5. Next</a></nav>
+<p class="lead">The 20 finished ads first, then the research on what AI products run as statics, the rulebook built on Ogilvy and the other legends, and the scored concept behind each ad.</p>
+<nav><a href="#ads">The 20 ads</a><a href="#research">1. Research</a><a href="#framework">2. Framework</a><a href="#concepts">3. The 20 concepts</a><a href="#ranked">4. Ranked</a><a href="#next">5. Next</a></nav>
+
+<h2 id="ads">The 20 ads</h2>
+<p class="lead">4:5, 1080 x 1350, ready for the Meta feed. Click an ad for its concept, score and feed copy. <a href="ads/brevo-ad-studio-statics-20.zip">Download all 20 (zip, 5.5 MB)</a>.</p>
+<div class="gal">{gallery}</div>
 
 <h2 id="research">1. What AI products run as statics</h2>
 {findings}
@@ -165,13 +179,14 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}th,td{{text-align:lef
 <h2 id="ranked">4. Ranked</h2>
 <div class="tw"><table><thead><tr><th>#</th><th>Concept</th><th>Headline</th><th>Pillar</th><th>Awareness</th><th>Score</th></tr></thead><tbody>{rows}</tbody></table></div>
 
-<h2 id="next">5. What happens after your picks</h2>
-<div class="box"><ol>
-<li>You pick (I'd start with the 10 marked Top 10: 4 clone, 2 one link, 2 free, 2 UGC).</li>
-<li>For each pick I write the full image prompt from the rulebook (zones, exact copy, sizes, palette), render on GPT Image 2 at 4:5, then check every word letter by letter. Only the Brevo Ad Studio logo is composited.</li>
-<li>Example ads inside concepts 06, 10, 12 and 20 are made in Ad Studio itself with fictional brands, so the claim "made from a product link" is literally true.</li>
-<li>QA at full size against the rulebook and the claims ledger, then a contact sheet here for your OK. Nothing goes to Meta without your go.</li>
-</ol></div>
+<h2 id="next">5. How they were made, and what's next</h2>
+<div class="box"><ul>
+<li><b>Rendered whole</b> on GPT Image 2 (the engine Ad Studio itself uses) from one prompt per concept written against the rulebook: zones, exact copy, sizes and palette. Only the Brevo Ad Studio logo is composited. Every word was checked at full size.</li>
+<li><b>Real Ad Studio output inside the ads.</b> The example ads in 03, 06, 12 and 15 and the presenter Simone in 10, 15, 17 and 20 come from real Ad Studio generations for the Glowday and drift demo stores. Ad 12's hero is the ad Ad Studio made from the Glowday product link.</li>
+<li><b>Real numbers.</b> Day counts (691, 336, 314, 286, 274) are from the public Ad Radar library on 12 Nov 2026.</li>
+<li><b>QA.</b> 27 renders for 20 ads. Rebuilt: 13 (a doubled word, then a doubled line), 06 (French words on a demo label), 10 (an invented star rating), 04 (brand-like words on tiny cards, then a button too close to the edge).</li>
+<li><b>Next, on your go:</b> square 1:1 and vertical 9:16 versions of the ones you want to run, then upload to the Ad Studio campaign. Nothing goes to Meta without your OK.</li>
+</ul></div>
 <p class="lead" style="margin-top:28px">Built 12 Nov 2026. Claims verified on ads.brevo.com and ads.brevo.com/pricing the same day.</p>
 </main>
 <script>
