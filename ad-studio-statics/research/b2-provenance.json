@@ -62,8 +62,519 @@
    "file": "before/trueclassic_c6fd590b_blur.jpg"
   },
   "radar_ui": {
-   "what": "Ad Radar creative page for the 380-day Jaxxon Black Friday ad, screenshot 13 Nov 2026, brand blurred, Glowday SPF chosen in the product picker (not generated)",
+   "what": "Ad Radar creative page for the 380-day Jaxxon Black Friday ad, screenshot 13 Nov 2026, shown unblurred, Glowday SPF chosen in the product picker (not generated)",
    "file": "before/radar_ui_jaxxon_blur.jpg"
+  }
+ },
+ "options_13nov": {
+  "why": "Farooq's review on 13 Nov: examples too basic, clones not close to the originals, and no blur. Nine ads now have 3 options each, built on edgier Ad Radar winners shown exactly as they ran.",
+  "method": "Ad Studio Clone (deep link to the wizard with the Ad Radar creative and the new glowday or drift product), GPT Image 2.5, 2 variants per run, brand kit on, a guideline that asks for a close match of the original layout with our rewritten copy. The closer variant is shown; GHOST and Olipop were rerun once. 20 runs, 200 credits.",
+  "winners": {
+   "norse": {
+    "brand": "Norse Organics",
+    "text": "NO ONE'S LOVE LANGUAGE IS ACNE.",
+    "days": 479,
+    "uuid": "e5895f64-b67e-4f6a-a20c-8cbfbc2fa97a",
+    "meta": "601927446093327",
+    "img": "w7_479d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/e5895f64-b67e-4f6a-a20c-8cbfbc2fa97a",
+    "meta_library": "https://www.facebook.com/ads/library/?id=601927446093327"
+   },
+   "seed": {
+    "brand": "Seed",
+    "text": "Is your probiotic actually effective?",
+    "days": 271,
+    "uuid": "53174361-0c7d-4000-a12f-58be7eabb25f",
+    "meta": "1287242396751521",
+    "img": "w101_271d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/53174361-0c7d-4000-a12f-58be7eabb25f",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1287242396751521"
+   },
+   "ghost": {
+    "brand": "GHOST",
+    "text": "BUILD A STACK THAT SLAPS",
+    "days": 198,
+    "uuid": "465d199a-23b2-48f2-a96d-95d9577d2d08",
+    "meta": "1516073733167797",
+    "img": "w195_198d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/465d199a-23b2-48f2-a96d-95d9577d2d08",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1516073733167797"
+   },
+   "huel_glp1": {
+    "brand": "Huel",
+    "text": "GLP-1 killed your appetite. Not your nutritional needs.",
+    "days": 187,
+    "uuid": "0d5f685a-ea6b-402b-b692-a33f0de1e031",
+    "meta": "920503093803810",
+    "img": "w231_187d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/0d5f685a-ea6b-402b-b692-a33f0de1e031",
+    "meta_library": "https://www.facebook.com/ads/library/?id=920503093803810"
+   },
+   "lovevery": {
+    "brand": "Lovevery",
+    "text": "My coffee's hot / My baby's happy",
+    "days": 161,
+    "uuid": "84655cf1-bb18-4c89-954b-9728529ce775",
+    "meta": "1683133726354180",
+    "img": "w389_161d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/84655cf1-bb18-4c89-954b-9728529ce775",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1683133726354180"
+   },
+   "headspace": {
+    "brand": "Headspace",
+    "text": "Sleep like a dog",
+    "days": 163,
+    "uuid": "7f5ee947-90d0-45f2-a33d-cee020d78fc1",
+    "meta": "2158139111630035",
+    "img": "w364_163d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/7f5ee947-90d0-45f2-a33d-cee020d78fc1",
+    "meta_library": "https://www.facebook.com/ads/library/?id=2158139111630035"
+   },
+   "gainful": {
+    "brand": "Gainful",
+    "text": "Does protein make you bloated?",
+    "days": 182,
+    "uuid": "9d4df54a-3b5b-4dbf-87f3-380ae1cfa06f",
+    "meta": "1303389214560608",
+    "img": "w252_182d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/9d4df54a-3b5b-4dbf-87f3-380ae1cfa06f",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1303389214560608"
+   },
+   "merit": {
+    "brand": "Merit",
+    "text": "SPF you'll forget you're wearing",
+    "days": 182,
+    "uuid": "60660e1a-a143-41e1-b6a8-d255abc04eaa",
+    "meta": "1204026872785047",
+    "img": "w250_182d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/60660e1a-a143-41e1-b6a8-d255abc04eaa",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1204026872785047"
+   },
+   "kc_clock": {
+    "brand": "Ka'Chava",
+    "text": "like clockwork",
+    "days": 165,
+    "uuid": "b256eb49-7a49-405c-adb6-8e077f484301",
+    "meta": "1455621379837838",
+    "img": "w349_165d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/b256eb49-7a49-405c-adb6-8e077f484301",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1455621379837838"
+   },
+   "ryze": {
+    "brand": "RYZE",
+    "text": "BLACK FRIDAY, starts now, up to 40% off",
+    "days": 372,
+    "uuid": "bccbc46b-06a6-41fa-8352-bd1e9da3b691",
+    "meta": "1396188171889302",
+    "img": "w_ryze_372d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/bccbc46b-06a6-41fa-8352-bd1e9da3b691",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1396188171889302"
+   },
+   "jax_dark": {
+    "brand": "Jaxxon",
+    "text": "Up to 55% off, Black Friday sale",
+    "days": 382,
+    "uuid": "7505c6f5-b53c-49ce-8076-9f2b026618c2",
+    "meta": "1386449166435179",
+    "img": "w28_382d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/7505c6f5-b53c-49ce-8076-9f2b026618c2",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1386449166435179"
+   },
+   "jax_sky": {
+    "brand": "Jaxxon",
+    "text": "Black Friday Sale, up to 55% off",
+    "days": 382,
+    "uuid": "0f03eaef-9861-499e-802e-6706c6e2eade",
+    "meta": "828615690104469",
+    "img": "w29_382d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/0f03eaef-9861-499e-802e-6706c6e2eade",
+    "meta_library": "https://www.facebook.com/ads/library/?id=828615690104469"
+   },
+   "bark": {
+    "brand": "BARK",
+    "text": "I've got a big purple eggplant / and i'm not afraid to admit it",
+    "days": 179,
+    "uuid": "762a3cc1-1830-4beb-b158-66b306f2d093",
+    "meta": "1341755421136657",
+    "img": "w265_179d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/762a3cc1-1830-4beb-b158-66b306f2d093",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1341755421136657"
+   },
+   "pupford": {
+    "brand": "Pupford",
+    "text": "Having a puppy is all sh*ts and giggles",
+    "days": 164,
+    "uuid": "0ff0a409-d244-4d78-8efd-10da68d7ff9a",
+    "meta": "1901794503848616",
+    "img": "w354_164d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/0ff0a409-d244-4d78-8efd-10da68d7ff9a",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1901794503848616"
+   },
+   "pandora": {
+    "brand": "Pandora",
+    "text": "don't lie, you still listen to...",
+    "days": 177,
+    "uuid": "ddfa03c8-a972-456f-9823-dbb1f2431d84",
+    "meta": "2087329828510156",
+    "img": "w282_177d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/ddfa03c8-a972-456f-9823-dbb1f2431d84",
+    "meta_library": "https://www.facebook.com/ads/library/?id=2087329828510156"
+   },
+   "kc_again": {
+    "brand": "Ka'Chava",
+    "text": "Crackers. Nuggets. / Not again.",
+    "days": 156,
+    "uuid": "930346f9-7caf-4ef4-bdff-4082c8cee559",
+    "meta": "1061921176165511",
+    "img": "w422_156d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/930346f9-7caf-4ef4-bdff-4082c8cee559",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1061921176165511"
+   },
+   "huel_meal": {
+    "brand": "Huel",
+    "text": "This is a meal. Not a protein shake.",
+    "days": 156,
+    "uuid": "edb1678d-42d1-48b0-8808-9be462f06353",
+    "meta": "1227288965941007",
+    "img": "w421_156d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/edb1678d-42d1-48b0-8808-9be462f06353",
+    "meta_library": "https://www.facebook.com/ads/library/?id=1227288965941007"
+   },
+   "olipop": {
+    "brand": "Olipop",
+    "text": "illustrated cream soda can",
+    "days": 164,
+    "uuid": "f8b3a512-ff2a-469d-a48b-d4af90cff683",
+    "meta": "826800313553161",
+    "img": "w356_164d.jpg",
+    "radar": "https://ads.brevo.com/ad-radar/creative/f8b3a512-ff2a-469d-a48b-d4af90cff683",
+    "meta_library": "https://www.facebook.com/ads/library/?id=826800313553161"
+   }
+  },
+  "clones": {
+   "21a": {
+    "prod": "glowday",
+    "text": "NO ONE'S LOVE LANGUAGE IS WHITE CAST.",
+    "file": "1794562620358-ad-1794562619687.png",
+    "url": "https://media.powlcdn.com/magicfit/1794562620358-ad-1794562619687.png"
+   },
+   "21b": {
+    "prod": "drift",
+    "text": "Is your sleep aid actually working?",
+    "file": "1794562993637-ad-1794562992195.png",
+    "url": "https://media.powlcdn.com/magicfit/1794562993637-ad-1794562992195.png"
+   },
+   "21c": {
+    "prod": "drift",
+    "text": "BUILD A BEDTIME THAT SLAPS",
+    "file": "1794566392955-ad-1794566391542.png",
+    "url": "https://media.powlcdn.com/magicfit/1794566392955-ad-1794566391542.png"
+   },
+   "24a": {
+    "prod": "drift",
+    "text": "Your phone killed your sleep. Not your need for it.",
+    "file": "1794565641662-ad-1794565641158.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565641662-ad-1794565641158.png"
+   },
+   "24b": {
+    "prod": "glowday",
+    "text": "My SPF's on / My glow's still on",
+    "file": "1794563250370-ad-1794563250177.png",
+    "url": "https://media.powlcdn.com/magicfit/1794563250370-ad-1794563250177.png"
+   },
+   "24c": {
+    "prod": "drift",
+    "text": "Sleep like a dog. Wake up without the fog with drift.",
+    "file": "1794565637029-ad-1794565636502.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565637029-ad-1794565636502.png"
+   },
+   "31a": {
+    "prod": "drift",
+    "text": "Does your sleep aid leave you groggy?",
+    "file": "1794565686128-ad-1794565684977.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565686128-ad-1794565684977.png"
+   },
+   "31b": {
+    "prod": "glowday",
+    "text": "Zinc you'll forget you're wearing.",
+    "file": "1794565710578-ad-1794565709913.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565710578-ad-1794565709913.png"
+   },
+   "31c": {
+    "prod": "drift",
+    "text": "out like a light",
+    "file": "1794565707986-ad-1794565707053.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565707986-ad-1794565707053.png"
+   },
+   "32a": {
+    "prod": "glowday",
+    "text": "BLACK FRIDAY, starts now, up to 25% off",
+    "file": "1794565743805-ad-1794565742877.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565743805-ad-1794565742877.png"
+   },
+   "32b": {
+    "prod": "glowday",
+    "text": "Up to 25% off, Black Friday sale",
+    "file": "1794565839837-ad-1794565838980.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565839837-ad-1794565838980.png"
+   },
+   "32c": {
+    "prod": "drift",
+    "text": "Black Friday Sale, up to 25% off",
+    "file": "1794565770501-ad-1794565769826.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565770501-ad-1794565769826.png"
+   },
+   "33a": {
+    "prod": "drift",
+    "text": "I take gummies to bed every night / and i'm not afraid to admit it.",
+    "file": "1794565860207-ad-1794565859139.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565860207-ad-1794565859139.png"
+   },
+   "33b": {
+    "prod": "glowday",
+    "text": "Your 20s are all sun and giggles. Your 40s get the bill.",
+    "file": "1794565941149-ad-1794565939289.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565941149-ad-1794565939289.png"
+   },
+   "33c": {
+    "prod": "glowday",
+    "text": "don't lie, you still skip SPF...",
+    "file": "1794565862840-ad-1794565860641.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565862840-ad-1794565860641.png"
+   },
+   "39a": {
+    "prod": "drift",
+    "text": "3:07 AM. Ceiling. / Not again.",
+    "file": "1794565869046-ad-1794565868619.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565869046-ad-1794565868619.png"
+   },
+   "39b": {
+    "prod": "glowday",
+    "text": "This is SPF 50. Not foundation.",
+    "file": "1794565976247-ad-1794565974454.png",
+    "url": "https://media.powlcdn.com/magicfit/1794565976247-ad-1794565974454.png"
+   },
+   "39c": {
+    "prod": "drift",
+    "text": "illustrated night scene with the drift jar",
+    "file": "1794566403896-ad-1794566402666.png",
+    "url": "https://media.powlcdn.com/magicfit/1794566403896-ad-1794566402666.png"
+   }
+  },
+  "options": {
+   "21": [
+    {
+     "key": "21a",
+     "winners": [
+      "norse"
+     ],
+     "clone": "21a"
+    },
+    {
+     "key": "21b",
+     "winners": [
+      "seed"
+     ],
+     "clone": "21b"
+    },
+    {
+     "key": "21c",
+     "winners": [
+      "ghost"
+     ],
+     "clone": "21c"
+    }
+   ],
+   "23": [
+    {
+     "key": "23a",
+     "winners": [
+      "norse"
+     ],
+     "clone": null
+    },
+    {
+     "key": "23b",
+     "winners": [
+      "bark"
+     ],
+     "clone": null
+    },
+    {
+     "key": "23c",
+     "winners": [
+      "pandora"
+     ],
+     "clone": null
+    }
+   ],
+   "24": [
+    {
+     "key": "24a",
+     "winners": [
+      "huel_glp1"
+     ],
+     "clone": "24a"
+    },
+    {
+     "key": "24b",
+     "winners": [
+      "lovevery"
+     ],
+     "clone": "24b"
+    },
+    {
+     "key": "24c",
+     "winners": [
+      "headspace"
+     ],
+     "clone": "24c"
+    }
+   ],
+   "31": [
+    {
+     "key": "31a",
+     "winners": [
+      "gainful"
+     ],
+     "clone": "31a"
+    },
+    {
+     "key": "31b",
+     "winners": [
+      "merit"
+     ],
+     "clone": "31b"
+    },
+    {
+     "key": "31c",
+     "winners": [
+      "kc_clock"
+     ],
+     "clone": "31c"
+    }
+   ],
+   "32": [
+    {
+     "key": "32a",
+     "winners": [
+      "ryze"
+     ],
+     "clone": "32a"
+    },
+    {
+     "key": "32b",
+     "winners": [
+      "jax_dark"
+     ],
+     "clone": "32b"
+    },
+    {
+     "key": "32c",
+     "winners": [
+      "jax_sky"
+     ],
+     "clone": "32c"
+    }
+   ],
+   "33": [
+    {
+     "key": "33a",
+     "winners": [
+      "bark"
+     ],
+     "clone": "33a"
+    },
+    {
+     "key": "33b",
+     "winners": [
+      "pupford"
+     ],
+     "clone": "33b"
+    },
+    {
+     "key": "33c",
+     "winners": [
+      "pandora"
+     ],
+     "clone": "33c"
+    }
+   ],
+   "35": [
+    {
+     "key": "35a",
+     "winners": [
+      "ghost",
+      "huel_glp1",
+      "bark"
+     ],
+     "clone": null
+    },
+    {
+     "key": "35b",
+     "winners": [
+      "ryze",
+      "pandora",
+      "olipop"
+     ],
+     "clone": null
+    },
+    {
+     "key": "35c",
+     "winners": [
+      "seed",
+      "headspace",
+      "lovevery"
+     ],
+     "clone": null
+    }
+   ],
+   "36": [
+    {
+     "key": "36a",
+     "winners": [
+      "norse"
+     ],
+     "clone": null
+    },
+    {
+     "key": "36b",
+     "winners": [
+      "huel_glp1"
+     ],
+     "clone": null
+    },
+    {
+     "key": "36c",
+     "winners": [
+      "bark"
+     ],
+     "clone": null
+    }
+   ],
+   "39": [
+    {
+     "key": "39a",
+     "winners": [
+      "kc_again"
+     ],
+     "clone": "39a"
+    },
+    {
+     "key": "39b",
+     "winners": [
+      "huel_meal"
+     ],
+     "clone": "39b"
+    },
+    {
+     "key": "39c",
+     "winners": [
+      "olipop"
+     ],
+     "clone": "39c"
+    }
+   ]
   }
  }
 }
