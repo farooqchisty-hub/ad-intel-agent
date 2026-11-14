@@ -1,10 +1,10 @@
 # Ad Studio statics launch: handoff to CPMA
 
-Farooq, 14 Nov 2026: launch the final 20 Ad Studio statics through the CPMA agent, across 5 ad sets.
+Farooq, 14 Nov 2026: launch the final 20 Ad Studio statics through the CPMA agent, across 5 ad sets. All 20 come from batch 2 (the edgy, copy-led set selling "clone 3 winning ads, free"). Where an ad had 3 options, the most distinctive one was picked.
 
 Everything you need is in this folder, `/Users/farooq.chisty/claude fc/ad-intel-pages/ad-studio-statics/launch/`:
 - `launch_statics.json`: the 5 ad sets, the 20 ads, image files, feed copy and source evidence. This is the source of truth.
-- `img/`: final images, used exactly as they are. Every ad has `Lxx-4x5.jpg` (1080x1350); the 16 batch 2 ads also have `Lxx-1x1.jpg`.
+- `img/`: final images, used exactly as they are. Every ad has `Lxx-4x5.jpg` (1080x1350) and `Lxx-1x1.jpg`.
 - `index.html`: the visual review page. Live at https://farooqchisty-hub.github.io/ad-intel-agent/ad-studio-statics/launch/
 
 ## Confirm with Farooq before building
@@ -19,7 +19,7 @@ Ask these in one message, with the defaults stated.
 
 Copy the ad set budget setup from `as_launch2` (`tenants/adstudio/launch_plan_abo.json` in the CPMA repo).
 - **Campaign:** "AGENT · Ad Studio (MF) · Prospecting · Sign-ups · Statics · Nov 2026". Objective OUTCOME_SALES. No campaign budget, and `is_adset_budget_sharing_enabled` false. Keep "(MF)" in the name: the PushOwl silo filters on it.
-- **5 ad sets,** named and grouped exactly as in `launch_statics.json`: AS1 The receipt, AS2 The clock, AS3 The call-out, AS4 The offer, AS5 Ad Radar. Each gets 4 ads and its own daily budget, bid LOWEST_COST_WITHOUT_CAP.
+- **5 ad sets,** named and grouped exactly as in `launch_statics.json`: AS1 The receipt, AS2 The clock, AS3 The call-out, AS4 The forbidden truth, AS5 The offer. Each gets 4 ads and its own daily budget, bid LOWEST_COST_WITHOUT_CAP.
 - **Ad set settings, same as `as_launch2`:**
   - Optimisation: OFFSITE_CONVERSIONS on `MagicfitSignUp`, PushOwl Pixel 569439912209998.
   - Attribution: 7-day click, 1-day view, 1-day engaged view.
@@ -28,7 +28,7 @@ Copy the ad set budget setup from `as_launch2` (`tenants/adstudio/launch_plan_ab
   - Exclusion: audience 120251179656850614.
 - **Identity:** Brevo PushOwl Page 485637907956703 and Instagram 17841470064475542.
 - **Each ad:**
-  - An image ad using `img/Lxx-4x5.jpg`. Where `Lxx-1x1.jpg` exists, add it for square placements if the builder supports placement asset customisation; otherwise ship 4:5 only.
+  - An image ad using `img/Lxx-4x5.jpg`. Add `Lxx-1x1.jpg` for square placements if the builder supports placement asset customisation; otherwise ship 4:5 only.
   - Primary text, headline and description taken from the manifest. CTA SIGN_UP, linking to https://ads.brevo.com/ with the manifest's `url_tags`.
   - Every Advantage+ creative enhancement OFF, as on the video ads.
   - Ad name `ASx · <ad set> · Lxx`.
