@@ -1,0 +1,537 @@
+{
+  "program": "as_launch3",
+  "product": "Brevo Ad Studio",
+  "link": "https://ads.brevo.com/",
+  "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=adstudio_statics_nov26&utm_term={{adset.name}}&utm_content={{ad.name}}",
+  "adsets": [
+    {
+      "key": "receipt",
+      "name": "AS1 · The receipt",
+      "angle": "Real winner next to its real Ad Studio clone: the proof.",
+      "ads": [
+        "L01",
+        "L02",
+        "L03",
+        "L04"
+      ]
+    },
+    {
+      "key": "clock",
+      "name": "AS2 · The clock",
+      "angle": "Loss by rivalry: the winner keeps running, waiting costs money.",
+      "ads": [
+        "L05",
+        "L06",
+        "L07",
+        "L08"
+      ]
+    },
+    {
+      "key": "callout",
+      "name": "AS3 · The call-out",
+      "angle": "Provocation: accuse the reader's current habit, then hand them the fix.",
+      "ads": [
+        "L09",
+        "L10",
+        "L11",
+        "L12"
+      ]
+    },
+    {
+      "key": "offer",
+      "name": "AS4 · The offer",
+      "angle": "3 winning ads free, stated as plainly and boldly as possible.",
+      "ads": [
+        "L13",
+        "L14",
+        "L15",
+        "L16"
+      ]
+    },
+    {
+      "key": "radar",
+      "name": "AS5 · Ad Radar",
+      "angle": "Let competitors pay for the testing: Ad Radar shows what they keep running.",
+      "ads": [
+        "L17",
+        "L18",
+        "L19",
+        "L20"
+      ]
+    }
+  ],
+  "ads": [
+    {
+      "code": "L01",
+      "adset": "receipt",
+      "source": "batch2-21a",
+      "image_headline": "479 days of testing. Cloned in under 2 minutes.",
+      "image_subline": "Your first 3 clones are free. No credit card.",
+      "mechanism": "The receipt (before and after with a time stamp)",
+      "score": "8.8/10",
+      "primary_text": "This acne ad ran for 479 days. Brands don't keep paying for ads that don't sell. We cloned it for a mineral SPF in under 2 minutes: same idea, new product, new copy. Pick any winner on Ad Radar and Brevo Ad Studio rebuilds it around your product. Your first 3 clones are free. No credit card.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L01-4x5.jpg",
+        "1x1": "img/L01-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Norse Organics",
+          "days_at_capture": 479,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/e5895f64-b67e-4f6a-a20c-8cbfbc2fa97a",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=601927446093327"
+        },
+        {
+          "clone": "Real Ad Studio clone for glowday",
+          "clone_text": "NO ONE'S LOVE LANGUAGE IS WHITE CAST."
+        }
+      ]
+    },
+    {
+      "code": "L02",
+      "adset": "receipt",
+      "source": "batch2-31b",
+      "image_headline": "They paid for 182 days. You pay $0.",
+      "image_subline": "A real ingredient ad, cloned for sleep gummies by Brevo Ad Studio.",
+      "mechanism": "The absurd comparison",
+      "score": "9.0/10",
+      "primary_text": "Someone paid for 182 days of testing to find this ad. You can clone the idea for your product today. Ad Radar shows the ads brands keep running for months, and Brevo Ad Studio rebuilds them around your product, brand and offer. First 3 clones free, no credit card.",
+      "meta_headline": "They paid. You clone.",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L02-4x5.jpg",
+        "1x1": "img/L02-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Merit",
+          "days_at_capture": 182,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/60660e1a-a143-41e1-b6a8-d255abc04eaa",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1204026872785047"
+        },
+        {
+          "clone": "Real Ad Studio clone for glowday",
+          "clone_text": "Zinc you'll forget you're wearing."
+        }
+      ]
+    },
+    {
+      "code": "L03",
+      "adset": "receipt",
+      "source": "batch2-24a",
+      "image_headline": "Their winner. Your product. Zero dollars.",
+      "image_subline": "A real 231-day ad, cloned for sleep gummies by Brevo Ad Studio.",
+      "mechanism": "The absurd equation",
+      "score": "8.5/10",
+      "primary_text": "A 187-day winner plus your product link equals your next ad. We cloned a real meal shake ad for sleep gummies: the structure that kept it running, with a new product and new copy. Your first 3 clones are free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Their winner. Your product.",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L03-4x5.jpg",
+        "1x1": "img/L03-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Huel",
+          "days_at_capture": 187,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/0d5f685a-ea6b-402b-b692-a33f0de1e031",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=920503093803810"
+        },
+        {
+          "clone": "Real Ad Studio clone for drift",
+          "clone_text": "Your phone killed your sleep. Not your need for it."
+        }
+      ]
+    },
+    {
+      "code": "L04",
+      "adset": "receipt",
+      "source": "batch2-39b",
+      "image_headline": "Copy what works. Literally.",
+      "image_subline": "Same winning idea. Your product. First 3 clones free.",
+      "mechanism": "The literal command",
+      "score": "8.3/10",
+      "primary_text": "Not inspired by. Not \"in the style of\". Copied: the winning idea and structure, rebuilt around your product. This 156-day ad became an SPF ad in under 2 minutes. Your first 3 clones are free with Brevo Ad Studio.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L04-4x5.jpg",
+        "1x1": "img/L04-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Huel",
+          "days_at_capture": 156,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/edb1678d-42d1-48b0-8808-9be462f06353",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1227288965941007"
+        },
+        {
+          "clone": "Real Ad Studio clone for glowday",
+          "clone_text": "This is SPF 50. Not foundation."
+        }
+      ]
+    },
+    {
+      "code": "L05",
+      "adset": "clock",
+      "source": "batch2-26",
+      "image_headline": "Day 691. Still running. Still not yours.",
+      "image_subline": "A real ad on Ad Radar has run 691 days. Clone it with Brevo Ad Studio. First 3 free.",
+      "mechanism": "Loss by rivalry (the clock)",
+      "score": "8.8/10",
+      "primary_text": "Day 691 and the ad is still live, which means it still sells. Every day it runs, it works for someone else. Find it on Ad Radar, clone it for your product and run it this week. First 3 clones free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Clone it before they scale it",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L05-4x5.jpg",
+        "1x1": "img/L05-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "ref": "norse_teen"
+        }
+      ]
+    },
+    {
+      "code": "L06",
+      "adset": "clock",
+      "source": "batch2-32a",
+      "image_headline": "Their Black Friday ad has run 372 days.",
+      "image_subline": "Clone it for your product. Your first 3 clones are free.",
+      "mechanism": "Specific number at the right moment",
+      "score": "9.0/10",
+      "primary_text": "This Black Friday ad has run for 372 days. Black Friday lasts a few weeks. Do the math, then clone it for your product before your competitors do. First 3 clones free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Clone a 372-day Black Friday ad",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L06-4x5.jpg",
+        "1x1": "img/L06-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "RYZE",
+          "days_at_capture": 372,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/bccbc46b-06a6-41fa-8352-bd1e9da3b691",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1396188171889302"
+        },
+        {
+          "clone": "Real Ad Studio clone for glowday",
+          "clone_text": "BLACK FRIDAY, starts now, up to 25% off"
+        }
+      ]
+    },
+    {
+      "code": "L07",
+      "adset": "clock",
+      "source": "batch2-38",
+      "image_headline": "Waiting costs more than cloning.",
+      "image_subline": "Every day you guess, a rival's winner keeps running. Clone 3 winning ads free.",
+      "mechanism": "Loss math",
+      "score": "8.5/10",
+      "primary_text": "Every week you test another guess, a rival's winner keeps running and keeps selling. Cloning it takes under 2 minutes. Your first 3 are free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L07-4x5.jpg",
+        "1x1": "img/L07-1x1.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L08",
+      "adset": "clock",
+      "source": "batch2-33b",
+      "image_headline": "Bet your ad can't beat 164 days.",
+      "image_subline": "So don't try. Clone it. First 3 free.",
+      "mechanism": "The dare (then reverse it)",
+      "score": "8.7/10",
+      "primary_text": "Your new ad against a 164-day winner. Honest odds? Skip the bet. Clone the winner for your product with Brevo Ad Studio. Your first 3 clones are free. No credit card.",
+      "meta_headline": "Skip the bet. Clone the winner.",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L08-4x5.jpg",
+        "1x1": "img/L08-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Pupford",
+          "days_at_capture": 164,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/0ff0a409-d244-4d78-8efd-10da68d7ff9a",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1901794503848616"
+        },
+        {
+          "clone": "Real Ad Studio clone for glowday",
+          "clone_text": "Your 20s are all sun and giggles. Your 40s get the bill."
+        }
+      ]
+    },
+    {
+      "code": "L09",
+      "adset": "callout",
+      "source": "batch2-23b",
+      "image_headline": "Stop screenshotting your competitors' ads.",
+      "image_subline": "Your first 3 clones are free with Brevo Ad Studio.",
+      "mechanism": "Accusation by identification",
+      "score": "8.8/10",
+      "primary_text": "Your camera roll is full of competitors' ads. Screenshots don't sell anything. Clone the ones that keep running, rebuilt for your product in under 2 minutes. First 3 free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L09-4x5.jpg",
+        "1x1": "img/L09-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "BARK",
+          "days_at_capture": 179,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/762a3cc1-1830-4beb-b158-66b306f2d093",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1341755421136657"
+        }
+      ]
+    },
+    {
+      "code": "L10",
+      "adset": "callout",
+      "source": "batch2-30",
+      "image_headline": "Stop A/B testing your rent money.",
+      "image_subline": "Clone ads that already won for months. First 3 free, no credit card.",
+      "mechanism": "Accusation (money)",
+      "score": "8.8/10",
+      "primary_text": "Every A/B test that loses is money you never see again. Start from ads that already won for months instead. Brevo Ad Studio clones them around your product. Your first 3 are free, no credit card.",
+      "meta_headline": "Start from ads that already won",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L10-4x5.jpg",
+        "1x1": "img/L10-1x1.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L11",
+      "adset": "callout",
+      "source": "batch2-22",
+      "image_headline": "Don't be original. Be profitable.",
+      "image_subline": "Brevo Ad Studio clones ads that have run for months around your product. Your first 3 are free.",
+      "mechanism": "Forbidden truth",
+      "score": "8.5/10",
+      "primary_text": "Originality is overrated when the ad has to sell. The ads that run for months already solved the hard part. Clone one around your product with Brevo Ad Studio. Your first 3 are free. No credit card.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L11-4x5.jpg",
+        "1x1": "img/L11-1x1.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L12",
+      "adset": "callout",
+      "source": "batch2-36a",
+      "image_headline": "Don't clone this ad.",
+      "image_subline": "It's only run 201 days. Unless you want that, keep scrolling. First 3 clones free.",
+      "mechanism": "Reverse psychology",
+      "score": "8.7/10",
+      "primary_text": "Seriously, don't. It's only run 479 days. Unless you want an ad that sells for that long, keep scrolling. Still here? Your first 3 clones are free with Brevo Ad Studio.",
+      "meta_headline": "Fine. Clone 3 for free.",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L12-4x5.jpg",
+        "1x1": "img/L12-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "Norse Organics",
+          "days_at_capture": 479,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/e5895f64-b67e-4f6a-a20c-8cbfbc2fa97a",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=601927446093327"
+        }
+      ]
+    },
+    {
+      "code": "L13",
+      "adset": "offer",
+      "source": "batch2-28",
+      "image_headline": "Pick one.",
+      "image_subline": "Brevo Ad Studio. Ads that already won, rebuilt for your product. No credit card.",
+      "mechanism": "The ultimatum (two buttons)",
+      "score": "9.3/10",
+      "primary_text": "Two options. One of them has already worked for months. Brevo Ad Studio clones winning ads around your product. Your first 3 are free. No credit card.",
+      "meta_headline": "Clone 3 winning ads free",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L13-4x5.jpg",
+        "1x1": "img/L13-1x1.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L14",
+      "adset": "offer",
+      "source": "batch2-35b",
+      "image_headline": "Free: 3 ads that already won.",
+      "image_subline": "Pick 3 winners on Ad Radar. Brevo Ad Studio clones them for your product.",
+      "mechanism": "The offer as news",
+      "score": "8.7/10",
+      "primary_text": "Three ads that already won: a 372-day Black Friday ad, a 177-day headphones ad and a 164-day soda ad. Pick any 3 winners on Ad Radar and Brevo Ad Studio clones them for your product. Free. No credit card.",
+      "meta_headline": "Free: 3 ads that already won",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L14-4x5.jpg",
+        "1x1": "img/L14-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "brand": "RYZE",
+          "days_at_capture": 372,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/bccbc46b-06a6-41fa-8352-bd1e9da3b691",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=1396188171889302"
+        },
+        {
+          "brand": "Pandora",
+          "days_at_capture": 177,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/ddfa03c8-a972-456f-9823-dbb1f2431d84",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=2087329828510156"
+        },
+        {
+          "brand": "Olipop",
+          "days_at_capture": 164,
+          "ad_radar": "https://ads.brevo.com/ad-radar/creative/f8b3a512-ff2a-469d-a48b-d4af90cff683",
+          "meta_ad_library": "https://www.facebook.com/ads/library/?id=826800313553161"
+        }
+      ]
+    },
+    {
+      "code": "L15",
+      "adset": "offer",
+      "source": "batch2-40",
+      "image_headline": "No brief. No shoot. No card. Just clone.",
+      "image_subline": "Paste a product link. Pick a winner on Ad Radar. Brevo Ad Studio rebuilds it. First 3 free.",
+      "mechanism": "The list of things you give up",
+      "score": "8.3/10",
+      "primary_text": "No brief to write. No shoot to book. No card to enter. Paste a product link, pick a winner on Ad Radar and Brevo Ad Studio rebuilds it for your product. Your first 3 are free.",
+      "meta_headline": "Just clone. First 3 free.",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L15-4x5.jpg",
+        "1x1": "img/L15-1x1.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L16",
+      "adset": "offer",
+      "source": "batch1-13",
+      "image_headline": "3 free ads.*",
+      "image_subline": "*That's the fine print. No credit card. No trial clock.",
+      "mechanism": "Pure type with one prop",
+      "score": "90/100",
+      "primary_text": "Plenty of AI ad tools ask for your card and start a 3-day timer. Ad Studio doesn't. Paste your product link and make 3 ads, static, video or UGC, on us. No credit card.",
+      "meta_headline": "3 free ads. No credit card.",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L16-4x5.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L17",
+      "adset": "radar",
+      "source": "batch1-1",
+      "image_headline": "Let your competitors pay for the testing.",
+      "image_subline": "Ad Radar shows the ads they've kept running for months. Clone one around your product.",
+      "mechanism": "Concept object, studio photo",
+      "score": "89/100",
+      "primary_text": "Most ads stop running within weeks. The ones still live after months are the ones brands keep paying for. Ad Radar finds them in your category so you can clone the idea around your product. Your first 3 ads are free, no credit card.",
+      "meta_headline": "Clone ads that already won",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L17-4x5.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L18",
+      "adset": "radar",
+      "source": "batch1-3",
+      "image_headline": "Copy the winner. Paste your product.",
+      "image_subline": "Clone any ad that's been running for months, rebuilt with your product, brand and offer.",
+      "mechanism": "Hero object, staged studio photo",
+      "score": "89/100",
+      "primary_text": "You've seen ads in your niche that never seem to stop running. Those are the winners. Ad Radar finds them, and Ad Studio rebuilds the idea around your product, brand and offer. Start with 3 free ads.",
+      "meta_headline": "Clone a winning ad in minutes",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L18-4x5.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L19",
+      "adset": "radar",
+      "source": "batch1-5",
+      "image_headline": "See the ads your competitors keep paying for.",
+      "image_subline": "Ad Radar tracks them from launch day. Pick a winner and make it yours.",
+      "mechanism": "Reveal through a keyhole, dark photo",
+      "score": "87/100",
+      "primary_text": "Every niche has a few ads that run for months. Brands only keep paying for ads that sell. Ad Radar shows them to you, filtered by hook, offer and format, and lets you clone one around your product. Explore it free.",
+      "meta_headline": "See what's working in your niche",
+      "description": "No credit card.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L19-4x5.jpg"
+      },
+      "evidence": []
+    },
+    {
+      "code": "L20",
+      "adset": "radar",
+      "source": "batch2-27",
+      "image_headline": "Agencies pitch guesses. Ad Radar shows receipts.",
+      "image_subline": "Real ads brands kept running for months. Clone 3 free with Brevo Ad Studio.",
+      "mechanism": "Us vs them",
+      "score": "8.3/10",
+      "primary_text": "Agencies bring a deck of ideas. Ad Radar brings ads brands have paid to run for months. Pick one and clone it for your product. Your first 3 are free with Brevo Ad Studio. No credit card.",
+      "meta_headline": "Receipts, not guesses",
+      "description": "First 3 clones free.",
+      "cta": "SIGN_UP",
+      "files": {
+        "4x5": "img/L20-4x5.jpg",
+        "1x1": "img/L20-1x1.jpg"
+      },
+      "evidence": [
+        {
+          "ref": "norse_teen"
+        },
+        {
+          "ref": "jaxxon"
+        },
+        {
+          "ref": "ghost"
+        },
+        {
+          "ref": "cymb"
+        }
+      ]
+    }
+  ]
+}
