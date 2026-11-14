@@ -2,6 +2,20 @@
 
 Farooq, 14 Nov 2026: launch the final 20 Ad Studio statics through the CPMA agent, across 5 ad sets. All 20 come from batch 2 (the edgy, copy-led set selling "clone 3 winning ads, free"). Where an ad had 3 options, the most distinctive one was picked.
 
+## Priority: hooks around the 3 free ads
+
+Farooq, 14 Nov: "I really want to prioritize and include ads with hooks around free ads. Those three free ads."
+- **AS1 · 3 free ads (priority)** is the lead ad set and goes first in the build:
+  - L01 "Free: 3 ads that already won." (Black Friday, headphones and soda winners)
+  - L02, the same hook with GHOST, Huel and BARK winners
+  - L03 "Pick one." (the button says "Clone 3 winning ads free")
+  - L04 "No brief. No shoot. No card. Just clone."
+- **Every AS1 ad leads with the free offer** in the image and in the first line of the primary text ("Your first 3 ads are free.").
+- **AS2 continues the free hook:** L05 "They paid for 165 days. You pay $0." and L06 "Their winner. Your product. Zero dollars."
+- **All 20 ads close on the offer:** every Meta headline or description says the first 3 clones are free.
+- **Budget:** give AS1 more than the others, so the free-offer hooks get the most delivery. Default $45/day for AS1 and $30/day for each of the other 4 ($165/day); confirm with Farooq.
+- **The loop:** in the CPMA loop and the day 7 review, AS1 is the last ad set to cut. Raise a card rather than pause it.
+
 Everything you need is in this folder, `/Users/farooq.chisty/claude fc/ad-intel-pages/ad-studio-statics/launch/`:
 - `launch_statics.json`: the 5 ad sets, the 20 ads, image files, feed copy and source evidence. This is the source of truth.
 - `img/`: final images, used exactly as they are. Every ad has `Lxx-4x5.jpg` (1080x1350) and `Lxx-1x1.jpg`.
@@ -10,16 +24,16 @@ Everything you need is in this folder, `/Users/farooq.chisty/claude fc/ad-intel-
 ## Confirm with Farooq before building
 
 Ask these in one message, with the defaults stated.
-1. **Budget:** $30/day per ad set, so $150/day for the 5. The default mirrors the live video campaign.
-2. **Video campaign:** keep `as_launch2` (campaign 120251261230240614, 4 x $30/day) running alongside. The default is yes, so total Ad Studio spend is $270/day.
-3. **Monthly budget:** raise CPMA's monthly budget (settings.targets.meta.monthly_budget, now 3650) to match. $270/day is about $8,200 a month.
+1. **Budget:** $45/day for AS1 (the free-ads priority set) and $30/day for each of the other 4, so $165/day. The $30 mirrors the live video campaign.
+2. **Video campaign:** keep `as_launch2` (campaign 120251261230240614, 4 x $30/day) running alongside. The default is yes, so total Ad Studio spend is $285/day.
+3. **Monthly budget:** raise CPMA's monthly budget (settings.targets.meta.monthly_budget, now 3650) to match. $285/day is about $8,700 a month.
 4. **When:** build in the next Meta window, or now under the logged `launch_build` exemption. Last time he chose "now".
 
 ## The campaign (program `as_launch3`, Ad Studio silo)
 
 Copy the ad set budget setup from `as_launch2` (`tenants/adstudio/launch_plan_abo.json` in the CPMA repo).
 - **Campaign:** "AGENT · Ad Studio (MF) · Prospecting · Sign-ups · Statics · Nov 2026". Objective OUTCOME_SALES. No campaign budget, and `is_adset_budget_sharing_enabled` false. Keep "(MF)" in the name: the PushOwl silo filters on it.
-- **5 ad sets,** named and grouped exactly as in `launch_statics.json`: AS1 The receipt, AS2 The clock, AS3 The call-out, AS4 The forbidden truth, AS5 The offer. Each gets 4 ads and its own daily budget, bid LOWEST_COST_WITHOUT_CAP.
+- **5 ad sets,** named and grouped exactly as in `launch_statics.json`: AS1 3 free ads (priority), AS2 The receipt, AS3 The clock, AS4 The call-out, AS5 The forbidden truth. Each gets 4 ads and its own daily budget, bid LOWEST_COST_WITHOUT_CAP.
 - **Ad set settings, same as `as_launch2`:**
   - Optimisation: OFFSITE_CONVERSIONS on `MagicfitSignUp`, PushOwl Pixel 569439912209998.
   - Attribution: 7-day click, 1-day view, 1-day engaged view.
@@ -49,7 +63,7 @@ The Ad Studio builder (`src/lib/adstudio.js`) only handles films today. Before b
 ## Checks before the Go live card
 
 - **Claims still true on launch day:**
-  - L05 "Day 691. Still running." needs that ad still live on Ad Radar. If it has stopped, drop L05 and tell Farooq.
+  - L09 "Day 691. Still running." needs that ad still live on Ad Radar. If it has stopped, drop L09 and tell Farooq.
   - Every other day count is the run length when captured on 12 and 13 Nov. Those numbers only grow, so "has run 372 days" stays true.
 - **Copy rules:** no em or en dashes, no "Shopify" or "Klaviyo", USD only. The manifest already passes; re-check anything you change.
 - **Sources:** the evidence links (Ad Radar and Meta Ad Library) are in the manifest for each ad that shows a real winner.
