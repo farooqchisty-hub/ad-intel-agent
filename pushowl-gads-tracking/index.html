@@ -5,185 +5,260 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PushOwl Google Ads Tracking</title>
 <style>
-:root{--bg:#f7f7f4;--card:#fff;--ink:#1d1f1e;--mute:#5b625f;--line:#e2e4df;--g:#0b996e;--a:#c2410c;--b:#2563eb;--p:#7c3aed}
+:root{--bg:#f7f7f4;--card:#fff;--ink:#1d1f1e;--mute:#5b625f;--line:#e2e4df;--wire:#6b7280}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
 main{max-width:1180px;margin:0 auto;padding:28px 16px 80px}
 h1{font-size:28px;margin:0 0 4px}
-h2{font-size:20px;margin:40px 0 8px;padding-top:8px;border-top:1px solid var(--line)}
-h3{font-size:16px;margin:20px 0 6px}
+h2{font-size:20px;margin:44px 0 8px;padding-top:10px;border-top:1px solid var(--line)}
 .sub{color:var(--mute);margin:0 0 18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;overflow-x:auto}
-.mermaid{min-width:760px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 16px;margin:12px 0}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:#f1f2ee;font-weight:600}
-code{background:#f1f2ee;padding:1px 5px;border-radius:4px;font-size:13px}
+code{background:#f1f2ee;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
+.note{color:var(--mute);font-size:13px}
 .pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600}
 .ok{background:#dcfce7;color:#166534}.warn{background:#ffedd5;color:#9a3412}.off{background:#e5e7eb;color:#374151}
-.legend span{display:inline-block;margin-right:14px;font-size:13px}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-ul{margin:6px 0 6px 20px;padding:0}
-li{margin:3px 0}
-.note{color:var(--mute);font-size:13px}
+.legend span{display:inline-block;margin:2px 14px 2px 0;font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1.5px solid}
+
+/* nodes */
+.n{overflow-wrap:anywhere;width:100%;max-width:440px;border:1.5px solid;border-radius:8px;padding:9px 12px;text-align:center;font-size:13.5px;background:#fff;position:relative;z-index:1}
+.n b{display:block;font-size:14px}
+.n small{display:block;color:#4b5563;font-size:12px;margin-top:2px}
+.ui{background:#eff6ff;border-color:#2563eb}
+.ours{background:#fffbeb;border-color:#b45309}
+.seg{background:#f5f3ff;border-color:#7c3aed}
+.ga{background:#f0fdf4;border-color:#0b996e}
+.gads{background:#fef2f2;border-color:#c2410c}
+.goal{background:#1d1f1e;border-color:#1d1f1e;color:#fff}.goal small{color:#d1d5db}
+
+/* vertical chain with square connectors */
+.chain{display:flex;flex-direction:column;align-items:center}
+.dn{position:relative;width:2px;height:34px;background:var(--wire);flex:none}
+.dn::after{content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);border:6px solid transparent;border-top:7px solid var(--wire);border-bottom:0}
+.dn span{position:absolute;left:12px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;color:#374151;background:var(--card);padding:0 4px}
+.dn.tall{height:46px}
+
+/* split: one line in, square elbows out to N branches */
+.split{position:relative;display:grid;gap:14px;width:100%;padding-top:18px}
+.split.c2{grid-template-columns:1fr 1fr}.split.c3{grid-template-columns:1fr 1fr 1fr}
+.split::before{content:"";position:absolute;top:0;height:2px;background:var(--wire)}
+.split.c2::before{left:25%;right:25%}.split.c3::before{left:16.66%;right:16.66%}
+.split>.br{min-width:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.split>.br::before{content:"";width:2px;height:11px;background:var(--wire);margin-top:-18px}
+.split>.br>.arrowtop{width:0;height:0;border:6px solid transparent;border-top:7px solid var(--wire);border-bottom:0;flex:none}
+.stem{position:relative;width:2px;height:22px;background:var(--wire);flex:none}
+.stem span{position:absolute;left:12px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;color:#374151;background:var(--card);padding:0 4px}
+.br .lbl{font-size:12px;color:#374151;margin:2px 0 6px;text-align:center}
+/* join: N branches merge into one line */
+.join{position:relative;display:grid;gap:14px;width:100%;padding-bottom:18px}
+.join.c2{grid-template-columns:1fr 1fr}.join.c3{grid-template-columns:1fr 1fr 1fr}
+.join::after{content:"";position:absolute;bottom:0;height:2px;background:var(--wire)}
+.join.c2::after{left:25%;right:25%}.join.c3::after{left:16.66%;right:16.66%}
+.join>.br{min-width:0;display:flex;flex-direction:column;align-items:center}
+.join>.br::after{content:"";width:2px;flex:1;min-height:18px;background:var(--wire);margin-bottom:-18px}
+.split.join{padding-bottom:18px}
+
+/* overview: 4 vertical lanes */
+.lanes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.lane{border:1px dashed #d4d6d0;border-radius:10px;padding:12px 8px}
+.lane h3{margin:0 0 10px;text-align:center;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#374151}
+.lane .n{font-size:12.5px}
+@media (max-width:900px){.lanes{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.dn span,.stem span{white-space:normal;width:150px;line-height:1.25}.split,.join{gap:6px}.lanes{grid-template-columns:1fr}.split.c3,.join.c3{gap:8px}.n{font-size:12px;padding:8px}.dn span{font-size:11px}}
 </style>
 </head>
 <body>
 <main>
 <h1>PushOwl Google Ads tracking</h1>
-<p class="sub">Google Ads account 846-525-4800 only. How portal signups, app installs and BFCM claims reach Google Ads, the tools in each hop, and what each campaign bids on. State verified against the live account, GA4, Segment and the bfcm-dash Worker on 16 Nov 2026.</p>
+<p class="sub">Google Ads account 846-525-4800 only. How app installs, Owl Portal signups and BFCM claims reach Google Ads, the tools in each step, and what each campaign bids on. Checked against the live account, GA4, Segment and the bfcm-dash Worker on 16 Nov 2026. Read every flow top to bottom.</p>
 
 <div class="card legend">
-<span><i style="background:#dbeafe"></i>Ad / page the user sees</span>
-<span><i style="background:#fef3c7"></i>Our pipeline (Worker, D1, matcher)</span>
-<span><i style="background:#ede9fe"></i>Segment</span>
-<span><i style="background:#dcfce7"></i>GA4</span>
-<span><i style="background:#fee2e2"></i>Google Ads conversion action</span>
+<span><i class="ui"></i>Ad or page the user sees</span>
+<span><i class="ours"></i>Our pipeline (Worker, database, matcher)</span>
+<span><i class="seg"></i>Segment</span>
+<span><i class="ga"></i>GA4</span>
+<span><i class="gads"></i>Google Ads conversion action</span>
+<span><i class="goal"></i>Bidding goal</span>
 </div>
 
-<h2>1. The whole system on one page</h2>
-<p>Four signals reach Google Ads by three routes: GA4 import, a browser tag, and click-ID uploads through Segment. The click ID (<code>gclid</code>, else <code>gbraid</code>/<code>wbraid</code>) is what ties a signup or install back to the ad click.</p>
-<div class="card"><pre class="mermaid">
-flowchart TB
-  classDef ui fill:#dbeafe,stroke:#2563eb,color:#111
-  classDef ours fill:#fef3c7,stroke:#b45309,color:#111
-  classDef seg fill:#ede9fe,stroke:#7c3aed,color:#111
-  classDef ga fill:#dcfce7,stroke:#0b996e,color:#111
-  classDef gads fill:#fee2e2,stroke:#c2410c,color:#111
+<h2>1. Overview: four signals, four lanes</h2>
+<div class="card">
+<div class="lanes">
+  <div class="lane"><h3>App installs</h3><div class="chain">
+    <div class="n ui"><b>Google ad click</b><small>BFCM Search, YT - ROW</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>App Store listing</b><small>apps.shopify.com/pushowl</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>Store installs the app</b></div>
+    <div class="dn"></div>
+    <div class="n ga"><b>GA4 event</b><small>shopify_app_install</small></div>
+    <div class="dn"></div>
+    <div class="n gads"><b>App Install (GA4)</b><small>6686119911</small></div>
+    <div class="dn"></div>
+    <div class="n goal"><b>Account goal "Other"</b><small>BFCM Search, YT - ROW bid on it</small></div>
+  </div></div>
 
-  ADS["Google ad click<br/>gclid / gbraid / wbraid + UTM"]:::ui
-  ADS -->|BFCM Search, keyword URL| AS["App Store listing<br/>apps.shopify.com/pushowl"]:::ui
-  ADS -->|BFCM Demand Gen, paused| DP["BFCM deal page<br/>pushowl.com, Webflow + LP iframe"]:::ui
-  ADS -->|YT Owl Portal| LPE["pushowl.com/lp/email-marketing<br/>Webflow forwards gclid + UTM"]:::ui
-  ADS -->|YT - ROW| AS
+  <div class="lane"><h3>BFCM claims</h3><div class="chain">
+    <div class="n ui"><b>Google ad click</b><small>BFCM Demand Gen (paused)</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>BFCM deal page</b><small>pushowl.com</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>Claim accepted</b><small>email + code</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>Google Ads tag fires</b><small>in the browser</small></div>
+    <div class="dn"></div>
+    <div class="n gads"><b>BFCM claim</b><small>7847048606</small></div>
+    <div class="dn"></div>
+    <div class="n goal"><b>"BFCM26 claim only"</b><small>BFCM Demand Gen (paused)</small></div>
+  </div></div>
 
-  DP -->|claim box: email + App Store button| AS
-  LPE -->|Get started| PORTAL["Owl Portal signup<br/>dashboard.pushowl.io"]:::ui
-  AS -->|Add app| INSTALL["Store installs PushOwl"]:::ui
-  PORTAL --> INSTALL
+  <div class="lane"><h3>Portal signups</h3><div class="chain">
+    <div class="n ui"><b>Google ad click</b><small>YT Owl Portal campaigns</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>/lp/email-marketing</b><small>passes click ID on</small></div>
+    <div class="dn"></div>
+    <div class="n ui"><b>Owl Portal signup</b><small>dashboard.pushowl.io</small></div>
+    <div class="dn"></div>
+    <div class="n seg"><b>Segment</b><small>signup + click ID</small></div>
+    <div class="dn"></div>
+    <div class="n gads"><b>OwlPortal signup (upload)</b><small>7888172311</small></div>
+    <div class="dn"></div>
+    <div class="n goal"><b>"OwlPortal SignUp"</b><small>3 live Owl Portal campaigns</small></div>
+  </div></div>
 
-  AS -->|shopify_app_install, add_app_button| GA4["GA4 PushOwl Prod<br/>379010452"]:::ga
-  GA4 --> A1["App Install (GA4)<br/>6686119911, primary, bidding"]:::gads
-  GA4 --> A2["Install App Button (GA4)<br/>6679576977"]:::gads
+  <div class="lane"><h3>Matched installs</h3><div class="chain">
+    <div class="n ours"><b>Saved click IDs</b><small>BFCM claims + portal signups</small></div>
+    <div class="dn"></div>
+    <div class="n ours"><b>Intercom installs</b><small>store + install time</small></div>
+    <div class="dn"></div>
+    <div class="n ours"><b>Matcher</b><small>same email or store, installed after the click</small></div>
+    <div class="dn"></div>
+    <div class="n seg"><b>Segment upload</b><small>every 15 min (+ daily file)</small></div>
+    <div class="dn"></div>
+    <div class="n gads"><b>Store install (import)</b><small>7859066555</small></div>
+    <div class="dn"></div>
+    <div class="n goal" style="background:#6b7280;border-color:#6b7280"><b>No campaign bids on it</b><small>reporting only</small></div>
+  </div></div>
+</div>
+</div>
 
-  DP -->|gtag conversion on accepted claim| A3["BFCM claim<br/>7847048606"]:::gads
-  DP -->|lead: email + click ID| LEADS["bfcm-leads D1"]:::ours
-
-  PORTAL -->|owl_portal_signup + clickid| SEGSRC["Segment source<br/>PushOwl Event Tracker"]:::seg
-  SEGSRC -->|Click Conversion V2| A4["OwlPortal signup (Segment click upload)<br/>7888172311"]:::gads
-  SEGSRC -->|Webhook| PEV["portal_events D1<br/>via pushowl-tracking.pages.dev"]:::ours
-
-  INSTALL --> IC["Intercom<br/>store + install time"]:::ours
-  LEADS --> MATCH["Matcher in bfcm-dash<br/>email / shop to store,<br/>installed after the click"]:::ours
-  PEV --> MATCH
-  IC --> MATCH
-  MATCH -->|every 15 min| SEGINST["Segment source<br/>pushowl-tracking installs (server)"]:::seg
-  SEGINST -->|Click Conversion V2| A5["Store install (import)<br/>7859066555, secondary"]:::gads
-  MATCH -->|daily CSV backup| A5
-</pre></div>
-
-<h2>2. App Store installs (GA4 import)</h2>
-<p>The default route for any ad that lands on the listing. This is the action BFCM Search and "YT - ROW" bid on.</p>
-<div class="card"><pre class="mermaid">
-flowchart LR
-  classDef ui fill:#dbeafe,stroke:#2563eb,color:#111
-  classDef ga fill:#dcfce7,stroke:#0b996e,color:#111
-  classDef gads fill:#fee2e2,stroke:#c2410c,color:#111
-  C["Ad click<br/>final URL apps.shopify.com/pushowl<br/>+ campaign UTM suffix"]:::ui --> L["Shopify App Store listing<br/>GA4 tag on the listing"]:::ui
-  L -->|page_view, view_item| G["GA4 PushOwl Prod 379010452<br/>G-DKNC4CCQ2D"]:::ga
-  L -->|clicks Add app| B["add_app_button"]:::ga
-  L -->|finishes install| S["shopify_app_install<br/>sent by Shopify to GA4"]:::ga
-  B --> G
-  S --> G
-  G -->|key events, linked account| I1["App Install (GA4) 6686119911<br/>category Other, account goal"]:::gads
-  G --> I2["Install App Button (GA4) 6679576977<br/>category Add to cart"]:::gads
-</pre></div>
+<h2>2. App installs (GA4 import)</h2>
+<div class="card"><div class="chain">
+  <div class="n ui"><b>Google ad click</b><small>gclid / gbraid / wbraid + campaign UTM suffix</small></div>
+  <div class="dn"><span>final URL = apps.shopify.com/pushowl</span></div>
+  <div class="n ui"><b>Shopify App Store listing</b><small>GA4 tag runs on the listing</small></div>
+  <div class="stem"></div>
+  <div class="split join c3">
+    <div class="br"><div class="arrowtop"></div><div class="n ga"><b>page_view, view_item</b><small>visit</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="n ga"><b>add_app_button</b><small>clicked Add app</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="n ga"><b>shopify_app_install</b><small>finished install, sent by Shopify</small></div></div>
+  </div>
+  <div class="dn"></div>
+  <div class="n ga"><b>GA4 PushOwl Prod</b><small>property 379010452, linked to Google Ads</small></div>
+  <div class="stem"></div>
+  <div class="split c2">
+    <div class="br"><div class="arrowtop"></div><div class="n gads"><b>Install App Button (GA4)</b><small>6679576977, reporting</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="n gads"><b>App Install (GA4)</b><small>6686119911, primary</small></div>
+      <div class="dn"></div><div class="n goal"><b>Account goal "Other"</b><small>BFCM Search (since 13 Nov), YT - ROW</small></div></div>
+  </div>
+</div>
 <ul>
-<li><b>Tools:</b> Shopify Partner listing tracking, GA4, GA4 to Google Ads link.</li>
-<li><b>Attribution:</b> GA4 session with the click ID. It only credits the ad if the install happens in the same browser session that came from the ad.</li>
-<li><b>Limit:</b> most installs reach GA4 with no source (34 of 110 since 12 Nov). The Google tag's cross-domain list only covers pushowl.com, and changing it needs a tag admin.</li>
-</ul>
+<li><b>Tools:</b> Shopify listing tracking, GA4, GA4 to Google Ads link.</li>
+<li><b>Credit rule:</b> the install is credited to the ad only if it happens in the same browser session that came from the ad.</li>
+<li><b>Limit:</b> about a third of installs reach GA4 with no source (34 of 110 since 12 Nov). The fix is cross-domain linking on the Google tag, which needs a tag admin.</li>
+</ul></div>
 
-<h2>3. BFCM claims (browser tag on the deal page)</h2>
-<div class="card"><pre class="mermaid">
-flowchart LR
-  classDef ui fill:#dbeafe,stroke:#2563eb,color:#111
-  classDef ours fill:#fef3c7,stroke:#b45309,color:#111
-  classDef gads fill:#fee2e2,stroke:#c2410c,color:#111
-  C["Google ad click<br/>gclid + utm_campaign=bfcm2026"]:::ui --> P["BFCM deal page on pushowl.com<br/>LP from GitHub Pages in an iframe"]:::ui
-  P -->|"email + code in claim box<br/>Turnstile + junk checks"| OK["Claim accepted"]:::ui
-  OK -->|"gtag conversion<br/>AW-11391594536/H_CXCJ7r4Z0dEKjg97cq"| A["BFCM claim (pushowl.com BFCM page)<br/>7847048606, lead form, count One"]:::gads
-  OK -->|generate_lead| GA["GA4"]:::ui
-  OK -->|"lead row: email, gclid/gbraid/wbraid,<br/>country, consent"| L["bfcm-leads D1"]:::ours
-  OK -->|"App Store link gets utm_id=lp-&lt;session&gt;"| AS["App Store listing"]:::ui
-  P -->|"first-party beacon: views, scroll,<br/>CTA, claim, App Store click"| B["bfcm-dash lp_events"]:::ours
-</pre></div>
+<h2>3. BFCM claims (browser tag)</h2>
+<div class="card"><div class="chain">
+  <div class="n ui"><b>Google ad click</b><small>gclid + utm_campaign=bfcm2026</small></div>
+  <div class="dn"></div>
+  <div class="n ui"><b>BFCM deal page on pushowl.com</b><small>Webflow page, deal LP in an iframe</small></div>
+  <div class="dn"><span>email + code in the claim box</span></div>
+  <div class="n ui"><b>Claim checks</b><small>Turnstile bot check, junk and team emails blocked</small></div>
+  <div class="stem"><span>accepted</span></div>
+  <div class="split c3">
+    <div class="br"><div class="arrowtop"></div><div class="n ui"><b>Google Ads tag</b><small>AW-11391594536 / H_CXCJ7r4Z0dEKjg97cq</small></div>
+      <div class="dn"></div><div class="n gads"><b>BFCM claim</b><small>7847048606, count one</small></div>
+      <div class="dn"></div><div class="n goal"><b>"BFCM26 claim only"</b><small>BFCM Demand Gen (paused)</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="n ours"><b>Lead saved</b><small>email, click ID, country, consent</small></div>
+      <div class="dn"></div><div class="n ours"><b>Feeds the matcher</b><small>see section 5</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="n ui"><b>App Store button</b><small>link carries utm_id=lp-&lt;session&gt;</small></div>
+      <div class="dn"></div><div class="n ui"><b>App Store listing</b><small>then flow 2</small></div></div>
+  </div>
+</div>
 <ul>
-<li><b>Tools:</b> Webflow code embed, Google Ads tag, Cloudflare Turnstile, bfcm-dash Worker (beacon and leads).</li>
-<li><b>Bidding:</b> only the paused BFCM Demand Gen uses it, through the custom goal "BFCM26 claim only" (6459490557). Since 13 Nov, BFCM Search bids on App Install.</li>
-<li>The lead row is what later lets a claim become a matched install (section 5).</li>
-</ul>
+<li><b>Tools:</b> Webflow code embed, Google Ads tag, Cloudflare Turnstile, bfcm-dash Worker (page beacon and leads).</li>
+<li><b>Bidding:</b> only the paused Demand Gen bids on claims. BFCM Search switched to App Install on 13 Nov.</li>
+</ul></div>
 
 <h2>4. Owl Portal signups (Segment click upload)</h2>
-<div class="card"><pre class="mermaid">
-flowchart LR
-  classDef ui fill:#dbeafe,stroke:#2563eb,color:#111
-  classDef ours fill:#fef3c7,stroke:#b45309,color:#111
-  classDef seg fill:#ede9fe,stroke:#7c3aed,color:#111
-  classDef ga fill:#dcfce7,stroke:#0b996e,color:#111
-  classDef gads fill:#fee2e2,stroke:#c2410c,color:#111
-  C["YouTube ad click<br/>gclid + UTM"]:::ui --> LP["pushowl.com/lp/email-marketing<br/>Webflow script copies gclid, gbraid, UTM<br/>onto Get started"]:::ui
-  LP --> SU["Owl Portal signup page<br/>dashboard.pushowl.io"]:::ui
-  SU -->|"page JS builds clickid = fbclid or gclid<br/>+ utm, sends owl_portal_signup + email"| API["PushOwl event API"]:::ours
-  API --> SS["Segment source<br/>PushOwl Event Tracker"]:::seg
-  SS -->|"filter: owl_portal_signup, clickid set,<br/>utm_source not facebook"| D1["Destination: Google Ads Conversions<br/>Click Conversion V2"]:::seg
-  D1 --> A["OwlPortal signup (Segment click upload)<br/>7888172311, primary"]:::gads
-  SS -->|"Webhooks: every owl_portal_* event"| W["pushowl-tracking.pages.dev/ingest/portal<br/>to bfcm-dash portal_events"]:::ours
-  SU -->|"backend events, no client ID"| GB["GA4 Backend 393519649<br/>owl_portal_signup"]:::ga
-  GB --> A2["owl_portal_signup (GA4) 7131692086<br/>mostly Unassigned"]:::gads
-  A --> G["Custom goal OwlPortal SignUp 6454146621<br/>= 7888172311 + 7131692086"]:::gads
-  A2 --> G
-</pre></div>
+<div class="card"><div class="chain">
+  <div class="n ui"><b>YouTube ad click</b><small>gclid + UTM</small></div>
+  <div class="dn"></div>
+  <div class="n ui"><b>pushowl.com/lp/email-marketing</b><small>Webflow script copies gclid, gbraid, UTM onto "Get started"</small></div>
+  <div class="dn"></div>
+  <div class="n ui"><b>Owl Portal signup page</b><small>dashboard.pushowl.io</small></div>
+  <div class="dn"><span>page builds clickid + UTM, sends owl_portal_signup + email</span></div>
+  <div class="n ours"><b>PushOwl event API</b></div>
+  <div class="dn"></div>
+  <div class="n seg"><b>Segment source "PushOwl Event Tracker"</b></div>
+  <div class="stem"></div>
+  <div class="split c2">
+    <div class="br"><div class="arrowtop"></div><div class="lbl">signup with a click ID, not from Facebook</div>
+      <div class="n seg"><b>Destination: Google Ads Conversions</b><small>Click Conversion V2</small></div>
+      <div class="dn"></div><div class="n gads"><b>OwlPortal signup (Segment upload)</b><small>7888172311, primary</small></div>
+      <div class="dn tall"><span>+ GA4 backend import 7131692086</span></div><div class="n goal"><b>Goal "OwlPortal SignUp"</b><small>6454146621: YT ROW, ROW Rmkt, India Rmkt</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="lbl">every owl_portal_* event</div>
+      <div class="n seg"><b>Destination: Webhooks</b><small>to pushowl-tracking.pages.dev/ingest/portal</small></div>
+      <div class="dn"></div><div class="n ours"><b>portal_events (bfcm-dash)</b><small>feeds the matcher, section 5</small></div></div>
+  </div>
+</div>
 <ul>
-<li><b>Tools:</b> Webflow script, PushOwl portal JS and event API, Segment (source, Google Ads Conversions destination, Webhooks destination), bfcm-dash.</li>
-<li><b>Live numbers:</b> 79 portal signups received since 3 Nov, 22 of them carrying a Google click ID (last one 15 Nov).</li>
-<li><b>Bidding:</b> the three enabled Owl Portal campaigns (YT ROW, ROW Remarketing, India Remarketing) bid on the custom goal OwlPortal SignUp. YT India Owl Portal uses the same goal but is paused.</li>
-<li><b>Gap:</b> the portal code ignores <code>gbraid</code>/<code>wbraid</code>, so iOS clicks without a gclid can't be credited.</li>
-</ul>
+<li><b>Tools:</b> Webflow script, portal page code and PushOwl event API, Segment (one source, two destinations), bfcm-dash.</li>
+<li><b>Volume:</b> 79 portal signups received since 3 Nov, 22 with a Google click ID. The last one came on 15 Nov.</li>
+<li><b>Gap:</b> the portal ignores <code>gbraid</code>/<code>wbraid</code>, so iOS clicks that arrive without a gclid can't be credited.</li>
+</ul></div>
 
-<h2>5. Matched store installs (click-ID upload, BFCM and portal)</h2>
-<p>This is how an install gets credited to a click when GA4 loses the session. It covers BFCM deal-page leads and Owl Portal signups.</p>
-<div class="card"><pre class="mermaid">
-flowchart LR
-  classDef ours fill:#fef3c7,stroke:#b45309,color:#111
-  classDef seg fill:#ede9fe,stroke:#7c3aed,color:#111
-  classDef gads fill:#fee2e2,stroke:#c2410c,color:#111
-  L["BFCM leads<br/>email + click ID"]:::ours --> M
-  P["Owl Portal signups<br/>email / shop + click ID"]:::ours --> M
-  IC["Intercom<br/>stores with install time<br/>(test + internal stores removed)"]:::ours --> M
-  M["Matcher, bfcm-dash<br/>same email or shop,<br/>installed after the lead / signup (1 h grace),<br/>within 90 days, one row per click ID"]:::ours
-  M -->|"install_push.js, every 15 min<br/>sends new rows only"| H["Segment HTTP API<br/>source: pushowl-tracking installs (server)"]:::seg
-  H -->|"Store Install Matched<br/>Click Conversion V2, hashed email"| A["Store install (import) 7859066555<br/>secondary, count One"]:::gads
-  M -->|"daily backup<br/>/export/google-offline.csv"| U["Google Ads scheduled upload"]:::gads
-  U --> A
-</pre></div>
+<h2>5. Matched installs (click-ID upload)</h2>
+<div class="card"><div class="chain">
+  <div class="join c3">
+    <div class="br"><div class="n ours"><b>BFCM leads</b><small>email + click ID</small></div></div>
+    <div class="br"><div class="n ours"><b>Portal signups</b><small>email or store + click ID</small></div></div>
+    <div class="br"><div class="n ours"><b>Intercom</b><small>every store, install time; test stores removed</small></div></div>
+  </div>
+  <div class="dn"></div>
+  <div class="n ours"><b>Matcher (bfcm-dash)</b><small>same email or store, installed after the lead or signup (1 h grace), within 90 days, one row per click ID</small></div>
+  <div class="stem"></div>
+  <div class="split join c2">
+    <div class="br"><div class="arrowtop"></div><div class="lbl">every 15 min, new rows only</div>
+      <div class="n seg"><b>Segment source "pushowl-tracking installs (server)"</b><small>event Store Install Matched, hashed email</small></div>
+      <div class="dn"></div><div class="n seg"><b>Destination: Google Ads Conversions</b><small>Click Conversion V2</small></div></div>
+    <div class="br"><div class="arrowtop"></div><div class="lbl">daily backup</div>
+      <div class="n ours"><b>/export/google-offline.csv</b><small>same rows, same times</small></div>
+      <div class="dn"></div><div class="n gads"><b>Google Ads scheduled upload</b></div></div>
+  </div>
+  <div class="dn tall"><span>Google keeps one: same click ID, action and time</span></div>
+  <div class="n gads"><b>Store install (import)</b><small>7859066555, secondary: shows under All conversions, steers no bids</small></div>
+</div>
 <ul>
-<li><b>Tools:</b> Intercom (install truth until the Partner API exists), bfcm-dash Worker and D1, Segment HTTP API and Google Ads Conversions destination, Google Ads scheduled CSV upload.</li>
-<li><b>Dedupe:</b> both routes send the same click ID, action and install time, so Google counts one conversion.</li>
-<li><b>Live:</b> export switched on for all regions. 2 matched installs pushed so far (9 Nov and 12 Nov).</li>
-<li><b>Bidding:</b> none. It's a secondary action, so it shows only under All conversions. It reports installs and doesn't steer the bids.</li>
-</ul>
+<li><b>Tools:</b> Intercom (install truth until the Partner API exists), bfcm-dash Worker and database, Segment, Google Ads scheduled upload.</li>
+<li><b>Live:</b> on for all regions. 2 matched installs sent so far (9 and 12 Nov).</li>
+</ul></div>
 
 <h2>6. Conversion actions in the account</h2>
 <div class="card">
 <table>
 <tr><th>Action (id)</th><th>Signal</th><th>Route</th><th>Role</th></tr>
-<tr><td>App Install (GA4) <code>6686119911</code></td><td>Store finished installing from the listing</td><td>GA4 import (Other category)</td><td><span class="pill ok">primary, account goal</span></td></tr>
-<tr><td>Install App Button (GA4) <code>6679576977</code></td><td>Clicked Add app on the listing</td><td>GA4 import (Add to cart)</td><td><span class="pill off">reporting</span></td></tr>
-<tr><td>BFCM claim (pushowl.com BFCM page) <code>7847048606</code></td><td>Accepted claim on the deal page</td><td>Google Ads tag</td><td><span class="pill warn">goal "BFCM26 claim only"</span></td></tr>
-<tr><td>OwlPortal signup (Segment click upload) <code>7888172311</code></td><td>Owl Portal signup with a Google click ID</td><td>Segment click upload</td><td><span class="pill ok">primary, in OwlPortal SignUp</span></td></tr>
-<tr><td>owl_portal_signup (GA4 backend) <code>7131692086</code></td><td>Owl Portal signup, no click ID</td><td>GA4 backend import</td><td><span class="pill off">in OwlPortal SignUp, rarely attributed</span></td></tr>
-<tr><td>Store install (import) <code>7859066555</code></td><td>Install matched to a lead or signup click</td><td>Segment (15 min) + daily CSV</td><td><span class="pill off">secondary, reporting</span></td></tr>
+<tr><td>App Install (GA4) <code>6686119911</code></td><td>Finished install from the listing</td><td>GA4 import</td><td><span class="pill ok">primary, account goal</span></td></tr>
+<tr><td>Install App Button (GA4) <code>6679576977</code></td><td>Clicked Add app on the listing</td><td>GA4 import</td><td><span class="pill off">reporting</span></td></tr>
+<tr><td>BFCM claim <code>7847048606</code></td><td>Accepted claim on the deal page</td><td>Google Ads tag</td><td><span class="pill warn">goal "BFCM26 claim only"</span></td></tr>
+<tr><td>OwlPortal signup (Segment upload) <code>7888172311</code></td><td>Portal signup with a Google click ID</td><td>Segment upload</td><td><span class="pill ok">primary, in OwlPortal SignUp</span></td></tr>
+<tr><td>owl_portal_signup (GA4 backend) <code>7131692086</code></td><td>Portal signup, no click ID</td><td>GA4 backend import</td><td><span class="pill off">in OwlPortal SignUp, rarely credited</span></td></tr>
+<tr><td>Store install (import) <code>7859066555</code></td><td>Install matched to a lead or signup click</td><td>Segment (15 min) + daily file</td><td><span class="pill off">secondary, reporting</span></td></tr>
 </table>
 </div>
 
@@ -191,11 +266,11 @@ flowchart LR
 <div class="card">
 <table>
 <tr><th>Campaign</th><th>Status</th><th>Lands on</th><th>Bidding goal</th></tr>
-<tr><td>BFCM26 · Search · intent</td><td><span class="pill ok">on, $45/day</span></td><td>App Store (keyword-level final URL since 13 Nov)</td><td>Other = App Install (GA4), since 13 Nov</td></tr>
+<tr><td>BFCM26 · Search · intent</td><td><span class="pill ok">on, $45/day</span></td><td>App Store (keyword-level URL, since 13 Nov)</td><td>Other = App Install (GA4), since 13 Nov</td></tr>
 <tr><td>BFCM26 · Demand Gen</td><td><span class="pill off">paused 13 Nov</span></td><td>Deal page</td><td>BFCM26 claim only</td></tr>
-<tr><td>YT - ROW - Owl Portal</td><td><span class="pill ok">on</span></td><td>/lp/email-marketing, then portal</td><td>OwlPortal SignUp</td></tr>
-<tr><td>PO - YT - ROW - Remarketing - Owl Portal</td><td><span class="pill ok">on</span></td><td>Mixed: LP and App Store</td><td>OwlPortal SignUp</td></tr>
-<tr><td>PO - YT - India - Remarketing - Owl Portal</td><td><span class="pill ok">on</span></td><td>Mixed: LP and App Store</td><td>OwlPortal SignUp</td></tr>
+<tr><td>YT - ROW - Owl Portal</td><td><span class="pill ok">on</span></td><td>/lp/email-marketing, then the portal</td><td>OwlPortal SignUp</td></tr>
+<tr><td>PO - YT - ROW - Remarketing - Owl Portal</td><td><span class="pill ok">on</span></td><td>Mixed: that page or the App Store</td><td>OwlPortal SignUp</td></tr>
+<tr><td>PO - YT - India - Remarketing - Owl Portal</td><td><span class="pill ok">on</span></td><td>Mixed: that page or the App Store</td><td>OwlPortal SignUp</td></tr>
 <tr><td>YT - India - Owl Portal</td><td><span class="pill off">paused</span></td><td>/lp/email-marketing</td><td>OwlPortal SignUp</td></tr>
 <tr><td>YT - ROW</td><td><span class="pill ok">on</span></td><td>App Store</td><td>Account goal = App Install (GA4)</td></tr>
 </table>
@@ -204,30 +279,26 @@ flowchart LR
 <h2>8. Where Metabase, Omni and Intercom fit</h2>
 <div class="card">
 <table>
-<tr><th>Source</th><th>What it holds</th><th>Used for</th></tr>
-<tr><td>Intercom</td><td>Every store with install date, plan, uninstall</td><td><b>In the pipeline:</b> install truth for the matcher and the dashboard's "all installs" count</td></tr>
-<tr><td>Metabase (PushOwl Prod)</td><td><code>attempted_install</code> with utm_source/medium/campaign per store, <code>authentication_website</code> installs and plans</td><td>Audits and checks (install spike audit, UTM spot-checks). Not wired into Google Ads.</td></tr>
-<tr><td>GA4 Backend 393519649</td><td>Portal and app backend events (owl_portal_*, PushOwlAppInstall)</td><td>Backend install counts on the dashboard and the GA4 portal-signup import</td></tr>
-<tr><td>Omni</td><td>Brevo organisation and revenue data</td><td>Brevo-side signups and revenue reporting. Not part of PushOwl's Google Ads tracking.</td></tr>
-<tr><td>bfcm-dash</td><td>LP beacon, leads, portal events, GA4 store events, Intercom stores</td><td>The matcher, the 15-min upload, the daily CSV and the BFCM dashboard</td></tr>
+<tr><th>Source</th><th>What it holds</th><th>Role here</th></tr>
+<tr><td>Intercom</td><td>Every store with install date, plan, uninstall</td><td><b>In the pipeline:</b> install truth for the matcher and the dashboard's "all installs"</td></tr>
+<tr><td>Metabase (PushOwl Prod)</td><td><code>attempted_install</code> with UTM per store, <code>authentication_website</code> installs and plans</td><td>Audits and spot-checks. Not wired into Google Ads.</td></tr>
+<tr><td>GA4 Backend 393519649</td><td>Portal and app backend events</td><td>Backend install counts and the GA4 portal-signup import</td></tr>
+<tr><td>Omni</td><td>Brevo organisation and revenue data</td><td>Brevo-side reporting. Not part of PushOwl's Google Ads tracking.</td></tr>
+<tr><td>bfcm-dash</td><td>Page beacon, leads, portal events, GA4 store events, Intercom stores</td><td>The matcher, the 15-min upload, the daily file, the BFCM dashboard</td></tr>
 </table>
 </div>
 
 <h2>9. Known gaps</h2>
 <div class="card">
 <ul>
-<li><b>Unattributed installs in GA4:</b> about a third of installs arrive with no source. Fixing this needs a Google tag admin to add cross-domain linking (apps.shopify.com, dashboard.pushowl.io).</li>
-<li><b>Portal ignores gbraid/wbraid:</b> iOS app clicks often carry only these, so those signups can't be credited.</li>
-<li><b>Matched installs don't steer bidding:</b> Store install (import) is secondary on purpose. Making it primary would let bidding chase matched installs, but would change the goal mid-campaign.</li>
-<li><b>Ad edits need a Google identity check:</b> the Search ad URLs are overridden at keyword level. Any new keyword must get the App Store final URL, or it lands on the deal page.</li>
-<li><b>PushOwlAppInstall events</b> carry only the store subdomain, so portal installs are matched by email or shop through Intercom, not by event.</li>
+<li><b>Unattributed installs:</b> about a third of GA4 installs have no source. Fix: cross-domain linking on the Google tag (needs a tag admin).</li>
+<li><b>Portal ignores gbraid/wbraid:</b> iOS clicks without a gclid can't be credited.</li>
+<li><b>Matched installs don't steer bidding:</b> Store install (import) is secondary on purpose. Making it primary would change the goal mid-campaign.</li>
+<li><b>Ad edits need Google's identity check:</b> the Search ad URLs are overridden at keyword level, so every new keyword needs the App Store final URL.</li>
+<li><b>PushOwlAppInstall events</b> carry only the store subdomain, so portal installs are matched through Intercom by email or store.</li>
 </ul>
-<p class="note">Sources: live Google Ads account (GAQL, 16 Nov), bfcm-dash D1 (state, portal_events, install_pushes), Segment destinations set up 3 to 4 Nov, Webflow embeds on pushowl.com.</p>
+<p class="note">Sources: live Google Ads account (16 Nov), bfcm-dash database (state, portal_events, install_pushes), Segment destinations set up 3 to 4 Nov, Webflow embeds on pushowl.com.</p>
 </div>
 </main>
-<script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
-mermaid.initialize({ startOnLoad: true, theme: "base", securityLevel: "loose", flowchart: { htmlLabels: true, curve: "basis" }, themeVariables: { fontSize: "13px", fontFamily: "-apple-system, Inter, sans-serif" } });
-</script>
 </body>
 </html>
