@@ -131,7 +131,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
   </div></div>
 
   <div class="lane"><h3>Matched installs</h3><div class="chain">
-    <div class="n ours"><b>Saved click IDs</b><small>BFCM claims + portal signups</small></div>
+    <div class="n ours"><b>Saved click IDs</b><small>BFCM claims + portal signups (section 5)</small></div>
     <div class="dn"></div>
     <div class="n ours"><b>Intercom installs</b><small>store + install time</small></div>
     <div class="dn"></div>
@@ -185,7 +185,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
       <div class="dn"></div><div class="n gads"><b>BFCM claim</b><small>7847048606, count one</small></div>
       <div class="dn"></div><div class="n goal"><b>"BFCM26 claim only"</b><small>BFCM Demand Gen (paused)</small></div></div>
     <div class="br"><div class="arrowtop"></div><div class="n ours"><b>Lead saved</b><small>email, click ID, country, consent</small></div>
-      <div class="dn"></div><div class="n ours"><b>Feeds the matcher</b><small>see section 5</small></div></div>
+      <div class="dn"></div><div class="n ours"><b>Feeds the matcher</b><small>see section 6</small></div></div>
     <div class="br"><div class="arrowtop"></div><div class="n ui"><b>App Store button</b><small>link carries utm_id=lp-&lt;session&gt;</small></div>
       <div class="dn"></div><div class="n ui"><b>App Store listing</b><small>then flow 2</small></div></div>
   </div>
@@ -214,7 +214,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
       <div class="dn tall"><span>+ GA4 backend import 7131692086</span></div><div class="n goal"><b>Goal "OwlPortal SignUp"</b><small>6454146621: YT ROW, ROW Rmkt, India Rmkt</small></div></div>
     <div class="br"><div class="arrowtop"></div><div class="lbl">every owl_portal_* event</div>
       <div class="n seg"><b>Destination: Webhooks</b><small>to pushowl-tracking.pages.dev/ingest/portal</small></div>
-      <div class="dn"></div><div class="n ours"><b>portal_events (bfcm-dash)</b><small>feeds the matcher, section 5</small></div></div>
+      <div class="dn"></div><div class="n ours"><b>portal_events (bfcm-dash)</b><small>feeds the matcher, section 6</small></div></div>
   </div>
 </div>
 <ul>
@@ -223,7 +223,41 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 <li><b>Gap:</b> the portal ignores <code>gbraid</code>/<code>wbraid</code>, so iOS clicks that arrive without a gclid can't be credited.</li>
 </ul></div>
 
-<h2>5. Matched installs (click-ID upload)</h2>
+<h2>5. Owl Portal signups that become installs</h2>
+<p>A portal signup is only half the job. This is how an install that follows a portal signup gets tracked today. There are two paths, and neither one credits the install to the ad yet.</p>
+<div class="card"><div class="chain">
+  <div class="n ui"><b>YouTube ad click</b><small>gclid + UTM</small></div>
+  <div class="dn"></div>
+  <div class="n ui"><b>Owl Portal signup</b><small>email + click ID saved (section 4)</small></div>
+  <div class="stem"></div>
+  <div class="split c2">
+    <div class="br"><div class="arrowtop"></div><div class="lbl"><b>Path A:</b> store installs from a link inside the portal</div>
+      <div class="n ui"><b>App Store listing</b><small>link tagged utm_source=owl_portal</small></div>
+      <div class="dn"></div><div class="n ga"><b>GA4 shopify_app_install</b><small>source owl_portal</small></div>
+      <div class="dn"></div><div class="n goal" style="background:#6b7280;border-color:#6b7280"><b>Counted in GA4, not credited to the ad</b><small>the click ID doesn't survive the portal session</small></div>
+      <div class="lbl" style="margin-top:8px">2 installs since 3 Nov (GA4)</div></div>
+    <div class="br"><div class="arrowtop"></div><div class="lbl"><b>Path B:</b> the matcher (bfcm-dash)</div>
+      <div class="n ours"><b>Intercom installs</b><small>store owner + team emails, install time</small></div>
+      <div class="dn"><span>signup email = a store email, installed after the signup</span></div>
+      <div class="n gads"><b>Store install (import)</b><small>7859066555, via Segment every 15 min (section 6)</small></div>
+      <div class="dn"></div><div class="n goal" style="background:#6b7280;border-color:#6b7280"><b>Reporting only</b><small>no campaign bids on it</small></div>
+      <div class="lbl" style="margin-top:8px">15 people with a click ID since 3 Nov, 0 matched so far</div></div>
+  </div>
+</div>
+<h3 style="margin:18px 0 6px">Why nothing has matched yet</h3>
+<ul>
+<li><b>Email is the only link.</b> The signup event carries the email but no store. If someone signs up with a different email from the one on their store, the match fails.</li>
+<li><b>The store-select event is empty.</b> <code>owl_portal_store_select</code> (13 events) arrives with no email and no store domain, so it can't tie a signup to a store.</li>
+<li><b>The install event can't help either.</b> <code>PushOwlAppInstall</code> carries only the store subdomain, with no email or click ID.</li>
+<li>Some signups may simply not have installed yet. The click ID stays valid for 90 days, so later matches still upload.</li>
+</ul>
+<h3 style="margin:18px 0 6px">The fix (engineering, one field)</h3>
+<ul>
+<li>Send the store domain on <code>owl_portal_store_select</code> (or on <code>owl_portal_connect_shopify</code>) together with the same user's email or user ID. The matcher then joins by store, which is exact, instead of by email. No change is needed on the Google Ads side.</li>
+</ul>
+</div>
+
+<h2>6. Matched installs (click-ID upload)</h2>
 <div class="card"><div class="chain">
   <div class="join c3">
     <div class="br"><div class="n ours"><b>BFCM leads</b><small>email + click ID</small></div></div>
@@ -246,10 +280,10 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 </div>
 <ul>
 <li><b>Tools:</b> Intercom (install truth until the Partner API exists), bfcm-dash Worker and database, Segment, Google Ads scheduled upload.</li>
-<li><b>Live:</b> on for all regions. 2 matched installs sent so far (9 and 12 Nov).</li>
+<li><b>Live:</b> on for all regions. 2 matched installs sent so far (9 and 12 Nov), both from BFCM deal-page leads. None from portal signups yet (section 5).</li>
 </ul></div>
 
-<h2>6. Conversion actions in the account</h2>
+<h2>7. Conversion actions in the account</h2>
 <div class="card">
 <table>
 <tr><th>Action (id)</th><th>Signal</th><th>Route</th><th>Role</th></tr>
@@ -262,7 +296,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 </table>
 </div>
 
-<h2>7. What each campaign bids on today</h2>
+<h2>8. What each campaign bids on today</h2>
 <div class="card">
 <table>
 <tr><th>Campaign</th><th>Status</th><th>Lands on</th><th>Bidding goal</th></tr>
@@ -276,7 +310,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 </table>
 </div>
 
-<h2>8. Where Metabase, Omni and Intercom fit</h2>
+<h2>9. Where Metabase, Omni and Intercom fit</h2>
 <div class="card">
 <table>
 <tr><th>Source</th><th>What it holds</th><th>Role here</th></tr>
@@ -288,7 +322,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 </table>
 </div>
 
-<h2>9. Known gaps</h2>
+<h2>10. Known gaps</h2>
 <div class="card">
 <ul>
 <li><b>Unattributed installs:</b> about a third of GA4 installs have no source. Fix: cross-domain linking on the Google tag (needs a tag admin).</li>
