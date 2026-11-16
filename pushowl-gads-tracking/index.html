@@ -89,7 +89,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 <div class="card">
 <div class="lanes">
   <div class="lane"><h3>App installs</h3><div class="chain">
-    <div class="n ui"><b>Google ad click</b><small>BFCM Search, YT - ROW</small></div>
+    <div class="n ui"><b>Google ad click</b><small>YT - ROW (BFCM Search via the deal page)</small></div>
     <div class="dn"></div>
     <div class="n ui"><b>App Store listing</b><small>apps.shopify.com/pushowl</small></div>
     <div class="dn"></div>
@@ -300,7 +300,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 <div class="card">
 <table>
 <tr><th>Campaign</th><th>Status</th><th>Lands on</th><th>Bidding goal</th></tr>
-<tr><td>BFCM26 · Search · intent</td><td><span class="pill ok">on, $45/day</span></td><td>App Store (keyword-level URL, since 13 Nov)</td><td>Other = App Install (GA4), since 13 Nov</td></tr>
+<tr><td>BFCM26 · Search · intent</td><td><span class="pill ok">on, $45/day</span></td><td>Deal page (the 13 Nov keyword-level App Store links were disapproved for destination mismatch; removed 17 Nov)</td><td>Other = App Install (GA4), since 13 Nov</td></tr>
 <tr><td>BFCM26 · Demand Gen</td><td><span class="pill off">paused 13 Nov</span></td><td>Deal page</td><td>BFCM26 claim only</td></tr>
 <tr><td>YT - ROW - Owl Portal</td><td><span class="pill ok">on</span></td><td>/lp/email-marketing, then the portal</td><td>OwlPortal SignUp</td></tr>
 <tr><td>PO - YT - ROW - Remarketing - Owl Portal</td><td><span class="pill ok">on</span></td><td>Mixed: that page or the App Store</td><td>OwlPortal SignUp</td></tr>
@@ -328,7 +328,7 @@ ul{margin:6px 0 6px 20px;padding:0} li{margin:3px 0}
 <li><b>Unattributed installs:</b> about a third of GA4 installs have no source. Fix: cross-domain linking on the Google tag (needs a tag admin).</li>
 <li><b>Portal ignores gbraid/wbraid:</b> iOS clicks without a gclid can't be credited.</li>
 <li><b>Matched installs don't steer bidding:</b> Store install (import) is secondary on purpose. Making it primary would change the goal mid-campaign.</li>
-<li><b>Ad edits need Google's identity check:</b> the Search ad URLs are overridden at keyword level, so every new keyword needs the App Store final URL.</li>
+<li><b>Search can't point at the App Store by keyword override:</b> keyword links on apps.shopify.com were disapproved (destination mismatch) because the ads display pushowl.com. Sending Search to the App Store needs new ads with an App Store final URL, which needs Google's identity check.</li>
 <li><b>PushOwlAppInstall events</b> carry only the store subdomain, so portal installs are matched through Intercom by email or store.</li>
 </ul>
 <p class="note">Sources: live Google Ads account (16 Nov), bfcm-dash database (state, portal_events, install_pushes), Segment destinations set up 3 to 4 Nov, Webflow embeds on pushowl.com.</p>
